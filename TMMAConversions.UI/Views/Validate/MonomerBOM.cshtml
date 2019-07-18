@@ -1,0 +1,144 @@
+﻿@section Styles {
+    <style type="text/css">
+        .list-group-item {
+            margin: 0 !important;
+            border: 0;
+        }
+
+        .btn-no-radius {
+            border-radius: 0;
+        }
+    </style>
+}
+
+<div class="page-header">
+    <h1><i class="fa fa-folder-open"></i>&nbsp;Validate <small>Monomer BOM</small></h1>
+</div>
+
+<!-- Home Section -->
+<section ng-controller="homeController" class="search-section">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-horizontal form-element">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="input_upload_file" class="col-sm-4 control-label">
+                                <i class="fa fa-file-excel"></i> Upload File :
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="input_upload_file">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" ng-click="OnUploadBOMFile()" type="button" id="btn_upload_file">Upload File</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body p-0">
+                    <ul class="list-group m-0">
+                        <li class="list-group-item row p-0">
+                            <button class="btn btn-info col-md-3 btn-no-radius">
+                                BOM
+                            </button>
+                            <button class="btn btn-info col-md-3 btn-no-radius">
+                                Routing
+                            </button>
+                            <button class="btn btn-info col-md-2 btn-no-radius">
+                                Created By
+                            </button>
+                            <button class="btn btn-info col-md-2 btn-no-radius">
+                                Created Date
+                            </button>
+                            <button class="btn btn-info col-md-2 btn-no-radius">
+                                Action
+                            </button>
+                        </li>
+                        <li ng-repeat="o in ProductsViewModel.List" class="list-group-item row p-10">
+                            <div class="col-md-3 text-center">
+                                {{o.BOMFile.BOMFileName}}
+                            </div>
+                            <div class="col-md-3 text-center">
+                                {{o.RoutingFile.RoutingFileName}}
+                            </div>
+                            <div class="col-md-2 text-center">
+                                {{o.CreatedBy}}
+                            </div>
+                            <div class="col-md-2 text-center">
+                                {{o.CreatedDate.slice(6, -2) | date: 'dd-MM-yyyy HH:mm:ss'}}
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Edit
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a href="#">BOM</a></li>
+                                        <li><a href="#">Routing</a></li>
+                                    </ul>
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Delete
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <li><a href="#">Product</a></li>
+                                        <li><a href="#">BOM</a></li>
+                                        <li><a href="#">Routing</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col col-xs-4">
+                            Page {{ProductsViewModel.Filter.Pagination.Page}} of {{ProductsViewModel.Filter.Pagination.TotalPage}}
+                        </div>
+                        <div class="col col-xs-8">
+                            <ul class="pagination hidden-xs pull-right">
+                                <li class="page-item" ng-class="(ProductsViewModel.Filter.Pagination.Page > 1) ? '' : 'disabled'"><a class="page-link" href="javascript:void(0)" ng-click="GotoPage((ProductsViewModel.Filter.Pagination.Page == 1 ? 1 : ProductsViewModel.Filter.Pagination.Page - 1))"><i class="fa fa-angle-left"></i></a></li>
+                                <li class="page-item" ng-repeat="n in ArrayNumber(ProductsViewModel.Filter.Pagination.StartPage,ProductsViewModel.Filter.Pagination.EndPage)" ng-class="(ProductsViewModel.Filter.Pagination.Page == n ? 'active': '')"><a class="page-link" ng-click="GotoPage(n)" href="javascript:void(0)">{{n}}</a></li>
+                                <li class="page-item" ng-class="(ProductsViewModel.Filter.Pagination.Page == ProductsViewModel.Filter.Pagination.TotalPage) ? 'disabled' : ''"><a class="page-link" href="javascript:void(0)" ng-click="GotoPage((ProductsViewModel.Filter.Pagination.Page == ProductsViewModel.Filter.Pagination.TotalPage ? ProductsViewModel.Filter.Pagination.TotalPage : ProductsViewModel.Filter.Pagination.TotalPage + 1))"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;Add Products</button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Monomer</a></li>
+                    <li><a href="#">CCS</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script type="text/javascript">
+        var ProductsViewModel = @Html.Raw(Json.Encode(ViewData["ProductsViewModel"]));
+    </script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Validate/monomerBOMController.js")"></script>
+}

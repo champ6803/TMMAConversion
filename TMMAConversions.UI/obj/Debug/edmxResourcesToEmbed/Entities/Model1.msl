@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UTMMABCDBModelStoreContainer" CdmEntityContainer="UTMMABCDBEntities">
+    <EntitySetMapping Name="USR_TMMA_PRODUCTS">
+      <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_PRODUCTS">
+        <MappingFragment StoreEntitySet="USR_TMMA_PRODUCTS">
+          <ScalarProperty Name="ProductsID" ColumnName="ProductsID" />
+          <ScalarProperty Name="BOMFileID" ColumnName="BOMFileID" />
+          <ScalarProperty Name="RoutingFileID" ColumnName="RoutingFileID" />
+          <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

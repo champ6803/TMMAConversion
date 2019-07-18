@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TMMABCDBModelStoreContainer" CdmEntityContainer="TMMABCDBEntities">
+    <EntitySetMapping Name="TEMP_TMMA_RP_SAP_BILL_HEADER">
+      <EntityTypeMapping TypeName="TMMABCDBModel.TEMP_TMMA_RP_SAP_BILL_HEADER">
+        <MappingFragment StoreEntitySet="TEMP_TMMA_RP_SAP_BILL_HEADER">
+          <ScalarProperty Name="BillingDoc" ColumnName="BillingDoc" />
+          <ScalarProperty Name="BillingType" ColumnName="BillingType" />
+          <ScalarProperty Name="BillingCate" ColumnName="BillingCate" />
+          <ScalarProperty Name="SDDocCategory" ColumnName="SDDocCategory" />
+          <ScalarProperty Name="DocCurr" ColumnName="DocCurr" />
+          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+          <ScalarProperty Name="DistChannel" ColumnName="DistChannel" />
+          <ScalarProperty Name="PriceProc" ColumnName="PriceProc" />
+          <ScalarProperty Name="DocCondition" ColumnName="DocCondition" />
+          <ScalarProperty Name="ShippingPoint" ColumnName="ShippingPoint" />
+          <ScalarProperty Name="BillingDate" ColumnName="BillingDate" />
+          <ScalarProperty Name="PriceGrp" ColumnName="PriceGrp" />
+          <ScalarProperty Name="IncotermsPart1" ColumnName="IncotermsPart1" />
+          <ScalarProperty Name="IncotermsPart2" ColumnName="IncotermsPart2" />
+          <ScalarProperty Name="ExchangeRate" ColumnName="ExchangeRate" />
+          <ScalarProperty Name="TermsOfPayment" ColumnName="TermsOfPayment" />
+          <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+          <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+          <ScalarProperty Name="ChangedDate" ColumnName="ChangedDate" />
+          <ScalarProperty Name="CancelBillNo" ColumnName="CancelBillNo" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="ExchangeRateType" ColumnName="ExchangeRateType" />
+          <ScalarProperty Name="Division" ColumnName="Division" />
+          <ScalarProperty Name="CreditControlArea" ColumnName="CreditControlArea" />
+          <ScalarProperty Name="CustAcctCrd" ColumnName="CustAcctCrd" />
+          <ScalarProperty Name="CredDataExchRate" ColumnName="CredDataExchRate" />
+          <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

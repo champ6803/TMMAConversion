@@ -1,0 +1,948 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UTMMABCDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="USR_TMMA_ASSIGN_MATERIAL_TO_ROUTING_FILE">
+          <Key>
+            <PropertyRef Name="AssignMaterialToRoutingFileID" />
+          </Key>
+          <Property Name="AssignMaterialToRoutingFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AssignMaterialToRoutingFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="AssignMaterialToRoutingFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="AssignMaterialToRoutingFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_BOM_FILE">
+          <Key>
+            <PropertyRef Name="BOMFileID" />
+          </Key>
+          <Property Name="BOMFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BOMFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="BOMFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="BOMFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ValidDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_FILE_STATUS">
+          <Key>
+            <PropertyRef Name="FileStatusID" />
+          </Key>
+          <Property Name="FileStatusID" Type="int" Nullable="false" />
+          <Property Name="FileStatusName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_INSPECTION_PLAN_FILE">
+          <Key>
+            <PropertyRef Name="InspectionPlanFileID" />
+          </Key>
+          <Property Name="InspectionPlanFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="InspectionPlanFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="InspectionPlanFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="InspectionPlanFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ValidDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_MASTER_MESSAGE">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageText" Type="text" Nullable="false" />
+          <Property Name="TypeOfMessage" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="MessageClass" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MassageNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MessageGroup" Type="varchar" MaxLength="100" />
+          <Property Name="MessageLevel" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_MASTER_PERMISSION">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermissionName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_MASTER_ROLE">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_PACKAGING_INSTRUCTION_FILE">
+          <Key>
+            <PropertyRef Name="PackagingInstructionFileID" />
+          </Key>
+          <Property Name="PackagingInstructionFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PackagingInstructionFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="PackagingInstructionFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="PackagingInstructionFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_PRODUCTION_VERSION_FILE">
+          <Key>
+            <PropertyRef Name="ProductionVersionFileID" />
+          </Key>
+          <Property Name="ProductionVersionFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProductionVersionFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="ProductionVersionFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="ProductionVersionFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ValidDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_PRODUCTS">
+          <Key>
+            <PropertyRef Name="ProductsID" />
+          </Key>
+          <Property Name="ProductsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BOMFileID" Type="int" />
+          <Property Name="RoutingFileID" Type="int" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="Version" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_PRODUCTS_TYPE">
+          <Key>
+            <PropertyRef Name="ProductsTypeID" />
+          </Key>
+          <Property Name="ProductsTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductsTypeName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_ROLE_PERMISSION">
+          <Key>
+            <PropertyRef Name="RolePermissionID" />
+          </Key>
+          <Property Name="RolePermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="PermissionID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_ROUTING_FILE">
+          <Key>
+            <PropertyRef Name="RoutingFileID" />
+          </Key>
+          <Property Name="RoutingFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoutingFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="RoutingFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RoutingFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ValidDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_ROUTING_WITH_MATERIAL_FILE">
+          <Key>
+            <PropertyRef Name="RoutingWithMaterialFileID" />
+          </Key>
+          <Property Name="RoutingWithMaterialFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoutingWithMaterialFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="RoutingWithMaterialFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RoutingWithMaterialFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_ROUTING_WITHOUT_MATERIAL_FILE">
+          <Key>
+            <PropertyRef Name="RoutingWithoutMaterialFileID" />
+          </Key>
+          <Property Name="RoutingWithoutMaterialFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoutingWithoutMaterialFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="RoutingWithoutMaterialFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RoutingWithoutMaterialFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_USER">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PasswordHash" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Salt" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_WORK_CENTER_FILE">
+          <Key>
+            <PropertyRef Name="WorkCenterFileID" />
+          </Key>
+          <Property Name="WorkCenterFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="WorkCenterFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="WorkCenterFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="WorkCenterFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_WORKCENTER_ROUTING_FILE">
+          <Key>
+            <PropertyRef Name="WorkCenterRoutingFileID" />
+          </Key>
+          <Property Name="WorkCenterRoutingFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecObjectName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserSAP" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="WorkCenterRoutingFilePath" Type="varchar" MaxLength="255" />
+          <Property Name="WorkCenterRoutingFileVersion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="WorkCenterRoutingFileStatus" Type="int" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ValidDate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="UTMMABCDBModelStoreContainer">
+          <EntitySet Name="USR_TMMA_ASSIGN_MATERIAL_TO_ROUTING_FILE" EntityType="Self.USR_TMMA_ASSIGN_MATERIAL_TO_ROUTING_FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_BOM_FILE" EntityType="Self.USR_TMMA_BOM_FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_FILE_STATUS" EntityType="Self.USR_TMMA_FILE_STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_INSPECTION_PLAN_FILE" EntityType="Self.USR_TMMA_INSPECTION_PLAN_FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_MASTER_MESSAGE" EntityType="Self.USR_TMMA_MASTER_MESSAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_MASTER_PERMISSION" EntityType="Self.USR_TMMA_MASTER_PERMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_MASTER_ROLE" EntityType="Self.USR_TMMA_MASTER_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_PACKAGING_INSTRUCTION_FILE" EntityType="Self.USR_TMMA_PACKAGING_INSTRUCTION_FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_PRODUCTION_VERSION_FILE" EntityType="Self.USR_TMMA_PRODUCTION_VERSION_FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_PRODUCTS" EntityType="Self.USR_TMMA_PRODUCTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_PRODUCTS_TYPE" EntityType="Self.USR_TMMA_PRODUCTS_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_ROLE_PERMISSION" EntityType="Self.USR_TMMA_ROLE_PERMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_ROUTING_FILE" EntityType="Self.USR_TMMA_ROUTING_FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_ROUTING_WITH_MATERIAL_FILE" EntityType="Self.USR_TMMA_ROUTING_WITH_MATERIAL_FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_ROUTING_WITHOUT_MATERIAL_FILE" EntityType="Self.USR_TMMA_ROUTING_WITHOUT_MATERIAL_FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_USER" EntityType="Self.USR_TMMA_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_WORK_CENTER_FILE" EntityType="Self.USR_TMMA_WORK_CENTER_FILE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_TMMA_WORKCENTER_ROUTING_FILE" EntityType="Self.USR_TMMA_WORKCENTER_ROUTING_FILE" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UTMMABCDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="USR_TMMA_ASSIGN_MATERIAL_TO_ROUTING_FILE">
+          <Key>
+            <PropertyRef Name="AssignMaterialToRoutingFileID" />
+          </Key>
+          <Property Name="AssignMaterialToRoutingFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserSAP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AssignMaterialToRoutingFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AssignMaterialToRoutingFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="AssignMaterialToRoutingFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_BOM_FILE">
+          <Key>
+            <PropertyRef Name="BOMFileID" />
+          </Key>
+          <Property Name="BOMFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserSAP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BOMFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BOMFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="BOMFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_FILE_STATUS">
+          <Key>
+            <PropertyRef Name="FileStatusID" />
+          </Key>
+          <Property Name="FileStatusID" Type="Int32" Nullable="false" />
+          <Property Name="FileStatusName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_INSPECTION_PLAN_FILE">
+          <Key>
+            <PropertyRef Name="InspectionPlanFileID" />
+          </Key>
+          <Property Name="InspectionPlanFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserSAP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InspectionPlanFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="InspectionPlanFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="InspectionPlanFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_MASTER_MESSAGE">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeOfMessage" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MessageClass" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MassageNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MessageGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MessageLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_MASTER_PERMISSION">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermissionName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_MASTER_ROLE">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_PACKAGING_INSTRUCTION_FILE">
+          <Key>
+            <PropertyRef Name="PackagingInstructionFileID" />
+          </Key>
+          <Property Name="PackagingInstructionFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserSAP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PackagingInstructionFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PackagingInstructionFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="PackagingInstructionFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_PRODUCTION_VERSION_FILE">
+          <Key>
+            <PropertyRef Name="ProductionVersionFileID" />
+          </Key>
+          <Property Name="ProductionVersionFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserSAP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductionVersionFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProductionVersionFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="ProductionVersionFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_PRODUCTS">
+          <Key>
+            <PropertyRef Name="ProductsID" />
+          </Key>
+          <Property Name="ProductsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BOMFileID" Type="Int32" />
+          <Property Name="RoutingFileID" Type="Int32" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Version" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_PRODUCTS_TYPE">
+          <Key>
+            <PropertyRef Name="ProductsTypeID" />
+          </Key>
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductsTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_ROLE_PERMISSION">
+          <Key>
+            <PropertyRef Name="RolePermissionID" />
+          </Key>
+          <Property Name="RolePermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="PermissionID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_ROUTING_FILE">
+          <Key>
+            <PropertyRef Name="RoutingFileID" />
+          </Key>
+          <Property Name="RoutingFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserSAP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoutingFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RoutingFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RoutingFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_ROUTING_WITH_MATERIAL_FILE">
+          <Key>
+            <PropertyRef Name="RoutingWithMaterialFileID" />
+          </Key>
+          <Property Name="RoutingWithMaterialFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserSAP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoutingWithMaterialFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RoutingWithMaterialFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RoutingWithMaterialFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_ROUTING_WITHOUT_MATERIAL_FILE">
+          <Key>
+            <PropertyRef Name="RoutingWithoutMaterialFileID" />
+          </Key>
+          <Property Name="RoutingWithoutMaterialFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserSAP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoutingWithoutMaterialFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RoutingWithoutMaterialFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RoutingWithoutMaterialFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_USER">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salt" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="USR_TMMA_WORK_CENTER_FILE">
+          <Key>
+            <PropertyRef Name="WorkCenterFileID" />
+          </Key>
+          <Property Name="WorkCenterFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserSAP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkCenterFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WorkCenterFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="WorkCenterFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="UTMMABCDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="USR_TMMA_ASSIGN_MATERIAL_TO_ROUTING_FILE" EntityType="Self.USR_TMMA_ASSIGN_MATERIAL_TO_ROUTING_FILE" />
+          <EntitySet Name="USR_TMMA_BOM_FILE" EntityType="Self.USR_TMMA_BOM_FILE" />
+          <EntitySet Name="USR_TMMA_FILE_STATUS" EntityType="Self.USR_TMMA_FILE_STATUS" />
+          <EntitySet Name="USR_TMMA_INSPECTION_PLAN_FILE" EntityType="Self.USR_TMMA_INSPECTION_PLAN_FILE" />
+          <EntitySet Name="USR_TMMA_MASTER_MESSAGE" EntityType="Self.USR_TMMA_MASTER_MESSAGE" />
+          <EntitySet Name="USR_TMMA_MASTER_PERMISSION" EntityType="Self.USR_TMMA_MASTER_PERMISSION" />
+          <EntitySet Name="USR_TMMA_MASTER_ROLE" EntityType="Self.USR_TMMA_MASTER_ROLE" />
+          <EntitySet Name="USR_TMMA_PACKAGING_INSTRUCTION_FILE" EntityType="Self.USR_TMMA_PACKAGING_INSTRUCTION_FILE" />
+          <EntitySet Name="USR_TMMA_PRODUCTION_VERSION_FILE" EntityType="Self.USR_TMMA_PRODUCTION_VERSION_FILE" />
+          <EntitySet Name="USR_TMMA_PRODUCTS" EntityType="Self.USR_TMMA_PRODUCTS" />
+          <EntitySet Name="USR_TMMA_PRODUCTS_TYPE" EntityType="Self.USR_TMMA_PRODUCTS_TYPE" />
+          <EntitySet Name="USR_TMMA_ROLE_PERMISSION" EntityType="Self.USR_TMMA_ROLE_PERMISSION" />
+          <EntitySet Name="USR_TMMA_ROUTING_FILE" EntityType="Self.USR_TMMA_ROUTING_FILE" />
+          <EntitySet Name="USR_TMMA_ROUTING_WITH_MATERIAL_FILE" EntityType="Self.USR_TMMA_ROUTING_WITH_MATERIAL_FILE" />
+          <EntitySet Name="USR_TMMA_ROUTING_WITHOUT_MATERIAL_FILE" EntityType="Self.USR_TMMA_ROUTING_WITHOUT_MATERIAL_FILE" />
+          <EntitySet Name="USR_TMMA_USER" EntityType="Self.USR_TMMA_USER" />
+          <EntitySet Name="USR_TMMA_WORK_CENTER_FILE" EntityType="Self.USR_TMMA_WORK_CENTER_FILE" />
+          <EntitySet Name="USR_TMMA_WORKCENTER_ROUTING_FILE" EntityType="UTMMABCDBModel.USR_TMMA_WORKCENTER_ROUTING_FILE" />
+        </EntityContainer>
+        <EntityType Name="USR_TMMA_WORKCENTER_ROUTING_FILE">
+          <Key>
+            <PropertyRef Name="WorkCenterRoutingFileID" />
+          </Key>
+          <Property Name="WorkCenterRoutingFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecObjectName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserSAP" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WorkCenterRoutingFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WorkCenterRoutingFileVersion" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="WorkCenterRoutingFileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProductsTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ValidDate" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UTMMABCDBModelStoreContainer" CdmEntityContainer="UTMMABCDBEntities">
+          <EntitySetMapping Name="USR_TMMA_ASSIGN_MATERIAL_TO_ROUTING_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_ASSIGN_MATERIAL_TO_ROUTING_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_ASSIGN_MATERIAL_TO_ROUTING_FILE">
+                <ScalarProperty Name="AssignMaterialToRoutingFileID" ColumnName="AssignMaterialToRoutingFileID" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="AssignMaterialToRoutingFilePath" ColumnName="AssignMaterialToRoutingFilePath" />
+                <ScalarProperty Name="AssignMaterialToRoutingFileVersion" ColumnName="AssignMaterialToRoutingFileVersion" />
+                <ScalarProperty Name="AssignMaterialToRoutingFileStatus" ColumnName="AssignMaterialToRoutingFileStatus" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_BOM_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_BOM_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_BOM_FILE">
+                <ScalarProperty Name="BOMFileID" ColumnName="BOMFileID" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="BOMFilePath" ColumnName="BOMFilePath" />
+                <ScalarProperty Name="BOMFileVersion" ColumnName="BOMFileVersion" />
+                <ScalarProperty Name="BOMFileStatus" ColumnName="BOMFileStatus" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ValidDate" ColumnName="ValidDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_FILE_STATUS">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_FILE_STATUS">
+              <MappingFragment StoreEntitySet="USR_TMMA_FILE_STATUS">
+                <ScalarProperty Name="FileStatusID" ColumnName="FileStatusID" />
+                <ScalarProperty Name="FileStatusName" ColumnName="FileStatusName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_INSPECTION_PLAN_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_INSPECTION_PLAN_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_INSPECTION_PLAN_FILE">
+                <ScalarProperty Name="InspectionPlanFileID" ColumnName="InspectionPlanFileID" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="InspectionPlanFilePath" ColumnName="InspectionPlanFilePath" />
+                <ScalarProperty Name="InspectionPlanFileVersion" ColumnName="InspectionPlanFileVersion" />
+                <ScalarProperty Name="InspectionPlanFileStatus" ColumnName="InspectionPlanFileStatus" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ValidDate" ColumnName="ValidDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_MASTER_MESSAGE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_MASTER_MESSAGE">
+              <MappingFragment StoreEntitySet="USR_TMMA_MASTER_MESSAGE">
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="TypeOfMessage" ColumnName="TypeOfMessage" />
+                <ScalarProperty Name="MessageClass" ColumnName="MessageClass" />
+                <ScalarProperty Name="MassageNumber" ColumnName="MassageNumber" />
+                <ScalarProperty Name="MessageGroup" ColumnName="MessageGroup" />
+                <ScalarProperty Name="MessageLevel" ColumnName="MessageLevel" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_MASTER_PERMISSION">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_MASTER_PERMISSION">
+              <MappingFragment StoreEntitySet="USR_TMMA_MASTER_PERMISSION">
+                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+                <ScalarProperty Name="PermissionName" ColumnName="PermissionName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_MASTER_ROLE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_MASTER_ROLE">
+              <MappingFragment StoreEntitySet="USR_TMMA_MASTER_ROLE">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_PACKAGING_INSTRUCTION_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_PACKAGING_INSTRUCTION_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_PACKAGING_INSTRUCTION_FILE">
+                <ScalarProperty Name="PackagingInstructionFileID" ColumnName="PackagingInstructionFileID" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="PackagingInstructionFilePath" ColumnName="PackagingInstructionFilePath" />
+                <ScalarProperty Name="PackagingInstructionFileVersion" ColumnName="PackagingInstructionFileVersion" />
+                <ScalarProperty Name="PackagingInstructionFileStatus" ColumnName="PackagingInstructionFileStatus" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_PRODUCTION_VERSION_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_PRODUCTION_VERSION_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_PRODUCTION_VERSION_FILE">
+                <ScalarProperty Name="ProductionVersionFileID" ColumnName="ProductionVersionFileID" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="ProductionVersionFilePath" ColumnName="ProductionVersionFilePath" />
+                <ScalarProperty Name="ProductionVersionFileVersion" ColumnName="ProductionVersionFileVersion" />
+                <ScalarProperty Name="ProductionVersionFileStatus" ColumnName="ProductionVersionFileStatus" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ValidDate" ColumnName="ValidDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_PRODUCTS">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_PRODUCTS">
+              <MappingFragment StoreEntitySet="USR_TMMA_PRODUCTS">
+                <ScalarProperty Name="ProductsID" ColumnName="ProductsID" />
+                <ScalarProperty Name="BOMFileID" ColumnName="BOMFileID" />
+                <ScalarProperty Name="RoutingFileID" ColumnName="RoutingFileID" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_PRODUCTS_TYPE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_PRODUCTS_TYPE">
+              <MappingFragment StoreEntitySet="USR_TMMA_PRODUCTS_TYPE">
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="ProductsTypeName" ColumnName="ProductsTypeName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_ROLE_PERMISSION">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_ROLE_PERMISSION">
+              <MappingFragment StoreEntitySet="USR_TMMA_ROLE_PERMISSION">
+                <ScalarProperty Name="RolePermissionID" ColumnName="RolePermissionID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_ROUTING_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_ROUTING_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_ROUTING_FILE">
+                <ScalarProperty Name="RoutingFileID" ColumnName="RoutingFileID" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="RoutingFilePath" ColumnName="RoutingFilePath" />
+                <ScalarProperty Name="RoutingFileVersion" ColumnName="RoutingFileVersion" />
+                <ScalarProperty Name="RoutingFileStatus" ColumnName="RoutingFileStatus" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ValidDate" ColumnName="ValidDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_ROUTING_WITH_MATERIAL_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_ROUTING_WITH_MATERIAL_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_ROUTING_WITH_MATERIAL_FILE">
+                <ScalarProperty Name="RoutingWithMaterialFileID" ColumnName="RoutingWithMaterialFileID" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="RoutingWithMaterialFilePath" ColumnName="RoutingWithMaterialFilePath" />
+                <ScalarProperty Name="RoutingWithMaterialFileVersion" ColumnName="RoutingWithMaterialFileVersion" />
+                <ScalarProperty Name="RoutingWithMaterialFileStatus" ColumnName="RoutingWithMaterialFileStatus" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_ROUTING_WITHOUT_MATERIAL_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_ROUTING_WITHOUT_MATERIAL_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_ROUTING_WITHOUT_MATERIAL_FILE">
+                <ScalarProperty Name="RoutingWithoutMaterialFileID" ColumnName="RoutingWithoutMaterialFileID" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="RoutingWithoutMaterialFilePath" ColumnName="RoutingWithoutMaterialFilePath" />
+                <ScalarProperty Name="RoutingWithoutMaterialFileVersion" ColumnName="RoutingWithoutMaterialFileVersion" />
+                <ScalarProperty Name="RoutingWithoutMaterialFileStatus" ColumnName="RoutingWithoutMaterialFileStatus" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_USER">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_USER">
+              <MappingFragment StoreEntitySet="USR_TMMA_USER">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_WORK_CENTER_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_WORK_CENTER_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_WORK_CENTER_FILE">
+                <ScalarProperty Name="WorkCenterFileID" ColumnName="WorkCenterFileID" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="WorkCenterFilePath" ColumnName="WorkCenterFilePath" />
+                <ScalarProperty Name="WorkCenterFileVersion" ColumnName="WorkCenterFileVersion" />
+                <ScalarProperty Name="WorkCenterFileStatus" ColumnName="WorkCenterFileStatus" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_TMMA_WORKCENTER_ROUTING_FILE">
+            <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_WORKCENTER_ROUTING_FILE">
+              <MappingFragment StoreEntitySet="USR_TMMA_WORKCENTER_ROUTING_FILE">
+                <ScalarProperty Name="ValidDate" ColumnName="ValidDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+                <ScalarProperty Name="WorkCenterRoutingFileStatus" ColumnName="WorkCenterRoutingFileStatus" />
+                <ScalarProperty Name="WorkCenterRoutingFileVersion" ColumnName="WorkCenterRoutingFileVersion" />
+                <ScalarProperty Name="WorkCenterRoutingFilePath" ColumnName="WorkCenterRoutingFilePath" />
+                <ScalarProperty Name="UserSAP" ColumnName="UserSAP" />
+                <ScalarProperty Name="RecObjectName" ColumnName="RecObjectName" />
+                <ScalarProperty Name="WorkCenterRoutingFileID" ColumnName="WorkCenterRoutingFileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,39 @@
+﻿@section Styles {
+    <style type="text/css">
+        .list-group-item {
+            margin: 0 !important;
+            border: 0;
+        }
+
+        .btn-no-radius {
+            border-radius: 0;
+        }
+    </style>
+}
+
+<div class="page-header">
+    <h1><i class="fa fa-folder-open"></i>&nbsp;TMMA Conversion</h1>
+</div>
+
+<!-- Home Section -->
+<section ng-controller="homeController" class="search-section">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><i class="fa fa-list"></i>&nbsp;Main Menu</div>
+                <ul class="list-group">
+                    <li class="list-group-item"><i class="fa fa-caret-right"></i>&nbsp;<a href="@Url.Content("~/Monomer")">MMA/CCS Master</a></li>
+                    <li class="list-group-item"><i class="fa fa-caret-right"></i>&nbsp;<a href="@Url.Content("~/Template")">Template</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script type="text/javascript">
+        var ProductsViewModel = @Html.Raw(Json.Encode(ViewData["ProductsViewModel"]));
+    </script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/homeController.js")"></script>
+}

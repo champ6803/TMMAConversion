@@ -1,0 +1,178 @@
+﻿@section Styles {
+    <style type="text/css">
+        .list-group-item {
+            margin: 0 !important;
+            border: 0;
+        }
+
+        .btn-no-radius {
+            border-radius: 0;
+        }
+    </style>
+}
+
+<div class="page-header">
+    <h1><i class="fa fa-folder-open"></i>&nbsp;Master <small>Work Center</small></h1>
+</div>
+
+<!-- Add File Section -->
+<section ng-controller="workCenterController" class="search-section" ng-init="init()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-horizontal form-element">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="txt_user_sap" class="col-sm-6 control-label">
+                                <i class="fa fa-user"></i> User SAP <span style="color: red;">*</span> :
+                            </label>
+                            <div class="col-sm-6">
+                                <input id="txt_user_sap" ng-model="User" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="txt_user_sap" class="col-sm-6 control-label">
+                                <i class="fa fa-compact-disc"></i> Recording Object Name <span style="color: red;">*</span> :
+                            </label>
+                            <div class="col-sm-6">
+                                <input id="txt_rec_object_name" ng-model="RecObjectName" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="input_upload_file" class="col-sm-6 control-label">
+                                <i class="fa fa-file-excel"></i> Upload File <span style="color: red;">*</span> :
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="file" class="form-control" id="input_upload_file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-primary" ng-click="OnUploadWorkCenterFile()" type="button" id="btn_upload_file"><i class="fa fa-file-excel"></i>&nbsp;Upload Excel</button>
+                        <a ng-class="(WorkCenterFileViewModel.List.length > 0) ? '' : 'disabled'" href="~/Files/Monomer/Excels/BOM/BOM.xlsx" class="btn btn-success" id="btn_download_file"><i class="fa fa-file-excel"></i>&nbsp;Download Excel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body p-0">
+                    <ul class="list-group m-0">
+                        <li class="list-group-item row p-0">
+                            <button ng-click="OnOrdering('RecObjectName')" class="btn btn-info col-md-2 col-sm-4 col-xs-4 btn-no-radius">
+                                Name <i ng-class="WorkCenterFileViewModel.Filter.Order == 'RecObjectName' ? WorkCenterFileViewModel.Filter.Sort == 'asc' ? 'fa fa-sort-down' : 'fa fa-sort-up' : 'fa fa-sort'"></i>
+                            </button>
+                            <button ng-click="OnOrdering('UserSAP')" class="btn btn-info col-md-1 hidden-sm hidden-xs btn-no-radius">
+                                User <i ng-class="WorkCenterFileViewModel.Filter.Order == 'UserSAP' ? WorkCenterFileViewModel.Filter.Sort == 'asc' ? 'fa fa-sort-down' : 'fa fa-sort-up' : 'fa fa-sort'"></i>
+                            </button>
+                            <button ng-click="OnOrdering('Version')" class="btn btn-info col-md-1 hidden-sm hidden-xs btn-no-radius">
+                                Version <i ng-class="WorkCenterFileViewModel.Filter.Order == 'Version' ? WorkCenterFileViewModel.Filter.Sort == 'asc' ? 'fa fa-sort-down' : 'fa fa-sort-up' : 'fa fa-sort'"></i>
+                            </button>
+                            <button ng-click="OnOrdering('Status')" class="btn btn-info col-md-1 col-sm-2 col-xs-2 btn-no-radius">
+                                Status <i ng-class="WorkCenterFileViewModel.Filter.Order == 'Status' ? WorkCenterFileViewModel.Filter.Sort == 'asc' ? 'fa fa-sort-down' : 'fa fa-sort-up' : 'fa fa-sort'"></i>
+                            </button>
+                            <button ng-click="OnOrdering('CreatedBy')" class="btn btn-info col-md-2 hidden-sm hidden-xs btn-no-radius">
+                                Created By <i ng-class="WorkCenterFileViewModel.Filter.Order == 'CreatedBy' ? WorkCenterFileViewModel.Filter.Sort == 'asc' ? 'fa fa-sort-down' : 'fa fa-sort-up' : 'fa fa-sort'"></i>
+                            </button>
+                            <button ng-click="OnOrdering('CreatedDate')" class="btn btn-info col-md-2 hidden-sm hidden-xs btn-no-radius">
+                                Created Date <i ng-class="WorkCenterFileViewModel.Filter.Order == 'CreatedDate' ? WorkCenterFileViewModel.Filter.Sort == 'asc' ? 'fa fa-sort-down' : 'fa fa-sort-up' : 'fa fa-sort'"></i>
+                            </button>
+                            <button class="btn btn-info col-md-3 col-sm-6 col-xs-6 btn-no-radius">
+                                Action
+                            </button>
+                        </li>
+
+                        <li ng-repeat="o in WorkCenterFileViewModel.List" ng-if="WorkCenterFileViewModel.List != null" class="list-group-item row p-10">
+                            <div class="col-md-2 col-sm-4 col-xs-4 text-center">
+                                {{o.RecObjectName}}
+                            </div>
+                            <div class="col-md-1 hidden-sm hidden-xs text-center">
+                                {{o.UserSAP}}
+                            </div>
+                            <div class="col-md-1 hidden-sm hidden-xs text-center">
+                                {{o.WorkCenterFileVersion | number:2}}
+                            </div>
+                            <div class="col-md-1 col-sm-2 col-xs-2 text-center">
+                                {{o.FileStatus.FileStatusName}}
+                            </div>
+                            <div class="col-md-2 hidden-sm hidden-xs text-center">
+                                {{o.CreatedBy}}
+                            </div>
+                            <div class="col-md-2 hidden-sm hidden-xs text-center">
+                                {{o.CreatedDate.slice(6, -2) | date: 'dd-MM-yyyy HH:mm:ss'}}
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                                <div ng-if="o.WorkCenterFileVersion == WorkCenterFileViewModel.Filter.LastWorkCenterFileVersion" class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        <i class="fa fa-file-download"></i>&nbsp;Generate
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li class="text-center">
+                                            <a ng-click="OnGenerateCreateTextFile(o.WorkCenterFileID, o.RecObjectName, o.UserSAP, WorkCenterFileViewModel.Filter.Pagination.Page)"><i class="fa fa-file"></i>&nbsp;Text BDC Create</a>
+                                        </li>
+                                        <li class="text-center">
+                                            <a ng-click="OnGenerateDeleteTextFile(o.WorkCenterFileID, o.RecObjectName, o.UserSAP, WorkCenterFileViewModel.Filter.Pagination.Page)"><i class="fa fa-file"></i>&nbsp;Text BDC Delete</a>
+                                        </li>
+                                    </ul>
+                                    <label class="btn btn-warning" ng-click="SetWorkCenterFileID(o.WorkCenterFileID)">
+                                        <i class="fa fa-file-upload"></i>&nbsp;Validate @*<input onchange="angular.element(this).scope().OnUploadValidateWorkCenterFile(this.files)" style="display:none !important;" type="file">*@
+                                    </label>
+                                </div>
+
+                                <button ng-if="!(o.WorkCenterFileVersion == WorkCenterFileViewModel.Filter.LastWorkCenterFileVersion)" class="btn btn-success disabled" type="button">
+                                    <i class="fa fa-file-download"></i>&nbsp;Generate
+                                    <span class="caret"></span>
+                                </button>
+                                <label ng-if="!(o.WorkCenterFileVersion == WorkCenterFileViewModel.Filter.LastWorkCenterFileVersion)" class="btn btn-warning disabled">
+                                    <i class="fa fa-file-upload"></i>&nbsp;Validate
+                                </label>
+                            </div>
+                        </li>
+                        <li ng-if="WorkCenterFileViewModel.List == null" class="list-group-item row p-10">
+                            <div class="col-md-12 text-center">
+                                No Item
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col col-xs-4">
+                            Page {{WorkCenterFileViewModel.Filter.Pagination.Page}} of {{WorkCenterFileViewModel.Filter.Pagination.TotalPage}}
+                        </div>
+                        <div class="col col-xs-8">
+                            <ul class="pagination hidden-xs pull-right">
+                                <li class="page-item" ng-class="(WorkCenterFileViewModel.Filter.Pagination.Page > 1) ? '' : 'disabled'"><a class="page-link" href="javascript:void(0)" ng-click="GotoPage((WorkCenterFileViewModel.Filter.Pagination.Page == 1 ? 1 : WorkCenterFileViewModel.Filter.Pagination.Page - 1))"><i class="fa fa-angle-left"></i></a></li>
+                                <li class="page-item" ng-repeat="n in ArrayNumber(WorkCenterFileViewModel.Filter.Pagination.StartPage,WorkCenterFileViewModel.Filter.Pagination.EndPage)" ng-class="(WorkCenterFileViewModel.Filter.Pagination.Page == n ? 'active': '')"><a class="page-link" ng-click="GotoPage(n)" href="javascript:void(0)">{{n}}</a></li>
+                                <li class="page-item" ng-class="(WorkCenterFileViewModel.Filter.Pagination.Page == WorkCenterFileViewModel.Filter.Pagination.TotalPage) ? 'disabled' : ''"><a class="page-link" href="javascript:void(0)" ng-click="GotoPage((WorkCenterFileViewModel.Filter.Pagination.Page == WorkCenterFileViewModel.Filter.Pagination.TotalPage ? WorkCenterFileViewModel.Filter.Pagination.TotalPage : WorkCenterFileViewModel.Filter.Pagination.Page + 1))"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script type="text/javascript">
+        debugger;
+        var WorkCenterFileViewModel = @Html.Raw(Json.Encode(ViewData["WorkCenterFileViewModel"]));
+    </script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Monomer/workCenterController.js")"></script>
+}

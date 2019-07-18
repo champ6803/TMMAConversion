@@ -1,0 +1,89 @@
+	0000	M	ZCONV_CS01	SD02          11042019  161248
+                                        	0000	T	CS01                                                                                                                                	
+SAPLCSDI                                	0100	X	                                                                                                                                    	
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29N-ATEXT
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	RC29N-MATNR                                                                                                                         	Z11FGMMA01
+                                        	0000	 	RC29N-WERKS                                                                                                                         	B911
+                                        	0000	 	RC29N-STLAN                                                                                                                         	1
+                                        	0000	 	RC29N-STLAL                                                                                                                         	1
+                                        	0000	 	RC29N-DATUV                                                                                                                         	29.04.2019
+SAPLCSDI                                	0110	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	RC29K-BMENG                                                                                                                         	1
+                                        	0000	 	RC29K-STLST                                                                                                                         	1
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0800STLKOPF
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29K-EXSTL
+SAPLCSDI                                	0111	X	                                                                                                                                    	
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29K-LABOR
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0801STLKOPF
+SAPLCSDI                                	0140	X	                                                                                                                                    	
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29P-POSTP(01)
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	RC29P-IDNRK(01)                                                                                                                     	B921SMT001
+                                        	0000	 	RC29P-MENGE(01)                                                                                                                     	-3000
+                                        	0000	 	RC29P-MEINS(01)                                                                                                                     	TON
+                                        	0000	 	RC29P-POSTP(01)                                                                                                                     	L
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0802STLKOPF
+SAPLCSDI                                	0130	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0802STLKOPF
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0830POS_PHPT
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29P-IDENT
+                                        	0000	 	RC29P-POSNR                                                                                                                         	0010
+                                        	0000	 	RC29P-IDNRK                                                                                                                         	B921SMT001
+                                        	0000	 	RC29P-MENGE                                                                                                                         	3,000-
+                                        	0000	 	RC29P-MEINS                                                                                                                         	TON
+SAPLCSDI                                	0131	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0802STLKOPF
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0840POS_PDAT
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29P-POTX1
+                                        	0000	 	RC29P-SANKA                                                                                                                         	X
+SAPLCSDI                                	0140	X	                                                                                                                                    	
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29P-SORTF(09)
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	RC29P-IDNRK(02)                                                                                                                     	B921SMT002
+                                        	0000	 	RC29P-MENGE(02)                                                                                                                     	1800
+                                        	0000	 	RC29P-MEINS(02)                                                                                                                     	TON
+                                        	0000	 	RC29P-POSTP(02)                                                                                                                     	L
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0802STLKOPF
+SAPLCSDI                                	0130	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0802STLKOPF
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0830POS_PHPT
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29P-POSNR
+                                        	0000	 	RC29P-POSNR                                                                                                                         	0020
+                                        	0000	 	RC29P-IDNRK                                                                                                                         	B921SMT002
+                                        	0000	 	RC29P-MENGE                                                                                                                         	1,800
+                                        	0000	 	RC29P-MEINS                                                                                                                         	TON
+SAPLCSDI                                	0131	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0802STLKOPF
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0840POS_PDAT
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29P-POTX1
+                                        	0000	 	RC29P-SANKA                                                                                                                         	X
+SAPLCSDI                                	0140	X	                                                                                                                                    	
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29P-POSTP(03)
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	RC29P-IDNRK(03)                                                                                                                     	B921SMT003
+                                        	0000	 	RC29P-MENGE(03)                                                                                                                     	-3200
+                                        	0000	 	RC29P-MEINS(03)                                                                                                                     	TON
+                                        	0000	 	RC29P-POSTP(03)                                                                                                                     	L
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0802STLKOPF
+SAPLCSDI                                	0130	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0802STLKOPF
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0830POS_PHPT
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29P-POSNR
+                                        	0000	 	RC29P-POSNR                                                                                                                         	0030
+                                        	0000	 	RC29P-IDNRK                                                                                                                         	B921SMT003
+                                        	0000	 	RC29P-MENGE                                                                                                                         	3,200-
+                                        	0000	 	RC29P-MEINS                                                                                                                         	TON
+SAPLCSDI                                	0130	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/EABBR
+SAPLCSDI                                	0140	X	                                                                                                                                    	
+                                        	0000	 	BDC_CURSOR                                                                                                                          	RC29P-POSNR(01)
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=FCBU
+                                        	0000	 	BDC_SUBSCR                                                                                                                          	SAPLCSDI                                0802STLKOPF

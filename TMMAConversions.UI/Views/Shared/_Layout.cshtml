@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCG Thai MMA Conversions</title>
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Scripts/fontawesome/css/fontawesome.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Scripts/fontawesome/css/brands.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Scripts/fontawesome/css/solid.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Scripts/jquery-ui-1.12.1/jquery-ui.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Scripts/sweetalert2/sweetalert2.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/style.css")" rel="stylesheet">
+
+    @RenderSection("styles", required: false)
+
+    <script type="text/javascript">
+        var base_path = "@Url.Content("~/")";
+    </script>
+</head>
+<body>
+
+    <div class="loading-screen">
+        <img class="loading-img" src="~/Images/loading.gif" />
+    </div>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*<a class="navbar-brand" href="#">Thai MMA Conversions</a>*@
+                <a class="navbar-brand" href="@Url.Content("~/")">
+                    <img class="p-r-20" alt="Brand" style="height: 45px;" src="~/Images/scg_chemicals_logo.png">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul id="main_menu" class="nav navbar-nav">
+                    <li><a href="@Url.Content("~/")">Home</a></li>
+                    @*<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Master <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Content("~/Monomer")">Monomer Products</a></li>
+                                <li><a href="@Url.Content("~/CCS")">CCS Products</a></li>
+                            </ul>
+                        </li>*@
+                    <li><a href="@Url.Content("~/Monomer")">Master</a></li>
+                    <li><a href="@Url.Content("~/Template")">Template</a></li>
+                </ul>
+                @if (Session["Username"] != null)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Content("~/Login/OnLogout")"><i class="fa fa-sign-out-alt"></i>&nbsp;ออกจากระบบ</a></li>
+                    </ul>
+                    <p class="navbar-text navbar-right"><i style="color: #EE2524" class="fa fa-user-circle"></i> @Session["Username"]</p>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Content("~/Login")"><i class="fa fa-sign-in-alt"></i>&nbsp;เข้าสู่ระบบ</a></li>
+                    </ul>
+                }
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer class="layout-footer">
+        <p>&copy; @DateTime.Now.Year - SCG - TMMA Conversions</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    <script type="text/javascript" src="@Url.Content("~/Scripts/sweetalert2/sweetalert2.all.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.12.1/jquery-ui.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/app.js")"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

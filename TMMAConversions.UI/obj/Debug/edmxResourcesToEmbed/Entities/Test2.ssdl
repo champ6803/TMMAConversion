@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TMMABCDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TMMABCDB.dbo.TEMP_TMMA_RP_SAP_BILL_HEADER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TEMP_TMMA_RP_SAP_BILL_HEADER">
+    <Key>
+      <PropertyRef Name="BillingDoc" />
+    </Key>
+    <Property Name="BillingDoc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="BillingType" Type="varchar" MaxLength="4" />
+    <Property Name="BillingCate" Type="varchar" MaxLength="1" />
+    <Property Name="SDDocCategory" Type="varchar" MaxLength="1" />
+    <Property Name="DocCurr" Type="varchar" MaxLength="5" />
+    <Property Name="SalesOrg" Type="varchar" MaxLength="4" />
+    <Property Name="DistChannel" Type="varchar" MaxLength="2" />
+    <Property Name="PriceProc" Type="varchar" MaxLength="6" />
+    <Property Name="DocCondition" Type="varchar" MaxLength="10" />
+    <Property Name="ShippingPoint" Type="varchar" MaxLength="2" />
+    <Property Name="BillingDate" Type="datetime" />
+    <Property Name="PriceGrp" Type="varchar" MaxLength="2" />
+    <Property Name="IncotermsPart1" Type="varchar" MaxLength="3" />
+    <Property Name="IncotermsPart2" Type="varchar" MaxLength="28" />
+    <Property Name="ExchangeRate" Type="numeric" Precision="9" Scale="5" />
+    <Property Name="TermsOfPayment" Type="varchar" MaxLength="4" />
+    <Property Name="CompCode" Type="varchar" MaxLength="4" />
+    <Property Name="NetAmount" Type="numeric" Precision="15" Scale="2" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="TaxAmount" Type="numeric" Precision="13" Scale="2" />
+    <Property Name="ChangedDate" Type="datetime" />
+    <Property Name="CancelBillNo" Type="varchar" MaxLength="10" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="ExchangeRateType" Type="varchar" MaxLength="4" />
+    <Property Name="Division" Type="varchar" MaxLength="2" />
+    <Property Name="CreditControlArea" Type="varchar" MaxLength="4" />
+    <Property Name="CustAcctCrd" Type="varchar" MaxLength="10" />
+    <Property Name="CredDataExchRate" Type="numeric" Precision="9" Scale="5" />
+    <Property Name="LastUpdateDate" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="TMMABCDBModelStoreContainer">
+    <EntitySet Name="TEMP_TMMA_RP_SAP_BILL_HEADER" EntityType="Self.TEMP_TMMA_RP_SAP_BILL_HEADER" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[BillingDoc] AS [BillingDoc], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[BillingType] AS [BillingType], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[BillingCate] AS [BillingCate], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[SDDocCategory] AS [SDDocCategory], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[DocCurr] AS [DocCurr], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[SalesOrg] AS [SalesOrg], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[DistChannel] AS [DistChannel], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[PriceProc] AS [PriceProc], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[DocCondition] AS [DocCondition], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[ShippingPoint] AS [ShippingPoint], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[BillingDate] AS [BillingDate], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[PriceGrp] AS [PriceGrp], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[IncotermsPart1] AS [IncotermsPart1], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[IncotermsPart2] AS [IncotermsPart2], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[ExchangeRate] AS [ExchangeRate], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[TermsOfPayment] AS [TermsOfPayment], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[CompCode] AS [CompCode], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[NetAmount] AS [NetAmount], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[CreatedDate] AS [CreatedDate], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[TaxAmount] AS [TaxAmount], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[ChangedDate] AS [ChangedDate], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[CancelBillNo] AS [CancelBillNo], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[DueDate] AS [DueDate], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[ExchangeRateType] AS [ExchangeRateType], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[Division] AS [Division], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[CreditControlArea] AS [CreditControlArea], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[CustAcctCrd] AS [CustAcctCrd], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[CredDataExchRate] AS [CredDataExchRate], 
+    [TEMP_TMMA_RP_SAP_BILL_HEADER].[LastUpdateDate] AS [LastUpdateDate]
+    FROM [dbo].[TEMP_TMMA_RP_SAP_BILL_HEADER] AS [TEMP_TMMA_RP_SAP_BILL_HEADER]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

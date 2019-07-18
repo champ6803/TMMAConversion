@@ -1,0 +1,120 @@
+	0000	M	ZCONV_POP1	SD02          05062019  091241
+                                        	0000	T	POP1                                                                                                                                	
+SAPLVHUPO                                	0101	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-PIID                                                                                                                         	    SYR01
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-CONTENT                                                                                                                         	CCS Syrup VC
+                                        	0000	 	PIPO_ROW-DETAIL_ITEMTYPE(02)                                                                                                            R
+                                        	0000	 	PIPO_ROW-COMPONENT(01)                                                                                                                  PP00
+                                        	0000	 	PIPO_ROW-COMPONENT(02)                                                                                                                  SYR
+                                        	0000	 	PIPO_ROW-TRGQTY(02)                                                                                                                     100.000
+                                        	0000	 	PIPO_ROW-MINQTY(02)                                                                                                                     10.000
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB4
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB1
+                                        	0000	 	PIKP-CHECKPROF                                                                                                                          01
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB5
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=SAVE
+	0000	M	ZCONV_POP1	SD02          05062019  091241
+                                        	0000	T	POP1                                                                                                                                	
+SAPLVHUPO                                	0101	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-PIID                                                                                                                         	    P1TBA0
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-CONTENT                                                                                                                         	CCS Syrup VC
+                                        	0000	 	PIPO_ROW-DETAIL_ITEMTYPE(02)                                                                                                            R
+                                        	0000	 	PIPO_ROW-COMPONENT(01)                                                                                                                  PP00
+                                        	0000	 	PIPO_ROW-COMPONENT(02)                                                                                                                  SYR
+                                        	0000	 	PIPO_ROW-TRGQTY(02)                                                                                                                     100.000
+                                        	0000	 	PIPO_ROW-MINQTY(02)                                                                                                                     10.000
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB4
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB1
+                                        	0000	 	PIKP-CHECKPROF                                                                                                                          01
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB5
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=SAVE
+	0000	M	ZCONV_POP1	SD02          05062019  091241
+                                        	0000	T	POP1                                                                                                                                	
+SAPLVHUPO                                	0101	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-PIID                                                                                                                         	    P1UTC0
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-CONTENT                                                                                                                         	CCS Syrup VC
+                                        	0000	 	PIPO_ROW-DETAIL_ITEMTYPE(02)                                                                                                            R
+                                        	0000	 	PIPO_ROW-COMPONENT(01)                                                                                                                  PP00
+                                        	0000	 	PIPO_ROW-COMPONENT(02)                                                                                                                  UC1
+                                        	0000	 	PIPO_ROW-TRGQTY(02)                                                                                                                     100.000
+                                        	0000	 	PIPO_ROW-MINQTY(02)                                                                                                                     10.000
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB4
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB1
+                                        	0000	 	PIKP-CHECKPROF                                                                                                                          01
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB5
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=SAVE
+	0000	M	ZCONV_POP1	SD02          05062019  091241
+                                        	0000	T	POP1                                                                                                                                	
+SAPLVHUPO                                	0101	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-PIID                                                                                                                         	    
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-CONTENT                                                                                                                         	
+                                        	0000	 	PIPO_ROW-DETAIL_ITEMTYPE(02)                                                                                                            R
+                                        	0000	 	PIPO_ROW-COMPONENT(01)                                                                                                                  
+                                        	0000	 	PIPO_ROW-COMPONENT(02)                                                                                                                  
+                                        	0000	 	PIPO_ROW-TRGQTY(02)                                                                                                                     
+                                        	0000	 	PIPO_ROW-MINQTY(02)                                                                                                                     
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB4
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB1
+                                        	0000	 	PIKP-CHECKPROF                                                                                                                          01
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB5
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=SAVE
+	0000	M	ZCONV_POP1	SD02          05062019  091241
+                                        	0000	T	POP1                                                                                                                                	
+SAPLVHUPO                                	0101	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-PIID                                                                                                                         	    
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	/00
+                                        	0000	 	PIKP-CONTENT                                                                                                                         	
+                                        	0000	 	PIPO_ROW-DETAIL_ITEMTYPE(02)                                                                                                            R
+                                        	0000	 	PIPO_ROW-COMPONENT(01)                                                                                                                  
+                                        	0000	 	PIPO_ROW-COMPONENT(02)                                                                                                                  
+                                        	0000	 	PIPO_ROW-TRGQTY(02)                                                                                                                     
+                                        	0000	 	PIPO_ROW-MINQTY(02)                                                                                                                     
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB4
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB1
+                                        	0000	 	PIKP-CHECKPROF                                                                                                                          01
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=TAB5
+SAPLVHUPO                                	0610	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=SAVE

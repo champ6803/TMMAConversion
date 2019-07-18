@@ -1,0 +1,42 @@
+﻿@section Styles {
+    @*<style type="text/css">
+            .list-group-item {
+                margin: 0 !important;
+                border: 0;
+            }
+
+            .btn-no-radius {
+                border-radius: 0;
+            }
+        </style>*@
+}
+
+<div class="page-header">
+    <h1><i class="fa fa-folder-open"></i>&nbsp;MMA/CCS <small>Overview</small></h1>
+</div>
+
+<!-- Home Section -->
+<section ng-controller="monomerController" class="search-section">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><i class="fa fa-list"></i>&nbsp;Conversions Master</div>
+                <ul class="list-group">
+                    <li class="list-group-item"><i class="fa fa-caret-right"></i>&nbsp;<a href="@Url.Content("~/Monomer/WorkCenterRouting")">WorkCenter Routing</a></li>
+                    <li class="list-group-item"><i class="fa fa-caret-right"></i>&nbsp;<a href="@Url.Content("~/Monomer/MaterialBOMItem")">MMA BOM</a></li>
+                    <li class="list-group-item"><i class="fa fa-caret-right"></i>&nbsp;<a href="@Url.Content("~/CCS/MaterialBOMItem")">CCS BOM</a></li>
+                    <li class="list-group-item"><i class="fa fa-caret-right"></i>&nbsp;<a href="@Url.Content("~/Monomer/InspectionPlan")">Inspection Plan (MMA)</a></li>
+                    <li class="list-group-item"><i class="fa fa-caret-right"></i>&nbsp;<a href="@Url.Content("~/Monomer/PackagingInstruction")">Packaging Instruction</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>  
+</section>
+
+@section Scripts {
+    @*<script type="text/javascript">
+            var ProductsViewModel = @Html.Raw(Json.Encode(ViewData["ProductsViewModel"]));
+        </script>*@
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Monomer/monomerController.js")"></script>
+}

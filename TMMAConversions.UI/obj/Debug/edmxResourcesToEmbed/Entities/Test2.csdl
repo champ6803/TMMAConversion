@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TMMABCDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TEMP_TMMA_RP_SAP_BILL_HEADER">
+    <Key>
+      <PropertyRef Name="BillingDoc" />
+    </Key>
+    <Property Name="BillingDoc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BillingType" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="BillingCate" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="SDDocCategory" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="DocCurr" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="SalesOrg" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="DistChannel" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="PriceProc" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="DocCondition" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ShippingPoint" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="BillingDate" Type="DateTime" Precision="3" />
+    <Property Name="PriceGrp" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="IncotermsPart1" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="IncotermsPart2" Type="String" MaxLength="28" FixedLength="false" Unicode="false" />
+    <Property Name="ExchangeRate" Type="Decimal" Precision="9" Scale="5" />
+    <Property Name="TermsOfPayment" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="CompCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="NetAmount" Type="Decimal" Precision="15" Scale="2" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="TaxAmount" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="ChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="CancelBillNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="ExchangeRateType" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="Division" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="CreditControlArea" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="CustAcctCrd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CredDataExchRate" Type="Decimal" Precision="9" Scale="5" />
+    <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="TMMABCDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TEMP_TMMA_RP_SAP_BILL_HEADER" EntityType="Self.TEMP_TMMA_RP_SAP_BILL_HEADER" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,80 @@
+Session Name			TEST01	Queue ID	19052415521725243345	User	SD02
+Log date			24.05.2019	TemSe ID	BDCLG172524334537375
+
+	Log time	Log message						Trans.	 Index	Modules	Dynp	Ind	T	ID	No.
+
+	15:50:28	Session TEST01 is being processed by user SD02 in mode N on server it1-bss4ap91											S	00	300
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	     1	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	     1				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	     2	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	     2				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	     3	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	     3				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	     4	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	     4				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	     5	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	     5				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	     6	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	     6				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	     7	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	     7				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	     8	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	     8				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	     9	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	     9				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	    10	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	    10				S	00	357
+	15:50:28	Field RC29N-STLAL. does not exist in dynpro SAPLCSDI 0102						CS05	    11	SAPLCSDI	0102	  1	S	00	349
+	15:50:28	Transaction error						CS05	    11				S	00	357
+	15:50:28	Alternative 1 already exists						CS01	    12	SAPLCSDI	0100	  1	E	29	003
+	15:50:28	Transaction error						CS01	    12				S	00	357
+	15:50:28	Alternative 1 already exists						CS01	    13	SAPLCSDI	0100	  1	E	29	003
+	15:50:28	Transaction error						CS01	    13				S	00	357
+	15:50:29	Creating BOM for material D9PK001						CS01	    14	SAPLCSDI	0140	  4	S	29	030
+	15:50:29	Transaction was processed successfully						CS01	    14				S	00	355
+	15:50:29	Alternative 1 already exists						CS01	    15	SAPLCSDI	0100	  1	E	29	003
+	15:50:29	Transaction error						CS01	    15				S	00	357
+	15:50:29	Alternative 1 already exists						CS01	    16	SAPLCSDI	0100	  1	E	29	003
+	15:50:29	Transaction error						CS01	    16				S	00	357
+	15:50:29	Creating BOM for material Z11FGMMA03						CS01	    17	SAPLCSDI	0140	  4	S	29	030
+	15:50:29	Transaction was processed successfully						CS01	    17				S	00	355
+	15:50:29	Alternative 1 already exists						CS01	    18	SAPLCSDI	0100	  1	E	29	003
+	15:50:29	Transaction error						CS01	    18				S	00	357
+	15:50:29	Alternative 1 already exists						CS01	    19	SAPLCSDI	0100	  1	E	29	003
+	15:50:29	Transaction error						CS01	    19				S	00	357
+	15:50:29	Alternative 1 already exists						CS01	    20	SAPLCSDI	0100	  1	E	29	003
+	15:50:29	Transaction error						CS01	    20				S	00	357
+	15:50:29	Alternative 1 already exists						CS01	    21	SAPLCSDI	0100	  1	E	29	003
+	15:50:29	Transaction error						CS01	    21				S	00	357
+	15:50:29	Alternative 1 already exists						CS01	    22	SAPLCSDI	0100	  1	E	29	003
+	15:50:29	Transaction error						CS01	    22				S	00	357
+	15:50:29	No batch input data for dynpro SAPLCSDI 0140						CS02	    23	SAPLCSDI	0140	  2	S	00	344
+	15:50:29	Transaction error						CS02	    23				S	00	357
+	15:50:29	No batch input data for dynpro SAPLCSDI 0140						CS02	    24	SAPLCSDI	0140	  2	S	00	344
+	15:50:29	Transaction error						CS02	    24				S	00	357
+	15:50:29	No items are valid on 25.05.2019						CS02	    25	SAPLCSDI	0100	  1	W	29	064
+	15:50:29	No batch input data for dynpro SAPLCSDI 0140						CS02	    25	SAPLCSDI	0140	  2	S	00	344
+	15:50:29	Transaction error						CS02	    25				S	00	357
+	15:50:30	No batch input data for dynpro SAPLCSDI 0140						CS02	    26	SAPLCSDI	0140	  2	S	00	344
+	15:50:30	Transaction error						CS02	    26				S	00	357
+	15:50:30	No batch input data for dynpro SAPLCSDI 0140						CS02	    27	SAPLCSDI	0140	  2	S	00	344
+	15:50:30	Transaction error						CS02	    27				S	00	357
+	15:50:30	No items are valid on 25.05.2019						CS02	    28	SAPLCSDI	0100	  1	W	29	064
+	15:50:30	No batch input data for dynpro SAPLCSDI 0140						CS02	    28	SAPLCSDI	0140	  2	S	00	344
+	15:50:30	Transaction error						CS02	    28				S	00	357
+	15:50:30	No batch input data for dynpro SAPLCSDI 0140						CS02	    29	SAPLCSDI	0140	  2	S	00	344
+	15:50:30	Transaction error						CS02	    29				S	00	357
+	15:50:30	No batch input data for dynpro SAPLCSDI 0140						CS02	    30	SAPLCSDI	0140	  2	S	00	344
+	15:50:30	Transaction error						CS02	    30				S	00	357
+	15:50:30	No batch input data for dynpro SAPLCSDI 0140						CS02	    31	SAPLCSDI	0140	  2	S	00	344
+	15:50:30	Transaction error						CS02	    31				S	00	357
+	15:50:30	No batch input data for dynpro SAPLCSDI 0140						CS02	    32	SAPLCSDI	0140	  2	S	00	344
+	15:50:30	Transaction error						CS02	    32				S	00	357
+	15:50:30	No batch input data for dynpro SAPLCSDI 0140						CS02	    33	SAPLCSDI	0140	  2	S	00	344
+	15:50:30	Transaction error						CS02	    33				S	00	357
+	15:50:30	Processing statistics											S	00	370
+	15:50:30	        33 transactions read											S	00	363
+	15:50:30	         2 transactions processed											S	00	364
+	15:50:30	        31 transactions with errors											S	00	365
+	15:50:30	         0 transactions deleted											S	00	366
+	15:50:30	Batch input processing ended											S	00	382

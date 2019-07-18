@@ -1,0 +1,172 @@
+﻿@section Styles {
+    <style type="text/css">
+        .list-group-item {
+            margin: 0 !important;
+            border: 0;
+        }
+
+        .btn-no-radius {
+            border-radius: 0;
+        }
+    </style>
+}
+
+<div class="page-header">
+    <h1><i class="fa fa-folder-open"></i>&nbsp;Monomer <small>Routing Without Material</small></h1>
+</div>
+
+<!-- Add File Section -->
+<section ng-controller="routingWithoutMaterialController" class="search-section" ng-init="init()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-horizontal form-element">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="txt_user_sap" class="col-sm-6 control-label">
+                                <i class="fa fa-user"></i> User SAP <span style="color: red;">*</span> :
+                            </label>
+                            <div class="col-sm-6">
+                                <input id="txt_user_sap" ng-model="User" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="txt_user_sap" class="col-sm-6 control-label">
+                                <i class="fa fa-compact-disc"></i> Recording Object Name <span style="color: red;">*</span> :
+                            </label>
+                            <div class="col-sm-6">
+                                <input id="txt_rec_object_name" ng-model="RecObjectName" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="input_upload_file" class="col-sm-6 control-label">
+                                <i class="fa fa-file-excel"></i> Upload File <span style="color: red;">*</span> :
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="file" class="form-control" id="input_upload_file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-primary" ng-click="OnUploadRoutingWithoutMaterialFile()" type="button" id="btn_upload_file"><i class="fa fa-upload"></i>&nbsp;Upload Excel</button>
+                        <a href="~/Files/Monomer/Excels/RoutingWithoutMaterial/RoutingWithoutMaterial.xlsx" class="btn btn-success" id="btn_download_file"><i class="fa fa-upload"></i>&nbsp;Download Excel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body p-0">
+                    <ul class="list-group m-0">
+                        <li class="list-group-item row p-0">
+                            <button class="btn btn-info col-md-2 btn-no-radius">
+                                Name
+                            </button>
+                            <button class="btn btn-info col-md-1 btn-no-radius">
+                                User
+                            </button>
+                            <button class="btn btn-info col-md-1 btn-no-radius">
+                                Version
+                            </button>
+                            <button class="btn btn-info col-md-1 btn-no-radius">
+                                Status
+                            </button>
+                            <button class="btn btn-info col-md-2 btn-no-radius">
+                                Created By
+                            </button>
+                            <button class="btn btn-info col-md-2 btn-no-radius">
+                                Created Date
+                            </button>
+                            <button class="btn btn-info col-md-3 btn-no-radius">
+                                Action
+                            </button>
+                        </li>
+
+                        <li ng-repeat="o in RoutingWithoutMaterialFileViewModel.List" ng-if="RoutingWithoutMaterialFileViewModel.List != null" class="list-group-item row p-10">
+                            <div class="col-md-2 text-center">
+                                {{o.RecObjectName}}
+                            </div>
+                            <div class="col-md-1 text-center">
+                                {{o.UserSAP}}
+                            </div>
+                            <div class="col-md-1 text-center">
+                                {{o.RoutingWithoutMaterialFileVersion | number:2}}
+                            </div>
+                            <div class="col-md-1 text-center">
+                                {{o.FileStatus.FileStatusName}}
+                            </div>
+                            <div class="col-md-2 text-center">
+                                {{o.CreatedBy}}
+                            </div>
+                            <div class="col-md-2 text-center">
+                                {{o.CreatedDate.slice(6, -2) | date: 'dd-MM-yyyy HH:mm:ss'}}
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <div ng-if="$last && (RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page == RoutingWithoutMaterialFileViewModel.Filter.Pagination.EndPage)" class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        <i class="fa fa-file-download"></i>&nbsp;Generate
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li class="text-center"><a href="~/Monomer/GenerateBOMTextFile?bomFileID={{ o.BOMFileID }}&fileName={{ o.RecObjectName }}&userSAP={{ o.UserSAP }}"><i class="fa fa-file"></i>&nbsp;Text File</a></li>
+                                        <li class="text-center"><a href="~/Monomer/GenerateDeleteBOMTextFile?bomFileID={{ o.BOMFileID }}&fileName={{ o.RecObjectName }}&userSAP={{ o.UserSAP }}"><i class="fa fa-trash"></i>&nbsp;Delete Text File</a></li>
+                                    </ul>
+                                    <label class="btn btn-warning" ng-click="SetBOMFileID(o.BOMFileID)">
+                                        <i class="fa fa-file-upload"></i>&nbsp;Validate <input onchange="angular.element(this).scope().OnUploadValidateBOMFile(this.files)" style="display:none !important;" type="file">
+                                    </label>
+                                </div>
+                                <button ng-if="!($last && (RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page == RoutingWithoutMaterialFileViewModel.Filter.Pagination.EndPage))" class="btn btn-success disabled" type="button">
+                                    <i class="fa fa-file-download"></i>&nbsp;Generate
+                                    <span class="caret"></span>
+                                </button>
+                                <label ng-if="!($last && (RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page == RoutingWithoutMaterialFileViewModel.Filter.Pagination.EndPage))" class="btn btn-warning disabled">
+                                    <i class="fa fa-file-upload"></i>&nbsp;Validate <input style="display:none !important;" type="file">
+                                </label>
+                            </div>
+                        </li>
+                        <li ng-if="RoutingWithoutMaterialFileViewModel.List == null" class="list-group-item row p-10">
+                            <div class="col-md-12 text-center">
+                                No Item
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col col-xs-4">
+                            Page {{RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page}} of {{RoutingWithoutMaterialFileViewModel.Filter.Pagination.TotalPage}}
+                        </div>
+                        <div class="col col-xs-8">
+                            <ul class="pagination hidden-xs pull-right">
+                                <li class="page-item" ng-class="(RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page > 1) ? '' : 'disabled'"><a class="page-link" href="javascript:void(0)" ng-click="GotoPage((RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page == 1 ? 1 : RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page - 1))"><i class="fa fa-angle-left"></i></a></li>
+                                <li class="page-item" ng-repeat="n in ArrayNumber(RoutingWithoutMaterialFileViewModel.Filter.Pagination.StartPage,RoutingWithoutMaterialFileViewModel.Filter.Pagination.EndPage)" ng-class="(RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page == n ? 'active': '')"><a class="page-link" ng-click="GotoPage(n)" href="javascript:void(0)">{{n}}</a></li>
+                                <li class="page-item" ng-class="(RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page == RoutingWithoutMaterialFileViewModel.Filter.Pagination.TotalPage) ? 'disabled' : ''"><a class="page-link" href="javascript:void(0)" ng-click="GotoPage((RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page == RoutingWithoutMaterialFileViewModel.Filter.Pagination.TotalPage ? RoutingWithoutMaterialFileViewModel.Filter.Pagination.TotalPage : RoutingWithoutMaterialFileViewModel.Filter.Pagination.Page + 1))"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script type="text/javascript">
+        var RoutingWithoutMaterialFileViewModel = @Html.Raw(Json.Encode(ViewData["RoutingWithoutMaterialFileViewModel"]));
+    </script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Monomer/routingWithoutMaterialController.js")"></script>
+}

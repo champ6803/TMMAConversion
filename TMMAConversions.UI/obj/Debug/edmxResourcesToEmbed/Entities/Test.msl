@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UTMMABCDBModelStoreContainer" CdmEntityContainer="UTMMABCDBEntities1">
+    <EntitySetMapping Name="USR_TMMA_BOM_FILE">
+      <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_BOM_FILE">
+        <MappingFragment StoreEntitySet="USR_TMMA_BOM_FILE">
+          <ScalarProperty Name="BOMFlieID" ColumnName="BOMFlieID" />
+          <ScalarProperty Name="BOMFileName" ColumnName="BOMFileName" />
+          <ScalarProperty Name="BOMFilePath" ColumnName="BOMFilePath" />
+          <ScalarProperty Name="BOMFileVersion" ColumnName="BOMFileVersion" />
+          <ScalarProperty Name="BOMFileStatus" ColumnName="BOMFileStatus" />
+          <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USR_TMMA_PRODUCTS">
+      <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_PRODUCTS">
+        <MappingFragment StoreEntitySet="USR_TMMA_PRODUCTS">
+          <ScalarProperty Name="ProductsID" ColumnName="ProductsID" />
+          <ScalarProperty Name="BOMFileID" ColumnName="BOMFileID" />
+          <ScalarProperty Name="RoutingFileID" ColumnName="RoutingFileID" />
+          <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USR_TMMA_PRODUCTS_TYPE">
+      <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_PRODUCTS_TYPE">
+        <MappingFragment StoreEntitySet="USR_TMMA_PRODUCTS_TYPE">
+          <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+          <ScalarProperty Name="ProductsTypeName" ColumnName="ProductsTypeName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USR_TMMA_ROUTING_FILE">
+      <EntityTypeMapping TypeName="UTMMABCDBModel.USR_TMMA_ROUTING_FILE">
+        <MappingFragment StoreEntitySet="USR_TMMA_ROUTING_FILE">
+          <ScalarProperty Name="RoutingFileID" ColumnName="RoutingFileID" />
+          <ScalarProperty Name="RoutingFileName" ColumnName="RoutingFileName" />
+          <ScalarProperty Name="RoutingFilePath" ColumnName="RoutingFilePath" />
+          <ScalarProperty Name="RoutingFileVersion" ColumnName="RoutingFileVersion" />
+          <ScalarProperty Name="RoutingFileStatus" ColumnName="RoutingFileStatus" />
+          <ScalarProperty Name="ProductsTypeID" ColumnName="ProductsTypeID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

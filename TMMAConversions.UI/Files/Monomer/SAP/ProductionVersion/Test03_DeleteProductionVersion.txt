@@ -1,0 +1,36 @@
+	0000	M	ZCONV_C223	SD02          16052019  173203
+                                        	0000	T	C223                                                                                                                                	
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=ESEL
+                                        	0000	 	MKAL-WERKS                                                                                                                          	B911
+SAPLCMFV                                	1001	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=NONE
+                                        	0000		RANG_MAT-LOW                                                                                                                            B921SMTX01
+                                        	0000	 	RANG_VER-LOW                                                                                                                            9998
+SAPLCMFV                                	1001	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=CRET
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                              =DELE
+                                        	0000	 	MKAL_EXPAND-MARK(01)                                                                                                                    X
+SAPLSPO1                                 	0100	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=YES
+SAPLCMFV                                 	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=SAVE
+	0000	M	ZCONV_C223	SD02          16052019  173203
+                                        	0000	T	C223                                                                                                                                	
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=ESEL
+                                        	0000	 	MKAL-WERKS                                                                                                                          	B911
+SAPLCMFV                                	1001	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=NONE
+                                        	0000		RANG_MAT-LOW                                                                                                                            Z11FG00
+                                        	0000	 	RANG_VER-LOW                                                                                                                            9998
+SAPLCMFV                                	1001	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=CRET
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                              =DELE
+                                        	0000	 	MKAL_EXPAND-MARK(01)                                                                                                                    X
+SAPLSPO1                                 	0100	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=YES
+SAPLCMFV                                 	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=SAVE

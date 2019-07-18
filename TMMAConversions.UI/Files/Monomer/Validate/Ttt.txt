@@ -1,0 +1,34 @@
+Session Name			CTEST14	Queue ID	19050210361071038479	User	SD02
+Log date			02.05.2019	TemSe ID	BDCLG107103847960702
+
+	Log time	Log message						Trans.	 Index	Modules	Dynp	Ind	T	ID	No.
+
+	10:34:29	Session CTEST14 is being processed by user SD02 in mode N on server it1-bss4ap91											S	00	300
+	10:34:29	Creating BOM for material B9PK007						CS01	     1	SAPLCSDI	0140	 10	S	29	030
+	10:34:29	Transaction was processed successfully						CS01	     1				S	00	355
+	10:34:29	Creating BOM for material B9PK00T						CS01	     2	SAPLCSDI	0140	 10	S	29	030
+	10:34:29	Transaction was processed successfully						CS01	     2				S	00	355
+	10:34:30	Creating BOM for material D9PK001						CS01	     3	SAPLCSDI	0140	 10	S	29	030
+	10:34:30	Transaction was processed successfully						CS01	     3				S	00	355
+	10:34:30	Alternative 1 already exists						CS01	     4	SAPLCSDI	0100	  1	E	29	003
+	10:34:30	Transaction error						CS01	     4				S	00	357
+	10:34:30	Alternative 1 already exists						CS01	     5	SAPLCSDI	0100	  1	E	29	003
+	10:34:30	Transaction error						CS01	     5				S	00	357
+	10:34:30	Unit of measure TON not supported for material B921SMT009 in plant B911						CS01	     6	SAPLCSDI	0140	  4	E	29	175
+	10:34:30	Transaction error						CS01	     6				S	00	357
+	10:34:30	Alternative 1 already exists						CS01	     7	SAPLCSDI	0100	  1	E	29	003
+	10:34:30	Transaction error						CS01	     7				S	00	357
+	10:34:30	Alternative 1 already exists						CS01	     8	SAPLCSDI	0100	  1	E	29	003
+	10:34:30	Transaction error						CS01	     8				S	00	357
+	10:34:30	Alternative 1 already exists						CS01	     9	SAPLCSDI	0100	  1	E	29	003
+	10:34:30	Transaction error						CS01	     9				S	00	357
+	10:34:30	Alternative 1 already exists						CS01	    10	SAPLCSDI	0100	  1	E	29	003
+	10:34:30	Transaction error						CS01	    10				S	00	357
+	10:34:30	Alternative 1 already exists						CS01	    11	SAPLCSDI	0100	  1	E	29	003
+	10:34:30	Transaction error						CS01	    11				S	00	357
+	10:34:30	Processing statistics											S	00	370
+	10:34:30	        11 transactions read											S	00	363
+	10:34:30	         3 transactions processed											S	00	364
+	10:34:30	         8 transactions with errors											S	00	365
+	10:34:30	         0 transactions deleted											S	00	366
+	10:34:30	Batch input processing ended											S	00	382

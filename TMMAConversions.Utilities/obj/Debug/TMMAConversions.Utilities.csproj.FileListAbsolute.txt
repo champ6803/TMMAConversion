@@ -1,0 +1,7 @@
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\bin\Debug\TMMAConversions.Utilities.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\bin\Debug\TMMAConversions.Utilities.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\bin\Debug\log4net.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\bin\Debug\log4net.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\obj\Debug\TMMAConversions.Utilities.csprojResolveAssemblyReference.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\obj\Debug\TMMAConversions.Utilities.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\obj\Debug\TMMAConversions.Utilities.pdb

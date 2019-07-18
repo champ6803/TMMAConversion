@@ -1,0 +1,60 @@
+	0000	M	ZCONV_C223	SD02          10052019  160557
+                                        	0000	T	C223                                                                                                                                	
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=ENTE
+                                        	0000	 	MKAL-WERKS                                                                                                                          	B911
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=CREA
+SAPLCMFV                                	2000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=ENTE
+                                        	0000		MKAL_EXPAND-MATNR                                                                                                                       B921SMTX01
+                                        	0000	 	MKAL_EXPAND-VERID                                                                                                                       9998
+                                        	0000	 	MKAL_EXPAND-TEXT1                                                                                                                       Test BDC Tools
+                                        	0000	 	MKAL_EXPAND-ADATU                                                                                                                       10.05.2019
+                                        	0000	 	MKAL_EXPAND-BDATU                                                                                                                       31.12.9999
+SAPLCMFV                                	2000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	PRFG
+                                        	0000	 	MKAL_EXPAND-PLNTY                                                                                                                       N
+                                        	0000	 	MKAL_EXPAND-PLNNR                                                                                                                       50000009
+                                        	0000	 	MKAL_EXPAND-ALNAL                                                                                                                       1
+                                        	0000	 	MKAL_EXPAND-STLAL                                                                                                                       1
+                                        	0000	 	MKAL_EXPAND-STLAN                                                                                                                       1
+                                        	0000	 	MKAL_EXPAND-MDV01                                                                                                                       
+                                        	0000	 	MKAL_EXPAND-ELPRO                                                                                                                       P001
+                                        	0000	 	MKAL_EXPAND-ALORT                                                                                                                       P001
+SAPMSSY0                                	0120	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=BACK
+SAPLCMFV                                	2000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=CLOS
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=SAVE
+	0000	M	ZCONV_C223	SD02          10052019  160557
+                                        	0000	T	C223                                                                                                                                	
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=ENTE
+                                        	0000	 	MKAL-WERKS                                                                                                                          	B911
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=CREA
+SAPLCMFV                                	2000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=ENTE
+                                        	0000		MKAL_EXPAND-MATNR                                                                                                                       Z11FG00
+                                        	0000	 	MKAL_EXPAND-VERID                                                                                                                       9998
+                                        	0000	 	MKAL_EXPAND-TEXT1                                                                                                                       STANDRAD
+                                        	0000	 	MKAL_EXPAND-ADATU                                                                                                                       10.05.2019
+                                        	0000	 	MKAL_EXPAND-BDATU                                                                                                                       31.12.9999
+SAPLCMFV                                	2000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	PRFG
+                                        	0000	 	MKAL_EXPAND-PLNTY                                                                                                                       N
+                                        	0000	 	MKAL_EXPAND-PLNNR                                                                                                                       50000010
+                                        	0000	 	MKAL_EXPAND-ALNAL                                                                                                                       1
+                                        	0000	 	MKAL_EXPAND-STLAL                                                                                                                       1
+                                        	0000	 	MKAL_EXPAND-STLAN                                                                                                                       1
+                                        	0000	 	MKAL_EXPAND-MDV01                                                                                                                       
+                                        	0000	 	MKAL_EXPAND-ELPRO                                                                                                                       P001
+                                        	0000	 	MKAL_EXPAND-ALORT                                                                                                                       P001
+SAPMSSY0                                	0120	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=BACK
+SAPLCMFV                                	2000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=CLOS
+SAPLCMFV                                	1000	X	                                                                                                                                    	
+                                        	0000	 	BDC_OKCODE                                                                                                                          	=SAVE
