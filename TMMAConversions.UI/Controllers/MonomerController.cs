@@ -2406,28 +2406,35 @@ namespace TMMAConversions.UI.Controllers
         private List<BOMHeaderModel> CheckBOMAlt(List<BOMHeaderModel> bomGradeLevelHeaderList)
         {
             List<string> bomAltList = new List<string>();
+            List<string> materialCodeList = new List<string>();
             List<BOMHeaderModel> newBOMHeader = new List<BOMHeaderModel>();
 
             for (int i = 0; i < bomGradeLevelHeaderList.Count(); i++)
             {
-                var list = bomGradeLevelHeaderList.Where(o => o.MaterialCode == bomGradeLevelHeaderList[i].MaterialCode).ToList();
-                string condition = "1"; // 1 is no bom alt 
-                foreach (var o in list)
+                if (!materialCodeList.Contains(bomGradeLevelHeaderList[i].MaterialCode))
                 {
-                    if (!bomAltList.Contains(o.BOMAlt) && bomAltList.Count() > 0)
+                    var list = bomGradeLevelHeaderList.Where(o => o.MaterialCode == bomGradeLevelHeaderList[i].MaterialCode).ToList();
+                    string condition = "1"; // 1 is no bom alt 
+                    foreach (var o in list)
                     {
-                        condition = "2"; // 2 is count bom alt > 2
-                        break;
+                        if (!bomAltList.Contains(o.BOMAlt) && bomAltList.Count() > 0)
+                        {
+                            condition = "2"; // 2 is count bom alt > 2
+                            break;
+                        }
+                        bomAltList.Add(o.BOMAlt);
                     }
-                    bomAltList.Add(o.BOMAlt);
+
+                    var newList = SetCondition(list, condition);
+                    newBOMHeader.AddRange(newList);
                 }
-                var newList = SetCondition(list, condition);
-                newBOMHeader.AddRange(newList);
+
+                materialCodeList.Add(bomGradeLevelHeaderList[i].MaterialCode);
             }
 
             return newBOMHeader;
         }
-
+            
         private List<BOMHeaderModel> SetCondition(List<BOMHeaderModel> list, string condition)
         {
             foreach (var o in list)

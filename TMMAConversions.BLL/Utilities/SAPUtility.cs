@@ -315,7 +315,7 @@ namespace TMMAConversions.BLL.Utilities
             string ConversionOfUOMDenominator = "1";
             string TaskListType = "N";
             string ValidDateTo = "31.12.9999";
-            string IssueStorageLocation = "P001";
+            //string IssueStorageLocation = "P001";
             string ReceivingStorageLocation = "";
 
             try
@@ -346,13 +346,33 @@ namespace TMMAConversions.BLL.Utilities
                             fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
                             fs.WriteLine("SAPLCSDI                                \t0110\tX\t                                                                                                                                    \t");
                             fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                            fs.WriteLine("                                        \t0000\t \tRC29K-ZTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Usage
+                            fs.WriteLine("                                        \t0000\t \tRC29K-ZTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
                             fs.WriteLine("                                        \t0000\t \tRC29K-BMENG                                                                                                                         \t{0}", o.BaseQuantity); // Base Quantity
                             fs.WriteLine("                                        \t0000\t \tRC29K-STLST                                                                                                                         \t{0}", BOMStatus); // BOM Status
                             fs.WriteLine("SAPLCSDI                                \t0111\tX\t                                                                                                                                    \t");
                             fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
                             fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
                             fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
+                        }
+
+                        // 1.1
+                        // generate bom change header
+                        foreach (var o in bomHeaderList)
+                        {
+                            // BOM Header
+                            fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
+                            fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
+                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=KALL");
+                            fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
+                            fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                            fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
+                            fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
+                            fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                            fs.WriteLine("SAPLCSDI                                \t2110\tX\t                                                                                                                                    \t");
+                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
+                            fs.WriteLine("                                        \t0000\t \tRC29K-ZTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
+                            fs.WriteLine("                                        \t0000\t \tRC29K-BMENG                                                                                                                         \t{0}", o.BaseQuantity); // Base Quantity
+                            fs.WriteLine("                                        \t0000\t \tRC29K-STLST                                                                                                                         \t{0}", BOMStatus); // BOM Status
                         }
 
                         // 2
