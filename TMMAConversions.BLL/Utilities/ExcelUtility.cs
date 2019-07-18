@@ -562,7 +562,7 @@ namespace TMMAConversions.BLL.Utilities
                     BOMHeaderList = new List<BOMHeaderModel>();
                     BOMItemList = new List<BOMItemModel>();
 
-                    for (int i = 12; i < rowCount; i++) // first row
+                    for (int i = 13; i < rowCount; i++) // first row
                     {
                         for (int j = 10; j < colCount; j++) // first col
                         {
@@ -588,7 +588,7 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItemList.Add(BOMItem);
                                 }
 
-                                if (i == 12) // first loop
+                                if (i == 13) // first loop
                                 {
                                     // Create BOM Header
                                     BOMHeaderModel BOMHeader = new BOMHeaderModel();
@@ -603,6 +603,7 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMHeader.GroupCounter = dtExcel.Rows[8].ItemArray[j].ToString();
                                     BOMHeader.ProductionVersion = dtExcel.Rows[9].ItemArray[j].ToString();
                                     BOMHeader.WorkCenter = dtExcel.Rows[10].ItemArray[j].ToString();
+                                    BOMHeader.StorageLocation = dtExcel.Rows[11].ItemArray[j].ToString();
                                     BOMHeaderList.Add(BOMHeader);
                                 }
                             }
