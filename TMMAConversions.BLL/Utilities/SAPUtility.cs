@@ -719,13 +719,13 @@ namespace TMMAConversions.BLL.Utilities
 
                         // 6
                         // generate delete production version
-                        var bomRoutingList = bomHeaderList.Join
-                            (routingHeaderList,
-                            bom => bom.RoutingGroup,
-                            routing => routing.RoutingGroup,
-                            (bom, routing) => routing).ToList();
+                        //var bomRoutingList = bomHeaderList.Join
+                        //    (routingHeaderList,
+                        //    bom => bom.RoutingGroup,
+                        //    routing => routing.RoutingGroup,
+                        //    (bom, routing) => routing).ToList();
 
-                        foreach (var o in bomRoutingList)
+                        foreach (var o in routingHeaderList)
                         {
                             fs.WriteLine("                                        \t0000\tT\tC223                                                                                                                                \t");
                             fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
@@ -748,7 +748,7 @@ namespace TMMAConversions.BLL.Utilities
 
                         // 7
                         // generate production version
-                        foreach (var o in bomRoutingList)
+                        foreach (var o in routingHeaderList)
                         {
                             fs.WriteLine("                                        \t0000\tT\tC223                                                                                                                                \t");
                             fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
