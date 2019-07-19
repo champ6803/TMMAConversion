@@ -625,8 +625,8 @@ namespace TMMAConversions.BLL.Utilities
                             BOMHeader.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
                             BOMHeader.GroupCounter = dtExcel.Rows[8].ItemArray[j].ToString();
                             BOMHeader.ProductionVersion = dtExcel.Rows[9].ItemArray[j].ToString();
-                            BOMHeader.LotSizeTo = dtExcel.Rows[10].ItemArray[j].ToString();
-                            BOMHeader.LotSizeFrom = dtExcel.Rows[11].ItemArray[j].ToString();
+                            BOMHeader.LotSizeFrom = dtExcel.Rows[10].ItemArray[j].ToString();
+                            BOMHeader.LotSizeTo = dtExcel.Rows[11].ItemArray[j].ToString();
                             BOMHeader.WorkCenter = dtExcel.Rows[12].ItemArray[j].ToString();
                             BOMHeader.StorageLocation = dtExcel.Rows[13].ItemArray[j].ToString();
                             BOMHeaderList.Add(BOMHeader);
