@@ -355,7 +355,7 @@ namespace TMMAConversions.UI.Controllers
                             string textExtension = ".txt";
                             string textPath = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), textName);
 
-                            SAPUtility.ConvertToMMABOMTextFile(listHcut, list2, listHactcut, acList2, textPath, fileName, textExtension, userSAP, validDate);
+                            SAPUtility.ConvertToMMABOMTextFile(newList1, list2, listHactcut, acList2, textPath, fileName, textExtension, userSAP, validDate);
                             ht += hc;
                             countHList += hc;
                             j++;
@@ -363,11 +363,13 @@ namespace TMMAConversions.UI.Controllers
                     }
                     else
                     {
+                        List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(list1);
+
                         string textName = fileName + sheets[i].Replace(" ", "");
                         string textExtension = ".txt";
                         string textPath = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), textName);
 
-                        SAPUtility.ConvertToMMABOMTextFile(list1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate);
+                        SAPUtility.ConvertToMMABOMTextFile(newList1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate);
                     }
 
                     i++;

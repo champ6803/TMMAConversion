@@ -1634,7 +1634,7 @@ namespace TMMAConversions.UI.Controllers
                             string textExtension = ".txt";
                             string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
 
-                            SAPUtility.ConvertToMMABOMTextFile(listHcut, list2, listHactcut, acList2, textPath, fileName, textExtension, userSAP, validDate);
+                            SAPUtility.ConvertToMMABOMTextFile(newList1, list2, listHactcut, acList2, textPath, fileName, textExtension, userSAP, validDate);
                             ht += hc;
                             countHList += hc;
                             j++;
