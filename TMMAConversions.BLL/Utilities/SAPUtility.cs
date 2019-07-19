@@ -509,7 +509,7 @@ namespace TMMAConversions.BLL.Utilities
 
                         // 3.1
                         // generate routing change header
-                        foreach (var o in bomHeaderList)
+                        foreach (var o in routingHeaderList)
                         {
                             // BOM Header
                             fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
