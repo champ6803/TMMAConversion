@@ -536,22 +536,26 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItemList.Add(BOMItem);
                                 }
 
-                                if (i == 9) // first time
-                                {
-                                    // Create BOM Header
-                                    BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                                    BOMHeader.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
-                                    BOMHeader.BOMHeaderText = dtExcel.Rows[1].ItemArray[j].ToString();
-                                    BOMHeader.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
-                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
-                                    BOMHeader.BaseUnit = dtExcel.Rows[4].ItemArray[j].ToString();
-                                    BOMHeader.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
-                                    BOMHeader.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
-                                    BOMHeader.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
-                                    BOMHeaderList.Add(BOMHeader);
-                                }
                             }
                         }
+                    }
+                    for (int j = 10; j < colCount; j++)
+                    {
+                        if (!string.IsNullOrEmpty(dtExcel.Rows[0].ItemArray[j].ToString())) // Material Header
+                        {
+                            // Create BOM Header
+                            BOMHeaderModel BOMHeader = new BOMHeaderModel();
+                            BOMHeader.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
+                            BOMHeader.BOMHeaderText = dtExcel.Rows[1].ItemArray[j].ToString();
+                            BOMHeader.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
+                            BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
+                            BOMHeader.BaseUnit = dtExcel.Rows[4].ItemArray[j].ToString();
+                            BOMHeader.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
+                            BOMHeader.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
+                            BOMHeader.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
+                            BOMHeaderList.Add(BOMHeader);
+                        }
+
                     }
                 }
 
@@ -601,27 +605,31 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItem.ComponentScrap = dtExcel.Rows[i].ItemArray[8].ToString();
                                     BOMItemList.Add(BOMItem);
                                 }
-
-                                if (i == 13) // first loop
-                                {
-                                    // Create BOM Header
-                                    BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                                    BOMHeader.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
-                                    BOMHeader.BOMHeaderText = dtExcel.Rows[1].ItemArray[j].ToString();
-                                    BOMHeader.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
-                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
-                                    BOMHeader.BaseUnit = dtExcel.Rows[4].ItemArray[j].ToString();
-                                    BOMHeader.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
-                                    BOMHeader.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
-                                    BOMHeader.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
-                                    BOMHeader.GroupCounter = dtExcel.Rows[8].ItemArray[j].ToString();
-                                    BOMHeader.ProductionVersion = dtExcel.Rows[9].ItemArray[j].ToString();
-                                    BOMHeader.WorkCenter = dtExcel.Rows[10].ItemArray[j].ToString();
-                                    BOMHeader.StorageLocation = dtExcel.Rows[11].ItemArray[j].ToString();
-                                    BOMHeaderList.Add(BOMHeader);
-                                }
+                                
                             }
                         }
+                    }
+                    for (int j = 10; j < colCount; j++) // first col
+                    {
+                        if (!string.IsNullOrEmpty(dtExcel.Rows[0].ItemArray[j].ToString())) // Material Header
+                        {
+                            // Create BOM Header
+                            BOMHeaderModel BOMHeader = new BOMHeaderModel();
+                            BOMHeader.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
+                            BOMHeader.BOMHeaderText = dtExcel.Rows[1].ItemArray[j].ToString();
+                            BOMHeader.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
+                            BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
+                            BOMHeader.BaseUnit = dtExcel.Rows[4].ItemArray[j].ToString();
+                            BOMHeader.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
+                            BOMHeader.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
+                            BOMHeader.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
+                            BOMHeader.GroupCounter = dtExcel.Rows[8].ItemArray[j].ToString();
+                            BOMHeader.ProductionVersion = dtExcel.Rows[9].ItemArray[j].ToString();
+                            BOMHeader.WorkCenter = dtExcel.Rows[10].ItemArray[j].ToString();
+                            BOMHeader.StorageLocation = dtExcel.Rows[11].ItemArray[j].ToString();
+                            BOMHeaderList.Add(BOMHeader);
+                        }
+
                     }
                 }
             }
@@ -1263,24 +1271,27 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItemList.Add(BOMItem);
                                 }
 
-                                if (i == 10) // only first loop
-                                {
-                                    // Create BOM Header
-                                    BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                                    int pNo = 0;
-                                    int.TryParse(dtExcel.Rows[0].ItemArray[j].ToString(), out pNo);
-                                    BOMHeader.ProductNo = pNo;
-                                    BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
-                                    BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
-                                    BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
-                                    BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
-                                    BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
-                                    BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
-                                    BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
-                                    BOMHeaderList.Add(BOMHeader);
-                                }
                             }
+                        }
+                    }
+                    for (int j = 10; j < colCount; j++)
+                    {
+                        if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // Material Header
+                        {
+                            // Create BOM Header
+                            BOMHeaderModel BOMHeader = new BOMHeaderModel();
+                            int pNo = 0;
+                            int.TryParse(dtExcel.Rows[0].ItemArray[j].ToString(), out pNo);
+                            BOMHeader.ProductNo = pNo;
+                            BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
+                            BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
+                            BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                            BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
+                            BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
+                            BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                            BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
+                            BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
+                            BOMHeaderList.Add(BOMHeader);
                         }
                     }
                 }
@@ -1331,33 +1342,37 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItem.ComponentScrap = dtExcel.Rows[i].ItemArray[8].ToString();
                                     BOMItemList.Add(BOMItem);
                                 }
-
-                                if (i == 16) // first loop
-                                {
-                                    // Create BOM Header
-                                    BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                                    int pNo = 0;
-                                    int.TryParse(dtExcel.Rows[0].ItemArray[j].ToString(), out pNo);
-                                    BOMHeader.ProductNo = pNo;
-                                    BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
-                                    BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
-                                    BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
-                                    BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
-                                    BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
-                                    BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
-                                    BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
-                                    BOMHeader.GroupCounter = dtExcel.Rows[9].ItemArray[j].ToString();
-                                    BOMHeader.ProductionVersion = dtExcel.Rows[10].ItemArray[j].ToString();
-                                    BOMHeader.LotSizeFrom = dtExcel.Rows[11].ItemArray[j].ToString();
-                                    BOMHeader.LotSizeTo = dtExcel.Rows[12].ItemArray[j].ToString();
-                                    BOMHeader.WorkCenter = dtExcel.Rows[13].ItemArray[j].ToString();
-                                    BOMHeader.StorageLocation = dtExcel.Rows[14].ItemArray[j].ToString();
-                                    BOMHeaderList.Add(BOMHeader);
-                                }
                             }
                         }
                     }
+
+                    for (int j = 10; j < colCount; j++)
+                    {
+                        if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
+                        {
+                            // Create BOM Header
+                            BOMHeaderModel BOMHeader = new BOMHeaderModel();
+                            int pNo = 0;
+                            int.TryParse(dtExcel.Rows[0].ItemArray[j].ToString(), out pNo);
+                            BOMHeader.ProductNo = pNo;
+                            BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
+                            BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
+                            BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                            BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
+                            BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
+                            BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                            BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
+                            BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
+                            BOMHeader.GroupCounter = dtExcel.Rows[9].ItemArray[j].ToString();
+                            BOMHeader.ProductionVersion = dtExcel.Rows[10].ItemArray[j].ToString();
+                            BOMHeader.LotSizeFrom = dtExcel.Rows[11].ItemArray[j].ToString();
+                            BOMHeader.LotSizeTo = dtExcel.Rows[12].ItemArray[j].ToString();
+                            BOMHeader.WorkCenter = dtExcel.Rows[13].ItemArray[j].ToString();
+                            BOMHeader.StorageLocation = dtExcel.Rows[14].ItemArray[j].ToString();
+                            BOMHeaderList.Add(BOMHeader);
+                        }
+                    }
+
                 }
             }
             catch (Exception ex)

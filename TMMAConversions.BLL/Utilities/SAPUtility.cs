@@ -508,25 +508,25 @@ namespace TMMAConversions.BLL.Utilities
                         }
 
                         // 3.1
-                        // generate bom change header
-                        //foreach (var o in bomHeaderList)
-                        //{
-                        //    // BOM Header
-                        //    fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
-                        //    fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
-                        //    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ALD1");
-                        //    fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t"); // Header Material
-                        //    fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                        //    fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // BOMUsage
-                        //    fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
-                        //    fs.WriteLine("                                        \t0000\t \tRC271-PLNAL                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                        //    fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
-                        //    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
-                        //    fs.WriteLine("                                        \t0000\t \tPLKOD-KTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
-                        //    fs.WriteLine("                                        \t0000\t \tPLKOD-LOSVN                                                                                                                         \t{0}", o.BaseQuantity); // Base Quantity
-                        //    fs.WriteLine("                                        \t0000\t \tPLKOD-LOSBS                                                                                                                         \t{0}", BOMStatus); // BOM Status
-                        //    fs.WriteLine("                                        \t0000\t \tPLKOD-PLNME                                                                                                                         \t{0}", BOMStatus); // BOM Status
-                        //}
+                        // generate routing change header
+                        foreach (var o in bomHeaderList)
+                        {
+                            // BOM Header
+                            fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
+                            fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
+                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ALD1");
+                            fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t"); // Header Material
+                            fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                            fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // RoutingGroup
+                            fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                            fs.WriteLine("                                        \t0000\t \tRC271-PLNAL                                                                                                                         \t{0}", o.GroupCounter); // GroupCounter
+                            fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
+                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
+                            fs.WriteLine("                                        \t0000\t \tPLKOD-KTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
+                            fs.WriteLine("                                        \t0000\t \tPLKOD-LOSVN                                                                                                                         \t{0}", o.LotSizeFrom); // LotSizeFrom
+                            fs.WriteLine("                                        \t0000\t \tPLKOD-LOSBS                                                                                                                         \t{0}", o.LotSizeTo); // LotSizeTo
+                            fs.WriteLine("                                        \t0000\t \tPLKOD-PLNME                                                                                                                         \t{0}", o.BaseUnit); // BOM Status
+                        }
 
                         var routingGroupList = routingHeaderList.GroupBy(u => u.RoutingGroup).Select(grp => grp.ToList()).ToList();
                         // 4
