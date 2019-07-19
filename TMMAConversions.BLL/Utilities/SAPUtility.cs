@@ -608,7 +608,7 @@ namespace TMMAConversions.BLL.Utilities
                             // generate change detail op routing
                             foreach (var o in routingHeaderList)
                             {
-                                List<BOMItemModel> resultList = routingItemList.Where(t => t.RoutingGroup == o.RoutingGroup).ToList(); // Group by Routing Group
+                                List<BOMItemModel> resultList = routingItemList.Where(t => t.WorkCenter == o.WorkCenter).ToList(); // Group by Routing Group
                                 if (resultList.Count > 0)
                                 {
                                     var operationList = resultList.GroupBy(u => u.OperationNo).Select(grp => grp.ToList()).ToList(); // Group by Operation No

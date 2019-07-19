@@ -1309,6 +1309,7 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItemModel BOMItem = new BOMItemModel();
                                     // get header
                                     BOMItem.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
+                                    BOMItem.WorkCenter = dtExcel.Rows[13].ItemArray[j].ToString();
                                     BOMItem.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
                                     // get standard value
                                     BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
