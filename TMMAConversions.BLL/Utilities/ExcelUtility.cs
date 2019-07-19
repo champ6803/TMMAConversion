@@ -1301,15 +1301,15 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         for (int j = 10; j < colCount; j++)
                         {
-                            if (!string.IsNullOrEmpty(dtExcel.Rows[0].ItemArray[j].ToString())) // check material
+                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
                             {
                                 // Create BOM Item
                                 if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()))
                                 {
                                     BOMItemModel BOMItem = new BOMItemModel();
                                     // get header
-                                    BOMItem.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
-                                    BOMItem.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
+                                    BOMItem.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
+                                    BOMItem.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
                                     // get standard value
                                     BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
                                     // get component
@@ -1327,7 +1327,9 @@ namespace TMMAConversions.BLL.Utilities
                                 {
                                     // Create BOM Header
                                     BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                                    BOMHeader.ProductNo = Convert.ToInt32(dtExcel.Rows[0].ItemArray[j].ToString());
+                                    int pNo = 0;
+                                    int.TryParse(dtExcel.Rows[0].ItemArray[j].ToString(), out pNo);
+                                    BOMHeader.ProductNo = pNo;
                                     BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
                                     BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
                                     BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
