@@ -1506,7 +1506,7 @@ namespace TMMAConversions.UI.Controllers
                 string textBOMGradeLevelExtension = ".txt";
                 string textBOMGradeLevelPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textBOMGradeLevelName);
 
-                List<BOMHeaderModel> newBomGradeLevelHeaderList = CheckBOMAlt(bomGradeLevelHeaderList);
+                List<BOMHeaderModel> newBomGradeLevelHeaderList = BOMUtility.CheckBOMAlt(bomGradeLevelHeaderList);
 
                 SAPUtility.ConvertToMMBOMTextFile(newBomGradeLevelHeaderList, bomGradeLevelItemList, textBOMGradeLevelPath, textBOMGradeLevelExtension, userSAP, validDate);
 
@@ -1521,7 +1521,7 @@ namespace TMMAConversions.UI.Controllers
                 string textBOMPkgLevelExtension = ".txt";
                 string textBOMPkgLevelPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textBOMPkgLevelName);
 
-                List<BOMHeaderModel> newBomPkgLevelHeaderList = CheckBOMAlt(bomPkgLevelHeaderList);
+                List<BOMHeaderModel> newBomPkgLevelHeaderList = BOMUtility.CheckBOMAlt(bomPkgLevelHeaderList);
 
                 SAPUtility.ConvertToMMBOMTextFile(bomPkgLevelHeaderList, bomPkgLevelItemList, textBOMPkgLevelPath, textBOMPkgLevelExtension, userSAP, validDate);
 
@@ -1642,7 +1642,7 @@ namespace TMMAConversions.UI.Controllers
                     }
                     else
                     {
-                        List<BOMHeaderModel> newList1 = CheckBOMAlt(list1);
+                        List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(list1);
 
                         string textName = fileName + sheets[i].Replace(" ", "");
                         string textExtension = ".txt";
@@ -1736,7 +1736,7 @@ namespace TMMAConversions.UI.Controllers
                 string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
                 string User = userSAP;
 
-                List<BOMHeaderModel> gradeList = CheckBOMAlt(bomGradeLevelHeaderList);
+                List<BOMHeaderModel> gradeList = BOMUtility.CheckBOMAlt(bomGradeLevelHeaderList);
 
                 SAPUtility.ConvertMMBOMToDeleteTextFile(gradeList, bomGradeLevelItemList, textPath, textExtension, User);
 
@@ -1751,7 +1751,7 @@ namespace TMMAConversions.UI.Controllers
                 string textPkgPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textPkgName);
                 string UserPkg = userSAP;
 
-                List<BOMHeaderModel> pkgList = CheckBOMAlt(bomPkgLevelHeaderList);
+                List<BOMHeaderModel> pkgList = BOMUtility.CheckBOMAlt(bomPkgLevelHeaderList);
 
                 SAPUtility.ConvertMMBOMToDeleteTextFile(pkgList, bomPkgLevelItemList, textPkgPath, textPkgExtension, UserPkg);
 
