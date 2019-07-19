@@ -520,6 +520,8 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItemModel BOMItem = new BOMItemModel();
                                     BOMItem.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
                                     BOMItem.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
+                                    BOMItem.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
+                                    BOMItem.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
                                     // get ComponentQuantity
                                     BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
                                     // get Component
@@ -585,6 +587,8 @@ namespace TMMAConversions.BLL.Utilities
                                     // get header
                                     BOMItem.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
                                     BOMItem.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
+                                    BOMItem.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
+                                    BOMItem.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
                                     // get standard value
                                     BOMItem.StandardValueKey = dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString();
                                     // get component
@@ -1243,6 +1247,8 @@ namespace TMMAConversions.BLL.Utilities
                                     // get header value 
                                     BOMItem.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
                                     BOMItem.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                                    BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                                    BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
                                     // get component quatity
                                     BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
                                     // get component
@@ -1311,6 +1317,8 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItem.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
                                     BOMItem.WorkCenter = dtExcel.Rows[13].ItemArray[j].ToString();
                                     BOMItem.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                                    BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                                    BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
                                     // get standard value
                                     BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
                                     // get component

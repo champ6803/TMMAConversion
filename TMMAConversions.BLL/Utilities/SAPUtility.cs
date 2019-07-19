@@ -426,7 +426,7 @@ namespace TMMAConversions.BLL.Utilities
                         foreach (var o in bomHeaderList)
                         {
                             int count = 1;
-                            List<BOMItemModel> resultList = bomItemList.Where(t => t.MaterialCode == o.MaterialCode && t.BOMAlt == o.BOMAlt).ToList();
+                            List<BOMItemModel> resultList = bomItemList.Where(t => t.MaterialCode == o.MaterialCode && t.BOMAlt == o.BOMAlt && t.BOMUsage == o.BOMUsage).ToList();
                             BOMItemModel first = resultList.Count > 0 ? resultList.First() : null;
                             foreach (var a in resultList)
                             {
