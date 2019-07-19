@@ -608,85 +608,91 @@ namespace TMMAConversions.BLL.Utilities
                             // generate change detail op routing
                             foreach (var o in routingHeaderList)
                             {
-                                fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
-                                fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=XALU");
-                                fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
-                                fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                                fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // Routing Group
-                                fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                                fs.WriteLine("                                        \t0000\t \tRC271-PLNAL                                                                                                                         \t{0}", o.GroupCounter); // Group Counter
-
                                 List<BOMItemModel> resultList = routingItemList.Where(t => t.RoutingGroup == o.RoutingGroup).ToList(); // Group by Routing Group
-
-                                // Search operation command
-                                fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=OSEA");
-                                fs.WriteLine("                                        \t0000\t \tRC27X-ENTRY_ACT                                                                                                                     \t1");
-                                // Operation detail
-                                fs.WriteLine("SAPLCP02                                \t1010\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ENT1");
-                                fs.WriteLine("                                        \t0000\t \tRC27H-VORNR                                                                                                                         \t{0}", resultList[0].OperationNo);
-                                // Select operation command
-                                fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=VOD1");
-                                fs.WriteLine("                                        \t0000\t \tRC27X-FLG_SEL(01)                                                                                                                   \tX");
-
-                                fs.WriteLine("SAPLCPDO                                \t1200\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-VORNR                                                                                                                         \t{0}", resultList[0].OperationNo); // first item
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-ARBPL                                                                                                                         \t{0}", o.WorkCenter);
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-WERKS                                                                                                                         \t{0}", o.Plant);
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-KTSCH                                                                                                                         \t{0}", o.StandardTextKey); // optional
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-LTXA1                                                                                                                         \t{0}", o.BOMHeaderText);
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-BMSCH                                                                                                                         \t{0}", o.BaseQuantity);
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", o.BaseUnit);
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", ConversionOfUOMNumerator);
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", ConversionOfUOMDenominator);
-
-                                foreach (var a in resultList)
+                                if (resultList.Count > 0)
                                 {
-                                    BOMItemModel last = resultList.Last();
+                                    var operationList = resultList.GroupBy(u => u.OperationNo).Select(grp => grp.ToList()).ToList(); // Group by Operation No
+                                    foreach (var eList in operationList)
+                                    {
+                                        fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
+                                        fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=XALU");
+                                        fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
+                                        fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                        fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // Routing Group
+                                        fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                        fs.WriteLine("                                        \t0000\t \tRC271-PLNAL                                                                                                                         \t{0}", o.GroupCounter); // Group Counter
 
-                                    // set item data
-                                    if (a.ActivityNo == 1)
-                                    {
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR01                                                                                                                         \t{0}", a.Activity);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW01                                                                                                                         \t{0}", a.StandardValueKey);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE01                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                        // Search operation command
+                                        fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=OSEA");
+                                        fs.WriteLine("                                        \t0000\t \tRC27X-ENTRY_ACT                                                                                                                     \t1");
+                                        // Operation detail
+                                        fs.WriteLine("SAPLCP02                                \t1010\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ENT1");
+                                        fs.WriteLine("                                        \t0000\t \tRC27H-VORNR                                                                                                                         \t{0}", eList[0].OperationNo);
+                                        // Select operation command
+                                        fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=VOD1");
+                                        fs.WriteLine("                                        \t0000\t \tRC27X-FLG_SEL(01)                                                                                                                   \tX");
+
+                                        fs.WriteLine("SAPLCPDO                                \t1200\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VORNR                                                                                                                         \t{0}", eList[0].OperationNo); // first item
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-ARBPL                                                                                                                         \t{0}", o.WorkCenter);
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-WERKS                                                                                                                         \t{0}", o.Plant);
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-KTSCH                                                                                                                         \t{0}", o.StandardTextKey); // optional
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LTXA1                                                                                                                         \t{0}", o.BOMHeaderText);
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-BMSCH                                                                                                                         \t{0}", o.BaseQuantity);
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", o.BaseUnit);
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", ConversionOfUOMNumerator);
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", ConversionOfUOMDenominator);
+
+                                        foreach (var a in eList)
+                                        {
+                                            // set item data
+                                            if (a.ActivityNo == 1)
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-LAR01                                                                                                                         \t{0}", a.Activity);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW01                                                                                                                         \t{0}", a.StandardValueKey);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGE01                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                            }
+                                            if (a.ActivityNo == 2)
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-LAR02                                                                                                                         \t{0}", a.Activity);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW02                                                                                                                         \t{0}", a.StandardValueKey);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGE02                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                            }
+                                            if (a.ActivityNo == 3)
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-LAR03                                                                                                                         \t{0}", a.Activity);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW03                                                                                                                         \t{0}", a.StandardValueKey);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGE03                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                            }
+                                            if (a.ActivityNo == 4)
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-LAR04                                                                                                                         \t{0}", a.Activity);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW04                                                                                                                         \t{0}", a.StandardValueKey);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGE04                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                            }
+                                            if (a.ActivityNo == 5)
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-LAR05                                                                                                                         \t{0}", a.Activity);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW05                                                                                                                         \t{0}", a.StandardValueKey);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGE05                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                            }
+                                            if (a.ActivityNo == 6)
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-LAR06                                                                                                                         \t{0}", a.Activity);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW06                                                                                                                         \t{0}", a.StandardValueKey);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGE06                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                            }
+                                        }
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", eList[0].OperationScrap);
+
                                     }
-                                    if (a.ActivityNo == 2)
-                                    {
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR02                                                                                                                         \t{0}", a.Activity);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW02                                                                                                                         \t{0}", a.StandardValueKey);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE02                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                    }
-                                    if (a.ActivityNo == 3)
-                                    {
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR03                                                                                                                         \t{0}", a.Activity);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW03                                                                                                                         \t{0}", a.StandardValueKey);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE03                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                    }
-                                    if (a.ActivityNo == 4)
-                                    {
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR04                                                                                                                         \t{0}", a.Activity);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW04                                                                                                                         \t{0}", a.StandardValueKey);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE04                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                    }
-                                    if (a.ActivityNo == 5)
-                                    {
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR05                                                                                                                         \t{0}", a.Activity);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW05                                                                                                                         \t{0}", a.StandardValueKey);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE05                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                    }
-                                    if (a.ActivityNo == 6)
-                                    {
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR06                                                                                                                         \t{0}", a.Activity);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW06                                                                                                                         \t{0}", a.StandardValueKey);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE06                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                    }
+
                                 }
-                                fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", resultList[0].OperationScrap);
                             }
                         }
 
