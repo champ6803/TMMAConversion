@@ -11,6 +11,7 @@ using System.Data;
 using System.Globalization;
 using System.Text;
 using Ionic.Zip;
+using TMMAConversions.Utilities.Utilities;
 
 namespace TMMAConversions.UI.Controllers
 {
@@ -141,6 +142,7 @@ namespace TMMAConversions.UI.Controllers
         {
             try
             {
+                var enUser = Environment.UserName;
                 int ProductsTypeID = 2; // CCS
                 var last = core.GetBOMFileLastVersion(ProductsTypeID);
                 version = (int)last.BOMFileVersion + 1;
@@ -155,7 +157,7 @@ namespace TMMAConversions.UI.Controllers
                 bomFile.BOMFileVersion = (decimal)(version);
                 bomFile.ValidDate = validDate;
                 bomFile.IsActive = true;
-                bomFile.CreatedBy = "conversions";
+                bomFile.CreatedBy = !string.IsNullOrEmpty(enUser) ? enUser : Session["Username"].ToString();
                 bomFile.CreatedDate = DateTime.Now;
 
                 int _newID = 0;
@@ -300,9 +302,14 @@ namespace TMMAConversions.UI.Controllers
                 string extension = Path.GetExtension(pathText).ToLower();
 
                 string[] sheets = {
-                    "CCS Syrup",
-                    "CCS Initiator",
-                    "CCS Additive"
+                    "BOM Special Pack",
+                    "BOM CCS Cut and Pack",
+                    "BOM CCS PMMA",
+                    "BOM Additive",
+                    "BOM CCS Syrup",
+                    "BOM CCS Initiator",
+                    "BOM Packing Pattern",
+                    "BOM Gasket"
                 };
 
                 List<DataTable> dtList = ExcelUtility.ReadCCSBOMExcel(path, extension);
@@ -324,11 +331,44 @@ namespace TMMAConversions.UI.Controllers
                     List<BOMItemModel> acList2 = null;
                     ExcelUtility.ConvertCCSBOMActivityExcelToCCSBOMActivityModel(dtActivityList[i], ref acList1, ref acList2);
 
-                    string textName = fileName + sheets[i].Replace(" ", ""); ;
-                    string textExtension = ".txt";
-                    string textPath = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), textName);
+                    int limit = 100; // 100 items limit by header
+                    if (list1.Count() > limit)
+                    {
+                        int j = 1;
+                        int ht = 0;
+                        int hc = 100; // number of hlist
+                        int countHList = 100;
+                        while (ht < list1.Count())
+                        {
+                            List<BOMHeaderModel> listHcut = new List<BOMHeaderModel>();
+                            List<BOMHeaderModel> listHactcut = new List<BOMHeaderModel>();
+                            int hlast = list1.Count();
 
-                    SAPUtility.ConvertToMMABOMTextFile(list1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate);
+                            int hCount = countHList > hlast ? hlast - ht : hc; // bom & act same
+
+                            listHcut = list1.GetRange(ht, hCount);
+                            listHactcut = acList1.GetRange(ht, hCount);
+
+                            List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(listHcut);
+
+                            string textName = fileName + sheets[i].Replace(" ", "") + j;
+                            string textExtension = ".txt";
+                            string textPath = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), textName);
+
+                            SAPUtility.ConvertToMMABOMTextFile(listHcut, list2, listHactcut, acList2, textPath, fileName, textExtension, userSAP, validDate);
+                            ht += hc;
+                            countHList += hc;
+                            j++;
+                        }
+                    }
+                    else
+                    {
+                        string textName = fileName + sheets[i].Replace(" ", ""); ;
+                        string textExtension = ".txt";
+                        string textPath = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), textName);
+
+                        SAPUtility.ConvertToMMABOMTextFile(list1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate);
+                    }
 
                     i++;
                 }
@@ -365,19 +405,27 @@ namespace TMMAConversions.UI.Controllers
         public void DownloadCreateBOMTextFile(string fileName)
         {
             string[] sheets = {
-                "CCS Syrup",
-                "CCS Initiator",
-                "CCS Additive"
-            };
+                    "BOM Special Pack",
+                    "BOM CCS Cut and Pack",
+                    "BOM CCS PMMA",
+                    "BOM Additive",
+                    "BOM CCS Syrup",
+                    "BOM CCS Initiator",
+                    "BOM Packing Pattern",
+                    "BOM Gasket"
+                };
 
             using (ZipFile zip = new ZipFile())
             {
                 zip.AlternateEncodingUsage = ZipOption.AsNecessary;
                 zip.AddDirectoryByName("BOM");
 
-                foreach (var o in sheets)
+                DirectoryInfo d = new DirectoryInfo(Server.MapPath("~/Files/CCS/SAP/BOM"));
+                FileInfo[] Files = d.GetFiles("*.txt");
+
+                foreach (var a in Files)
                 {
-                    var path = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), fileName + o.Replace(" ", "") + ".txt");
+                    var path = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), a.Name);
                     if (System.IO.File.Exists(path))
                     {
                         zip.AddFile(path, "BOM");
@@ -466,41 +514,5 @@ namespace TMMAConversions.UI.Controllers
             }
         }
 
-        // Utility
-        private List<BOMHeaderModel> CheckBOMAlt(List<BOMHeaderModel> bomGradeLevelHeaderList)
-        {
-            List<string> bomAltList = new List<string>();
-            List<BOMHeaderModel> newBOMHeader = new List<BOMHeaderModel>();
-
-            for (int i = 0; i < bomGradeLevelHeaderList.Count(); i++)
-            {
-                var list = bomGradeLevelHeaderList.Where(o => o.MaterialCode == bomGradeLevelHeaderList[i].MaterialCode).ToList();
-                string condition = "1"; // 1 is no bom alt 
-                foreach (var o in list)
-                {
-                    bomAltList.Add(o.BOMAlt);
-
-                    if (!bomAltList.Contains(o.BOMAlt) && bomAltList.Count() > 0)
-                    {
-                        condition = "2"; // 2 is count bom alt > 2
-                        break;
-                    }
-                }
-                var newList = SetCondition(list, condition);
-                newBOMHeader.AddRange(newList);
-            }
-
-            return newBOMHeader;
-        }
-
-        private List<BOMHeaderModel> SetCondition(List<BOMHeaderModel> list, string condition)
-        {
-            foreach (var o in list)
-            {
-                o.Condition = condition;
-            }
-
-            return list;
-        }
     }
 }

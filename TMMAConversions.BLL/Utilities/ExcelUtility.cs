@@ -116,9 +116,14 @@ namespace TMMAConversions.BLL.Utilities
             string conn = string.Empty;
 
             string[] sheets = {
-                    "CCS Syrup",
-                    "CCS Initiator",
-                    "CCS Additive"
+                    "BOM Special Pack",
+                    "BOM CCS Cut and Pack",
+                    "BOM CCS PMMA",
+                    "BOM Additive",
+                    "BOM CCS Syrup",
+                    "BOM CCS Initiator",
+                    "BOM Packing Pattern",
+                    "BOM Gasket"
                 };
 
             List<DataTable> dtExcelList = new List<DataTable>();
@@ -157,9 +162,14 @@ namespace TMMAConversions.BLL.Utilities
             string conn = string.Empty;
 
             string[] sheets = {
-                    "CCS Syrup Activity",
-                    "CCS Initiator Activity",
-                    "CCS Additive Activity"
+                    "BOM Special Pack Activity",
+                    "BOM CCS Cut and Pack Activity",
+                    "BOM CCS PMMA Activity",
+                    "BOM Additive Activity",
+                    "BOM CCS Syrup Activity",
+                    "BOM CCS Initiator Activity",
+                    "BOM Packing Pattern Activity",
+                    "BOM Gasket Activity"
                 };
 
             List<DataTable> dtExcelList = new List<DataTable>();
@@ -1220,7 +1230,7 @@ namespace TMMAConversions.BLL.Utilities
                     BOMHeaderList = new List<BOMHeaderModel>();
                     BOMItemList = new List<BOMItemModel>();
 
-                    for (int i = 8; i < rowCount; i++)
+                    for (int i = 10; i < rowCount; i++)
                     {
                         for (int j = 10; j < colCount; j++)
                         {
@@ -1247,17 +1257,19 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItemList.Add(BOMItem);
                                 }
 
-                                if (i == 8) // first loop
+                                if (i == 10) // only first loop
                                 {
                                     // Create BOM Header
                                     BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                                    BOMHeader.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
-                                    BOMHeader.BOMHeaderText = dtExcel.Rows[1].ItemArray[j].ToString();
-                                    BOMHeader.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
-                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
-                                    BOMHeader.BaseUnit = dtExcel.Rows[4].ItemArray[j].ToString();
-                                    BOMHeader.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
-                                    BOMHeader.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
+                                    BOMHeader.ProductNo = Convert.ToInt32(dtExcel.Rows[0].ItemArray[j].ToString());
+                                    BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
+                                    BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
+                                    BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
+                                    BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
+                                    BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                                    BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
+                                    BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
                                     BOMHeaderList.Add(BOMHeader);
                                 }
                             }
@@ -1283,7 +1295,7 @@ namespace TMMAConversions.BLL.Utilities
                     BOMHeaderList = new List<BOMHeaderModel>();
                     BOMItemList = new List<BOMItemModel>();
 
-                    for (int i = 14; i < rowCount; i++)
+                    for (int i = 16; i < rowCount; i++)
                     {
                         for (int j = 10; j < colCount; j++)
                         {
@@ -1309,23 +1321,25 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItemList.Add(BOMItem);
                                 }
 
-                                if (i == 14) // first loop
+                                if (i == 16) // first loop
                                 {
                                     // Create BOM Header
                                     BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                                    BOMHeader.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
-                                    BOMHeader.BOMHeaderText = dtExcel.Rows[1].ItemArray[j].ToString();
-                                    BOMHeader.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
-                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
-                                    BOMHeader.BaseUnit = dtExcel.Rows[4].ItemArray[j].ToString();
-                                    BOMHeader.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
-                                    BOMHeader.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
-                                    BOMHeader.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
-                                    BOMHeader.GroupCounter = dtExcel.Rows[8].ItemArray[j].ToString();
-                                    BOMHeader.ProductionVersion = dtExcel.Rows[9].ItemArray[j].ToString();
-                                    BOMHeader.LotSizeFrom = dtExcel.Rows[10].ItemArray[j].ToString();
-                                    BOMHeader.LotSizeTo = dtExcel.Rows[10].ItemArray[j].ToString();
-                                    BOMHeader.WorkCenter = dtExcel.Rows[11].ItemArray[j].ToString();
+                                    BOMHeader.ProductNo = Convert.ToInt32(dtExcel.Rows[0].ItemArray[j].ToString());
+                                    BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
+                                    BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
+                                    BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
+                                    BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
+                                    BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                                    BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
+                                    BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
+                                    BOMHeader.GroupCounter = dtExcel.Rows[9].ItemArray[j].ToString();
+                                    BOMHeader.ProductionVersion = dtExcel.Rows[10].ItemArray[j].ToString();
+                                    BOMHeader.LotSizeFrom = dtExcel.Rows[11].ItemArray[j].ToString();
+                                    BOMHeader.LotSizeTo = dtExcel.Rows[12].ItemArray[j].ToString();
+                                    BOMHeader.WorkCenter = dtExcel.Rows[13].ItemArray[j].ToString();
+                                    BOMHeader.StorageLocation = dtExcel.Rows[14].ItemArray[j].ToString();
                                     BOMHeaderList.Add(BOMHeader);
                                 }
                             }

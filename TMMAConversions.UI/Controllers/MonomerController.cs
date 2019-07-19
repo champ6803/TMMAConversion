@@ -11,6 +11,7 @@ using System.Data;
 using System.Globalization;
 using System.Text;
 using Ionic.Zip;
+using TMMAConversions.Utilities.Utilities;
 
 namespace TMMAConversions.UI.Controllers
 {
@@ -1176,6 +1177,7 @@ namespace TMMAConversions.UI.Controllers
         {
             try
             {
+                var enUser = Environment.UserName;
                 int ProductsTypeID = 1;
                 var last = core.GetBOMFileLastVersion(ProductsTypeID);
                 version = (int)last.BOMFileVersion + 1;
@@ -1190,7 +1192,7 @@ namespace TMMAConversions.UI.Controllers
                 bomFile.BOMFileVersion = (decimal)(version);
                 bomFile.ValidDate = validDate;
                 bomFile.IsActive = true;
-                bomFile.CreatedBy = "conversion";
+                bomFile.CreatedBy = !string.IsNullOrEmpty(enUser) ? enUser : Session["Username"].ToString();
                 bomFile.CreatedDate = DateTime.Now;
 
                 int _newID = 0;
@@ -1279,6 +1281,7 @@ namespace TMMAConversions.UI.Controllers
         {
             try
             {
+                var enUser = Environment.UserName;
                 var last = core.GetWorkCenterRoutingFileLastVersion();
                 version = last != null ? (int)last.WorkCenterRoutingFileVersion + 1 : 1;
 
@@ -1291,7 +1294,7 @@ namespace TMMAConversions.UI.Controllers
                 workCenterRoutingFile.WorkCenterRoutingFileVersion = (decimal)(version);
                 workCenterRoutingFile.WorkCenterRoutingFilePath = path;
                 workCenterRoutingFile.IsActive = true;
-                workCenterRoutingFile.CreatedBy = "conversions";
+                workCenterRoutingFile.CreatedBy = !string.IsNullOrEmpty(enUser) ? enUser : Session["Username"].ToString();
                 workCenterRoutingFile.CreatedDate = DateTime.Now;
                 workCenterRoutingFile.ValidDate = validDate;
 
@@ -1607,11 +1610,11 @@ namespace TMMAConversions.UI.Controllers
                     List<BOMItemModel> acList2 = null;
                     ExcelUtility.ConvertMMABOMActivityExcelToMMABOMActivityModel(dtActivityList[i], ref acList1, ref acList2);
 
-                    int limit = 100; // 100mb limit by header
+                    int limit = 100; // 100 items limit by header
                     if (list1.Count() > limit)
                     {
                         int j = 1;
-                        int ht = 0; // 0 - 99
+                        int ht = 0;
                         int hc = 100; // number of hlist
                         int countHList = 100;
                         while (ht < list1.Count())
@@ -1625,7 +1628,7 @@ namespace TMMAConversions.UI.Controllers
                             listHcut = list1.GetRange(ht, hCount);
                             listHactcut = acList1.GetRange(ht, hCount);
 
-                            List<BOMHeaderModel> newList1 = CheckBOMAlt(listHcut);
+                            List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(listHcut);
 
                             string textName = fileName + sheets[i].Replace(" ", "") + j;
                             string textExtension = ".txt";
@@ -2400,49 +2403,6 @@ namespace TMMAConversions.UI.Controllers
         {
             var path = Path.Combine(Server.MapPath("~/Files/Monomer/SAP"), "TMMA_ROUTING_TEXT_SAP_PP" + version + ".txt");
             return File(path, "text/plain", "TMMA_ROUTING_TEXT_SAP_PP" + version + ".txt");
-        }
-
-        // Utility
-        private List<BOMHeaderModel> CheckBOMAlt(List<BOMHeaderModel> bomGradeLevelHeaderList)
-        {
-            List<string> bomAltList = new List<string>();
-            List<string> materialCodeList = new List<string>();
-            List<BOMHeaderModel> newBOMHeader = new List<BOMHeaderModel>();
-
-            for (int i = 0; i < bomGradeLevelHeaderList.Count(); i++)
-            {
-                if (!materialCodeList.Contains(bomGradeLevelHeaderList[i].MaterialCode))
-                {
-                    var list = bomGradeLevelHeaderList.Where(o => o.MaterialCode == bomGradeLevelHeaderList[i].MaterialCode).ToList();
-                    string condition = "1"; // 1 is no bom alt 
-                    foreach (var o in list)
-                    {
-                        if (!bomAltList.Contains(o.BOMAlt) && bomAltList.Count() > 0)
-                        {
-                            condition = "2"; // 2 is count bom alt > 2
-                            break;
-                        }
-                        bomAltList.Add(o.BOMAlt);
-                    }
-
-                    var newList = SetCondition(list, condition);
-                    newBOMHeader.AddRange(newList);
-                }
-
-                materialCodeList.Add(bomGradeLevelHeaderList[i].MaterialCode);
-            }
-
-            return newBOMHeader;
-        }
-            
-        private List<BOMHeaderModel> SetCondition(List<BOMHeaderModel> list, string condition)
-        {
-            foreach (var o in list)
-            {
-                o.Condition = condition;
-            }
-
-            return list;
         }
     }
 }

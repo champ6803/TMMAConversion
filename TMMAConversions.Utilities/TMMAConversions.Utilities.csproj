@@ -48,10 +48,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\BOMUtility.cs" />
     <Compile Include="Utilities\ExcelUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TMMAConversions.DAL\TMMAConversions.DAL.csproj">
+      <Project>{cab34a5b-7c86-4e00-8c2c-8cd7f1efd438}</Project>
+      <Name>TMMAConversions.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
