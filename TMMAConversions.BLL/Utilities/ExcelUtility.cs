@@ -1234,15 +1234,15 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         for (int j = 10; j < colCount; j++)
                         {
-                            if (!string.IsNullOrEmpty(dtExcel.Rows[0].ItemArray[j].ToString())) // Material Header
+                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // Material Header
                             {
                                 // Create BOM Item
                                 if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()))
                                 {
                                     BOMItemModel BOMItem = new BOMItemModel();
                                     // get header value 
-                                    BOMItem.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
-                                    BOMItem.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
+                                    BOMItem.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
+                                    BOMItem.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
                                     // get component quatity
                                     BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
                                     // get component
@@ -1261,11 +1261,13 @@ namespace TMMAConversions.BLL.Utilities
                                 {
                                     // Create BOM Header
                                     BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                                    BOMHeader.ProductNo = Convert.ToInt32(dtExcel.Rows[0].ItemArray[j].ToString());
+                                    int pNo = 0;
+                                    int.TryParse(dtExcel.Rows[0].ItemArray[j].ToString(), out pNo);
+                                    BOMHeader.ProductNo = pNo;
                                     BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
                                     BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
                                     BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
+                                    BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
                                     BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
                                     BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
                                     BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();

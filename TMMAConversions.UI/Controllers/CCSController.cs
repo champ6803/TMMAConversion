@@ -363,7 +363,7 @@ namespace TMMAConversions.UI.Controllers
                     }
                     else
                     {
-                        string textName = fileName + sheets[i].Replace(" ", ""); ;
+                        string textName = fileName + sheets[i].Replace(" ", "");
                         string textExtension = ".txt";
                         string textPath = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), textName);
 

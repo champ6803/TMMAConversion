@@ -508,7 +508,7 @@ namespace TMMAConversions.BLL.Utilities
                         }
 
                         var routingGroupList = routingHeaderList.GroupBy(u => u.RoutingGroup).Select(grp => grp.ToList()).ToList();
-                        // 5
+                        // 4
                         // generate assign material to routing
                         foreach (var k in routingGroupList)
                         {
@@ -604,8 +604,8 @@ namespace TMMAConversions.BLL.Utilities
                         // check routing null
                         if ((routingHeaderList != null && routingItemList.Count > 0))
                         {
-                            // 4
-                            // generate add operation routing
+                            // 5
+                            // generate change detail op routing
                             foreach (var o in routingHeaderList)
                             {
                                 fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
