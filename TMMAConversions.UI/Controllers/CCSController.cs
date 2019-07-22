@@ -331,13 +331,13 @@ namespace TMMAConversions.UI.Controllers
                     List<BOMItemModel> acList2 = null;
                     ExcelUtility.ConvertCCSBOMActivityExcelToCCSBOMActivityModel(dtActivityList[i], ref acList1, ref acList2);
 
-                    int limit = 2000; // 2000 items limit by header
+                    int limit = 100; // 100 items limit by header
                     if (list1.Count() > limit)
                     {
                         int j = 1;
                         int ht = 0;
-                        int hc = 2000; // number of hlist
-                        int countHList = 2000;
+                        int hc = 100; // number of hlist
+                        int countHList = 100;
                         while (ht < list1.Count())
                         {
                             List<BOMHeaderModel> listHcut = new List<BOMHeaderModel>();
