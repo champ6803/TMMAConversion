@@ -28,6 +28,6 @@ namespace TMMAConversions.DAL.Models
         public string LotSizeFrom { get; set; }
         public string LotSizeTo { get; set; }
         public string StorageLocation { get; set; }
-        public int ProductNo { get; set; }
+        public string ProductNo { get; set; }
     }
 }
