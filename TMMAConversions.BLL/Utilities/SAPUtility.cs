@@ -1911,7 +1911,7 @@ namespace TMMAConversions.BLL.Utilities
                                         ActivityTypeNo1 = a.ActivityType;
                                         ActivityDesNo1 = a.ActivityDescription;
                                         FomularKeyNo1 = a.CostingFormular;
-                                        RefIndicatorNo1 = a.RefIndicator;
+                                        RefIndicatorNo1 = string.IsNullOrEmpty(a.ActivityType) ? "" : "X"; // mark X when ActivityType has value
                                         UnitOfActNo1 = a.ActivityUnit;
                                     }
                                     if (a.ActivityNo == 2)
@@ -1919,7 +1919,7 @@ namespace TMMAConversions.BLL.Utilities
                                         ActivityTypeNo2 = a.ActivityType;
                                         ActivityDesNo2 = a.ActivityDescription;
                                         FomularKeyNo2 = a.CostingFormular;
-                                        RefIndicatorNo2 = a.RefIndicator;
+                                        RefIndicatorNo2 = string.IsNullOrEmpty(a.ActivityType) ? "" : "X"; // mark X when ActivityType has value
                                         UnitOfActNo2 = a.ActivityUnit;
                                     }
                                     if (a.ActivityNo == 3)
@@ -1927,7 +1927,7 @@ namespace TMMAConversions.BLL.Utilities
                                         ActivityTypeNo3 = a.ActivityType;
                                         ActivityDesNo3 = a.ActivityDescription;
                                         FomularKeyNo3 = a.CostingFormular;
-                                        RefIndicatorNo3 = a.RefIndicator;
+                                        RefIndicatorNo3 = string.IsNullOrEmpty(a.ActivityType) ? "" : "X"; // mark X when ActivityType has value
                                         UnitOfActNo3 = a.ActivityUnit;
                                     }
                                     if (a.ActivityNo == 4)
@@ -1935,7 +1935,7 @@ namespace TMMAConversions.BLL.Utilities
                                         ActivityTypeNo4 = a.ActivityType;
                                         ActivityDesNo4 = a.ActivityDescription;
                                         FomularKeyNo4 = a.CostingFormular;
-                                        RefIndicatorNo4 = a.RefIndicator;
+                                        RefIndicatorNo4 = string.IsNullOrEmpty(a.ActivityType) ? "" : "X"; // mark X when ActivityType has value
                                         UnitOfActNo4 = a.ActivityUnit;
                                     }
                                     if (a.ActivityNo == 5)
@@ -1943,7 +1943,7 @@ namespace TMMAConversions.BLL.Utilities
                                         ActivityTypeNo5 = a.ActivityType;
                                         ActivityDesNo5 = a.ActivityDescription;
                                         FomularKeyNo5 = a.CostingFormular;
-                                        RefIndicatorNo5 = a.RefIndicator;
+                                        RefIndicatorNo5 = string.IsNullOrEmpty(a.ActivityType) ? "" : "X"; // mark X when ActivityType has value
                                         UnitOfActNo5 = a.ActivityUnit;
                                     }
                                     if (a.ActivityNo == 6)
@@ -1951,7 +1951,7 @@ namespace TMMAConversions.BLL.Utilities
                                         ActivityTypeNo6 = a.ActivityType;
                                         ActivityDesNo6 = a.ActivityDescription;
                                         FomularKeyNo6 = a.CostingFormular;
-                                        RefIndicatorNo6 = a.RefIndicator;
+                                        RefIndicatorNo6 = string.IsNullOrEmpty(a.ActivityType) ? "" : "X"; // mark X when ActivityType has value
                                         UnitOfActNo6 = a.ActivityUnit;
                                     }
                                 }
