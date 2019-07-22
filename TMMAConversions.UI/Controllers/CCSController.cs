@@ -336,8 +336,8 @@ namespace TMMAConversions.UI.Controllers
                     {
                         int j = 1;
                         int ht = 0;
-                        int hc = 100; // number of hlist
-                        int countHList = 100;
+                        int hc = 2000; // number of hlist
+                        int countHList = 2000;
                         while (ht < list1.Count())
                         {
                             List<BOMHeaderModel> listHcut = new List<BOMHeaderModel>();
