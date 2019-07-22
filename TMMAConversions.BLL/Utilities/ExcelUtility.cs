@@ -1252,7 +1252,7 @@ namespace TMMAConversions.BLL.Utilities
                             if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // Material Header
                             {
                                 // Create BOM Item
-                                if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()))
+                                if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000"))
                                 {
                                     BOMItemModel BOMItem = new BOMItemModel();
                                     // get header value 
