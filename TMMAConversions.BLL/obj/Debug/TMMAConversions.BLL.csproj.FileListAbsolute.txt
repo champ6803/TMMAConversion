@@ -27,7 +27,6 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\TMMAConversions.DAL.
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\TMMAConversions.Utilities.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\EntityFramework.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\TMMAConversions.DAL.pdb
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\TMMAConversions.DAL.dll.config
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\TMMAConversions.Utilities.pdb
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\log4net.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.AI.DependencyCollector.xml
@@ -37,8 +36,6 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.AI.Windows
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.ApplicationInsights.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\EntityFramework.xml
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.csprojAssemblyReference.cache
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.csproj.CoreCompileInputs.cache
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.csproj.CopyComplete
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.csprojResolveAssemblyReference.cache

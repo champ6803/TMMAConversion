@@ -1282,9 +1282,7 @@ namespace TMMAConversions.BLL.Utilities
                         {
                             // Create BOM Header
                             BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                            int pNo = 0;
-                            int.TryParse(dtExcel.Rows[0].ItemArray[j].ToString(), out pNo);
-                            BOMHeader.ProductNo = pNo;
+                            BOMHeader.ProductNo = dtExcel.Rows[0].ItemArray[j].ToString();
                             BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
                             BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
                             BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
@@ -1354,9 +1352,7 @@ namespace TMMAConversions.BLL.Utilities
                         {
                             // Create BOM Header
                             BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                            int pNo = 0;
-                            int.TryParse(dtExcel.Rows[0].ItemArray[j].ToString(), out pNo);
-                            BOMHeader.ProductNo = pNo;
+                            BOMHeader.ProductNo = dtExcel.Rows[0].ItemArray[j].ToString();
                             BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
                             BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
                             BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
