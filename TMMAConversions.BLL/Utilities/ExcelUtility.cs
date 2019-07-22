@@ -593,6 +593,7 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItem.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
                                     BOMItem.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
                                     BOMItem.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
+                                    BOMItem.WorkCenter = dtExcel.Rows[12].ItemArray[j].ToString();
                                     // get standard value
                                     BOMItem.StandardValueKey = dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString();
                                     // get component
