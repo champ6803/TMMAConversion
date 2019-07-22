@@ -331,7 +331,7 @@ namespace TMMAConversions.UI.Controllers
                     List<BOMItemModel> acList2 = null;
                     ExcelUtility.ConvertCCSBOMActivityExcelToCCSBOMActivityModel(dtActivityList[i], ref acList1, ref acList2);
 
-                    int limit = 100; // 100 items limit by header
+                    int limit = 2000; // 100 items limit by header
                     if (list1.Count() > limit)
                     {
                         int j = 1;
