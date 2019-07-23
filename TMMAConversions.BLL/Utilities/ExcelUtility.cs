@@ -391,25 +391,10 @@ namespace TMMAConversions.BLL.Utilities
             return dtexcel;
         }
 
-        public static List<DataTable> ReadWorkCenterRoutingExcelList(string fileName, string fileExt)
+        public static List<DataTable> ReadWorkCenterRoutingExcelList(string fileName, string fileExt, string[] sheets)
         {
             log4net.Config.XmlConfigurator.Configure();
             string conn = string.Empty;
-
-            string[] sheets = {
-                        "MMA Grade",
-                        "MMA Loading",
-                        "CCS Syrup",
-                        "CCS Initiator",
-                        "CCS Additive",
-                        "CCS Casting",
-                        "CCS Cut and Pack",
-                        "CCS Cut and Pack Cullet",
-                        "CCS Gasket",
-                        "CCS Roof",
-                        "CCS Heat Sealing",
-                        "CCS Reprocess"
-                    };
 
             List<DataTable> dtExcelList = new List<DataTable>();
 

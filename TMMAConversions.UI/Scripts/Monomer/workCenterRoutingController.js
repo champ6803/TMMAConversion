@@ -1,7 +1,27 @@
 ﻿app.controller("workCenterRoutingController", function ($scope, $http) {
     $scope.WorkCenterRoutingFileViewModel = typeof WorkCenterRoutingFileViewModel !== "undefined" ? WorkCenterRoutingFileViewModel ? WorkCenterRoutingFileViewModel : {} : {};
-    $scope.SheetsList = typeof SheetsList !== "undefined" ? SheetsList ? SheetsList : {} : {};
-    $scope.OptionsList = typeof OptionsList !== "undefined" ? OptionsList ? OptionsList : {} : {};
+
+    $scope.SheetsList = [{ id: 1, name: "MMA Grade" },
+    { id: 2, name: "MMA Loading" },
+    { id: 3, name: "CCS Syrup" },
+    { id: 4, name: "CCS Initiator" },
+    { id: 5, name: "CCS Additive" },
+    { id: 6, name: "CCS Casting" },
+    { id: 7, name: "CCS Cut and Pack" },
+    { id: 8, name: "CCS Cut and Pack Cullet" },
+    { id: 9, name: "CCS Gasket" },
+    { id: 10, name: "CCS Roof" },
+    { id: 11, name: "CCS Heat Sealing" },
+    { id: 12, name: "CCS Reprocess" }];
+
+    $scope.OptionsList = [{ id: 1, name: "Delete Operation Routing" },
+                { id: 2, name: "Delete Work Center" },
+                { id: 3, name: "Create Work Center" },
+                { id: 4, name: "Create Routing header" },
+                { id: 5, name: "Add Operation Routing (w/o Standard value key)" }];
+
+
+
     $scope.SelectedSheet = null;
     $scope.SelectedOption = null;
     $scope.User = null;
@@ -12,6 +32,7 @@
     $scope.WorkCenterRoutingFileID = null;
     $scope.Order = WorkCenterRoutingFileViewModel.Filter.Order;
     $scope.Sort = WorkCenterRoutingFileViewModel.Filter.Sort;
+    $scope.GenerateModel = null;
 
     $scope.ArrayNumber = function (start, end) {
         var input = [];
@@ -113,46 +134,61 @@
         }
     };
 
-    $scope.SetWorkCenterRoutingFileID = function (workCenterRoutingFileID) {
-        $scope.WorkCenterRoutingFileID = workCenterRoutingFileID;
-
-        Swal.fire({
-            type: 'info',
-            title: 'Coming soon'
-        });
+    $scope.toggleAll = function () {
+        var toggleStatus = !$scope.isAllSelected;
+        angular.forEach($scope.OptionsList, function (itm) { itm.checked = toggleStatus; });
     }
+
+    $scope.toggleSheetsAll = function () {
+        var toggleStatus = !$scope.isSheetsAllSelected;
+        angular.forEach($scope.SheetsList, function (itm) { itm.checked = toggleStatus; });
+    }
+
+    $scope.optionToggled = function () {
+        $scope.isAllSelected = $scope.options.every(function (itm) { return itm.selected; })
+    }
+    $scope.optionSheetsToggled = function () {
+        $scope.isSheetsAllSelected = $scope.options.every(function (itm) { return itm.selected; })
+    }
+
 
     $scope.OnGenerateOptions = function (workCenterRoutingFileID, fileName, userSAP, validDateText, path, pageNo) {
         $('#generateOptionsModal').modal();
-
-
+        $scope.GenerateModel = new Object;
+        $scope.GenerateModel.workCenterRoutingFileID = workCenterRoutingFileID;
+        $scope.GenerateModel.fileName = fileName;
+        $scope.GenerateModel.userSAP = userSAP;
+        $scope.GenerateModel.validDateText = validDateText;
+        $scope.GenerateModel.path = path;
+        $scope.GenerateModel.pageNo = pageNo;
     };
 
-    $scope.OnGenerateCreateTextFile = function (workCenterRoutingFileID, fileName, userSAP, validDateText, path, pageNo) {
-        //if ($scope.SheetsList != null) {
-        var options = ["MMA Grade",
-                "MMA Loading",
-                "CCS Syrup",
-                "CCS Initiator",
-                "CCS Additive",
-                "CCS Casting",
-                "CCS Cut and Pack",
-                "CCS Cut and Pack Cullet",
-                "CCS Gasket",
-                "CCS Roof",
-                "CCS Heat Sealing",
-                "CCS Reprocess"];
+    $scope.OnGenerateCreateTextFile = function (o, a) {
+        var options = [];
+        angular.forEach(o, function (value, key) {
+            if (o[key].checked) {
+                options.push(o[key].name);
+            }
+        });
 
-        if (workCenterRoutingFileID, fileName, userSAP, validDateText, pageNo) {
-            var validDate = convertDateFormat(new Date(parseInt(validDateText.substr(6))));
+        var sheets = [];
+        angular.forEach(a, function (value, key) {
+            if (a[key].checked) {
+                sheets.push(a[key].name);
+            }
+        });
+
+        if ($scope.GenerateModel.workCenterRoutingFileID, $scope.GenerateModel.fileName, $scope.GenerateModel.userSAP, $scope.GenerateModel.validDateText, $scope.GenerateModel.pageNo, options.length > 0, sheets.length > 0) {
+            var validDate = convertDateFormat(new Date(parseInt($scope.GenerateModel.validDateText.substr(6))));
             var source = {
-                'workCenterRoutingFileID': workCenterRoutingFileID,
-                'fileName': fileName,
-                'userSAP': userSAP,
+                'workCenterRoutingFileID': $scope.GenerateModel.workCenterRoutingFileID,
+                'fileName': $scope.GenerateModel.fileName,
+                'userSAP': $scope.GenerateModel.userSAP,
                 'validDateText': validDate,
-                'pathText': path,
-                'pageNo': pageNo,
-                'options': options
+                'pathText': $scope.GenerateModel.path,
+                'pageNo': $scope.GenerateModel.pageNo,
+                'options': options,
+                'sheets': sheets
             }
             $('.loading-screen').show(); // show loading
             $http({
@@ -173,7 +209,7 @@
                         }
                     });
                     // call dowload url
-                    window.location.href = "/Monomer/DownloadWorkCenterRoutingTextFile?fileName=" + fileName;
+                    window.location.href = "/Monomer/DownloadWorkCenterRoutingTextFile?fileName=" + $scope.GenerateModel.fileName;
                 } else {
                     Swal.fire({
                         type: 'error',

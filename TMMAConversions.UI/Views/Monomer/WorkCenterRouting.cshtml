@@ -146,7 +146,7 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                         <li class="text-center">
-                                            <a ng-click="OnGenerateCreateTextFile(o.WorkCenterRoutingFileID, o.RecObjectName, o.UserSAP, o.ValidDate, o.WorkCenterRoutingFilePath, WorkCenterRoutingFileViewModel.Filter.Pagination.Page)"><i class="fa fa-file"></i>&nbsp;Text BDC Create</a>
+                                            <a ng-click="OnGenerateOptions(o.WorkCenterRoutingFileID, o.RecObjectName, o.UserSAP, o.ValidDate, o.WorkCenterRoutingFilePath, WorkCenterRoutingFileViewModel.Filter.Pagination.Page)"><i class="fa fa-file"></i>&nbsp;Text BDC Create</a>
                                         </li>
                                     </ul>
                                     <label class="btn btn-warning" ng-click="SetWorkCenterRoutingFileID(o.WorkCenterRoutingFileID)">
@@ -213,26 +213,21 @@
                                         <li class="list-group-item row p-10">
                                             <div class="col-md-6 col-sm-4 col-xs-4 text-left">
                                                 <div class="checkbox">
-                                                    <label><input type="checkbox" value="">All</label>
+                                                    <label><input type="checkbox" ng-model="isSheetsAllSelected" ng-click="toggleSheetsAll()">All</label>
                                                 </div>
                                                 <div ng-repeat="o in SheetsList" ng-if="SheetsList != null" class="checkbox">
-                                                    <label><input type="checkbox" value="{{SelectedSheet.push(o)}}">{{ o }}</label>
+                                                    <label><input type="checkbox" ng-change="optionSheetsToggled()" ng-model="o.checked" value="{{o.id}}">{{ o.name }}</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 hidden-sm hidden-xs text-left">
                                                 <div class="checkbox">
-                                                    <label><input type="checkbox" value="">All</label>
+                                                    <label><input type="checkbox" ng-model="isAllSelected" ng-click="toggleAll()">All</label>
                                                 </div>
                                                 <div ng-repeat="o in OptionsList" ng-if="OptionsList != null" class="checkbox">
-                                                    <label><input type="checkbox" value="{{SelectedOption.push(o)}}">{{ o }}</label>
+                                                    <label><input type="checkbox" ng-change="optionToggled()" ng-model="o.checked" value="{{o.id}}">{{ o.name }}</label>
                                                 </div>
                                             </div>
                                         </li>
-                                        @*<li ng-if="WorkCenterRoutingFileViewModel.List == null" class="list-group-item row p-10">
-                                                <div class="col-md-12 text-center">
-                                                    No Item
-                                                </div>
-                                            </li>*@
                                     </ul>
                                 </div>
                             </div>
@@ -241,11 +236,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" ng-click="OnGenerateCreateTextFile()">Generate</button>
+                    <button type="button" class="btn btn-success" ng-click="OnGenerateCreateTextFile(OptionsList, SheetsList)">Generate</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
 </section>
 
 

@@ -1881,7 +1881,7 @@ namespace TMMAConversions.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult GenerateWorkCenterRoutingTextFile(int workCenterRoutingFileID, string fileName, string userSAP, string validDateText, string pathText, int pageNo, List<string> options)
+        public ActionResult GenerateWorkCenterRoutingTextFile(int workCenterRoutingFileID, string fileName, string userSAP, string validDateText, string pathText, int pageNo, List<string> options, string[] sheets)
         {
             try
             {
@@ -1890,22 +1890,9 @@ namespace TMMAConversions.UI.Controllers
                 var path = pathText;
                 string extension = Path.GetExtension(pathText);
 
-                List<DataTable> dtList = ExcelUtility.ReadWorkCenterRoutingExcelList(path, extension);
+                List<DataTable> dtList = ExcelUtility.ReadWorkCenterRoutingExcelList(path, extension, sheets);
 
-                string[] sheets = {
-                        "MMA Grade",
-                        "MMA Loading",
-                        "CCS Syrup",
-                        "CCS Initiator",
-                        "CCS Additive",
-                        "CCS Casting",
-                        "CCS Cut and Pack",
-                        "CCS Cut and Pack Cullet",
-                        "CCS Gasket",
-                        "CCS Roof",
-                        "CCS Heat Sealing",
-                        "CCS Reprocess"
-                    };
+
 
                 // delete all files before generate new files
                 string[] filePaths = Directory.GetFiles(Server.MapPath("~/Files/Monomer/SAP/WorkCenterRouting"));
