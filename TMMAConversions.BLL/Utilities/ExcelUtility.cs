@@ -1252,7 +1252,7 @@ namespace TMMAConversions.BLL.Utilities
                             if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // Material Header
                             {
                                 // Create BOM Item
-                                if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000"))
+                                if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()) && !string.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000"))
                                 {
                                     BOMItemModel BOMItem = new BOMItemModel();
                                     // get header value 
@@ -1319,7 +1319,7 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         for (int j = 10; j < colCount; j++)
                         {
-                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
+                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000")) // check material
                             {
                                 // Create BOM Item
                                 if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()))
@@ -1371,7 +1371,6 @@ namespace TMMAConversions.BLL.Utilities
                             BOMHeaderList.Add(BOMHeader);
                         }
                     }
-
                 }
             }
             catch (Exception ex)

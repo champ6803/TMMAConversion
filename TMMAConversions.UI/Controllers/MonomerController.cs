@@ -67,7 +67,34 @@ namespace TMMAConversions.UI.Controllers
             filter.Sort = "asc";
             WorkCenterRoutingFileViewModel model = core.GetWorkCenterRoutingFileView(filter);
 
+            string[] sheets =
+            {
+                "MMA Grade",
+                "MMA Loading",
+                "CCS Syrup",
+                "CCS Initiator",
+                "CCS Additive",
+                "CCS Casting",
+                "CCS Cut and Pack",
+                "CCS Cut and Pack Cullet",
+                "CCS Gasket",
+                "CCS Roof",
+                "CCS Heat Sealing",
+                "CCS Reprocess"
+            };
+
+            string[] options =
+            {
+                "Delete Operation Routing",
+                "Delete Work Center",
+                "Create Work Center",
+                "Create Routing header",
+                "Add Operation Routing (w/o Standard value key)"
+            };
+
             ViewData["WorkCenterRoutingFileViewModel"] = model;
+            ViewData["SheetsList"] = sheets;
+            ViewData["OptionsList"] = options;
 
             return View();
         }
@@ -1854,7 +1881,7 @@ namespace TMMAConversions.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult GenerateWorkCenterRoutingTextFile(int workCenterRoutingFileID, string fileName, string userSAP, string validDateText, string pathText, int pageNo)
+        public ActionResult GenerateWorkCenterRoutingTextFile(int workCenterRoutingFileID, string fileName, string userSAP, string validDateText, string pathText, int pageNo, List<string> options)
         {
             try
             {
@@ -1918,7 +1945,7 @@ namespace TMMAConversions.UI.Controllers
                             string textName = fileName + sheets[i].Replace(" ", "") + j;
                             string textExtension = ".txt";
                             string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenterRouting"), textName);
-                            SAPUtility.ConvertWorkCenterRoutingToTextFile(listHcut, listIcut, textPath, fileName, textExtension, userSAP, validDate);
+                            SAPUtility.ConvertWorkCenterRoutingToTextFile(listHcut, listIcut, textPath, fileName, textExtension, userSAP, validDate, options);
                             ct += ec;
                             ht += hc;
                             countIList += ec;
@@ -1931,7 +1958,7 @@ namespace TMMAConversions.UI.Controllers
                         string textName = fileName + sheets[i].Replace(" ", "");
                         string textExtension = ".txt";
                         string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenterRouting"), textName);
-                        SAPUtility.ConvertWorkCenterRoutingToTextFile(list1, list2, textPath, fileName, textExtension, userSAP, validDate);
+                        SAPUtility.ConvertWorkCenterRoutingToTextFile(list1, list2, textPath, fileName, textExtension, userSAP, validDate, options);
                     }
                     i++;
                 }

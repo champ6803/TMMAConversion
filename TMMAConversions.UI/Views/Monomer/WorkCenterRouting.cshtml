@@ -77,6 +77,7 @@
                     <div class="col-md-12 text-center">
                         <button class="btn btn-primary" ng-click="OnUploadWorkCenterRoutingFile()" type="button" id="btn_upload_file"><i class="fa fa-file-excel"></i>&nbsp;Upload Excel</button>
                         <a ng-class="(WorkCenterRoutingFileViewModel.List.length > 0) ? '' : 'disabled'" href="~/Files/Monomer/Excels/WorkCenterRouting/WorkCenterRouting.xlsx" class="btn btn-success" id="btn_download_file"><i class="fa fa-file-excel"></i>&nbsp;Download Excel</a>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#selectModal">Select</button>
                     </div>
                 </div>
             </div>
@@ -186,11 +187,71 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="generateOptionsModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Generate Options</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body p-0">
+                                    <ul class="list-group m-0">
+                                        <li class="list-group-item row p-0">
+                                            <div class="btn btn-primary col-md-6 col-sm-4 col-xs-4 btn-no-radius">
+                                                Sheets
+                                            </div>
+                                            <button class="btn btn-primary col-md-6 hidden-sm hidden-xs btn-no-radius">
+                                                Options
+                                            </button>
+                                        </li>
+
+                                        <li class="list-group-item row p-10">
+                                            <div class="col-md-6 col-sm-4 col-xs-4 text-left">
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" value="">All</label>
+                                                </div>
+                                                <div ng-repeat="o in SheetsList" ng-if="SheetsList != null" class="checkbox">
+                                                    <label><input type="checkbox" value="{{SelectedSheet.push(o)}}">{{ o }}</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 hidden-sm hidden-xs text-left">
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" value="">All</label>
+                                                </div>
+                                                <div ng-repeat="o in OptionsList" ng-if="OptionsList != null" class="checkbox">
+                                                    <label><input type="checkbox" value="{{SelectedOption.push(o)}}">{{ o }}</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        @*<li ng-if="WorkCenterRoutingFileViewModel.List == null" class="list-group-item row p-10">
+                                                <div class="col-md-12 text-center">
+                                                    No Item
+                                                </div>
+                                            </li>*@
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" ng-click="OnGenerateCreateTextFile()">Generate</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </section>
+
+
 
 @section Scripts {
     <script type="text/javascript">
-        debugger;
         var WorkCenterRoutingFileViewModel = @Html.Raw(Json.Encode(ViewData["WorkCenterRoutingFileViewModel"]));
     </script>
 

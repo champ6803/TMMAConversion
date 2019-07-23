@@ -1,5 +1,9 @@
 ﻿app.controller("workCenterRoutingController", function ($scope, $http) {
     $scope.WorkCenterRoutingFileViewModel = typeof WorkCenterRoutingFileViewModel !== "undefined" ? WorkCenterRoutingFileViewModel ? WorkCenterRoutingFileViewModel : {} : {};
+    $scope.SheetsList = typeof SheetsList !== "undefined" ? SheetsList ? SheetsList : {} : {};
+    $scope.OptionsList = typeof OptionsList !== "undefined" ? OptionsList ? OptionsList : {} : {};
+    $scope.SelectedSheet = null;
+    $scope.SelectedOption = null;
     $scope.User = null;
     $scope.File = null;
     $scope.Files = null;
@@ -118,7 +122,27 @@
         });
     }
 
+    $scope.OnGenerateOptions = function (workCenterRoutingFileID, fileName, userSAP, validDateText, path, pageNo) {
+        $('#generateOptionsModal').modal();
+
+
+    };
+
     $scope.OnGenerateCreateTextFile = function (workCenterRoutingFileID, fileName, userSAP, validDateText, path, pageNo) {
+        //if ($scope.SheetsList != null) {
+        var options = ["MMA Grade",
+                "MMA Loading",
+                "CCS Syrup",
+                "CCS Initiator",
+                "CCS Additive",
+                "CCS Casting",
+                "CCS Cut and Pack",
+                "CCS Cut and Pack Cullet",
+                "CCS Gasket",
+                "CCS Roof",
+                "CCS Heat Sealing",
+                "CCS Reprocess"];
+
         if (workCenterRoutingFileID, fileName, userSAP, validDateText, pageNo) {
             var validDate = convertDateFormat(new Date(parseInt(validDateText.substr(6))));
             var source = {
@@ -127,7 +151,8 @@
                 'userSAP': userSAP,
                 'validDateText': validDate,
                 'pathText': path,
-                'pageNo': pageNo
+                'pageNo': pageNo,
+                'options': options
             }
             $('.loading-screen').show(); // show loading
             $http({
@@ -182,6 +207,15 @@
                 allowOutsideClick: false
             });
         }
+        //}
+        //else {
+        //    Swal.fire({
+        //        type: 'error',
+        //        title: 'Error',
+        //        text: "Please Select Sheet",
+        //        allowOutsideClick: false
+        //    });
+        //}
     };
 
     $scope.OnGenerateDeleteTextFile = function (workCenterRoutingFileID, fileName, userSAP, pageNo) {
