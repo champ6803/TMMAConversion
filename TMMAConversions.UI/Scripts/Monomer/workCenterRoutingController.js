@@ -20,8 +20,6 @@
     { id: 4, name: "Create Routing header" },
     { id: 5, name: "Add Operation Routing (w/o Standard value key)" }];
 
-
-
     $scope.SelectedSheet = null;
     $scope.SelectedOption = null;
     $scope.User = null;
