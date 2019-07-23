@@ -30,15 +30,10 @@ namespace TMMAConversions.BLL.Utilities
             }
         }
 
-        public static List<DataTable> ReadMMABOMExcel(string fileName, string fileExt)
+        public static List<DataTable> ReadMMABOMExcel(string fileName, string fileExt, List<string> sheets)
         {
             log4net.Config.XmlConfigurator.Configure();
             string conn = string.Empty;
-
-            string[] sheets = {
-                "MMA Grade",
-                "MMA Loading"
-            };
 
             List<DataTable> dtExcelList = new List<DataTable>();
 
@@ -70,15 +65,10 @@ namespace TMMAConversions.BLL.Utilities
             return dtExcelList;
         }
 
-        public static List<DataTable> ReadMMABOMActivityExcel(string fileName, string fileExt)
+        public static List<DataTable> ReadMMABOMActivityExcel(string fileName, string fileExt, List<string> sheets)
         {
             log4net.Config.XmlConfigurator.Configure();
             string conn = string.Empty;
-
-            string[] sheets = {
-                "MMA Grade Activity",
-                "MMA Loading Activity"
-            };
 
             List<DataTable> dtExcelList = new List<DataTable>();
 
@@ -94,7 +84,7 @@ namespace TMMAConversions.BLL.Utilities
                     foreach (string r in sheets)
                     {
                         DataTable dtExcel = new DataTable();
-                        string query = "SELECT * FROM [" + r + "$]";
+                        string query = "SELECT * FROM [" + r + " Activity$]";
                         OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                         data.Fill(dtExcel);
                         dtExcelList.Add(dtExcel);

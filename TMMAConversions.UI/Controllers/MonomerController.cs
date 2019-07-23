@@ -1605,7 +1605,7 @@ namespace TMMAConversions.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult GenerateCreateBOMTextFile(int bomFileID, string fileName, string userSAP, string validDateText, string pathText, int pageNo)
+        public ActionResult GenerateCreateBOMTextFile(int bomFileID, string fileName, string userSAP, string validDateText, string pathText, int pageNo, List<string> options, List<string> sheets)
         {
             try
             {
@@ -1613,13 +1613,9 @@ namespace TMMAConversions.UI.Controllers
                 //var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/BOM"), "MMABOM.xlsx"); // Get MMABOM File
                 var path = pathText;
                 string extension = Path.GetExtension(pathText).ToLower();
-                string[] sheets = {
-                    "MMA Grade",
-                    "MMA Loading"
-                };
 
-                List<DataTable> dtList = ExcelUtility.ReadMMABOMExcel(path, extension);
-                List<DataTable> dtActivityList = ExcelUtility.ReadMMABOMActivityExcel(path, extension);
+                List<DataTable> dtList = ExcelUtility.ReadMMABOMExcel(path, extension, sheets);
+                List<DataTable> dtActivityList = ExcelUtility.ReadMMABOMActivityExcel(path, extension, sheets);
 
                 // delete all files before generate new files
                 string[] filePaths = Directory.GetFiles(Server.MapPath("~/Files/Monomer/SAP/BOM"));
@@ -1661,7 +1657,7 @@ namespace TMMAConversions.UI.Controllers
                             string textExtension = ".txt";
                             string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
 
-                            SAPUtility.ConvertToMMABOMTextFile(newList1, list2, listHactcut, acList2, textPath, fileName, textExtension, userSAP, validDate);
+                            SAPUtility.ConvertToMMABOMTextFile(newList1, list2, listHactcut, acList2, textPath, fileName, textExtension, userSAP, validDate, options);
                             ht += hc;
                             countHList += hc;
                             j++;
@@ -1675,7 +1671,7 @@ namespace TMMAConversions.UI.Controllers
                         string textExtension = ".txt";
                         string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
 
-                        SAPUtility.ConvertToMMABOMTextFile(newList1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate);
+                        SAPUtility.ConvertToMMABOMTextFile(newList1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate, options);
                     }
 
                     i++;

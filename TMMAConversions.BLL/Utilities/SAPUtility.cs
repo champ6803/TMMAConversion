@@ -305,7 +305,7 @@ namespace TMMAConversions.BLL.Utilities
         }
 
         // use
-        public static void ConvertToMMABOMTextFile(List<BOMHeaderModel> bomHeaderList, List<BOMItemModel> bomItemList, List<BOMHeaderModel> routingHeaderList, List<BOMItemModel> routingItemList, string filePath, string fileName, string extension, string user, DateTime validDate)
+        public static void ConvertToMMABOMTextFile(List<BOMHeaderModel> bomHeaderList, List<BOMItemModel> bomItemList, List<BOMHeaderModel> routingHeaderList, List<BOMItemModel> routingItemList, string filePath, string fileName, string extension, string user, DateTime validDate, List<string> options)
         {
             string HeaderDate = DateTime.Now.ToString("ddMMyyyy", usCulture);
             string HeaderTime = DateTime.Now.ToString("HHmmss", usCulture);
@@ -334,231 +334,245 @@ namespace TMMAConversions.BLL.Utilities
 
                         // 1
                         // generate create bom header
-                        foreach (var o in bomHeaderList)
+                        if (options.Contains("BOM Create Header"))
                         {
-                            fs.WriteLine("                                        \t0000\tT\tCS01                                                                                                                                \t");
-                            fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                            fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
-                            fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                            fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOM Usage
-                            fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                            fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
-                            fs.WriteLine("SAPLCSDI                                \t0110\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                            fs.WriteLine("                                        \t0000\t \tRC29K-ZTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
-                            fs.WriteLine("                                        \t0000\t \tRC29K-BMENG                                                                                                                         \t{0}", o.BaseQuantity); // Base Quantity
-                            fs.WriteLine("                                        \t0000\t \tRC29K-STLST                                                                                                                         \t{0}", BOMStatus); // BOM Status
-                            fs.WriteLine("SAPLCSDI                                \t0111\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                            fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
-                        }
-
-                        // 1.1
-                        // generate bom change header
-                        foreach (var o in bomHeaderList)
-                        {
-                            // BOM Header
-                            fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
-                            fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=KALL");
-                            fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
-                            fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                            fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
-                            fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
-                            fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                            fs.WriteLine("SAPLCSDI                                \t2110\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
-                            fs.WriteLine("                                        \t0000\t \tRC29K-ZTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
-                            fs.WriteLine("                                        \t0000\t \tRC29K-BMENG                                                                                                                         \t{0}", o.BaseQuantity); // Base Quantity
-                            fs.WriteLine("                                        \t0000\t \tRC29K-STLST                                                                                                                         \t{0}", BOMStatus); // BOM Status
-                        }
-
-                        // 2
-                        // generate delete bom item
-                        foreach (var o in bomHeaderList)
-                        {
-                            if (String.Equals("1", o.Condition, StringComparison.OrdinalIgnoreCase))
+                            foreach (var o in bomHeaderList)
                             {
-                                fs.WriteLine("                                        \t0000\tT\tCS05                                                                                                                                \t");
-                                fs.WriteLine("SAPLCSDI                                \t0102\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                                fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
-                                fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                                fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                                fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
-                                fs.WriteLine("SAPLCSDI                                \t0160\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=MALL");
-                                fs.WriteLine("SAPLCSDI                                \t0160\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCDL");
-                                fs.WriteLine("SAPLCSDI                                \t0160\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
-                            }
-                            else
-                            {
-                                fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
+                                fs.WriteLine("                                        \t0000\tT\tCS01                                                                                                                                \t");
                                 fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
                                 fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
                                 fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                                fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
                                 fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOM Usage
-                                fs.WriteLine("SAPLCSDI                                \t0180\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=SETP");
-                                fs.WriteLine("SAPLCSDI                                \t0708\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=CLWI");
-                                fs.WriteLine("                                        \t0000\t \tRC29K-SELAL                                                                                                                         \t{0}", o.BOMAlt);
-                                fs.WriteLine("SAPLCSDI                                \t0180\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tRC29K-AUSKZ(01)                                                                                                                     \t{0}", "X"); // Header Material
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCPU");
-                                fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=MALL");
-                                fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t");
-                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCDL");
-                                fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
+                                fs.WriteLine("SAPLCSDI                                \t0110\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                fs.WriteLine("                                        \t0000\t \tRC29K-ZTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
+                                fs.WriteLine("                                        \t0000\t \tRC29K-BMENG                                                                                                                         \t{0}", o.BaseQuantity); // Base Quantity
+                                fs.WriteLine("                                        \t0000\t \tRC29K-STLST                                                                                                                         \t{0}", BOMStatus); // BOM Status
+                                fs.WriteLine("SAPLCSDI                                \t0111\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
+                            }
+                            // 1.1
+                            // generate bom change header
+                            foreach (var o in bomHeaderList)
+                            {
+                                // BOM Header
+                                fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
+                                fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=KALL");
+                                fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
+                                fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
+                                fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
+                                fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                fs.WriteLine("SAPLCSDI                                \t2110\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
+                                fs.WriteLine("                                        \t0000\t \tRC29K-ZTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
+                                fs.WriteLine("                                        \t0000\t \tRC29K-BMENG                                                                                                                         \t{0}", o.BaseQuantity); // Base Quantity
+                                fs.WriteLine("                                        \t0000\t \tRC29K-STLST                                                                                                                         \t{0}", BOMStatus); // BOM Status
+                            }
+                        }
+
+                        // 2
+                        // generate delete bom item
+                        if (options.Contains("BOM Delete Component (All)"))
+                        {
+                            foreach (var o in bomHeaderList)
+                            {
+                                if (String.Equals("1", o.Condition, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    fs.WriteLine("                                        \t0000\tT\tCS05                                                                                                                                \t");
+                                    fs.WriteLine("SAPLCSDI                                \t0102\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                    fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
+                                    fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                    fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                    fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
+                                    fs.WriteLine("SAPLCSDI                                \t0160\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=MALL");
+                                    fs.WriteLine("SAPLCSDI                                \t0160\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCDL");
+                                    fs.WriteLine("SAPLCSDI                                \t0160\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
+                                }
+                                else
+                                {
+                                    fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
+                                    fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                    fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
+                                    fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                    fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                    fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOM Usage
+                                    fs.WriteLine("SAPLCSDI                                \t0180\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=SETP");
+                                    fs.WriteLine("SAPLCSDI                                \t0708\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=CLWI");
+                                    fs.WriteLine("                                        \t0000\t \tRC29K-SELAL                                                                                                                         \t{0}", o.BOMAlt);
+                                    fs.WriteLine("SAPLCSDI                                \t0180\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tRC29K-AUSKZ(01)                                                                                                                     \t{0}", "X"); // Header Material
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCPU");
+                                    fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=MALL");
+                                    fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCDL");
+                                    fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t");
+                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
+                                }
                             }
                         }
 
                         // 3
                         // generate bom add new line item 
-                        foreach (var o in bomHeaderList)
+                        if (options.Contains("BOM Add Line Item"))
                         {
-                            int count = 1;
-                            List<BOMItemModel> resultList = bomItemList.Where(t => t.MaterialCode == o.MaterialCode && t.BOMAlt == o.BOMAlt && t.BOMUsage == o.BOMUsage).ToList();
-                            BOMItemModel first = resultList.Count > 0 ? resultList.First() : null;
-                            foreach (var a in resultList)
+                            foreach (var o in bomHeaderList)
                             {
-                                // add component
-                                if (a.Equals(first)) // if not exist
+                                int count = 1;
+                                List<BOMItemModel> resultList = bomItemList.Where(t => t.MaterialCode == o.MaterialCode && t.BOMAlt == o.BOMAlt && t.BOMUsage == o.BOMUsage).ToList();
+                                BOMItemModel first = resultList.Count > 0 ? resultList.First() : null;
+                                foreach (var a in resultList)
                                 {
-                                    // BOM Header
-                                    fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
-                                    fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                    // add component
+                                    if (a.Equals(first)) // if not exist
+                                    {
+                                        // BOM Header
+                                        fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
+                                        fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
 
-                                    // Init srceen for component
-                                    fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-IDNRK(01)                                                                                                                     \t{0}", a.ComponentMaterial); // Component Material
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-POSTP(01)                                                                                                                     \tL"); // fix
+                                        // Init srceen for component
+                                        fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-IDNRK(01)                                                                                                                     \t{0}", a.ComponentMaterial); // Component Material
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-POSTP(01)                                                                                                                     \tL"); // fix
 
-                                    // BOM Item
-                                    fs.WriteLine("SAPLCSDI                                \t0130\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-POSNR                                                                                                                         \t{0}", a.BOMItem);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-IDNRK                                                                                                                         \t{0}", a.ComponentMaterial);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-MENGE                                                                                                                         \t{0}", a.ComponentQuantity);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-MEINS                                                                                                                         \t{0}", a.ComponentUnit);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-FMENG                                                                                                                         \t{0}", a.FixedQty);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-AVOAU                                                                                                                         \t{0}", a.OperationScrap);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-AUSCH                                                                                                                         \t{0}", a.ComponentScrap);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-NETAU                                                                                                                         \t{0}", a.NetScrap);
-                                    fs.WriteLine("SAPLCSDI                                \t0131\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-SANKA                                                                                                                         \tX");
-                                    fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
+                                        // BOM Item
+                                        fs.WriteLine("SAPLCSDI                                \t0130\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-POSNR                                                                                                                         \t{0}", a.BOMItem);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-IDNRK                                                                                                                         \t{0}", a.ComponentMaterial);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-MENGE                                                                                                                         \t{0}", a.ComponentQuantity);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-MEINS                                                                                                                         \t{0}", a.ComponentUnit);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-FMENG                                                                                                                         \t{0}", a.FixedQty);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-AVOAU                                                                                                                         \t{0}", a.OperationScrap);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-AUSCH                                                                                                                         \t{0}", a.ComponentScrap);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-NETAU                                                                                                                         \t{0}", a.NetScrap);
+                                        fs.WriteLine("SAPLCSDI                                \t0131\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-SANKA                                                                                                                         \tX");
+                                        fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
+                                    }
+                                    else
+                                    {
+                                        // BOM Header
+                                        fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
+                                        fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
+                                        fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                        fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCNP");
+
+                                        // Init srceen for component
+                                        fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-IDNRK(02)                                                                                                                     \t{0}", a.ComponentMaterial); // Component Material
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-POSTP(02)                                                                                                                     \tL"); // fix
+
+                                        // BOM Item
+                                        fs.WriteLine("SAPLCSDI                                \t0130\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-POSNR                                                                                                                         \t{0}", a.BOMItem);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-IDNRK                                                                                                                         \t{0}", a.ComponentMaterial);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-MENGE                                                                                                                         \t{0}", a.ComponentQuantity);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-MEINS                                                                                                                         \t{0}", a.ComponentUnit);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-FMENG                                                                                                                         \t{0}", a.FixedQty);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-AVOAU                                                                                                                         \t{0}", a.OperationScrap);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-AUSCH                                                                                                                         \t{0}", a.ComponentScrap);
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-NETAU                                                                                                                         \t{0}", a.NetScrap);
+                                        fs.WriteLine("SAPLCSDI                                \t0131\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                        fs.WriteLine("                                        \t0000\t \tRC29P-SANKA                                                                                                                         \tX");
+                                        fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
+                                        fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
+                                    }
+                                    count++;
                                 }
-                                else
-                                {
-                                    // BOM Header
-                                    fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
-                                    fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOM Alternative
-                                    fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                                    fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCNP");
-
-                                    // Init srceen for component
-                                    fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-IDNRK(02)                                                                                                                     \t{0}", a.ComponentMaterial); // Component Material
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-POSTP(02)                                                                                                                     \tL"); // fix
-
-                                    // BOM Item
-                                    fs.WriteLine("SAPLCSDI                                \t0130\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-POSNR                                                                                                                         \t{0}", a.BOMItem);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-IDNRK                                                                                                                         \t{0}", a.ComponentMaterial);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-MENGE                                                                                                                         \t{0}", a.ComponentQuantity);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-MEINS                                                                                                                         \t{0}", a.ComponentUnit);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-FMENG                                                                                                                         \t{0}", a.FixedQty);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-AVOAU                                                                                                                         \t{0}", a.OperationScrap);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-AUSCH                                                                                                                         \t{0}", a.ComponentScrap);
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-NETAU                                                                                                                         \t{0}", a.NetScrap);
-                                    fs.WriteLine("SAPLCSDI                                \t0131\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
-                                    fs.WriteLine("                                        \t0000\t \tRC29P-SANKA                                                                                                                         \tX");
-                                    fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
-                                }
-                                count++;
                             }
                         }
 
                         // 3.1
                         // generate routing change header
-                        foreach (var o in routingHeaderList)
+                        if (options.Contains("Change Routing Header"))
                         {
-                            // BOM Header
-                            fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
-                            fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ALD1");
-                            fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t"); // Header Material
-                            fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                            fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // RoutingGroup
-                            fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                            fs.WriteLine("                                        \t0000\t \tRC271-PLNAL                                                                                                                         \t{0}", o.GroupCounter); // GroupCounter
-                            fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
-                            fs.WriteLine("                                        \t0000\t \tPLKOD-KTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
-                            fs.WriteLine("                                        \t0000\t \tPLKOD-LOSVN                                                                                                                         \t{0}", o.LotSizeFrom); // LotSizeFrom
-                            fs.WriteLine("                                        \t0000\t \tPLKOD-LOSBS                                                                                                                         \t{0}", o.LotSizeTo); // LotSizeTo
-                            fs.WriteLine("                                        \t0000\t \tPLKOD-PLNME                                                                                                                         \t{0}", o.BaseUnit); // BOM Status
+                            foreach (var o in routingHeaderList)
+                            {
+                                // BOM Header
+                                fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
+                                fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ALD1");
+                                fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t"); // Header Material
+                                fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // RoutingGroup
+                                fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                fs.WriteLine("                                        \t0000\t \tRC271-PLNAL                                                                                                                         \t{0}", o.GroupCounter); // GroupCounter
+                                fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
+                                fs.WriteLine("                                        \t0000\t \tPLKOD-KTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
+                                fs.WriteLine("                                        \t0000\t \tPLKOD-LOSVN                                                                                                                         \t{0}", o.LotSizeFrom); // LotSizeFrom
+                                fs.WriteLine("                                        \t0000\t \tPLKOD-LOSBS                                                                                                                         \t{0}", o.LotSizeTo); // LotSizeTo
+                                fs.WriteLine("                                        \t0000\t \tPLKOD-PLNME                                                                                                                         \t{0}", o.BaseUnit); // BOM Status
+                            }
                         }
+
 
                         var routingGroupList = routingHeaderList.GroupBy(u => u.RoutingGroup).Select(grp => grp.ToList()).ToList();
                         // 4
                         // generate assign material to routing
-                        foreach (var k in routingGroupList)
+                        if (options.Contains("Assign material to Routing"))
                         {
-                            var c = 1;
-                            foreach (var o in k)
+                            foreach (var k in routingGroupList)
                             {
-                                if (c == 1)
+                                //var c = 1;
+                                foreach (var o in k)
                                 {
-                                    fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
-                                    fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ALD1");
-                                    fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t");
-                                    fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                                    fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // Routing Group
-                                    fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                                    fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=MTUE");
-                                    fs.WriteLine("SAPLCZDI                                \t1010\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=P+");
-                                    fs.WriteLine("SAPLCZDI                                \t1010\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BACK");
-                                    fs.WriteLine("                                        \t0000\t \tMAPL-PLNAL(01)                                                                                                                      \t{0}", o.GroupCounter);
-                                    fs.WriteLine("                                        \t0000\t \tMAPL-MATNR(01)                                                                                                                      \t{0}", o.MaterialCode);
-                                    fs.WriteLine("                                        \t0000\t \tMAPL-WERKS(01)                                                                                                                      \t{0}", o.Plant);
-                                    fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
-                                    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
-                                }
-                                else
-                                {
+                                    //if (c == 1)
+                                    //{
+                                    //    fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
+                                    //    fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
+                                    //    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ALD1");
+                                    //    fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t");
+                                    //    fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                    //    fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // Routing Group
+                                    //    fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                    //    fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
+                                    //    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=MTUE");
+                                    //    fs.WriteLine("SAPLCZDI                                \t1010\tX\t                                                                                                                                    \t");
+                                    //    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=P+");
+                                    //    fs.WriteLine("SAPLCZDI                                \t1010\tX\t                                                                                                                                    \t");
+                                    //    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BACK");
+                                    //    fs.WriteLine("                                        \t0000\t \tMAPL-PLNAL(01)                                                                                                                      \t{0}", o.GroupCounter);
+                                    //    fs.WriteLine("                                        \t0000\t \tMAPL-MATNR(01)                                                                                                                      \t{0}", o.MaterialCode);
+                                    //    fs.WriteLine("                                        \t0000\t \tMAPL-WERKS(01)                                                                                                                      \t{0}", o.Plant);
+                                    //    fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
+                                    //    fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
+                                    //}
+                                    //else
+                                    //{
                                     fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
                                     fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
                                     fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ALD1");
@@ -581,107 +595,111 @@ namespace TMMAConversions.BLL.Utilities
                                     fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BACK");
                                     fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
                                     fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
+                                    //}
+                                    //c++;
                                 }
-                                c++;
                             }
                         }
 
-                        // check routing null
-                        if ((routingHeaderList != null && routingItemList.Count > 0))
+                        if (options.Contains("Change Detail Op Routing"))
                         {
-                            // 5
-                            // generate change detail op routing
-                            foreach (var o in routingHeaderList)
+                            // check routing null
+                            if ((routingHeaderList != null && routingItemList.Count > 0))
                             {
-                                if (!string.IsNullOrEmpty(o.WorkCenter))
+                                // 5
+                                // generate change detail op routing
+                                foreach (var o in routingHeaderList)
                                 {
-                                    List<BOMItemModel> resultList = routingItemList.Where(t => t.WorkCenter == o.WorkCenter).ToList(); // Group by Routing Group
-                                    if (resultList.Count > 0)
+                                    if (!string.IsNullOrEmpty(o.WorkCenter))
                                     {
-                                        var operationList = resultList.GroupBy(u => u.OperationNo).Select(grp => grp.ToList()).ToList(); // Group by Operation No
-                                        foreach (var eList in operationList)
+                                        List<BOMItemModel> resultList = routingItemList.Where(t => t.WorkCenter == o.WorkCenter).ToList(); // Group by Routing Group
+                                        if (resultList.Count > 0)
                                         {
-                                            fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
-                                            fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
-                                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=XALU");
-                                            fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
-                                            fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
-                                            fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // Routing Group
-                                            fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                                            fs.WriteLine("                                        \t0000\t \tRC271-PLNAL                                                                                                                         \t{0}", o.GroupCounter); // Group Counter
-
-                                            // Search operation command
-                                            fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
-                                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=OSEA");
-                                            fs.WriteLine("                                        \t0000\t \tRC27X-ENTRY_ACT                                                                                                                     \t1");
-                                            // Operation detail
-                                            fs.WriteLine("SAPLCP02                                \t1010\tX\t                                                                                                                                    \t");
-                                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ENT1");
-                                            fs.WriteLine("                                        \t0000\t \tRC27H-VORNR                                                                                                                         \t{0}", eList[0].OperationNo);
-                                            // Select operation command
-                                            fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
-                                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=VOD1");
-                                            fs.WriteLine("                                        \t0000\t \tRC27X-FLG_SEL(01)                                                                                                                   \tX");
-
-                                            fs.WriteLine("SAPLCPDO                                \t1200\tX\t                                                                                                                                    \t");
-                                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-VORNR                                                                                                                         \t{0}", eList[0].OperationNo); // first item
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-ARBPL                                                                                                                         \t{0}", o.WorkCenter);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-WERKS                                                                                                                         \t{0}", o.Plant);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-KTSCH                                                                                                                         \t{0}", o.StandardTextKey); // optional
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-LTXA1                                                                                                                         \t{0}", o.BOMHeaderText);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-BMSCH                                                                                                                         \t{0}", o.BaseQuantity);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", o.BaseUnit);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", ConversionOfUOMNumerator);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", ConversionOfUOMDenominator);
-
-                                            foreach (var a in eList)
+                                            var operationList = resultList.GroupBy(u => u.OperationNo).Select(grp => grp.ToList()).ToList(); // Group by Operation No
+                                            foreach (var eList in operationList)
                                             {
-                                                // set item data
-                                                if (a.ActivityNo == 1)
+                                                fs.WriteLine("                                        \t0000\tT\tCA02                                                                                                                                \t");
+                                                fs.WriteLine("SAPLCPDI                                \t1010\tX\t                                                                                                                                    \t");
+                                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=XALU");
+                                                fs.WriteLine("                                        \t0000\t \tRC27M-MATNR                                                                                                                         \t{0}", o.MaterialCode); // Header Material
+                                                fs.WriteLine("                                        \t0000\t \tRC27M-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                                fs.WriteLine("                                        \t0000\t \tRC271-PLNNR                                                                                                                         \t{0}", o.RoutingGroup); // Routing Group
+                                                fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                                fs.WriteLine("                                        \t0000\t \tRC271-PLNAL                                                                                                                         \t{0}", o.GroupCounter); // Group Counter
+
+                                                // Search operation command
+                                                fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
+                                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=OSEA");
+                                                fs.WriteLine("                                        \t0000\t \tRC27X-ENTRY_ACT                                                                                                                     \t1");
+                                                // Operation detail
+                                                fs.WriteLine("SAPLCP02                                \t1010\tX\t                                                                                                                                    \t");
+                                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ENT1");
+                                                fs.WriteLine("                                        \t0000\t \tRC27H-VORNR                                                                                                                         \t{0}", eList[0].OperationNo);
+                                                // Select operation command
+                                                fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
+                                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=VOD1");
+                                                fs.WriteLine("                                        \t0000\t \tRC27X-FLG_SEL(01)                                                                                                                   \tX");
+
+                                                fs.WriteLine("SAPLCPDO                                \t1200\tX\t                                                                                                                                    \t");
+                                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VORNR                                                                                                                         \t{0}", eList[0].OperationNo); // first item
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-ARBPL                                                                                                                         \t{0}", o.WorkCenter);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-WERKS                                                                                                                         \t{0}", o.Plant);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-KTSCH                                                                                                                         \t{0}", o.StandardTextKey); // optional
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-LTXA1                                                                                                                         \t{0}", o.BOMHeaderText);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-BMSCH                                                                                                                         \t{0}", o.BaseQuantity);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", o.BaseUnit);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", ConversionOfUOMNumerator);
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", ConversionOfUOMDenominator);
+
+                                                foreach (var a in eList)
                                                 {
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-LAR01                                                                                                                         \t{0}", a.Activity);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGW01                                                                                                                         \t{0}", a.StandardValueKey);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGE01                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                                    // set item data
+                                                    if (a.ActivityNo == 1)
+                                                    {
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR01                                                                                                                         \t{0}", a.Activity);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW01                                                                                                                         \t{0}", a.StandardValueKey);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE01                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                                    }
+                                                    if (a.ActivityNo == 2)
+                                                    {
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR02                                                                                                                         \t{0}", a.Activity);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW02                                                                                                                         \t{0}", a.StandardValueKey);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE02                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                                    }
+                                                    if (a.ActivityNo == 3)
+                                                    {
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR03                                                                                                                         \t{0}", a.Activity);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW03                                                                                                                         \t{0}", a.StandardValueKey);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE03                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                                    }
+                                                    if (a.ActivityNo == 4)
+                                                    {
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR04                                                                                                                         \t{0}", a.Activity);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW04                                                                                                                         \t{0}", a.StandardValueKey);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE04                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                                    }
+                                                    if (a.ActivityNo == 5)
+                                                    {
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR05                                                                                                                         \t{0}", a.Activity);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW05                                                                                                                         \t{0}", a.StandardValueKey);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE05                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                                    }
+                                                    if (a.ActivityNo == 6)
+                                                    {
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-LAR06                                                                                                                         \t{0}", a.Activity);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGW06                                                                                                                         \t{0}", a.StandardValueKey);
+                                                        fs.WriteLine("                                        \t0000\t \tPLPOD-VGE06                                                                                                                         \t{0}", a.StandardValueKeyOUM);
+                                                    }
                                                 }
-                                                if (a.ActivityNo == 2)
-                                                {
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-LAR02                                                                                                                         \t{0}", a.Activity);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGW02                                                                                                                         \t{0}", a.StandardValueKey);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGE02                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                                }
-                                                if (a.ActivityNo == 3)
-                                                {
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-LAR03                                                                                                                         \t{0}", a.Activity);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGW03                                                                                                                         \t{0}", a.StandardValueKey);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGE03                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                                }
-                                                if (a.ActivityNo == 4)
-                                                {
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-LAR04                                                                                                                         \t{0}", a.Activity);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGW04                                                                                                                         \t{0}", a.StandardValueKey);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGE04                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                                }
-                                                if (a.ActivityNo == 5)
-                                                {
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-LAR05                                                                                                                         \t{0}", a.Activity);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGW05                                                                                                                         \t{0}", a.StandardValueKey);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGE05                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                                }
-                                                if (a.ActivityNo == 6)
-                                                {
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-LAR06                                                                                                                         \t{0}", a.Activity);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGW06                                                                                                                         \t{0}", a.StandardValueKey);
-                                                    fs.WriteLine("                                        \t0000\t \tPLPOD-VGE06                                                                                                                         \t{0}", a.StandardValueKeyOUM);
-                                                }
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", eList[0].OperationScrap);
+
                                             }
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", eList[0].OperationScrap);
 
                                         }
-
                                     }
-                                }
 
+                                }
                             }
                         }
 
@@ -692,64 +710,71 @@ namespace TMMAConversions.BLL.Utilities
                         //    bom => bom.RoutingGroup,
                         //    routing => routing.RoutingGroup,
                         //    (bom, routing) => routing).ToList();
-
-                        foreach (var o in routingHeaderList)
+                        if (options.Contains("Delete Production version"))
                         {
-                            fs.WriteLine("                                        \t0000\tT\tC223                                                                                                                                \t");
-                            fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ESEL");
-                            fs.WriteLine("                                        \t0000\t \tMKAL-WERKS                                                                                                                          \t{0}", o.Plant); // Plant
-                            fs.WriteLine("SAPLCMFV                                \t1001\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=NONE");
-                            fs.WriteLine("                                        \t0000\t \tRANG_MAT-LOW                                                                                                                        \t{0}", o.MaterialCode); // MaterialCode
-                            fs.WriteLine("                                        \t0000\t \tRANG_VER-LOW                                                                                                                        \t{0}", o.ProductionVersion); // Production Version
-                            fs.WriteLine("SAPLCMFV                                \t1001\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=CRET");
-                            fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=DELE");
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-MARK(01)                                                                                                                \tX"); // Fix
-                            fs.WriteLine("SAPLSPO1                                \t0100\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=YES");
-                            fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=SAVE");
+                            foreach (var o in routingHeaderList)
+                            {
+                                fs.WriteLine("                                        \t0000\tT\tC223                                                                                                                                \t");
+                                fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ESEL");
+                                fs.WriteLine("                                        \t0000\t \tMKAL-WERKS                                                                                                                          \t{0}", o.Plant); // Plant
+                                fs.WriteLine("SAPLCMFV                                \t1001\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=NONE");
+                                fs.WriteLine("                                        \t0000\t \tRANG_MAT-LOW                                                                                                                        \t{0}", o.MaterialCode); // MaterialCode
+                                fs.WriteLine("                                        \t0000\t \tRANG_VER-LOW                                                                                                                        \t{0}", o.ProductionVersion); // Production Version
+                                fs.WriteLine("SAPLCMFV                                \t1001\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=CRET");
+                                fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=DELE");
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-MARK(01)                                                                                                                \tX"); // Fix
+                                fs.WriteLine("SAPLSPO1                                \t0100\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=YES");
+                                fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=SAVE");
+                            }
                         }
+
 
                         // 7
                         // generate production version
-                        foreach (var o in routingHeaderList)
+                        if (options.Contains("Create Production Version"))
                         {
-                            fs.WriteLine("                                        \t0000\tT\tC223                                                                                                                                \t");
-                            fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ENTE");
-                            fs.WriteLine("                                        \t0000\t \tMKAL-WERKS                                                                                                                          \t{0}", o.Plant); // Plant
-                            fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=CREA");
-                            fs.WriteLine("SAPLCMFV                                \t2000\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ENTE");
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-MATNR                                                                                                                   \t{0}", o.MaterialCode); // MaterialCode
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-VERID                                                                                                                   \t{0}", o.ProductionVersion); // Production Version
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-TEXT1                                                                                                                   \t{0}", o.BOMHeaderText); // Production Version Description
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-BSTMI                                                                                                                   \t{0}", o.LotSizeFrom); // LotSizeFrom
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-BSTMA                                                                                                                   \t{0}", o.LotSizeTo); // LotSizeTo
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ADATU                                                                                                                   \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-BDATU                                                                                                                   \t{0}", ValidDateTo); // Valid Date To
-                            fs.WriteLine("SAPLCMFV                                \t2000\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \tPRFG");
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-PLNTY                                                                                                                   \t{0}", TaskListType); // Fix
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-PLNNR                                                                                                                   \t{0}", o.RoutingGroup); // Group
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ALNAL                                                                                                                   \t{0}", o.GroupCounter); // GroupCounter
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-STLAL                                                                                                                   \t{0}", o.BOMAlt); // BOM Alternative
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-STLAN                                                                                                                   \t{0}", o.BOMUsage); // BOM Usage
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-MDV01                                                                                                                   \t{0}", o.ProductionLine); // Production Line
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ELPRO                                                                                                                   \t{0}", o.StorageLocation); // Issue Storage Location
-                            fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ALORT                                                                                                                   \t{0}", ReceivingStorageLocation); // Receiving Storage Location
-                            fs.WriteLine("SAPMSSY0                                \t0120\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BACK");
-                            fs.WriteLine("SAPLCMFV                                \t2000\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=CLOS");
-                            fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
-                            fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=SAVE");
+                            foreach (var o in routingHeaderList)
+                            {
+                                fs.WriteLine("                                        \t0000\tT\tC223                                                                                                                                \t");
+                                fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ENTE");
+                                fs.WriteLine("                                        \t0000\t \tMKAL-WERKS                                                                                                                          \t{0}", o.Plant); // Plant
+                                fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=CREA");
+                                fs.WriteLine("SAPLCMFV                                \t2000\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=ENTE");
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-MATNR                                                                                                                   \t{0}", o.MaterialCode); // MaterialCode
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-VERID                                                                                                                   \t{0}", o.ProductionVersion); // Production Version
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-TEXT1                                                                                                                   \t{0}", o.BOMHeaderText); // Production Version Description
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-BSTMI                                                                                                                   \t{0}", o.LotSizeFrom); // LotSizeFrom
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-BSTMA                                                                                                                   \t{0}", o.LotSizeTo); // LotSizeTo
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ADATU                                                                                                                   \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-BDATU                                                                                                                   \t{0}", ValidDateTo); // Valid Date To
+                                fs.WriteLine("SAPLCMFV                                \t2000\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \tPRFG");
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-PLNTY                                                                                                                   \t{0}", TaskListType); // Fix
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-PLNNR                                                                                                                   \t{0}", o.RoutingGroup); // Group
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ALNAL                                                                                                                   \t{0}", o.GroupCounter); // GroupCounter
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-STLAL                                                                                                                   \t{0}", o.BOMAlt); // BOM Alternative
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-STLAN                                                                                                                   \t{0}", o.BOMUsage); // BOM Usage
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-MDV01                                                                                                                   \t{0}", o.ProductionLine); // Production Line
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ELPRO                                                                                                                   \t{0}", o.StorageLocation); // Issue Storage Location
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ALORT                                                                                                                   \t{0}", ReceivingStorageLocation); // Receiving Storage Location
+                                fs.WriteLine("SAPMSSY0                                \t0120\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BACK");
+                                fs.WriteLine("SAPLCMFV                                \t2000\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=CLOS");
+                                fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=SAVE");
+                            }
                         }
+
                     } // StreamWriter
                 }
             }

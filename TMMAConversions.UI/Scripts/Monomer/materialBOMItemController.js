@@ -11,26 +11,16 @@
     $scope.GenerateModel = null;
 
     $scope.SheetsList = [{ id: 1, name: "MMA Grade" },
-    { id: 2, name: "MMA Loading" },
-    { id: 3, name: "CCS Syrup" },
-    { id: 4, name: "CCS Initiator" },
-    { id: 5, name: "CCS Additive" },
-    { id: 6, name: "CCS Casting" },
-    { id: 7, name: "CCS Cut and Pack" },
-    { id: 8, name: "CCS Cut and Pack Cullet" },
-    { id: 9, name: "CCS Gasket" },
-    { id: 10, name: "CCS Roof" },
-    { id: 11, name: "CCS Heat Sealing" },
-    { id: 12, name: "CCS Reprocess" }];
+    { id: 2, name: "MMA Loading" }];
 
     $scope.OptionsList = [{ id: 1, name: "BOM Create Header" },
     { id: 2, name: "BOM Delete Component (All)" },
     { id: 3, name: "BOM Add Line Item" },
-    { id: 4, name: "Assign material to Routing" },
-    { id: 5, name: "Change Detail Op Routing" },
-    { id: 6, name: "Delete Production version" },
-    { id: 7, name: "Create Production Version" }];
-
+    { id: 4, name: "Change Routing Header" },
+    { id: 5, name: "Assign material to Routing" },
+    { id: 6, name: "Change Detail Op Routing" },
+    { id: 7, name: "Delete Production version" },
+    { id: 8, name: "Create Production Version" }];
 
     $scope.ArrayNumber = function (start, end) {
         var input = [];
@@ -217,10 +207,10 @@
         $scope.isSheetsAllSelected = $scope.options.every(function (itm) { return itm.selected; })
     }
 
-    $scope.OnGenerateOptions = function (workCenterRoutingFileID, fileName, userSAP, validDateText, path, pageNo) {
+    $scope.OnGenerateOptions = function (bomFileID, fileName, userSAP, validDateText, path, pageNo) {
         $('#generateOptionsModal').modal();
         $scope.GenerateModel = new Object;
-        $scope.GenerateModel.bomFileID = workCenterRoutingFileID;
+        $scope.GenerateModel.bomFileID = bomFileID;
         $scope.GenerateModel.fileName = fileName;
         $scope.GenerateModel.userSAP = userSAP;
         $scope.GenerateModel.validDateText = validDateText;
@@ -228,17 +218,33 @@
         $scope.GenerateModel.pageNo = pageNo;
     };
 
-    $scope.OnGenerateCreateTextFile = function (bomFileID, fileName, userSAP, validDateText, path, pageNo) {
-        if (bomFileID, fileName, userSAP, validDateText, path, pageNo) {
-            var validDate = convertDateFormat(new Date(parseInt(validDateText.substr(6))));
+    $scope.OnGenerateCreateTextFile = function (o, a) {
+        var options = [];
+        angular.forEach(o, function (value, key) {
+            if (o[key].checked) {
+                options.push(o[key].name);
+            }
+        });
+
+        var sheets = [];
+        angular.forEach(a, function (value, key) {
+            if (a[key].checked) {
+                sheets.push(a[key].name);
+            }
+        });
+
+        if ($scope.GenerateModel.bomFileID, $scope.GenerateModel.fileName, $scope.GenerateModel.userSAP, $scope.GenerateModel.validDateText, $scope.GenerateModel.path, $scope.GenerateModel.pageNo, options.length > 0, sheets.length > 0) {
+            var validDate = convertDateFormat(new Date(parseInt($scope.GenerateModel.validDateText.substr(6))));
             $(".loading-screen").show(); // call loading
             var source = {
-                'bomFileID': bomFileID,
-                'fileName': fileName,
-                'userSAP': userSAP,
+                'bomFileID': $scope.GenerateModel.bomFileID,
+                'fileName': $scope.GenerateModel.fileName,
+                'userSAP': $scope.GenerateModel.userSAP,
                 'validDateText': validDate,
-                'pathText': path,
-                'pageNo': pageNo
+                'pathText': $scope.GenerateModel.path,
+                'pageNo': $scope.GenerateModel.pageNo,
+                'options': options,
+                'sheets': sheets
             }
 
             $http({
@@ -259,7 +265,7 @@
                         }
                     });
                     // call dowload url
-                    window.location.href = "/Monomer/DownloadCreateBOMTextFile?fileName=" + fileName;
+                    window.location.href = "/Monomer/DownloadCreateBOMTextFile?fileName=" + $scope.GenerateModel.fileName;
                 } else {
                     Swal.fire({
                         type: 'error',
