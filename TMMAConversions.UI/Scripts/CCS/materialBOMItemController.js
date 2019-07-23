@@ -242,7 +242,7 @@
         });
 
         if ($scope.GenerateModel.bomFileID, $scope.GenerateModel.fileName, $scope.GenerateModel.userSAP, $scope.GenerateModel.validDateText, $scope.GenerateModel.path, $scope.GenerateModel.pageNo, options.length > 0, sheets.length > 0) {
-            var validDate = convertDateFormat(new Date(parseInt(validDateText.substr(6))));
+            var validDate = convertDateFormat(new Date(parseInt($scope.GenerateModel.validDateText.substr(6))));
             $(".loading-screen").show(); // call loading
             var source = {
                 'bomFileID': $scope.GenerateModel.bomFileID,
