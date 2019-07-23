@@ -100,21 +100,10 @@ namespace TMMAConversions.BLL.Utilities
             return dtExcelList;
         }
 
-        public static List<DataTable> ReadCCSBOMExcel(string fileName, string fileExt)
+        public static List<DataTable> ReadCCSBOMExcel(string fileName, string fileExt, List<string> sheets)
         {
             log4net.Config.XmlConfigurator.Configure();
             string conn = string.Empty;
-
-            string[] sheets = {
-                    "BOM Special Pack",
-                    "BOM CCS Cut and Pack",
-                    "BOM CCS PMMA",
-                    "BOM Additive",
-                    "BOM CCS Syrup",
-                    "BOM CCS Initiator",
-                    "BOM Packing Pattern",
-                    "BOM Gasket"
-                };
 
             List<DataTable> dtExcelList = new List<DataTable>();
 
@@ -146,21 +135,10 @@ namespace TMMAConversions.BLL.Utilities
             return dtExcelList;
         }
 
-        public static List<DataTable> ReadCCSBOMActivityExcel(string fileName, string fileExt)
+        public static List<DataTable> ReadCCSBOMActivityExcel(string fileName, string fileExt, List<string> sheets)
         {
             log4net.Config.XmlConfigurator.Configure();
             string conn = string.Empty;
-
-            string[] sheets = {
-                    "BOM Special Pack Activity",
-                    "BOM CCS Cut and Pack Activity",
-                    "BOM CCS PMMA Activity",
-                    "BOM Additive Activity",
-                    "BOM CCS Syrup Activity",
-                    "BOM CCS Initiator Activity",
-                    "BOM Packing Pattern Activity",
-                    "BOM Gasket Activity"
-                };
 
             List<DataTable> dtExcelList = new List<DataTable>();
 
@@ -176,7 +154,7 @@ namespace TMMAConversions.BLL.Utilities
                     foreach (string r in sheets)
                     {
                         DataTable dtExcel = new DataTable();
-                        string query = "SELECT * FROM [" + r + "$]";
+                        string query = "SELECT * FROM [" + r + " Activity$]";
                         OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                         data.Fill(dtExcel);
                         dtExcelList.Add(dtExcel);

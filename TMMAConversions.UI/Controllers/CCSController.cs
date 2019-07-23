@@ -301,19 +301,8 @@ namespace TMMAConversions.UI.Controllers
                 string path = pathText;
                 string extension = Path.GetExtension(pathText).ToLower();
 
-                //string[] sheets = {
-                //    "BOM Special Pack",
-                //    "BOM CCS Cut and Pack",
-                //    "BOM CCS PMMA",
-                //    "BOM Additive",
-                //    "BOM CCS Syrup",
-                //    "BOM CCS Initiator",
-                //    "BOM Packing Pattern",
-                //    "BOM Gasket"
-                //};
-
-                List<DataTable> dtList = ExcelUtility.ReadCCSBOMExcel(path, extension);
-                List<DataTable> dtActivityList = ExcelUtility.ReadCCSBOMActivityExcel(path, extension);
+                List<DataTable> dtList = ExcelUtility.ReadCCSBOMExcel(path, extension, sheets);
+                List<DataTable> dtActivityList = ExcelUtility.ReadCCSBOMActivityExcel(path, extension, sheets);
 
                 // delete all files before generate new files
                 string[] filePaths = Directory.GetFiles(Server.MapPath("~/Files/CCS/SAP/BOM"));

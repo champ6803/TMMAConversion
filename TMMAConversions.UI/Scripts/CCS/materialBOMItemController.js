@@ -8,6 +8,25 @@
     $scope.BOMFileID = null;
     $scope.Order = BOMFileViewModel.Filter.Order;
     $scope.Sort = BOMFileViewModel.Filter.Sort;
+    $scope.GenerateModel = null;
+
+    $scope.SheetsList = [{ id: 1, name: "BOM Special Pack" },
+    { id: 2, name: "BOM CCS Cut and Pack" },
+    { id: 3, name: "BOM CCS PMMA" },
+    { id: 4, name: "BOM Additive" },
+    { id: 5, name: "BOM CCS Syrup" },
+    { id: 6, name: "BOM CCS Initiator" },
+    { id: 7, name: "BOM Packing Pattern" },
+    { id: 8, name: "BOM Gasket" }];
+
+    $scope.OptionsList = [{ id: 1, name: "BOM Create Header" },
+    { id: 2, name: "BOM Delete Component (All)" },
+    { id: 3, name: "BOM Add Line Item" },
+    { id: 4, name: "Change Routing Header" },
+    { id: 5, name: "Assign material to Routing" },
+    { id: 6, name: "Change Detail Op Routing" },
+    { id: 7, name: "Delete Production version" },
+    { id: 8, name: "Create Production Version" }];
 
     $scope.ArrayNumber = function (start, end) {
         var input = [];
@@ -178,17 +197,62 @@
         }
     };
 
-    $scope.OnGenerateCreateTextFile = function (bomFileID, fileName, userSAP, validDateText, path, pageNo) {
-        if (bomFileID, fileName, userSAP, validDateText, path, pageNo) {
+    $scope.toggleAll = function () {
+        var toggleStatus = !$scope.isAllSelected;
+        angular.forEach($scope.OptionsList, function (itm) { itm.checked = toggleStatus; });
+    }
+
+    $scope.toggleSheetsAll = function () {
+        var toggleStatus = !$scope.isSheetsAllSelected;
+        angular.forEach($scope.SheetsList, function (itm) { itm.checked = toggleStatus; });
+    }
+
+    $scope.optionToggled = function () {
+        $scope.isAllSelected = $scope.options.every(function (itm) { return itm.selected; })
+    }
+
+    $scope.optionSheetsToggled = function () {
+        $scope.isSheetsAllSelected = $scope.options.every(function (itm) { return itm.selected; })
+    }
+
+    $scope.OnGenerateOptions = function (bomFileID, fileName, userSAP, validDateText, path, pageNo) {
+        $('#generateOptionsModal').modal();
+        $scope.GenerateModel = new Object;
+        $scope.GenerateModel.bomFileID = bomFileID;
+        $scope.GenerateModel.fileName = fileName;
+        $scope.GenerateModel.userSAP = userSAP;
+        $scope.GenerateModel.validDateText = validDateText;
+        $scope.GenerateModel.path = path;
+        $scope.GenerateModel.pageNo = pageNo;
+    };
+
+    $scope.OnGenerateCreateTextFile = function (o, a) {
+        var options = [];
+        angular.forEach(o, function (value, key) {
+            if (o[key].checked) {
+                options.push(o[key].name);
+            }
+        });
+
+        var sheets = [];
+        angular.forEach(a, function (value, key) {
+            if (a[key].checked) {
+                sheets.push(a[key].name);
+            }
+        });
+
+        if ($scope.GenerateModel.bomFileID, $scope.GenerateModel.fileName, $scope.GenerateModel.userSAP, $scope.GenerateModel.validDateText, $scope.GenerateModel.path, $scope.GenerateModel.pageNo, options.length > 0, sheets.length > 0) {
             var validDate = convertDateFormat(new Date(parseInt(validDateText.substr(6))));
             $(".loading-screen").show(); // call loading
             var source = {
-                'bomFileID': bomFileID,
-                'fileName': fileName,
-                'userSAP': userSAP,
+                'bomFileID': $scope.GenerateModel.bomFileID,
+                'fileName': $scope.GenerateModel.fileName,
+                'userSAP': $scope.GenerateModel.userSAP,
                 'validDateText': validDate,
-                'pathText': path,
-                'pageNo': pageNo
+                'pathText': $scope.GenerateModel.path,
+                'pageNo': $scope.GenerateModel.pageNo,
+                'options': options,
+                'sheets': sheets
             }
 
             $http({
@@ -208,7 +272,7 @@
                         }
                     });
                     // call dowload url
-                    window.location.href = "/CCS/DownloadCreateBOMTextFile?fileName=" + fileName;
+                    window.location.href = "/CCS/DownloadCreateBOMTextFile?fileName=" + $scope.GenerateModel.fileName;
 
                 } else {
                     Swal.fire({

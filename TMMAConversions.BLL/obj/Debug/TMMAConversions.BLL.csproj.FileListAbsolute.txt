@@ -36,6 +36,6 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.AI.Windows
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.ApplicationInsights.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\EntityFramework.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.csprojResolveAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.pdb
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.csprojResolveAssemblyReference.cache
