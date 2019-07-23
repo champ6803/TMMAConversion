@@ -8,6 +8,29 @@
     $scope.BOMFileID = null;
     $scope.Order = BOMFileViewModel.Filter.Order;
     $scope.Sort = BOMFileViewModel.Filter.Sort;
+    $scope.GenerateModel = null;
+
+    $scope.SheetsList = [{ id: 1, name: "MMA Grade" },
+    { id: 2, name: "MMA Loading" },
+    { id: 3, name: "CCS Syrup" },
+    { id: 4, name: "CCS Initiator" },
+    { id: 5, name: "CCS Additive" },
+    { id: 6, name: "CCS Casting" },
+    { id: 7, name: "CCS Cut and Pack" },
+    { id: 8, name: "CCS Cut and Pack Cullet" },
+    { id: 9, name: "CCS Gasket" },
+    { id: 10, name: "CCS Roof" },
+    { id: 11, name: "CCS Heat Sealing" },
+    { id: 12, name: "CCS Reprocess" }];
+
+    $scope.OptionsList = [{ id: 1, name: "BOM Create Header" },
+    { id: 2, name: "BOM Delete Component (All)" },
+    { id: 3, name: "BOM Add Line Item" },
+    { id: 4, name: "Assign material to Routing" },
+    { id: 5, name: "Change Detail Op Routing" },
+    { id: 6, name: "Delete Production version" },
+    { id: 7, name: "Create Production Version" }];
+
 
     $scope.ArrayNumber = function (start, end) {
         var input = [];
@@ -173,6 +196,36 @@
                 text: 'No BOMFileID'
             });
         }
+    };
+
+
+    $scope.toggleAll = function () {
+        var toggleStatus = !$scope.isAllSelected;
+        angular.forEach($scope.OptionsList, function (itm) { itm.checked = toggleStatus; });
+    }
+
+    $scope.toggleSheetsAll = function () {
+        var toggleStatus = !$scope.isSheetsAllSelected;
+        angular.forEach($scope.SheetsList, function (itm) { itm.checked = toggleStatus; });
+    }
+
+    $scope.optionToggled = function () {
+        $scope.isAllSelected = $scope.options.every(function (itm) { return itm.selected; })
+    }
+
+    $scope.optionSheetsToggled = function () {
+        $scope.isSheetsAllSelected = $scope.options.every(function (itm) { return itm.selected; })
+    }
+
+    $scope.OnGenerateOptions = function (workCenterRoutingFileID, fileName, userSAP, validDateText, path, pageNo) {
+        $('#generateOptionsModal').modal();
+        $scope.GenerateModel = new Object;
+        $scope.GenerateModel.bomFileID = workCenterRoutingFileID;
+        $scope.GenerateModel.fileName = fileName;
+        $scope.GenerateModel.userSAP = userSAP;
+        $scope.GenerateModel.validDateText = validDateText;
+        $scope.GenerateModel.path = path;
+        $scope.GenerateModel.pageNo = pageNo;
     };
 
     $scope.OnGenerateCreateTextFile = function (bomFileID, fileName, userSAP, validDateText, path, pageNo) {

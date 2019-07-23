@@ -15,10 +15,10 @@
     { id: 12, name: "CCS Reprocess" }];
 
     $scope.OptionsList = [{ id: 1, name: "Delete Operation Routing" },
-                { id: 2, name: "Delete Work Center" },
-                { id: 3, name: "Create Work Center" },
-                { id: 4, name: "Create Routing header" },
-                { id: 5, name: "Add Operation Routing (w/o Standard value key)" }];
+    { id: 2, name: "Delete Work Center" },
+    { id: 3, name: "Create Work Center" },
+    { id: 4, name: "Create Routing header" },
+    { id: 5, name: "Add Operation Routing (w/o Standard value key)" }];
 
 
 
@@ -147,10 +147,10 @@
     $scope.optionToggled = function () {
         $scope.isAllSelected = $scope.options.every(function (itm) { return itm.selected; })
     }
+
     $scope.optionSheetsToggled = function () {
         $scope.isSheetsAllSelected = $scope.options.every(function (itm) { return itm.selected; })
     }
-
 
     $scope.OnGenerateOptions = function (workCenterRoutingFileID, fileName, userSAP, validDateText, path, pageNo) {
         $('#generateOptionsModal').modal();

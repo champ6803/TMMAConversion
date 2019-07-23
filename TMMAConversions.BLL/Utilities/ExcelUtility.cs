@@ -391,7 +391,7 @@ namespace TMMAConversions.BLL.Utilities
             return dtexcel;
         }
 
-        public static List<DataTable> ReadWorkCenterRoutingExcelList(string fileName, string fileExt, string[] sheets)
+        public static List<DataTable> ReadWorkCenterRoutingExcelList(string fileName, string fileExt, List<string> sheets)
         {
             log4net.Config.XmlConfigurator.Configure();
             string conn = string.Empty;

@@ -1881,7 +1881,7 @@ namespace TMMAConversions.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult GenerateWorkCenterRoutingTextFile(int workCenterRoutingFileID, string fileName, string userSAP, string validDateText, string pathText, int pageNo, List<string> options, string[] sheets)
+        public ActionResult GenerateWorkCenterRoutingTextFile(int workCenterRoutingFileID, string fileName, string userSAP, string validDateText, string pathText, int pageNo, List<string> options, List<string> sheets)
         {
             try
             {
