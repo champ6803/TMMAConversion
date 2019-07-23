@@ -1892,8 +1892,6 @@ namespace TMMAConversions.UI.Controllers
 
                 List<DataTable> dtList = ExcelUtility.ReadWorkCenterRoutingExcelList(path, extension, sheets);
 
-
-
                 // delete all files before generate new files
                 string[] filePaths = Directory.GetFiles(Server.MapPath("~/Files/Monomer/SAP/WorkCenterRouting"));
                 foreach (string filePath in filePaths)
