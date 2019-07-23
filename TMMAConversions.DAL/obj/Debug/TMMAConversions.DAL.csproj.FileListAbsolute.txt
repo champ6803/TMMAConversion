@@ -1,3 +1,4 @@
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\ApplicationInsights.config
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\roslyn\csc.exe
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -24,7 +25,6 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.Web.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.WindowsServer.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.ApplicationInsights.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.SqlServer.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.DependencyCollector.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.ServerTelemetryChannel.xml
@@ -32,6 +32,5 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.Web.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.WindowsServer.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.ApplicationInsights.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csprojResolveAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.pdb

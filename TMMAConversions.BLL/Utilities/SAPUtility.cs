@@ -2250,7 +2250,7 @@ namespace TMMAConversions.BLL.Utilities
                             }
                         }
 
-                        if (options.Contains("Add Operation Roting (w/o Standard value key)"))
+                        if (options.Contains("Add Operation Routing (w/o Standard value key)"))
                         {
                             var routingGroupList = workCenterRoutingList.GroupBy(u => u.RoutingGroup).Select(grp => grp.ToList()).ToList();
                             // generate add operation routing
