@@ -77,7 +77,6 @@
                     <div class="col-md-12 text-center">
                         <button class="btn btn-primary" ng-click="OnUploadWorkCenterRoutingFile()" type="button" id="btn_upload_file"><i class="fa fa-file-excel"></i>&nbsp;Upload Excel</button>
                         <a ng-class="(WorkCenterRoutingFileViewModel.List.length > 0) ? '' : 'disabled'" href="~/Files/Monomer/Excels/WorkCenterRouting/WorkCenterRouting.xlsx" class="btn btn-success" id="btn_download_file"><i class="fa fa-file-excel"></i>&nbsp;Download Excel</a>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#selectModal">Select</button>
                     </div>
                 </div>
             </div>
@@ -243,8 +242,6 @@
     </div><!-- /.modal -->
 
 </section>
-
-
 
 @section Scripts {
     <script type="text/javascript">
