@@ -20,7 +20,8 @@
     { id: 5, name: "Assign material to Routing" },
     { id: 6, name: "Change Detail Op Routing" },
     { id: 7, name: "Delete Production version" },
-    { id: 8, name: "Create Production Version" }];
+    { id: 8, name: "Create Production Version" },
+    { id: 9, name: "BOM Delete Header" }];
 
     $scope.ArrayNumber = function (start, end) {
         var input = [];

@@ -223,6 +223,10 @@
                                                 <div ng-repeat="o in OptionsList" ng-if="OptionsList != null" class="checkbox">
                                                     <label><input type="checkbox" ng-change="optionToggled()" ng-model="o.checked" value="{{o.id}}">{{ o.name }}</label>
                                                 </div>
+                                                <hr />
+                                                <div ng-repeat="o in OptionsUniqList" ng-if="OptionsUniqList != null" class="checkbox">
+                                                    <label><input type="checkbox" ng-model="isUniq" ng-click="toggleAll()">BOM Delete Header</label>
+                                                </div>
                                             </div>
                                         </li>
                                     </ul>

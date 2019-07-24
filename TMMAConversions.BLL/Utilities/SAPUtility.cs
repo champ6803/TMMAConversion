@@ -772,6 +772,25 @@ namespace TMMAConversions.BLL.Utilities
                             }
                         }
 
+                        // Uniq Generate
+                        if (options.Contains("BOM Delete Header"))
+                        {
+                            // generate delete header
+                            foreach (var o in bomHeaderList)
+                            {
+                                fs.WriteLine("                                        \t0000\tT\tCS02                                                                                                                                \t");
+                                fs.WriteLine("SAPLCSDI                                \t0100\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t/00");
+                                fs.WriteLine("                                        \t0000\t \tRC29N-MATNR                                                                                                                         \t{0}", o.MaterialCode); // MaterialCode
+                                fs.WriteLine("                                        \t0000\t \tRC29N-WERKS                                                                                                                         \t{0}", o.Plant); // Plant
+                                fs.WriteLine("                                        \t0000\t \tRC29N-STLAN                                                                                                                         \t{0}", o.BOMUsage); // BOMUsage
+                                fs.WriteLine("                                        \t0000\t \tRC29N-STLAL                                                                                                                         \t{0}", o.BOMAlt); // BOMAlt
+                                fs.WriteLine("                                        \t0000\t \tRC29N-DATUV                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
+                                fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t"); // Delete
+                                fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCLO");
+                            }
+                        }
+
                     } // StreamWriter
                 }
             }
