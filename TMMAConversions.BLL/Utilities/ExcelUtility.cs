@@ -542,6 +542,7 @@ namespace TMMAConversions.BLL.Utilities
                                 {
                                     BOMItemModel BOMItem = new BOMItemModel();
                                     // get header
+                                    BOMItem.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
                                     BOMItem.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
                                     BOMItem.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
                                     BOMItem.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();

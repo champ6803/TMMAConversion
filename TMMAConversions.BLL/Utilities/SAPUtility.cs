@@ -609,7 +609,7 @@ namespace TMMAConversions.BLL.Utilities
                                 {
                                     if (!string.IsNullOrEmpty(o.WorkCenter))
                                     {
-                                        List<BOMItemModel> resultList = routingItemList.Where(t => t.WorkCenter == o.WorkCenter).ToList(); // Group by Routing Group
+                                        List<BOMItemModel> resultList = routingItemList.Where(t => t.WorkCenter == o.WorkCenter && t.RoutingGroup == o.RoutingGroup && t.MaterialCode == o.MaterialCode).ToList(); // Group by Routing Group
                                         if (resultList.Count > 0)
                                         {
                                             var operationList = resultList.GroupBy(u => u.OperationNo).Select(grp => grp.ToList()).ToList(); // Group by Operation No
