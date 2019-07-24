@@ -206,7 +206,10 @@
     }
 
     $scope.optionToggled = function () {
-        $scope.isAllSelected = $scope.options.every(function (itm) { return itm.selected; })
+        $scope.isAllSelected = $scope.options.every(function (itm)
+        {
+            return itm.selected;
+        })
     }
 
     $scope.optionSheetsToggled = function () {
