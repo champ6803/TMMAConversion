@@ -202,11 +202,12 @@
     $scope.toggleAll = function () {
         var toggleStatus = !$scope.isAllSelected;
         angular.forEach($scope.OptionsList, function (itm) { itm.checked = toggleStatus; });
+        $scope.OptionsUniqList[0].checked = false;
     }
 
     $scope.unCheckAll = function () {
-        var toggleStatus = false;
-        angular.forEach($scope.OptionsList, function (itm) { itm.checked = toggleStatus; });
+        angular.forEach($scope.OptionsList, function (itm) { itm.checked = false; });
+        $scope.isAllSelected = false;
     }
 
     $scope.toggleSheetsAll = function () {
@@ -215,11 +216,12 @@
     }
 
     $scope.optionToggled = function () {
-        $scope.isAllSelected = $scope.options.every(function (itm) { return itm.selected; })
+        $scope.isAllSelected = $scope.OptionsList.every(function (itm) { return itm.selected; });
+        $scope.OptionsUniqList[0].checked = false;
     }
 
     $scope.optionSheetsToggled = function () {
-        $scope.isSheetsAllSelected = $scope.options.every(function (itm) { return itm.selected; })
+        $scope.isSheetsAllSelected = $scope.SheetsList.every(function (itm) { return itm.selected; })
     }
 
     $scope.OnGenerateOptions = function (bomFileID, fileName, userSAP, validDateText, path, pageNo) {

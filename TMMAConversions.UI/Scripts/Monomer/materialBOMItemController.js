@@ -198,6 +198,7 @@
 
     $scope.unCheckAll = function () {
         angular.forEach($scope.OptionsList, function (itm) { itm.checked = false; });
+        $scope.isAllSelected = false;
     }
 
     $scope.toggleSheetsAll = function () {
@@ -206,14 +207,14 @@
     }
 
     $scope.optionToggled = function () {
-        $scope.isAllSelected = $scope.options.every(function (itm)
-        {
+        $scope.isAllSelected = $scope.OptionsList.every(function (itm) {
             return itm.selected;
-        })
-    }
+        });
+        $scope.OptionsUniqList[0].checked = false;
+    };
 
     $scope.optionSheetsToggled = function () {
-        $scope.isSheetsAllSelected = $scope.options.every(function (itm)
+        $scope.isSheetsAllSelected = $scope.SheetsList.every(function (itm)
         {
             return itm.selected;
         })
@@ -242,7 +243,6 @@
         } else {
             options.push(c[0].name);
         }
-
 
         var sheets = [];
         angular.forEach(a, function (value, key) {
