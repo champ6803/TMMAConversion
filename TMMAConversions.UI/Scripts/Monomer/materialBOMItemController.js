@@ -193,7 +193,8 @@
     $scope.toggleAll = function () {
         var toggleStatus = !$scope.isAllSelected;
         angular.forEach($scope.OptionsList, function (itm) { itm.checked = toggleStatus; });
-        $scope.OptionsUniqList[0].checked = false;
+
+        angular.forEach($scope.OptionsUniqList, function (itm) { itm.checked = false; }); // set OptionsUniqList false
     }
 
     $scope.unCheckAll = function () {
@@ -210,7 +211,8 @@
         $scope.isAllSelected = $scope.OptionsList.every(function (itm) {
             return itm.selected;
         });
-        $scope.OptionsUniqList[0].checked = false;
+
+        angular.forEach($scope.OptionsUniqList, function (itm) { itm.checked = false; }); // set OptionsUniqList false
     };
 
     $scope.optionSheetsToggled = function () {
@@ -241,7 +243,11 @@
                 }
             });
         } else {
-            options.push(c[0].name);
+            angular.forEach(c, function (value, key) {
+                if (c[key].checked) {
+                    options.push(c[key].name);
+                }
+            });
         }
 
         var sheets = [];
