@@ -1633,38 +1633,38 @@ namespace TMMAConversions.UI.Controllers
                     List<BOMItemModel> acList2 = null;
                     ExcelUtility.ConvertMMABOMActivityExcelToMMABOMActivityModel(dtActivityList[i], ref acList1, ref acList2);
 
-                    int limit = 100; // 100 items limit by header
-                    if (list1.Count() > limit)
-                    {
-                        int j = 1;
-                        int ht = 0;
-                        int hc = 100; // number of hlist
-                        int countHList = 100;
-                        while (ht < list1.Count())
-                        {
-                            List<BOMHeaderModel> listHcut = new List<BOMHeaderModel>();
-                            List<BOMHeaderModel> listHactcut = new List<BOMHeaderModel>();
-                            int hlast = list1.Count();
+                    //int limit = 100; // 100 items limit by header
+                    //if (list1.Count() > limit)
+                    //{
+                    //    int j = 1;
+                    //    int ht = 0;
+                    //    int hc = 100; // number of hlist
+                    //    int countHList = 100;
+                    //    while (ht < list1.Count())
+                    //    {
+                    //        List<BOMHeaderModel> listHcut = new List<BOMHeaderModel>();
+                    //        List<BOMHeaderModel> listHactcut = new List<BOMHeaderModel>();
+                    //        int hlast = list1.Count();
 
-                            int hCount = countHList > hlast ? hlast - ht : hc; // bom & act same
+                    //        int hCount = countHList > hlast ? hlast - ht : hc; // bom & act same
 
-                            listHcut = list1.GetRange(ht, hCount);
-                            listHactcut = acList1.GetRange(ht, hCount);
+                    //        listHcut = list1.GetRange(ht, hCount);
+                    //        listHactcut = acList1.GetRange(ht, hCount);
 
-                            List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(listHcut);
+                    //        List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(listHcut);
 
-                            string textName = fileName + sheets[i].Replace(" ", "") + j;
-                            string textExtension = ".txt";
-                            string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
+                    //        string textName = fileName + sheets[i].Replace(" ", "") + j;
+                    //        string textExtension = ".txt";
+                    //        string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
 
-                            SAPUtility.ConvertToMMABOMTextFile(newList1, list2, listHactcut, acList2, textPath, fileName, textExtension, userSAP, validDate, options);
-                            ht += hc;
-                            countHList += hc;
-                            j++;
-                        }
-                    }
-                    else
-                    {
+                    //        SAPUtility.ConvertToMMABOMTextFile(newList1, list2, listHactcut, acList2, textPath, fileName, textExtension, userSAP, validDate, options);
+                    //        ht += hc;
+                    //        countHList += hc;
+                    //        j++;
+                    //    }
+                    //}
+                    //else
+                    //{
                         List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(list1);
 
                         string textName = fileName + sheets[i].Replace(" ", "");
@@ -1672,7 +1672,7 @@ namespace TMMAConversions.UI.Controllers
                         string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
 
                         SAPUtility.ConvertToMMABOMTextFile(newList1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate, options);
-                    }
+                    //}
 
                     i++;
                 }
