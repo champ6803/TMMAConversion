@@ -20,8 +20,9 @@
     { id: 5, name: "Assign material to Routing" },
     { id: 6, name: "Change Detail Op Routing" },
     { id: 7, name: "Delete Production version" },
-    { id: 8, name: "Create Production Version" },
-    { id: 9, name: "BOM Delete Header" }];
+    { id: 8, name: "Create Production Version" }];
+
+    $scope.OptionsUniqList = [{ id: 1, name: "BOM Delete Header" }];
 
     $scope.ArrayNumber = function (start, end) {
         var input = [];
@@ -189,9 +190,13 @@
         }
     };
 
-
     $scope.toggleAll = function () {
         var toggleStatus = !$scope.isAllSelected;
+        angular.forEach($scope.OptionsList, function (itm) { itm.checked = toggleStatus; });
+    }
+
+    $scope.unCheckAll = function () {
+        var toggleStatus = false;
         angular.forEach($scope.OptionsList, function (itm) { itm.checked = toggleStatus; });
     }
 
@@ -219,13 +224,19 @@
         $scope.GenerateModel.pageNo = pageNo;
     };
 
-    $scope.OnGenerateCreateTextFile = function (o, a) {
+    $scope.OnGenerateCreateTextFile = function (o, a, c) {
         var options = [];
-        angular.forEach(o, function (value, key) {
-            if (o[key].checked) {
-                options.push(o[key].name);
-            }
-        });
+
+        if (!c[0].checked) {
+            angular.forEach(o, function (value, key) {
+                if (o[key].checked) {
+                    options.push(o[key].name);
+                }
+            });
+        } else {
+            options.push(c[0].name);
+        }
+
 
         var sheets = [];
         angular.forEach(a, function (value, key) {
