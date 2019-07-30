@@ -133,11 +133,6 @@ D:\Champ\TTT\TMMAConversions.UI\bin\log4net.xml
 D:\Champ\TTT\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojResolveAssemblyReference.cache
 D:\Champ\TTT\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.dll
 D:\Champ\TTT\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.pdb
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.BLL.dll.config
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.DAL.dll.config
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojAssemblyReference.cache
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csproj.CoreCompileInputs.cache
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csproj.CopyComplete
 D:\Champ\BBB\TMMAConversions.UI\bin\ApplicationInsights.config
 D:\Champ\BBB\TMMAConversions.UI\bin\roslyn\csc.exe
 D:\Champ\BBB\TMMAConversions.UI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -206,3 +201,4 @@ D:\Champ\BBB\TMMAConversions.UI\bin\log4net.xml
 D:\Champ\BBB\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojResolveAssemblyReference.cache
 D:\Champ\BBB\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.dll
 D:\Champ\BBB\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojResolveAssemblyReference.cache
