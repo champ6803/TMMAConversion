@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Text;
 using Ionic.Zip;
 using TMMAConversions.Utilities.Utilities;
+using Newtonsoft.Json;
 
 namespace TMMAConversions.UI.Controllers
 {
@@ -301,8 +302,66 @@ namespace TMMAConversions.UI.Controllers
                 string path = pathText;
                 string extension = Path.GetExtension(pathText).ToLower();
 
-                List<DataTable> dtList = ExcelUtility.ReadCCSBOMExcel(path, extension, sheets);
-                List<DataTable> dtActivityList = ExcelUtility.ReadCCSBOMActivityExcel(path, extension, sheets);
+                //var pathRangeExcelJson = Path.Combine(Server.MapPath("~/"), "rangeExcel.json");
+                //List<RangeExcelModel> items = new List<RangeExcelModel>();
+                //using (StreamReader r = new StreamReader(pathRangeExcelJson))
+                //{
+                //    string json = r.ReadToEnd();
+                //    items = JsonConvert.DeserializeObject<List<RangeExcelModel>>(json);
+                //}
+
+                List<SheetsModel> objSheetsList = new List<SheetsModel>();
+                List<SheetsModel> objSheetsActivityList = new List<SheetsModel>();
+
+                if (sheets.Contains("Special Pack"))
+                {
+                    objSheetsList.Add(new SheetsModel() { Name = "Special Pack", Count = 1 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "Special Pack Activity", Count = 1 });
+                }
+                if (sheets.Contains("CCS Cut and Pack"))
+                {
+                    objSheetsList.Add(new SheetsModel() { Name = "CCS Cut and Pack", Count = 16 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "CCS Cut and Pack Activity", Count = 16 });
+                }
+
+                if (sheets.Contains("CCS PMMA"))
+                {
+                    objSheetsList.Add(new SheetsModel() { Name = "CCS PMMA", Count = 6 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "CCS PMMA Activity", Count = 31 });
+                }
+
+                if (sheets.Contains("Additive"))
+                {
+                    objSheetsList.Add(new SheetsModel() { Name = "Additive", Count = 3 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "Additive Activity", Count = 3 });
+                }
+
+                if (sheets.Contains("CCS Syrup"))
+                {
+                    objSheetsList.Add(new SheetsModel() { Name = "CCS Syrup", Count = 1 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "CCS Syrup Activity", Count = 1 });
+                }
+
+                if (sheets.Contains("CCS Initiator"))
+                {
+                    objSheetsList.Add(new SheetsModel() { Name = "CCS Initiator", Count = 1 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "CCS Initiator Activity", Count = 1 });
+                }
+
+                if (sheets.Contains("Packing Pattern"))
+                {
+                    objSheetsList.Add(new SheetsModel() { Name = "Packing Pattern", Count = 1 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "Packing Pattern Activity", Count = 1 });
+                }
+
+                if (sheets.Contains("Gasket"))
+                {
+                    objSheetsList.Add(new SheetsModel() { Name = "Gasket", Count = 1 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "Gasket Activity", Count = 1 });
+                }
+
+                List<List<DataTable>> dtList = ExcelUtility.ReadCCSBOMExcel(path, extension, objSheetsList);
+                List<List<DataTable>> dtActivityList = ExcelUtility.ReadCCSBOMActivityExcel(path, extension, objSheetsActivityList);
 
                 // delete all files before generate new files
                 string[] filePaths = Directory.GetFiles(Server.MapPath("~/Files/CCS/SAP/BOM"));
@@ -322,8 +381,8 @@ namespace TMMAConversions.UI.Controllers
 
                     //int limit = 100; // 100 items limit by header
                     //if (list1.Count() > limit)
-                    //{
                     //    int j = 1;
+                    //{
                     //    int ht = 0;
                     //    int hc = 100; // number of hlist
                     //    int countHList = 100;
@@ -352,13 +411,14 @@ namespace TMMAConversions.UI.Controllers
                     //}
                     //else
                     //{
-                        List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(list1);
 
-                        string textName = fileName + sheets[i].Replace(" ", "");
-                        string textExtension = ".txt";
-                        string textPath = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), textName);
+                    List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(list1);
 
-                        SAPUtility.ConvertToMMABOMTextFile(newList1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate, options);
+                    string textName = fileName + sheets[i].Replace(" ", "");
+                    string textExtension = ".txt";
+                    string textPath = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), textName);
+
+                    SAPUtility.ConvertToMMABOMTextFile(newList1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate, options);
                     //}
                     i++;
                 }

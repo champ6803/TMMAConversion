@@ -228,7 +228,9 @@
     <Compile Include="Models\AssignMaterialToRoutingFileModel.cs" />
     <Compile Include="Models\AssignMaterialToRoutingModel.cs" />
     <Compile Include="Models\MasterPermissionModel.cs" />
+    <Compile Include="Models\RangeExcelModel.cs" />
     <Compile Include="Models\RolePermissionModel.cs" />
+    <Compile Include="Models\SheetsModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\MasterRoleModel.cs" />
     <Compile Include="Models\MasterMessageModel.cs" />

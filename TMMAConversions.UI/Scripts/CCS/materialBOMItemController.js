@@ -10,14 +10,14 @@
     $scope.Sort = BOMFileViewModel.Filter.Sort;
     $scope.GenerateModel = null;
 
-    $scope.SheetsList = [{ id: 1, name: "BOM Special Pack" },
-    { id: 2, name: "BOM CCS Cut and Pack" },
-    { id: 3, name: "BOM CCS PMMA" },
-    { id: 4, name: "BOM Additive" },
-    { id: 5, name: "BOM CCS Syrup" },
-    { id: 6, name: "BOM CCS Initiator" },
-    { id: 7, name: "BOM Packing Pattern" },
-    { id: 8, name: "BOM Gasket" }];
+    $scope.SheetsList = [{ id: 1, name: "Special Pack" },
+    { id: 2, name: "CCS Cut and Pack" },
+    { id: 3, name: "CCS PMMA" },
+    { id: 4, name: "Additive" },
+    { id: 5, name: "CCS Syrup" },
+    { id: 6, name: "CCS Initiator" },
+    { id: 7, name: "Packing Pattern" },
+    { id: 8, name: "Gasket" }];
 
     $scope.OptionsList = [{ id: 1, name: "BOM Create Header" },
     { id: 2, name: "BOM Delete Component (All)" },
@@ -238,6 +238,7 @@
     };
 
     $scope.OnGenerateCreateTextFile = function (o, a, c) {
+        $('.loading-screen').show(); // show loading
         var options = [];
 
         if (!c[0].checked) {

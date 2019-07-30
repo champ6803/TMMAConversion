@@ -61,7 +61,6 @@ namespace TMMAConversions.BLL.Utilities
                     throw ex;
                 }
             }
-
             return dtExcelList;
         }
 
@@ -100,12 +99,12 @@ namespace TMMAConversions.BLL.Utilities
             return dtExcelList;
         }
 
-        public static List<DataTable> ReadCCSBOMExcel(string fileName, string fileExt, List<string> sheets)
+        public static List<List<DataTable>> ReadCCSBOMExcel(string fileName, string fileExt, List<SheetsModel> sheets)
         {
             log4net.Config.XmlConfigurator.Configure();
             string conn = string.Empty;
 
-            List<DataTable> dtExcelList = new List<DataTable>();
+            List<List<DataTable>> dtExcelList = new List<List<DataTable>>();
 
             if (fileExt.CompareTo(".xls") == 0)
                 conn = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0;HRD=Yes;IMEX=1';"; //for below excel 2007  
@@ -116,13 +115,19 @@ namespace TMMAConversions.BLL.Utilities
             {
                 try
                 {
-                    foreach (string r in sheets)
+                    foreach (var r in sheets)
                     {
-                        DataTable dtExcel = new DataTable();
-                        string query = "SELECT * FROM [" + r + "$]";
-                        OleDbDataAdapter data = new OleDbDataAdapter(query, con);
-                        data.Fill(dtExcel);
-                        dtExcelList.Add(dtExcel);
+                        List<DataTable> usedExcel = new List<DataTable>();
+
+                        for (int e = 1; e <= r.Count; e++)
+                        {
+                            DataTable dtExcel = new DataTable();
+                            string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+                            OleDbDataAdapter data = new OleDbDataAdapter(query, con);
+                            data.Fill(dtExcel);
+                            usedExcel.Add(dtExcel);
+                        }
+                        dtExcelList.Add(usedExcel);
                     }
                 }
                 catch (Exception ex)
@@ -131,16 +136,85 @@ namespace TMMAConversions.BLL.Utilities
                     throw ex;
                 }
             }
-
             return dtExcelList;
         }
 
-        public static List<DataTable> ReadCCSBOMActivityExcel(string fileName, string fileExt, List<string> sheets)
+        //public static List<DataTable> ReadCCSBOMExcel(string fileName, List<RangeExcelModel> rangeList, string fileExt, List<string> sheets)
+        //{
+        //    Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+        //    Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(fileName);
+
+        //    log4net.Config.XmlConfigurator.Configure();
+        //    string conn = string.Empty;
+
+        //    List<DataTable> dtExcelList = new List<DataTable>();
+
+        //    if (fileExt.CompareTo(".xls") == 0)
+        //        conn = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0;HRD=Yes;IMEX=1';"; //for below excel 2007  
+        //    else
+        //        conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=No;IMEX=1';"; //for above excel 2007
+
+        //    using (OleDbConnection con = new OleDbConnection(conn))
+        //    {
+        //        try
+        //        {
+        //            foreach (string r in sheets)
+        //            {
+        //                Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Worksheets[r];
+        //                Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
+        //                var colCount = xlRange.Columns.Count;
+        //                var rowCount = xlRange.Rows.Count;
+        //                int ht = 1;
+        //                int hc = 255;
+        //                int countHList = 255;
+
+        //                while (colCount > ht)
+        //                {
+        //                    int hlast = colCount;
+        //                    //int hCount = countHList > hlast ? hlast - ht : hc;
+        //                    if (!(countHList > hlast))
+        //                    {
+        //                        var rangeStart = rangeList.FirstOrDefault(o => o.number == ht.ToString()).character;
+        //                        var rangeEnd = rangeList.FirstOrDefault(o => o.number == countHList.ToString()).character;
+
+        //                        DataTable dtExcel = new DataTable();
+        //                        string query = "SELECT * FROM [" + r + "$" + rangeStart + "1:" + rangeEnd + rowCount + "]";
+        //                        OleDbDataAdapter data = new OleDbDataAdapter(query, con);
+        //                        data.Fill(dtExcel);
+        //                        dtExcelList.Add(dtExcel);
+        //                    }
+        //                    else
+        //                    {
+        //                        var rangeStart = rangeList.FirstOrDefault(o => o.number == ht.ToString()).character;
+        //                        var rangeEnd = rangeList.FirstOrDefault(o => o.number == countHList.ToString()).character;
+
+        //                        DataTable dtExcel = new DataTable();
+        //                        string query = "SELECT * FROM [" + r + "$1" + rangeStart + ":ZZZ" + rowCount + "]";
+        //                        OleDbDataAdapter data = new OleDbDataAdapter(query, con);
+        //                        data.Fill(dtExcel);
+        //                        dtExcelList.Add(dtExcel);
+        //                    }
+
+        //                    ht += hc;
+        //                    countHList += hc;
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            log.Error("========== " + ex.Message + " =========");
+        //            throw ex;
+        //        }
+        //    }
+        //    return dtExcelList;
+        //}
+
+        public static List<List<DataTable>> ReadCCSBOMActivityExcel(string fileName, string fileExt, List<SheetsModel> sheets)
         {
             log4net.Config.XmlConfigurator.Configure();
             string conn = string.Empty;
 
-            List<DataTable> dtExcelList = new List<DataTable>();
+            List<List<DataTable>> dtExcelList = new List<List<DataTable>>();
 
             if (fileExt.CompareTo(".xls") == 0)
                 conn = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0;HRD=Yes;IMEX=1';"; //for below excel 2007  
@@ -151,13 +225,19 @@ namespace TMMAConversions.BLL.Utilities
             {
                 try
                 {
-                    foreach (string r in sheets)
+                    foreach (var r in sheets)
                     {
-                        DataTable dtExcel = new DataTable();
-                        string query = "SELECT * FROM [" + r + " Activity$]";
-                        OleDbDataAdapter data = new OleDbDataAdapter(query, con);
-                        data.Fill(dtExcel);
-                        dtExcelList.Add(dtExcel);
+                        List<DataTable> usedExcel = new List<DataTable>();
+
+                        for (int e = 1; e <= r.Count; e++)
+                        {
+                            DataTable dtExcel = new DataTable();
+                            string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+                            OleDbDataAdapter data = new OleDbDataAdapter(query, con);
+                            data.Fill(dtExcel);
+                            usedExcel.Add(dtExcel);
+                        }
+                        dtExcelList.Add(usedExcel);
                     }
                 }
                 catch (Exception ex)
@@ -560,7 +640,7 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItem.ComponentScrap = dtExcel.Rows[i].ItemArray[8].ToString();
                                     BOMItemList.Add(BOMItem);
                                 }
-                                
+
                             }
                         }
                     }
@@ -1088,7 +1168,7 @@ namespace TMMAConversions.BLL.Utilities
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(fileName);
-            Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[8];
             Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
             try
             {
@@ -1096,6 +1176,8 @@ namespace TMMAConversions.BLL.Utilities
                 int colCount = xlRange.Columns.Count;
 
                 DataTable dtExcel = new DataTable();
+
+                object[,] arr = new object[rowCount, colCount];
 
                 //dt.Column = colCount;
                 //dataGridMonomerProducts.ColumnCount = colCount;
@@ -1110,7 +1192,9 @@ namespace TMMAConversions.BLL.Utilities
                         {
                             //dataGridMonomerProducts.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
                             //dataGridMonomerProducts.Rows[i - 1].Cells[j - 1].Value = xlRange.Cells[i, j].Value2.ToString();
-                            dtExcel.Rows[i - 1].ItemArray[j - 1] = xlRange.Cells[i, j].Value2.ToString();
+                            arr[i - 1, j - 1] = xlRange.Cells[i, j].Value2.ToString();
+
+                            //dtExcel.Rows[i].ItemArray[j] = xlRange.Cells[i, j];
                         }
                         // Console.Write(xlRange.Cells[i, j].Value2.ToString() + "\t");
 
@@ -1187,69 +1271,108 @@ namespace TMMAConversions.BLL.Utilities
         //    return dtexceList;
         //}
 
-        public static void ConvertCCSBOMExcelToCCSBOMModel(DataTable dtExcel, ref List<BOMHeaderModel> BOMHeaderList, ref List<BOMItemModel> BOMItemList)
+        public static void ConvertCCSBOMExcelToCCSBOMModel(List<DataTable> dtExcelList, ref List<BOMHeaderModel> BOMHeaderList, ref List<BOMItemModel> BOMItemList)
         {
             try
             {
-                if (dtExcel != null)
+                BOMHeaderList = new List<BOMHeaderModel>();
+                BOMItemList = new List<BOMItemModel>();
+                foreach (var dtExcel in dtExcelList)
                 {
-                    int rowCount = dtExcel.Rows.Count;
-                    int colCount = dtExcel.Columns.Count;
-
-                    BOMHeaderList = new List<BOMHeaderModel>();
-                    BOMItemList = new List<BOMItemModel>();
-
-                    for (int i = 10; i < rowCount; i++)
+                    if (dtExcel != null)
                     {
+                        int rowCount = dtExcel.Rows.Count;
+                        int colCount = dtExcel.Columns.Count;
+
+                        //for (int i = 11; i <= rowCount; i++)
+                        //{
+                        //    for (int j = 11; j <= colCount; j++)
+                        //    {
+                        //        if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
+                        //        {
+                        //            if (!string.IsNullOrEmpty(xlRange.Cells[2, j].Value2.ToString())) // Material Header
+                        //            {
+                        //                // Create BOM Item
+                        //                if (!string.IsNullOrEmpty(xlRange.Cells[i, j].Value2.ToString()) && !string.Equals("-", xlRange.Cells[i, j].Value2.ToString().Trim()) && (xlRange.Cells[i, j].Value2.ToString() != "0" && xlRange.Cells[i, j].Value2.ToString() != "0.000"))
+                        //                {
+                        //                    BOMItemModel BOMItem = new BOMItemModel();
+                        //                    // get header value 
+                        //                    BOMItem.MaterialCode = xlRange.Cells[2, j].Value2 != null ? xlRange.Cells[2, j].Value2.ToString() : string.Empty;
+                        //                    BOMItem.Plant = xlRange.Cells[4, j].Value2 != null ? xlRange.Cells[4, j].Value2.ToString() : string.Empty;
+                        //                    BOMItem.BOMUsage = xlRange.Cells[7, j].Value2 != null ? xlRange.Cells[7, j].Value2.ToString() : string.Empty;
+                        //                    BOMItem.BOMAlt = xlRange.Cells[8, j].Value2 != null ? xlRange.Cells[8, j].Value2.ToString() : string.Empty;
+                        //                    // get component quatity
+                        //                    BOMItem.ComponentQuantity = xlRange.Cells[i, j].Value2 != null ? Convert.ToDecimal(xlRange.Cells[i, j].Value2.ToString() == "" ? "0" : xlRange.Cells[i, j].Value2.ToString()) : 0;
+                        //                    // get component
+                        //                    BOMItem.BOMItem = xlRange.Cells[i, 2].Value2 != null ? xlRange.Cells[i, 2].Value2.ToString() : string.Empty;
+                        //                    BOMItem.ComponentMaterial = xlRange.Cells[i, 3].Value2 != null ? xlRange.Cells[i, 3].Value2.ToString() : string.Empty;
+                        //                    BOMItem.ComponentUnit = xlRange.Cells[i, 4].Value2 != null ? xlRange.Cells[i, 4].Value2.ToString() : string.Empty;
+                        //                    BOMItem.ComponentDescription = xlRange.Cells[i, 5].Value2 != null ? xlRange.Cells[i, 5].Value2.ToString() : string.Empty;
+                        //                    BOMItem.FixedQty = xlRange.Cells[i, 6].Value2 != null ? xlRange.Cells[i, 6].Value2.ToString() : string.Empty;
+                        //                    BOMItem.CostingRelevency = xlRange.Cells[i, 7].Value2 != null ? xlRange.Cells[i, 7].Value2.ToString() : string.Empty;
+                        //                    BOMItem.OperationScrap = xlRange.Cells[i, 8].Value2 != null ? xlRange.Cells[i, 8].Value2.ToString() : string.Empty;
+                        //                    BOMItem.ComponentScrap = xlRange.Cells[i, 9].Value2 != null ? xlRange.Cells[i, 9].Value2.ToString() : string.Empty;
+                        //                    BOMItemList.Add(BOMItem);
+                        //                }
+                        //            }
+                        //        }
+                        //    }
+                        //}
+
+
+                        for (int i = 10; i < rowCount; i++)
+                        {
+                            for (int j = 10; j < colCount; j++)
+                            {
+                                if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000")) // check material
+                                {
+                                    // Create BOM Item
+                                    if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()))
+                                    {
+                                        BOMItemModel BOMItem = new BOMItemModel();
+                                        // get header
+                                        BOMItem.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
+                                        BOMItem.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                                        BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                                        BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
+                                        // get standard value
+                                        BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
+                                        // get component
+                                        BOMItem.BOMItem = dtExcel.Rows[i].ItemArray[1].ToString();
+                                        BOMItem.ComponentMaterial = dtExcel.Rows[i].ItemArray[2].ToString();
+                                        BOMItem.ComponentUnit = dtExcel.Rows[i].ItemArray[3].ToString();
+                                        BOMItem.ComponentDescription = dtExcel.Rows[i].ItemArray[4].ToString();
+                                        BOMItem.FixedQty = dtExcel.Rows[i].ItemArray[5].ToString();
+                                        BOMItem.CostingRelevency = dtExcel.Rows[i].ItemArray[6].ToString();
+                                        BOMItem.OperationScrap = dtExcel.Rows[i].ItemArray[7].ToString();
+                                        BOMItem.ComponentScrap = dtExcel.Rows[i].ItemArray[8].ToString();
+                                        BOMItemList.Add(BOMItem);
+                                    }
+                                }
+                            }
+                        }
+
                         for (int j = 10; j < colCount; j++)
                         {
-                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // Material Header
+                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
                             {
-                                // Create BOM Item
-                                if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()) && !string.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000"))
-                                {
-                                    BOMItemModel BOMItem = new BOMItemModel();
-                                    // get header value 
-                                    BOMItem.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
-                                    BOMItem.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                                    BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
-                                    BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
-                                    // get component quatity
-                                    BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
-                                    // get component
-                                    BOMItem.BOMItem = dtExcel.Rows[i].ItemArray[1].ToString();
-                                    BOMItem.ComponentMaterial = dtExcel.Rows[i].ItemArray[2].ToString();
-                                    BOMItem.ComponentUnit = dtExcel.Rows[i].ItemArray[3].ToString();
-                                    BOMItem.ComponentDescription = dtExcel.Rows[i].ItemArray[4].ToString();
-                                    BOMItem.FixedQty = dtExcel.Rows[i].ItemArray[5].ToString();
-                                    BOMItem.CostingRelevency = dtExcel.Rows[i].ItemArray[6].ToString();
-                                    BOMItem.OperationScrap = dtExcel.Rows[i].ItemArray[7].ToString();
-                                    BOMItem.ComponentScrap = dtExcel.Rows[i].ItemArray[8].ToString();
-                                    BOMItemList.Add(BOMItem);
-                                }
-
+                                // Create BOM Header
+                                BOMHeaderModel BOMHeader = new BOMHeaderModel();
+                                BOMHeader.ProductNo = dtExcel.Rows[0].ItemArray[j].ToString();
+                                BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
+                                BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
+                                BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                                BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
+                                BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
+                                BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                                BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
+                                BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
+                                BOMHeaderList.Add(BOMHeader);
                             }
                         }
                     }
-                    for (int j = 10; j < colCount; j++)
-                    {
-                        if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // Material Header
-                        {
-                            // Create BOM Header
-                            BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                            BOMHeader.ProductNo = dtExcel.Rows[0].ItemArray[j].ToString();
-                            BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
-                            BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
-                            BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                            BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
-                            BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
-                            BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
-                            BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
-                            BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
-                            BOMHeaderList.Add(BOMHeader);
-                        }
-                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -1257,76 +1380,80 @@ namespace TMMAConversions.BLL.Utilities
             }
         }
 
-        public static void ConvertCCSBOMActivityExcelToCCSBOMActivityModel(DataTable dtExcel, ref List<BOMHeaderModel> BOMHeaderList, ref List<BOMItemModel> BOMItemList)
+        public static void ConvertCCSBOMActivityExcelToCCSBOMActivityModel(List<DataTable> dtExcelList, ref List<BOMHeaderModel> BOMHeaderList, ref List<BOMItemModel> BOMItemList)
         {
             try
             {
-                if (dtExcel != null)
+                BOMHeaderList = new List<BOMHeaderModel>();
+                BOMItemList = new List<BOMItemModel>();
+
+                foreach (var dtExcel in dtExcelList)
                 {
-                    int rowCount = dtExcel.Rows.Count;
-                    int colCount = dtExcel.Columns.Count;
-
-                    BOMHeaderList = new List<BOMHeaderModel>();
-                    BOMItemList = new List<BOMItemModel>();
-
-                    for (int i = 16; i < rowCount; i++)
+                    if (dtExcel != null)
                     {
-                        for (int j = 10; j < colCount; j++)
+                        int rowCount = dtExcel.Rows.Count;
+                        int colCount = dtExcel.Columns.Count;
+
+                        for (int i = 16; i < rowCount; i++)
                         {
-                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000")) // check material
+                            for (int j = 10; j < colCount; j++)
                             {
-                                // Create BOM Item
-                                if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()))
+                                if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000")) // check material
                                 {
-                                    BOMItemModel BOMItem = new BOMItemModel();
-                                    // get header
-                                    BOMItem.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
-                                    BOMItem.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
-                                    BOMItem.WorkCenter = dtExcel.Rows[13].ItemArray[j].ToString();
-                                    BOMItem.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                                    BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
-                                    BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
-                                    // get standard value
-                                    BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
-                                    // get component
-                                    BOMItem.ActivityNo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[1].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[1].ToString());
-                                    BOMItem.OperationNo = dtExcel.Rows[i].ItemArray[2].ToString();
-                                    BOMItem.Activity = dtExcel.Rows[i].ItemArray[3].ToString();
-                                    BOMItem.StandardValueKeyText = dtExcel.Rows[i].ItemArray[4].ToString();
-                                    BOMItem.StandardValueKeyOUM = dtExcel.Rows[i].ItemArray[5].ToString();
-                                    BOMItem.ComponentDescription = dtExcel.Rows[i].ItemArray[6].ToString();
-                                    BOMItem.ComponentScrap = dtExcel.Rows[i].ItemArray[8].ToString();
-                                    BOMItemList.Add(BOMItem);
+                                    // Create BOM Item
+                                    if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[j].ToString()))
+                                    {
+                                        BOMItemModel BOMItem = new BOMItemModel();
+                                        // get header
+                                        BOMItem.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
+                                        BOMItem.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
+                                        BOMItem.WorkCenter = dtExcel.Rows[13].ItemArray[j].ToString();
+                                        BOMItem.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                                        BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                                        BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
+                                        // get standard value
+                                        BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
+                                        // get component
+                                        BOMItem.ActivityNo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[1].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[1].ToString());
+                                        BOMItem.OperationNo = dtExcel.Rows[i].ItemArray[2].ToString();
+                                        BOMItem.Activity = dtExcel.Rows[i].ItemArray[3].ToString();
+                                        BOMItem.StandardValueKeyText = dtExcel.Rows[i].ItemArray[4].ToString();
+                                        BOMItem.StandardValueKeyOUM = dtExcel.Rows[i].ItemArray[5].ToString();
+                                        BOMItem.ComponentDescription = dtExcel.Rows[i].ItemArray[6].ToString();
+                                        BOMItem.ComponentScrap = dtExcel.Rows[i].ItemArray[8].ToString();
+                                        BOMItemList.Add(BOMItem);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    for (int j = 10; j < colCount; j++)
-                    {
-                        if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
+                        for (int j = 10; j < colCount; j++)
                         {
-                            // Create BOM Header
-                            BOMHeaderModel BOMHeader = new BOMHeaderModel();
-                            BOMHeader.ProductNo = dtExcel.Rows[0].ItemArray[j].ToString();
-                            BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
-                            BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
-                            BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                            BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
-                            BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
-                            BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
-                            BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
-                            BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
-                            BOMHeader.GroupCounter = dtExcel.Rows[9].ItemArray[j].ToString();
-                            BOMHeader.ProductionVersion = dtExcel.Rows[10].ItemArray[j].ToString();
-                            BOMHeader.LotSizeFrom = dtExcel.Rows[11].ItemArray[j].ToString();
-                            BOMHeader.LotSizeTo = dtExcel.Rows[12].ItemArray[j].ToString();
-                            BOMHeader.WorkCenter = dtExcel.Rows[13].ItemArray[j].ToString();
-                            BOMHeader.StorageLocation = dtExcel.Rows[14].ItemArray[j].ToString();
-                            BOMHeaderList.Add(BOMHeader);
+                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
+                            {
+                                // Create BOM Header
+                                BOMHeaderModel BOMHeader = new BOMHeaderModel();
+                                BOMHeader.ProductNo = dtExcel.Rows[0].ItemArray[j].ToString();
+                                BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
+                                BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
+                                BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
+                                BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
+                                BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
+                                BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
+                                BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
+                                BOMHeader.RoutingGroup = dtExcel.Rows[8].ItemArray[j].ToString();
+                                BOMHeader.GroupCounter = dtExcel.Rows[9].ItemArray[j].ToString();
+                                BOMHeader.ProductionVersion = dtExcel.Rows[10].ItemArray[j].ToString();
+                                BOMHeader.LotSizeFrom = dtExcel.Rows[11].ItemArray[j].ToString();
+                                BOMHeader.LotSizeTo = dtExcel.Rows[12].ItemArray[j].ToString();
+                                BOMHeader.WorkCenter = dtExcel.Rows[13].ItemArray[j].ToString();
+                                BOMHeader.StorageLocation = dtExcel.Rows[14].ItemArray[j].ToString();
+                                BOMHeaderList.Add(BOMHeader);
+                            }
                         }
                     }
                 }
+                
             }
             catch (Exception ex)
             {

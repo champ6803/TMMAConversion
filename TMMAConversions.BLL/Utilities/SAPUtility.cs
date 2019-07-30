@@ -533,8 +533,8 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
                                 fs.WriteLine("                                        \t0000\t \tPLKOD-KTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
-                                fs.WriteLine("                                        \t0000\t \tPLKOD-LOSVN                                                                                                                         \t{0}", o.LotSizeFrom); // LotSizeFrom
-                                fs.WriteLine("                                        \t0000\t \tPLKOD-LOSBS                                                                                                                         \t{0}", o.LotSizeTo); // LotSizeTo
+                                fs.WriteLine("                                        \t0000\t \tPLKOD-LOSVN                                                                                                                         \t{0}", "1.000"); // LotSizeFrom
+                                fs.WriteLine("                                        \t0000\t \tPLKOD-LOSBS                                                                                                                         \t{0}", "99,999,999.000"); // LotSizeTo
                                 fs.WriteLine("                                        \t0000\t \tPLKOD-PLNME                                                                                                                         \t{0}", o.BaseUnit); // BOM Status
                             }
                         }
