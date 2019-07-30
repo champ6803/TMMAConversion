@@ -3227,6 +3227,7 @@
     <Content Include="Files\Monomer\Excels\Routing\Test04_Routing.xlsx" />
     <Content Include="Files\Monomer\Excels\Routing\Test06_Routing.xlsx" />
     <Content Include="Files\Monomer\Excels\WorkCenterRouting\WorkCenterRouting.xlsx" />
+    <Content Include="Files\CCS\Excels\BOM\CCSBOM.xlsm" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fontawesome\css\all.css" />
     <Content Include="Scripts\fontawesome\css\all.min.css" />
@@ -4862,7 +4863,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Files\CCS\Excels\" />
     <Folder Include="Files\CCS\SAP\" />
     <Folder Include="Files\CCS\Template\" />
     <Folder Include="Files\Monomer\Excels\RoutingWithMaterial\" />
