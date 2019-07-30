@@ -119,14 +119,27 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         List<DataTable> usedExcel = new List<DataTable>();
 
-                        for (int e = 1; e <= r.Count; e++)
+
+                        if (r.Count == 1)
                         {
                             DataTable dtExcel = new DataTable();
-                            string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+                            string query = "SELECT * FROM [" + r.Name + "$]";
                             OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                             data.Fill(dtExcel);
                             usedExcel.Add(dtExcel);
                         }
+                        else
+                        {
+                            for (int e = 1; e <= r.Count; e++)
+                            {
+                                DataTable dtExcel = new DataTable();
+                                string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+                                OleDbDataAdapter data = new OleDbDataAdapter(query, con);
+                                data.Fill(dtExcel);
+                                usedExcel.Add(dtExcel);
+                            }
+                        }
+
                         dtExcelList.Add(usedExcel);
                     }
                 }
@@ -229,13 +242,24 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         List<DataTable> usedExcel = new List<DataTable>();
 
-                        for (int e = 1; e <= r.Count; e++)
+                        if (r.Count == 1)
                         {
                             DataTable dtExcel = new DataTable();
-                            string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+                            string query = "SELECT * FROM [" + r.Name + "$]";
                             OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                             data.Fill(dtExcel);
                             usedExcel.Add(dtExcel);
+                        }
+                        else
+                        {
+                            for (int e = 1; e <= r.Count; e++)
+                            {
+                                DataTable dtExcel = new DataTable();
+                                string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+                                OleDbDataAdapter data = new OleDbDataAdapter(query, con);
+                                data.Fill(dtExcel);
+                                usedExcel.Add(dtExcel);
+                            }
                         }
                         dtExcelList.Add(usedExcel);
                     }
@@ -1372,7 +1396,7 @@ namespace TMMAConversions.BLL.Utilities
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -1453,7 +1477,7 @@ namespace TMMAConversions.BLL.Utilities
                         }
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
