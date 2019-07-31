@@ -332,7 +332,7 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         fs.WriteLine("\t0000\tM\tZCONV_{0}\t{1}          {2}  {3}", Name, user, HeaderDate, HeaderTime); // Header BOM {0} User {1} Date {2} Time
 
-                        // 1
+                        // 1    
                         // generate create bom header
                         if (options.Contains("BOM Create Header"))
                         {
@@ -2292,7 +2292,7 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("                                        \t0000\t \tRC27M-PLNNR                                                                                                                         \t{0}", aList[0].RoutingGroup);
                                 fs.WriteLine("                                        \t0000\t \tRC271-STTAG                                                                                                                         \t{0}", validDate.ToString("dd.MM.yyyy", usCulture)); // Valid Date From
                                 fs.WriteLine("                                        \t0000\t \tRC271-PLNAL                                                                                                                         \t{0}", aList[0].GroupCounter); // Group Counter
-                                fs.WriteLine("SAPLCPDA                                \t1200\tX\t                                                                                                                                    \t");
+                                fs.WriteLine("SAPLCPDI                                \t1200\tX\t                                                                                                                                    \t");
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
                                 fs.WriteLine("                                        \t0000\t \tPLKOD-KTEXT                                                                                                                         \t{0}", aList[0].RoutingGroupDescription); // Routing Description
                                 fs.WriteLine("                                        \t0000\t \tPLKOD-LOSVN                                                                                                                         \t{0}", 1);//aList[0].LotSizeFrom == 0 ? "" : aList[0].LotSizeFrom.ToString());
