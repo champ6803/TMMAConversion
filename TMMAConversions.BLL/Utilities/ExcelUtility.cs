@@ -115,10 +115,21 @@ namespace TMMAConversions.BLL.Utilities
             {
                 try
                 {
+                    Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel.Workbook excelBook = xlApp.Workbooks.Open(fileName);
+
+                    String[] excelSheets = new String[excelBook.Worksheets.Count];
+                    int i = 0;
+
+                    foreach (Microsoft.Office.Interop.Excel.Worksheet wSheet in excelBook.Worksheets)
+                    {
+                        excelSheets[i] = wSheet.Name;
+                        i++;
+                    }
+
                     foreach (var r in sheets)
                     {
                         List<DataTable> usedExcel = new List<DataTable>();
-
 
                         if (r.Count == 1)
                         {
