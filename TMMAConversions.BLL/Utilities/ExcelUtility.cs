@@ -118,13 +118,17 @@ namespace TMMAConversions.BLL.Utilities
                     Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
                     Microsoft.Office.Interop.Excel.Workbook excelBook = xlApp.Workbooks.Open(fileName);
 
-                    String[] excelSheets = new String[excelBook.Worksheets.Count];
-                    int i = 0;
-
                     foreach (Microsoft.Office.Interop.Excel.Worksheet wSheet in excelBook.Worksheets)
                     {
-                        excelSheets[i] = wSheet.Name;
-                        i++;
+                        var arrSheet = wSheet.Name.Split('_');
+
+                        foreach (var o in sheets)
+                        {
+                            if (arrSheet[0] == o.Name && arrSheet.Count() > 1)
+                            {
+                                o.Count++;
+                            }
+                        }
                     }
 
                     foreach (var r in sheets)
@@ -141,7 +145,7 @@ namespace TMMAConversions.BLL.Utilities
                         }
                         else
                         {
-                            for (int e = 1; e <= r.Count; e++)
+                            for (int e = 1; e <= r.Count - 1; e++)
                             {
                                 DataTable dtExcel = new DataTable();
                                 string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
@@ -249,6 +253,22 @@ namespace TMMAConversions.BLL.Utilities
             {
                 try
                 {
+                    Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel.Workbook excelBook = xlApp.Workbooks.Open(fileName);
+
+                    foreach (Microsoft.Office.Interop.Excel.Worksheet wSheet in excelBook.Worksheets)
+                    {
+                        var arrSheet = wSheet.Name.Split('_');
+
+                        foreach (var o in sheets)
+                        {
+                            if (arrSheet[0] == o.Name && arrSheet.Count() > 1)
+                            {
+                                o.Count++;
+                            }
+                        }
+                    }
+
                     foreach (var r in sheets)
                     {
                         List<DataTable> usedExcel = new List<DataTable>();
@@ -263,7 +283,7 @@ namespace TMMAConversions.BLL.Utilities
                         }
                         else
                         {
-                            for (int e = 1; e <= r.Count; e++)
+                            for (int e = 1; e <= r.Count - 1; e++)
                             {
                                 DataTable dtExcel = new DataTable();
                                 string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";

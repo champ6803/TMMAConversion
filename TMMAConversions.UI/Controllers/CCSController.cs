@@ -320,20 +320,20 @@ namespace TMMAConversions.UI.Controllers
                 }
                 if (sheets.Contains("CCS Cut and Pack"))
                 {
-                    objSheetsList.Add(new SheetsModel() { Name = "CCS Cut and Pack", Count = 16 });
-                    objSheetsActivityList.Add(new SheetsModel() { Name = "CCS Cut and Pack Activity", Count = 16 });
+                    objSheetsList.Add(new SheetsModel() { Name = "CCS Cut and Pack", Count = 1 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "CCS Cut and Pack Activity", Count = 1 });
                 }
 
                 if (sheets.Contains("CCS PMMA"))
                 {
-                    objSheetsList.Add(new SheetsModel() { Name = "CCS PMMA", Count = 6 });
-                    objSheetsActivityList.Add(new SheetsModel() { Name = "CCS PMMA Activity", Count = 31 });
+                    objSheetsList.Add(new SheetsModel() { Name = "CCS PMMA", Count = 1 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "CCS PMMA Activity", Count = 1 });
                 }
 
                 if (sheets.Contains("Additive"))
                 {
-                    objSheetsList.Add(new SheetsModel() { Name = "Additive", Count = 3 });
-                    objSheetsActivityList.Add(new SheetsModel() { Name = "Additive Activity", Count = 3 });
+                    objSheetsList.Add(new SheetsModel() { Name = "Additive", Count = 1 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "Additive Activity", Count = 1 });
                 }
 
                 if (sheets.Contains("CCS Syrup"))
