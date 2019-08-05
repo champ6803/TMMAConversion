@@ -105,6 +105,8 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.Web.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.WindowsServer.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.ApplicationInsights.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csprojResolveAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csprojAssemblyReference.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csproj.CoreCompileInputs.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csproj.CopyComplete
