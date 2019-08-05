@@ -108,3 +108,5 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.CodeDom.Pr
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csprojResolveAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\log4net.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\log4net.xml

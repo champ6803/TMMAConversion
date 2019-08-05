@@ -12,6 +12,7 @@ namespace TMMAConversions.UI.Controllers
 {
     public class LoginController : Controller
     {
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         protected Core core = new Core();
 
         // GET: Login
@@ -43,6 +44,8 @@ namespace TMMAConversions.UI.Controllers
                 {
                     Session["Username"] = record.Username;
 
+                    log.Info("========== user : " + record.Username + "=========");
+
                     return Json(new ResponseModel()
                     {
                         Status = true,
@@ -56,6 +59,8 @@ namespace TMMAConversions.UI.Controllers
             }
             catch (Exception ex)
             {
+                log.Error(ex.Message);
+
                 return Json(new ResponseModel()
                 {
                     Status = false,
@@ -67,6 +72,7 @@ namespace TMMAConversions.UI.Controllers
         [HttpGet]
         public ActionResult OnLogout()
         {
+            log.Info("========== Logout =========");
             Session.RemoveAll();
             return Redirect("/");
         }

@@ -17,6 +17,7 @@ namespace TMMAConversions.UI.Controllers
 {
     public class MonomerController : Controller
     {
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         protected Core core = new Core();
         protected static CultureInfo usCulture = new CultureInfo("en-US");
 
@@ -360,6 +361,8 @@ namespace TMMAConversions.UI.Controllers
                     }
                     else
                     {
+                        log.Error("========== Excel File incorrect. =========");
+
                         return Json(new ResponseModel()
                         {
                             Message = "Excel File incorrect.",
@@ -367,6 +370,9 @@ namespace TMMAConversions.UI.Controllers
                         }, JsonRequestBehavior.AllowGet);
                     }
                 }
+
+                log.Error("========== Please Insert File. =========");
+
                 return Json(new ResponseModel()
                 {
                     Message = "Please Insert File.",
@@ -375,6 +381,8 @@ namespace TMMAConversions.UI.Controllers
             }
             catch (Exception ex)
             {
+                log.Error("========== " + ex.Message + " =========");
+
                 return Json(new ResponseModel()
                 {
                     Message = ex.Message,
@@ -1665,13 +1673,13 @@ namespace TMMAConversions.UI.Controllers
                     //}
                     //else
                     //{
-                        List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(list1);
+                    List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(list1);
 
-                        string textName = fileName + sheets[i].Replace(" ", "");
-                        string textExtension = ".txt";
-                        string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
+                    string textName = fileName + sheets[i].Replace(" ", "");
+                    string textExtension = ".txt";
+                    string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
 
-                        SAPUtility.ConvertToMMABOMTextFile(newList1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate, options);
+                    SAPUtility.ConvertToMMABOMTextFile(newList1, list2, acList1, acList2, textPath, fileName, textExtension, userSAP, validDate, options);
                     //}
 
                     i++;

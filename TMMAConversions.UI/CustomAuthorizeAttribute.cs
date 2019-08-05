@@ -11,6 +11,7 @@ namespace TMMAConversions.UI
 {
     public class CustomAuthorizeAttribute : AuthorizeAttribute
     {
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         protected Core core = new Core();
         private readonly string[] allowedroles;
 
