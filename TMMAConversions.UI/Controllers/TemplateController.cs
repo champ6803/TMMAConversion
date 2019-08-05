@@ -14,14 +14,14 @@ namespace TMMAConversions.UI.Controllers
         [CustomAuthorize]
         public ActionResult Index()
         {
-            DirectoryInfo d = new DirectoryInfo(Server.MapPath("~/Files/Monomer/Template"));
+            DirectoryInfo d = new DirectoryInfo(Server.MapPath("~/Files/Template"));
             FileInfo[] Files = d.GetFiles("*");
 
             List<FilesModel> filesList = new List<FilesModel>();
 
             foreach (var a in Files)
             {
-                var path = Path.Combine(Server.MapPath("~/Files/Monomer/Template"), a.Name);
+                var path = Path.Combine(Server.MapPath("~/Files/Template"), a.Name);
                 if (System.IO.File.Exists(path))
                 {
                     var f = new FilesModel()

@@ -61,3 +61,14 @@ function convertDateFormat(d) {
     }
     return day + "/" + month + "/" + year;
 }
+
+$(function () {
+    $('.loading-screen').hide();
+   
+
+    //$('.loading-screen').bind('ajaxStart', function () {
+    //    $(this).show();
+    //}).bind('ajaxStop', function () {
+    //    $(this).hide();
+    //});
+});
