@@ -339,6 +339,8 @@ namespace TMMAConversions.UI.Controllers
 
                                     fileContent.SaveAs(path);
 
+                                    log.Info("========== Save File Success =========");
+
                                     int version = 0;
                                     SaveBOMFileVersion(recObjectName, user, validDate, path, ref version);
 
@@ -350,6 +352,8 @@ namespace TMMAConversions.UI.Controllers
                                 }
                                 else
                                 {
+                                    log.Error("========== Please Upload Files in .xls or .xlsx format. =========");
+
                                     return Json(new ResponseModel()
                                     {
                                         Message = "Please Upload Files in .xls or .xlsx format.",
@@ -502,6 +506,8 @@ namespace TMMAConversions.UI.Controllers
 
                                     fileContent.SaveAs(path);
 
+                                    log.Info("========== Save File Success =========");
+
                                     int version = 0;
                                     SaveWorkCenterRoutingFileVersion(recObjectName, user, validDate, path, ref version);
 
@@ -513,6 +519,8 @@ namespace TMMAConversions.UI.Controllers
                                 }
                                 else
                                 {
+                                    log.Error("========== Please Upload Files in .xls or .xlsx format. =========");
+
                                     return Json(new ResponseModel()
                                     {
                                         Message = "Please Upload Files in .xls or .xlsx format.",
@@ -524,13 +532,18 @@ namespace TMMAConversions.UI.Controllers
                     }
                     else
                     {
+                        log.Error("========== File Name incorrect. =========");
+
                         return Json(new ResponseModel()
                         {
-                            Message = "Excel File incorrect.",
+                            Message = "File Name incorrect.",
                             Status = false
                         }, JsonRequestBehavior.AllowGet);
                     }
                 }
+
+                log.Error("========== Please Insert File. =========");
+
                 return Json(new ResponseModel()
                 {
                     Message = "Please Insert File.",
@@ -539,6 +552,8 @@ namespace TMMAConversions.UI.Controllers
             }
             catch (Exception ex)
             {
+                log.Error("========== " + ex.Message + " =========");
+
                 return Json(new ResponseModel()
                 {
                     Message = ex.Message,
@@ -1341,6 +1356,10 @@ namespace TMMAConversions.UI.Controllers
                 if (!res.Status)
                 {
                     throw new Exception(res.Message);
+                }
+                else
+                {
+                    log.Info("========== Save BOM Success =========");
                 }
             }
             catch (Exception ex)
