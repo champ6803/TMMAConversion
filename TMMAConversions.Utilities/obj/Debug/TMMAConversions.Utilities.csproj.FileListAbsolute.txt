@@ -67,6 +67,9 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\bin\Debug\EntityFr
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\bin\Debug\TMMAConversions.DAL.pdb
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\bin\Debug\log4net.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\bin\Debug\EntityFramework.xml
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\obj\Debug\TMMAConversions.Utilities.csprojResolveAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\obj\Debug\TMMAConversions.Utilities.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\obj\Debug\TMMAConversions.Utilities.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\bin\Debug\TMMAConversions.DAL.dll.config
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\obj\Debug\TMMAConversions.Utilities.csprojAssemblyReference.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\obj\Debug\TMMAConversions.Utilities.csproj.CoreCompileInputs.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.Utilities\obj\Debug\TMMAConversions.Utilities.csproj.CopyComplete
