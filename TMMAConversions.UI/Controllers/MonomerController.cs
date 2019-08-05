@@ -361,11 +361,11 @@ namespace TMMAConversions.UI.Controllers
                     }
                     else
                     {
-                        log.Error("========== Excel File incorrect. =========");
+                        log.Error("========== File Name incorrect. =========");
 
                         return Json(new ResponseModel()
                         {
-                            Message = "Excel File incorrect.",
+                            Message = "File Name incorrect.",
                             Status = false
                         }, JsonRequestBehavior.AllowGet);
                     }
@@ -1232,6 +1232,8 @@ namespace TMMAConversions.UI.Controllers
 
                 int _newID = 0;
                 ResponseModel res = core.AddBOMFile(bomFile, ref _newID);
+
+                log.Info("========== Save BOM Success =========");
 
                 if (!res.Status)
                 {

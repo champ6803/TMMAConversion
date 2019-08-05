@@ -59,7 +59,7 @@ namespace TMMAConversions.UI.Controllers
             }
             catch (Exception ex)
             {
-                log.Error(ex.Message);
+                log.Error("========== " + ex.Message + " =========");
 
                 return Json(new ResponseModel()
                 {
