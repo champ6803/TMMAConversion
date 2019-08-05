@@ -50,6 +50,9 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         DataTable dtExcel = new DataTable();
                         string query = "SELECT * FROM [" + r + "$]";
+
+                        log.Info("========== ReadMMABOMExcel : " + query + " =========");
+
                         OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                         data.Fill(dtExcel);
                         dtExcelList.Add(dtExcel);
@@ -57,7 +60,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -84,6 +86,9 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         DataTable dtExcel = new DataTable();
                         string query = "SELECT * FROM [" + r + " Activity$]";
+
+                        log.Info("========== ReadMMABOMActivityExcel : " + query + " =========");
+
                         OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                         data.Fill(dtExcel);
                         dtExcelList.Add(dtExcel);
@@ -91,7 +96,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -139,6 +143,9 @@ namespace TMMAConversions.BLL.Utilities
                         {
                             DataTable dtExcel = new DataTable();
                             string query = "SELECT * FROM [" + r.Name + "$]";
+
+                            log.Info("========== ReadCCSBOMExcel : " + query + " =========");
+
                             OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                             data.Fill(dtExcel);
                             usedExcel.Add(dtExcel);
@@ -149,6 +156,9 @@ namespace TMMAConversions.BLL.Utilities
                             {
                                 DataTable dtExcel = new DataTable();
                                 string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+
+                                log.Info("========== ReadCCSBOMExcel : " + query + " =========");
+
                                 OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                                 data.Fill(dtExcel);
                                 usedExcel.Add(dtExcel);
@@ -160,7 +170,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -277,6 +286,9 @@ namespace TMMAConversions.BLL.Utilities
                         {
                             DataTable dtExcel = new DataTable();
                             string query = "SELECT * FROM [" + r.Name + "$]";
+
+                            log.Info("========== ReadCCSBOMActivityExcel : " + query + " =========");
+
                             OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                             data.Fill(dtExcel);
                             usedExcel.Add(dtExcel);
@@ -287,6 +299,9 @@ namespace TMMAConversions.BLL.Utilities
                             {
                                 DataTable dtExcel = new DataTable();
                                 string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+
+                                log.Info("========== ReadCCSBOMActivityExcel : " + query + " =========");
+
                                 OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                                 data.Fill(dtExcel);
                                 usedExcel.Add(dtExcel);
@@ -297,7 +312,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -454,12 +468,13 @@ namespace TMMAConversions.BLL.Utilities
             {
                 try
                 {
-                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select * from [RT$]", con); //here we read data from Sheet1
+                    var query = "select * from [RT$]";
+                    log.Info("========== ReadMMInspectionPlanExcel : " + query + " =========");
+                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter(query, con); //here we read data from Sheet1
                     oleAdpt.Fill(dtexcel); //fill excel data into dataTable
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -481,12 +496,13 @@ namespace TMMAConversions.BLL.Utilities
             {
                 try
                 {
-                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select * from [PI$]", con); //here we read data from Sheet1
+                    var query = "select * from [PI$]";
+                    log.Info("========== ReadMMPackagingInstructionExcel : " + query + " =========");
+                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter(query, con); //here we read data from Sheet1
                     oleAdpt.Fill(dtexcel); //fill excel data into dataTable
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -514,6 +530,9 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         DataTable dtExcel = new DataTable();
                         string query = "SELECT * FROM [" + r + "$]";
+
+                        log.Info("========== ReadWorkCenterRoutingExcelList : " + query + " =========");
+
                         OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                         data.Fill(dtExcel);
                         dtExcelList.Add(dtExcel);
@@ -522,7 +541,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -627,6 +645,9 @@ namespace TMMAConversions.BLL.Utilities
                             }
                         }
                     }
+
+                    log.Info("========== ConvertMMABOMExcelToMMABOMModel BOMItemList : Success =========");
+
                     for (int j = 10; j < colCount; j++)
                     {
                         if (!string.IsNullOrEmpty(dtExcel.Rows[0].ItemArray[j].ToString())) // Material Header
@@ -645,6 +666,8 @@ namespace TMMAConversions.BLL.Utilities
                         }
 
                     }
+
+                    log.Info("========== ConvertMMABOMExcelToMMABOMModel BOMHeaderList : Success =========");
                 }
 
             }
@@ -699,6 +722,9 @@ namespace TMMAConversions.BLL.Utilities
                             }
                         }
                     }
+
+                    log.Info("========== ConvertMMABOMActivityExcelToMMABOMActivityModel BOMItemList : Success =========");
+
                     for (int j = 10; j < colCount; j++) // first col
                     {
                         if (!string.IsNullOrEmpty(dtExcel.Rows[0].ItemArray[j].ToString())) // Material Header
@@ -721,8 +747,9 @@ namespace TMMAConversions.BLL.Utilities
                             BOMHeader.StorageLocation = dtExcel.Rows[13].ItemArray[j].ToString();
                             BOMHeaderList.Add(BOMHeader);
                         }
-
                     }
+
+                    log.Info("========== ConvertMMABOMActivityExcelToMMABOMActivityModel BOMHeaderList : Success =========");
                 }
             }
             catch (Exception ex)
