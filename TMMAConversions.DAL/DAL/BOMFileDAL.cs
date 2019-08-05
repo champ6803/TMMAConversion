@@ -182,7 +182,9 @@ namespace TMMAConversions.DAL.DAL
 
                     List<USR_TMMA_BOM_FILE> list = filter.Pagination.IsPaging ? lists.Skip(filter.Pagination.Skip).Take(filter.Pagination.Take).ToList() : lists.ToList();
 
-                    List<BOMFileModel> mList = Mapping(list);
+                    //List<BOMFileModel> mList = Mapping(list);
+
+                    List<BOMFileModel> mList = new List<BOMFileModel>();
 
                     response = new ResponseModel()
                     {

@@ -17,14 +17,6 @@ namespace TMMAConversions.UI.Controllers
         [CustomAuthorize]
         public ActionResult Index()
         {
-            ProductsFilterModel filter = new ProductsFilterModel();
-            filter.Pagination.Page = 1;
-            ProductsViewModel model = core.GetProductsView(filter);
-
-            var name = Environment.UserName;
-
-            ViewData["ProductsViewModel"] = model;
-
             return View();
         }
     }

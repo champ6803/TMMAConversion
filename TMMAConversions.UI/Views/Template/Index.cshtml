@@ -23,91 +23,26 @@
                 <div class="panel-heading"><i class="fa fa-list"></i>&nbsp;Master Template</div>
                 <div class="panel-body">
                     <div class="form-horizontal form-element">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 control-label">
-                                        WorkCenter Routing :
-                                    </label>
-                                    <label class="col-md-4 control-label" style="text-align: left !important">
-                                        WorkCenterRouting.xlsx
-                                    </label>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-success" href="@Url.Content("~/Files/Template/WorkCenterRouting.xlsx")">
-                                            <i class="fa fa-download"></i> Download
-                                        </a>
+                        @foreach (var o in Model)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-md-4 control-label">
+                                            @o.Name
+                                        </label>
+                                        <label class="col-md-4 control-label" style="text-align: left !important">
+                                            @o.FileName
+                                        </label>
+                                        <div class="col-md-4">
+                                            <a class="btn btn-success" href="@Url.Content("~/Files/Template/")@o.FileName">
+                                                <i class="fa fa-download"></i> Download
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 control-label">
-                                         MMA BOM :
-                                    </label>
-                                    <label class="col-md-4 control-label" style="text-align: left !important">
-                                        MMABOM.xlsx
-                                    </label>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-success" href="@Url.Content("~/Files/Template/MMABOM.xlsx")">
-                                            <i class="fa fa-download"></i> Download
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 control-label">
-                                        CCS BOM :
-                                    </label>
-                                    <label class="col-md-4 control-label" style="text-align: left !important">
-                                        CCSBOM.xlsx
-                                    </label>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-success" href="@Url.Content("~/Files/Template/CCSBOM.xlmx")">
-                                            <i class="fa fa-download"></i> Download
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 control-label">
-                                        Inspection Plan :
-                                    </label>
-                                    <label class="col-md-4 control-label" style="text-align: left !important">
-                                        InspectionPlan.xlsx
-                                    </label>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-success" href="@Url.Content("~/Files/Template/InspectionPlan.xlsx")">
-                                            <i class="fa fa-download"></i> Download
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group row">
-                                    <label for="inputEmail3" class="col-md-4 control-label">
-                                        Packaging Instruction :
-                                    </label>
-                                    <label class="col-md-4 control-label" style="text-align: left !important;">
-                                        PackagingInstruction.xlsx
-                                    </label>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-success" href="@Url.Content("~/Files/Template/PackagingInstruction.xlsx")">
-                                            <i class="fa fa-download"></i> Download
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
