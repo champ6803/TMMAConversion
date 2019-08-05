@@ -10,6 +10,7 @@ namespace TMMAConversions.DAL.DAL
 {
     public class BOMFileDAL
     {
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static string SOURCE = "BOMFileDAL";
         private static string ACTION = "";
 
@@ -182,9 +183,7 @@ namespace TMMAConversions.DAL.DAL
 
                     List<USR_TMMA_BOM_FILE> list = filter.Pagination.IsPaging ? lists.Skip(filter.Pagination.Skip).Take(filter.Pagination.Take).ToList() : lists.ToList();
 
-                    //List<BOMFileModel> mList = Mapping(list);
-
-                    List<BOMFileModel> mList = new List<BOMFileModel>();
+                    List<BOMFileModel> mList = Mapping(list);
 
                     response = new ResponseModel()
                     {
