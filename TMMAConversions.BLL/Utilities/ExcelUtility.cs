@@ -657,7 +657,7 @@ namespace TMMAConversions.BLL.Utilities
                             BOMHeader.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
                             BOMHeader.BOMHeaderText = dtExcel.Rows[1].ItemArray[j].ToString();
                             BOMHeader.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
-                            BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString()), 3);
+                            BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString()));
                             BOMHeader.BaseUnit = dtExcel.Rows[4].ItemArray[j].ToString();
                             BOMHeader.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
                             BOMHeader.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
@@ -733,7 +733,7 @@ namespace TMMAConversions.BLL.Utilities
                             BOMHeader.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
                             BOMHeader.BOMHeaderText = dtExcel.Rows[1].ItemArray[j].ToString();
                             BOMHeader.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
-                            BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
+                            BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString()));
                             BOMHeader.BaseUnit = dtExcel.Rows[4].ItemArray[j].ToString();
                             BOMHeader.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
                             BOMHeader.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
@@ -1449,7 +1449,7 @@ namespace TMMAConversions.BLL.Utilities
                                 BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
                                 BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
                                 BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                                BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString()), 3);
+                                BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString()));
                                 BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
                                 BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
                                 BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
@@ -1529,7 +1529,7 @@ namespace TMMAConversions.BLL.Utilities
                                 BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
                                 BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
                                 BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                                BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString()), 3);
+                                BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString()));
                                 BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
                                 BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
                                 BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
