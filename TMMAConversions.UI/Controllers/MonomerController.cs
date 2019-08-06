@@ -2004,6 +2004,8 @@ namespace TMMAConversions.UI.Controllers
 
                 if (res.Status)
                 {
+                    log.Info("========== Update Status Success =========");
+
                     WorkCenterRoutingFileFilterModel filter = new WorkCenterRoutingFileFilterModel();
                     filter.ProductsTypeID = 1; // monomer 
                     filter.Pagination.Page = pageNo;
@@ -2012,11 +2014,15 @@ namespace TMMAConversions.UI.Controllers
                 }
                 else
                 {
+                    log.Info("========== " + res.Message + " =========");
+
                     return Json(res, JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
             {
+                log.Info("========== " + ex.Message + " =========");
+
                 return Json(new ResponseModel()
                 {
                     Status = false,
@@ -2051,6 +2057,9 @@ namespace TMMAConversions.UI.Controllers
                 Response.ContentType = "application/zip";
                 Response.AddHeader("content-disposition", "attachment; filename=" + zipName);
                 zip.Save(Response.OutputStream);
+
+                log.Info("========== " + fileName + " : Downloaded =========");
+
                 Response.End();
             }
         }
