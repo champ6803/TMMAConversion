@@ -89,6 +89,7 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\TMMAConversions.DAL.
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\TMMAConversions.DAL.pdb
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.SqlServer.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\log4net.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.Agent.Intercept.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.DependencyCollector.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -99,14 +100,14 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.Applicatio
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.SqlServer.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\log4net.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.DependencyCollector.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.Web.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.WindowsServer.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.ApplicationInsights.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.dll
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.pdb
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csprojAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csproj.CoreCompileInputs.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csproj.CopyComplete
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.pdb
