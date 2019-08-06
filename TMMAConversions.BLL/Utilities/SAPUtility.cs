@@ -375,6 +375,8 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("                                        \t0000\t \tRC29K-BMENG                                                                                                                         \t{0}", o.BaseQuantity); // Base Quantity
                                 fs.WriteLine("                                        \t0000\t \tRC29K-STLST                                                                                                                         \t{0}", BOMStatus); // BOM Status
                             }
+
+                            log.Info("========== BOM Create Header Success =========");
                         }
 
                         // 2
@@ -424,6 +426,8 @@ namespace TMMAConversions.BLL.Utilities
                                     fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
                                 }
                             }
+
+                            log.Info("========== BOM Delete Component (All) Success =========");
                         }
 
                         // 3
@@ -513,6 +517,8 @@ namespace TMMAConversions.BLL.Utilities
                                     count++;
                                 }
                             }
+
+                            log.Info("========== BOM Add Line Item Success =========");
                         }
 
                         // 3.1
@@ -537,6 +543,8 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("                                        \t0000\t \tPLKOD-LOSBS                                                                                                                         \t{0}", "99,999,999.000"); // LotSizeTo
                                 fs.WriteLine("                                        \t0000\t \tPLKOD-PLNME                                                                                                                         \t{0}", o.BaseUnit); // BOM Status
                             }
+
+                            log.Info("========== Change Routing Header Success =========");
                         }
 
 
@@ -596,6 +604,8 @@ namespace TMMAConversions.BLL.Utilities
                                     //c++;
                                 }
                             }
+
+                            log.Info("========== Assign material to Routing Success =========");
                         }
 
                         if (options.Contains("Change Detail Op Routing"))
@@ -698,6 +708,8 @@ namespace TMMAConversions.BLL.Utilities
 
                                 }
                             }
+
+                            log.Info("========== Change Detail Op Routing Success =========");
                         }
 
                         // 6
@@ -729,6 +741,8 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=SAVE");
                             }
+
+                            log.Info("========== Delete Production version Success =========");
                         }
 
 
@@ -770,6 +784,8 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("SAPLCMFV                                \t1000\tX\t                                                                                                                                    \t");
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=SAVE");
                             }
+
+                            log.Info("========== Create Production Version Success =========");
                         }
 
                         // Uniq Generate
@@ -789,9 +805,13 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("SAPLCSDI                                \t0150\tX\t                                                                                                                                    \t"); // Delete
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCLO");
                             }
+
+                            log.Info("========== Create Production Version Success =========");
                         }
 
                     } // StreamWriter
+
+                    log.Info("========== Convert Success =========");
                 }
             }
             catch (Exception ex)
@@ -1892,7 +1912,10 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t"); // Save
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
                             }
+
+                            log.Info("========== Delete Operation Routing Success =========");
                         }
+
                         if (options.Contains("Delete Work Center"))
                         {
                             // generate delete work center
@@ -1906,7 +1929,10 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("SAPLCRA0                                \t4000\tX\t                                                                                                                                    \t"); // Delete
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=DEL");
                             }
+
+                            log.Info("========== Delete Work Center Success =========");
                         }
+
                         if (options.Contains("Create Work Center"))
                         {
                             // generate create work center
@@ -2240,6 +2266,8 @@ namespace TMMAConversions.BLL.Utilities
                                     fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \tUPD");
                                 }
                             }
+
+                            log.Info("========== Create Work Center Success =========");
                         }
 
                         if (options.Contains("Create Routing header"))
@@ -2299,6 +2327,8 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("                                        \t0000\t \tPLKOD-LOSBS                                                                                                                         \t{0}", 99999999);//aList[0].LotSizeTo == 0 ? "" : aList[0].LotSizeTo.ToString());
                                 fs.WriteLine("                                        \t0000\t \tPLKOD-PLNME                                                                                                                         \t{0}", aList[0].BaseUnit);
                             }
+
+                            log.Info("========== Create Routing header Success =========");
                         }
 
                         if (options.Contains("Add Operation Routing (w/o Standard value key)"))
@@ -2424,6 +2454,8 @@ namespace TMMAConversions.BLL.Utilities
                                     countAct++;
                                 }
                             }
+
+                            log.Info("========== Add Operation Routing (w/o Standard value key) Success =========");
                         }
 
 
@@ -2485,9 +2517,9 @@ namespace TMMAConversions.BLL.Utilities
                         //    }
                         //}
 
-
-
                     }
+
+                    log.Info("========== Convert Success =========");
                 }
             }
             catch (Exception ex)

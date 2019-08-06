@@ -9,6 +9,8 @@ namespace TMMAConversions.Utilities.Utilities
 {
     public class BOMUtility
     {
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public static List<BOMHeaderModel> CheckBOMAlt(List<BOMHeaderModel> bomGradeLevelHeaderList)
         {
             List<string> bomAltList = new List<string>();

@@ -50,6 +50,9 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         DataTable dtExcel = new DataTable();
                         string query = "SELECT * FROM [" + r + "$]";
+
+                        log.Info("========== ReadMMABOMExcel : " + query + " =========");
+
                         OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                         data.Fill(dtExcel);
                         dtExcelList.Add(dtExcel);
@@ -57,7 +60,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -84,6 +86,9 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         DataTable dtExcel = new DataTable();
                         string query = "SELECT * FROM [" + r + " Activity$]";
+
+                        log.Info("========== ReadMMABOMActivityExcel : " + query + " =========");
+
                         OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                         data.Fill(dtExcel);
                         dtExcelList.Add(dtExcel);
@@ -91,7 +96,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -139,6 +143,9 @@ namespace TMMAConversions.BLL.Utilities
                         {
                             DataTable dtExcel = new DataTable();
                             string query = "SELECT * FROM [" + r.Name + "$]";
+
+                            log.Info("========== ReadCCSBOMExcel : " + query + " =========");
+
                             OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                             data.Fill(dtExcel);
                             usedExcel.Add(dtExcel);
@@ -149,6 +156,9 @@ namespace TMMAConversions.BLL.Utilities
                             {
                                 DataTable dtExcel = new DataTable();
                                 string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+
+                                log.Info("========== ReadCCSBOMExcel : " + query + " =========");
+
                                 OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                                 data.Fill(dtExcel);
                                 usedExcel.Add(dtExcel);
@@ -160,7 +170,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -277,6 +286,9 @@ namespace TMMAConversions.BLL.Utilities
                         {
                             DataTable dtExcel = new DataTable();
                             string query = "SELECT * FROM [" + r.Name + "$]";
+
+                            log.Info("========== ReadCCSBOMActivityExcel : " + query + " =========");
+
                             OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                             data.Fill(dtExcel);
                             usedExcel.Add(dtExcel);
@@ -287,6 +299,9 @@ namespace TMMAConversions.BLL.Utilities
                             {
                                 DataTable dtExcel = new DataTable();
                                 string query = "SELECT * FROM [" + r.Name + "_" + e + "$]";
+
+                                log.Info("========== ReadCCSBOMActivityExcel : " + query + " =========");
+
                                 OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                                 data.Fill(dtExcel);
                                 usedExcel.Add(dtExcel);
@@ -297,7 +312,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -454,12 +468,13 @@ namespace TMMAConversions.BLL.Utilities
             {
                 try
                 {
-                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select * from [RT$]", con); //here we read data from Sheet1
+                    var query = "select * from [RT$]";
+                    log.Info("========== ReadMMInspectionPlanExcel : " + query + " =========");
+                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter(query, con); //here we read data from Sheet1
                     oleAdpt.Fill(dtexcel); //fill excel data into dataTable
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -481,12 +496,13 @@ namespace TMMAConversions.BLL.Utilities
             {
                 try
                 {
-                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select * from [PI$]", con); //here we read data from Sheet1
+                    var query = "select * from [PI$]";
+                    log.Info("========== ReadMMPackagingInstructionExcel : " + query + " =========");
+                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter(query, con); //here we read data from Sheet1
                     oleAdpt.Fill(dtexcel); //fill excel data into dataTable
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -514,6 +530,9 @@ namespace TMMAConversions.BLL.Utilities
                     {
                         DataTable dtExcel = new DataTable();
                         string query = "SELECT * FROM [" + r + "$]";
+
+                        log.Info("========== ReadWorkCenterRoutingExcelList : " + query + " =========");
+
                         OleDbDataAdapter data = new OleDbDataAdapter(query, con);
                         data.Fill(dtExcel);
                         dtExcelList.Add(dtExcel);
@@ -522,7 +541,6 @@ namespace TMMAConversions.BLL.Utilities
                 }
                 catch (Exception ex)
                 {
-                    log.Error("========== " + ex.Message + " =========");
                     throw ex;
                 }
             }
@@ -611,7 +629,7 @@ namespace TMMAConversions.BLL.Utilities
                                     BOMItem.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
                                     BOMItem.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
                                     // get ComponentQuantity
-                                    BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
+                                    BOMItem.ComponentQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString()), 3);
                                     // get Component
                                     BOMItem.BOMItem = dtExcel.Rows[i].ItemArray[1].ToString();
                                     BOMItem.ComponentMaterial = dtExcel.Rows[i].ItemArray[2].ToString();
@@ -627,6 +645,9 @@ namespace TMMAConversions.BLL.Utilities
                             }
                         }
                     }
+
+                    log.Info("========== ConvertMMABOMExcelToMMABOMModel BOMItemList : Success =========");
+
                     for (int j = 10; j < colCount; j++)
                     {
                         if (!string.IsNullOrEmpty(dtExcel.Rows[0].ItemArray[j].ToString())) // Material Header
@@ -636,15 +657,16 @@ namespace TMMAConversions.BLL.Utilities
                             BOMHeader.MaterialCode = dtExcel.Rows[0].ItemArray[j].ToString();
                             BOMHeader.BOMHeaderText = dtExcel.Rows[1].ItemArray[j].ToString();
                             BOMHeader.Plant = dtExcel.Rows[2].ItemArray[j].ToString();
-                            BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString());
+                            BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[3].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[3].ItemArray[j].ToString()), 3);
                             BOMHeader.BaseUnit = dtExcel.Rows[4].ItemArray[j].ToString();
                             BOMHeader.BOMUsage = dtExcel.Rows[5].ItemArray[j].ToString();
                             BOMHeader.BOMAlt = dtExcel.Rows[6].ItemArray[j].ToString();
                             BOMHeader.RoutingGroup = dtExcel.Rows[7].ItemArray[j].ToString();
                             BOMHeaderList.Add(BOMHeader);
                         }
-
                     }
+
+                    log.Info("========== ConvertMMABOMExcelToMMABOMModel BOMHeaderList : Success =========");
                 }
 
             }
@@ -699,6 +721,9 @@ namespace TMMAConversions.BLL.Utilities
                             }
                         }
                     }
+
+                    log.Info("========== ConvertMMABOMActivityExcelToMMABOMActivityModel BOMItemList : Success =========");
+
                     for (int j = 10; j < colCount; j++) // first col
                     {
                         if (!string.IsNullOrEmpty(dtExcel.Rows[0].ItemArray[j].ToString())) // Material Header
@@ -721,8 +746,9 @@ namespace TMMAConversions.BLL.Utilities
                             BOMHeader.StorageLocation = dtExcel.Rows[13].ItemArray[j].ToString();
                             BOMHeaderList.Add(BOMHeader);
                         }
-
                     }
+
+                    log.Info("========== ConvertMMABOMActivityExcelToMMABOMActivityModel BOMHeaderList : Success =========");
                 }
             }
             catch (Exception ex)
@@ -1174,6 +1200,8 @@ namespace TMMAConversions.BLL.Utilities
                             workCenterRoutingItem.CostElementDescription = dtExcel.Rows[i].ItemArray[45].ToString(); //  col AH (33) (Cost Element Description)
                             workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AI (34) (Costing Formular)
                             WorkCenterRoutingItemList.Add(workCenterRoutingItem);
+
+                            log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRouting : Success =========");
                         }
                         else
                         {
@@ -1191,6 +1219,8 @@ namespace TMMAConversions.BLL.Utilities
                                 workCenterRoutingItem.CostElementDescription = dtExcel.Rows[i].ItemArray[45].ToString(); //  col AH (33) (Cost Element Description)
                                 workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AI (34) (Costing Formular)
                                 WorkCenterRoutingItemList.Add(workCenterRoutingItem);
+
+                                log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRoutingItem : Success =========");
                             }
                             else
                             {
@@ -1391,7 +1421,7 @@ namespace TMMAConversions.BLL.Utilities
                                         BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
                                         BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
                                         // get standard value
-                                        BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
+                                        BOMItem.ComponentQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString()), 3);
                                         // get component
                                         BOMItem.BOMItem = dtExcel.Rows[i].ItemArray[1].ToString();
                                         BOMItem.ComponentMaterial = dtExcel.Rows[i].ItemArray[2].ToString();
@@ -1407,6 +1437,8 @@ namespace TMMAConversions.BLL.Utilities
                             }
                         }
 
+                        log.Info("========== ConvertCCSBOMExcelToCCSBOMModel BOMItem : Success =========");
+
                         for (int j = 10; j < colCount; j++)
                         {
                             if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
@@ -1417,7 +1449,7 @@ namespace TMMAConversions.BLL.Utilities
                                 BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
                                 BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
                                 BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                                BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
+                                BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString()), 3);
                                 BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
                                 BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
                                 BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
@@ -1425,6 +1457,9 @@ namespace TMMAConversions.BLL.Utilities
                                 BOMHeaderList.Add(BOMHeader);
                             }
                         }
+
+                        log.Info("========== ConvertCCSBOMExcelToCCSBOMModel BOMHeader : Success =========");
+
                     }
                 }
 
@@ -1467,7 +1502,7 @@ namespace TMMAConversions.BLL.Utilities
                                         BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
                                         BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
                                         // get standard value
-                                        BOMItem.ComponentQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString());
+                                        BOMItem.ComponentQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString()), 3);
                                         // get component
                                         BOMItem.ActivityNo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[1].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[1].ToString());
                                         BOMItem.OperationNo = dtExcel.Rows[i].ItemArray[2].ToString();
@@ -1482,6 +1517,8 @@ namespace TMMAConversions.BLL.Utilities
                             }
                         }
 
+                        log.Info("========== ConvertCCSBOMActivityExcelToCCSBOMActivityModel BOMItem : Success =========");
+
                         for (int j = 10; j < colCount; j++)
                         {
                             if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
@@ -1492,7 +1529,7 @@ namespace TMMAConversions.BLL.Utilities
                                 BOMHeader.MaterialCode = dtExcel.Rows[1].ItemArray[j].ToString();
                                 BOMHeader.BOMHeaderText = dtExcel.Rows[2].ItemArray[j].ToString();
                                 BOMHeader.Plant = dtExcel.Rows[3].ItemArray[j].ToString();
-                                BOMHeader.BaseQuantity = Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString());
+                                BOMHeader.BaseQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[4].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[4].ItemArray[j].ToString()), 3);
                                 BOMHeader.BaseUnit = dtExcel.Rows[5].ItemArray[j].ToString();
                                 BOMHeader.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
                                 BOMHeader.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
@@ -1506,6 +1543,9 @@ namespace TMMAConversions.BLL.Utilities
                                 BOMHeaderList.Add(BOMHeader);
                             }
                         }
+
+                        log.Info("========== ConvertCCSBOMActivityExcelToCCSBOMActivityModel BOMHeader : Success =========");
+
                     }
                 }
 
