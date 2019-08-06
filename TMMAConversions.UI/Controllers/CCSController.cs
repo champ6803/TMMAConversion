@@ -18,7 +18,7 @@ namespace TMMAConversions.UI.Controllers
 {
     public class CCSController : Controller
     {
-
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         protected Core core = new Core();
         protected static CultureInfo usCulture = new CultureInfo("en-US");
         // GET: CCS
@@ -94,6 +94,8 @@ namespace TMMAConversions.UI.Controllers
 
                                     fileContent.SaveAs(path);
 
+                                    log.Info("========== Save File Success =========");
+
                                     int version = 0;
                                     SaveBOMFileVersion(path, recObjectName, user, validDate, ref version);
 
@@ -105,6 +107,8 @@ namespace TMMAConversions.UI.Controllers
                                 }
                                 else
                                 {
+                                    log.Error("========== Please Upload Files in .xls or .xlsx format. =========");
+
                                     return Json(new ResponseModel()
                                     {
                                         Message = "Please Upload Files in .xls or .xlsx format.",
@@ -116,13 +120,18 @@ namespace TMMAConversions.UI.Controllers
                     }
                     else
                     {
+                        log.Error("========== File Name Incorrect. =========");
+
                         return Json(new ResponseModel()
                         {
-                            Message = "Excel File incorrect.",
+                            Message = "File Name Incorrect.",
                             Status = false
                         }, JsonRequestBehavior.AllowGet);
                     }
                 }
+
+                log.Error("========== Please Insert File. =========");
+
                 return Json(new ResponseModel()
                 {
                     Message = "Please Insert File.",
@@ -131,6 +140,8 @@ namespace TMMAConversions.UI.Controllers
             }
             catch (Exception ex)
             {
+                log.Error("========== " + ex.Message + " =========");
+
                 return Json(new ResponseModel()
                 {
                     Message = ex.Message,
@@ -167,6 +178,10 @@ namespace TMMAConversions.UI.Controllers
                 if (!res.Status)
                 {
                     throw new Exception(res.Message);
+                }
+                else
+                {
+                    log.Info("========== Save to Database Success. =========");
                 }
             }
             catch (Exception ex)
@@ -429,6 +444,8 @@ namespace TMMAConversions.UI.Controllers
 
                 if (res.Status) // update status success
                 {
+                    log.Info("========== Update Status Success. =========");
+
                     BOMFileFilterModel filter = new BOMFileFilterModel();
                     filter.ProductsTypeID = 2; // CCS
                     filter.Pagination.Page = pageNo;
@@ -438,11 +455,15 @@ namespace TMMAConversions.UI.Controllers
                 }
                 else
                 {
+                    log.Error("========== " + res.Message + " =========");
+
                     return Json(res, JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
             {
+                log.Error("========== " + ex.Message + " =========");
+
                 return Json(new ResponseModel()
                 {
                     Status = false,
@@ -488,6 +509,9 @@ namespace TMMAConversions.UI.Controllers
                 Response.ContentType = "application/zip";
                 Response.AddHeader("content-disposition", "attachment; filename=" + zipName);
                 zip.Save(Response.OutputStream);
+
+                log.Error("========== " + fileName + " : Downloaded =========");
+
                 Response.End();
             }
         }
