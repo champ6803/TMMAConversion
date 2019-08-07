@@ -745,7 +745,6 @@ namespace TMMAConversions.BLL.Utilities
                             log.Info("========== Delete Production version Success =========");
                         }
 
-
                         // 7
                         // generate production version
                         if (options.Contains("Create Production Version"))
@@ -2386,8 +2385,8 @@ namespace TMMAConversions.BLL.Utilities
                                         fs.WriteLine("                                        \t0000\t \tPLPOD-LTXA1                                                                                                                         \t{0}", p.OperationDecription);
                                         fs.WriteLine("                                        \t0000\t \tPLPOD-BMSCH                                                                                                                         \t{0}", OperationBaseQuantity);
                                         fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", p.OperationOUM);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", ConversionOfOUMN);
-                                        fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", ConversionOfOUMD);
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", p.ConversionOfOUMN);
+                                        fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", p.ConversionOfOUMD);
                                         fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", p.Scarp);
                                         fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
                                         fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
@@ -2414,8 +2413,8 @@ namespace TMMAConversions.BLL.Utilities
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-LTXA1                                                                                                                         \t{0}", p.OperationDecription);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-BMSCH                                                                                                                         \t{0}", OperationBaseQuantity);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", p.OperationOUM);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", ConversionOfOUMN);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", ConversionOfOUMD);
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", p.ConversionOfOUMN);
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", p.ConversionOfOUMD);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", p.Scarp);
                                         }
                                         // Next Item
@@ -2446,8 +2445,8 @@ namespace TMMAConversions.BLL.Utilities
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-LTXA1                                                                                                                         \t{0}", p.OperationDecription);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-BMSCH                                                                                                                         \t{0}", OperationBaseQuantity);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", p.OperationOUM);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", ConversionOfOUMN);
-                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", ConversionOfOUMD);
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", p.ConversionOfOUMN);
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", p.ConversionOfOUMD);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", p.Scarp);
                                             fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
                                             fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=MALO");
