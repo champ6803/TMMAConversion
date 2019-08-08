@@ -1201,7 +1201,7 @@ namespace TMMAConversions.BLL.Utilities
                             workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AI (34) (Costing Formular)
                             WorkCenterRoutingItemList.Add(workCenterRoutingItem);
 
-                            log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRouting : Success =========");
+                            log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRouting(" + i + ") : Success =========");
                         }
                         else
                         {
@@ -1220,7 +1220,7 @@ namespace TMMAConversions.BLL.Utilities
                                 workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AI (34) (Costing Formular)
                                 WorkCenterRoutingItemList.Add(workCenterRoutingItem);
 
-                                log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRoutingItem : Success =========");
+                                log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRoutingItem(" +  i + ") : Success =========");
                             }
                             else
                             {

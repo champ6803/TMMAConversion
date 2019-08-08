@@ -1653,6 +1653,10 @@ namespace TMMAConversions.UI.Controllers
         {
             try
             {
+                var enUser = Environment.UserName;
+                var userName = !string.IsNullOrEmpty(enUser) ? enUser : Session["Username"].ToString();
+                log.Info("========== Generate By " + userName + " =========");
+
                 DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
                 //var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/BOM"), "MMABOM.xlsx"); // Get MMABOM File
                 var path = pathText;
@@ -1713,6 +1717,7 @@ namespace TMMAConversions.UI.Controllers
                     List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(list1);
 
                     string textName = fileName + sheets[i].Replace(" ", "");
+                    log.Info("========== " + textName + " Start =========");
                     string textExtension = ".txt";
                     string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
 
@@ -1935,6 +1940,9 @@ namespace TMMAConversions.UI.Controllers
         {
             try
             {
+                var enUser = Environment.UserName;
+                var userName = !string.IsNullOrEmpty(enUser) ? enUser : Session["Username"].ToString();
+                log.Info("========== Generate By " + userName + " =========");
                 DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
                 //var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/WorkCenterRouting"), "WorkCenterRouting.xlsx"); // Get WorkCenter Routing File
                 var path = pathText;
@@ -1946,7 +1954,7 @@ namespace TMMAConversions.UI.Controllers
                 string[] filePaths = Directory.GetFiles(Server.MapPath("~/Files/Monomer/SAP/WorkCenterRouting"));
                 foreach (string filePath in filePaths)
                     System.IO.File.Delete(filePath);
-
+                
                 int i = 0;
                 foreach (var o in dtList)
                 {
@@ -1978,6 +1986,7 @@ namespace TMMAConversions.UI.Controllers
                             listIcut = list2.GetRange(ct - 1, nCount);
 
                             string textName = fileName + sheets[i].Replace(" ", "") + j;
+                            log.Info("========== " + textName + " Start =========");
                             string textExtension = ".txt";
                             string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenterRouting"), textName);
                             SAPUtility.ConvertWorkCenterRoutingToTextFile(listHcut, listIcut, textPath, fileName, textExtension, userSAP, validDate, options);
@@ -1990,7 +1999,10 @@ namespace TMMAConversions.UI.Controllers
                     }
                     else
                     {
+                        
+
                         string textName = fileName + sheets[i].Replace(" ", "");
+                        log.Info("========== " + textName + " Start =========");
                         string textExtension = ".txt";
                         string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenterRouting"), textName);
                         SAPUtility.ConvertWorkCenterRoutingToTextFile(list1, list2, textPath, fileName, textExtension, userSAP, validDate, options);
