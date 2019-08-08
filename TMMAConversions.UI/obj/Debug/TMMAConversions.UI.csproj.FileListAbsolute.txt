@@ -177,7 +177,9 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.DAL.d
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.Utilities.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\WebGrease.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.BLL.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.BLL.dll.config
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.DAL.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.DAL.dll.config
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.Utilities.pdb
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\DotNetZip.pdb
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\DotNetZip.xml
@@ -199,6 +201,8 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.WebPages.D
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.WebPages.Razor.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Antlr3.Runtime.pdb
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Newtonsoft.Json.xml
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojResolveAssemblyReference.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojAssemblyReference.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csproj.CoreCompileInputs.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csproj.CopyComplete
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.pdb
