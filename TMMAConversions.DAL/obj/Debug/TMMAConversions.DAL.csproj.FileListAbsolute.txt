@@ -71,7 +71,6 @@ D:\Champ\BBB\TMMAConversions.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerP
 D:\Champ\BBB\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csprojResolveAssemblyReference.cache
 D:\Champ\BBB\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.dll
 D:\Champ\BBB\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.pdb
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\ApplicationInsights.config
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\roslyn\csc.exe
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -88,6 +87,7 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\roslyn\VBCSCompiler.
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\TMMAConversions.DAL.dll.config
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\TMMAConversions.DAL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\TMMAConversions.DAL.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.SqlServer.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\log4net.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.Agent.Intercept.dll
