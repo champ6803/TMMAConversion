@@ -313,6 +313,10 @@ namespace TMMAConversions.UI.Controllers
         {
             try
             {
+                var enUser = Environment.UserName;
+                var userName = !string.IsNullOrEmpty(enUser) ? enUser : Session["Username"].ToString();
+                log.Info("========== Generate By " + userName + " =========");
+
                 DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
                 string path = pathText;
                 string extension = Path.GetExtension(pathText).ToLower();
@@ -430,6 +434,7 @@ namespace TMMAConversions.UI.Controllers
                     List<BOMHeaderModel> newList1 = BOMUtility.CheckBOMAlt(list1);
 
                     string textName = fileName + sheets[i].Replace(" ", "");
+                    log.Info("========== " + textName + " Start =========");
                     string textExtension = ".txt";
                     string textPath = Path.Combine(Server.MapPath("~/Files/CCS/SAP/BOM"), textName);
 

@@ -1201,7 +1201,7 @@ namespace TMMAConversions.BLL.Utilities
                             workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AI (34) (Costing Formular)
                             WorkCenterRoutingItemList.Add(workCenterRoutingItem);
 
-                            log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRouting : Success =========");
+                            log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRouting(" + i + ") : Success =========");
                         }
                         else
                         {
@@ -1220,7 +1220,7 @@ namespace TMMAConversions.BLL.Utilities
                                 workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AI (34) (Costing Formular)
                                 WorkCenterRoutingItemList.Add(workCenterRoutingItem);
 
-                                log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRoutingItem : Success =========");
+                                log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRoutingItem(" +  i + ") : Success =========");
                             }
                             else
                             {
@@ -1502,7 +1502,7 @@ namespace TMMAConversions.BLL.Utilities
                                         BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
                                         BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
                                         // get standard value
-                                        BOMItem.ComponentQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString()), 3);
+                                        BOMItem.StandardValueKey = dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString();
                                         // get component
                                         BOMItem.ActivityNo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[1].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[1].ToString());
                                         BOMItem.OperationNo = dtExcel.Rows[i].ItemArray[2].ToString();
