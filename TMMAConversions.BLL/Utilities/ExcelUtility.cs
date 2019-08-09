@@ -1502,7 +1502,7 @@ namespace TMMAConversions.BLL.Utilities
                                         BOMItem.BOMUsage = dtExcel.Rows[6].ItemArray[j].ToString();
                                         BOMItem.BOMAlt = dtExcel.Rows[7].ItemArray[j].ToString();
                                         // get standard value
-                                        BOMItem.ComponentQuantity = Math.Round(Convert.ToDecimal(dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString()), 3);
+                                        BOMItem.StandardValueKey = dtExcel.Rows[i].ItemArray[j].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[j].ToString();
                                         // get component
                                         BOMItem.ActivityNo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[1].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[1].ToString());
                                         BOMItem.OperationNo = dtExcel.Rows[i].ItemArray[2].ToString();
