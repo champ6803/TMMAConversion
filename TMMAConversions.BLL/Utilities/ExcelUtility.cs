@@ -1171,34 +1171,43 @@ namespace TMMAConversions.BLL.Utilities
                             workCenterRouting.UnitOfMeasurement4 = dtExcel.Rows[i].ItemArray[22].ToString(); //  col S (19) (Group Counter)
                             workCenterRouting.UnitOfMeasurement5 = dtExcel.Rows[i].ItemArray[23].ToString(); //  col S (19) (Group Counter)
                             workCenterRouting.UnitOfMeasurement6 = dtExcel.Rows[i].ItemArray[24].ToString(); //  col S (19) (Group Counter)
-                            workCenterRouting.GroupCounter = dtExcel.Rows[i].ItemArray[25].ToString(); //  col S (19) (Group Counter)
+                            //add more Standard Value 1-6 + CCS Scarp Quantity confirmation
+                            workCenterRouting.StandardValue1 = dtExcel.Rows[i].ItemArray[25].ToString();
+                            workCenterRouting.StandardValue2 = dtExcel.Rows[i].ItemArray[26].ToString();
+                            workCenterRouting.StandardValue3 = dtExcel.Rows[i].ItemArray[27].ToString();
+                            workCenterRouting.StandardValue4 = dtExcel.Rows[i].ItemArray[28].ToString();
+                            workCenterRouting.StandardValue5 = dtExcel.Rows[i].ItemArray[29].ToString();
+                            workCenterRouting.StandardValue6 = dtExcel.Rows[i].ItemArray[30].ToString();
+                            workCenterRouting.CCSScarp = dtExcel.Rows[i].ItemArray[31].ToString();
+                            //old ItemArray start 25
+                            workCenterRouting.GroupCounter = dtExcel.Rows[i].ItemArray[32].ToString(); //  col S (19) (Group Counter)
                             //workCenterRouting.StartDate = DateTime.FromOADate(double.Parse(dtExcel.Rows[i].ItemArray[20].ToString()));
                             //workCenterRouting.EndDate = DateTime.FromOADate(double.Parse(dtExcel.Rows[i].ItemArray[21].ToString()));
                             //workCenterRouting.StartDate = DateTime.ParseExact(dtExcel.Rows[i].ItemArray[26].ToString(), "dd/M/yyyy", usCulture); // col T (20) Start Date
                             //workCenterRouting.EndDate = DateTime.ParseExact(dtExcel.Rows[i].ItemArray[27].ToString(), "dd/M/yyyy", usCulture); // col U (21) Start Date
-                            workCenterRouting.StartDate = validateDate(dtExcel.Rows[i].ItemArray[26].ToString(), "dd/M/yyyy") ? DateTime.ParseExact(dtExcel.Rows[i].ItemArray[26].ToString(), "dd/M/yyyy", usCulture) : DateTime.FromOADate(double.Parse(dtExcel.Rows[i].ItemArray[26].ToString()));
-                            workCenterRouting.EndDate = validateDate(dtExcel.Rows[i].ItemArray[27].ToString(), "dd/M/yyyy") ? DateTime.ParseExact(dtExcel.Rows[i].ItemArray[27].ToString(), "dd/M/yyyy", usCulture) : DateTime.FromOADate(double.Parse(dtExcel.Rows[i].ItemArray[27].ToString()));
-                            workCenterRouting.StartTime = DateTime.ParseExact(dtExcel.Rows[i].ItemArray[28].ToString(), "HH:mm:ss", usCulture); // col T (20) Start Date
-                            workCenterRouting.EndTime = DateTime.ParseExact(dtExcel.Rows[i].ItemArray[29].ToString(), "HH:mm:ss", usCulture); // col U (21) Start Date
-                            workCenterRouting.CapacityUtilization = dtExcel.Rows[i].ItemArray[30].ToString(); //  col W (23) (Operation Base OUM)
-                            workCenterRouting.NoIndCapacities = dtExcel.Rows[i].ItemArray[31].ToString(); //  col W (23) (Operation Base OUM)
-                            workCenterRouting.FactoryCalendarID = dtExcel.Rows[i].ItemArray[32].ToString(); //  col W (23) (Operation Base OUM)
-                            workCenterRouting.CapacityBaseUnit = dtExcel.Rows[i].ItemArray[33].ToString(); //  col W (23) (Operation Base OUM)
-                            workCenterRouting.OperationBaseQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[34].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[34].ToString()); //  col V (22) (Operation Base Q'ty)
-                            workCenterRouting.OperationOUM = dtExcel.Rows[i].ItemArray[35].ToString(); //  col W (23) (Operation Base OUM)
+                            workCenterRouting.StartDate = validateDate(dtExcel.Rows[i].ItemArray[33].ToString(), "dd/M/yyyy") ? DateTime.ParseExact(dtExcel.Rows[i].ItemArray[33].ToString(), "dd/M/yyyy", usCulture) : DateTime.FromOADate(double.Parse(dtExcel.Rows[i].ItemArray[33].ToString()));
+                            workCenterRouting.EndDate = validateDate(dtExcel.Rows[i].ItemArray[34].ToString(), "dd/M/yyyy") ? DateTime.ParseExact(dtExcel.Rows[i].ItemArray[34].ToString(), "dd/M/yyyy", usCulture) : DateTime.FromOADate(double.Parse(dtExcel.Rows[i].ItemArray[34].ToString()));
+                            workCenterRouting.StartTime = DateTime.ParseExact(dtExcel.Rows[i].ItemArray[35].ToString(), "HH:mm:ss", usCulture); // col T (20) Start Date
+                            workCenterRouting.EndTime = DateTime.ParseExact(dtExcel.Rows[i].ItemArray[36].ToString(), "HH:mm:ss", usCulture); // col U (21) Start Date
+                            workCenterRouting.CapacityUtilization = dtExcel.Rows[i].ItemArray[37].ToString(); //  col W (23) (Operation Base OUM)
+                            workCenterRouting.NoIndCapacities = dtExcel.Rows[i].ItemArray[38].ToString(); //  col W (23) (Operation Base OUM)
+                            workCenterRouting.FactoryCalendarID = dtExcel.Rows[i].ItemArray[39].ToString(); //  col W (23) (Operation Base OUM)
+                            workCenterRouting.CapacityBaseUnit = dtExcel.Rows[i].ItemArray[40].ToString(); //  col W (23) (Operation Base OUM)
+                            workCenterRouting.OperationBaseQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[41].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[41].ToString()); //  col V (22) (Operation Base Q'ty)
+                            workCenterRouting.OperationOUM = dtExcel.Rows[i].ItemArray[42].ToString(); //  col W (23) (Operation Base OUM)
                             WorkCenterRoutingList.Add(workCenterRouting);
 
-                            workCenterRoutingItem.ItemFlag = dtExcel.Rows[i].ItemArray[36].ToString(); //  col X (24) (Item Flag)
-                            workCenterRoutingItem.ActivityNo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[37].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[37].ToString()); //  col Y (25) (Activity No)
-                            workCenterRoutingItem.ActivityDescription = dtExcel.Rows[i].ItemArray[38].ToString(); //  col Z (26) (Activity Description)
-                            workCenterRoutingItem.ActivityUnit = dtExcel.Rows[i].ItemArray[39].ToString(); //  col AA (27) (Unit)
-                            workCenterRoutingItem.CostDiverUnit = dtExcel.Rows[i].ItemArray[40].ToString(); //  col AB (28) (Cost Driver Unit)
-                            workCenterRoutingItem.Remark = dtExcel.Rows[i].ItemArray[41].ToString(); //  col AC (29) (Remark)
-                            workCenterRoutingItem.ActivityType = dtExcel.Rows[i].ItemArray[42].ToString(); //  col AD (30) (Activity Type)
+                            workCenterRoutingItem.ItemFlag = dtExcel.Rows[i].ItemArray[43].ToString(); //  col X (24) (Item Flag)
+                            workCenterRoutingItem.ActivityNo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[44].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[44].ToString()); //  col Y (25) (Activity No)
+                            workCenterRoutingItem.ActivityDescription = dtExcel.Rows[i].ItemArray[45].ToString(); //  col Z (26) (Activity Description)
+                            workCenterRoutingItem.ActivityUnit = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AA (27) (Unit)
+                            workCenterRoutingItem.CostDiverUnit = dtExcel.Rows[i].ItemArray[47].ToString(); //  col AB (28) (Cost Driver Unit)
+                            workCenterRoutingItem.Remark = dtExcel.Rows[i].ItemArray[48].ToString(); //  col AC (29) (Remark)
+                            workCenterRoutingItem.ActivityType = dtExcel.Rows[i].ItemArray[49].ToString(); //  col AD (30) (Activity Type)
                                                                                                            // Ativity Description col 31
-                            workCenterRoutingItem.CostElement = dtExcel.Rows[i].ItemArray[44].ToString(); //  col AG (32) (Cost Element)
-                            workCenterRoutingItem.CostElementDescription = dtExcel.Rows[i].ItemArray[45].ToString(); //  col AH (33) (Cost Element Description)
-                            workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AI (34) (Costing Formular)
+                            workCenterRoutingItem.CostElement = dtExcel.Rows[i].ItemArray[51].ToString(); //  col AG (32) (Cost Element)
+                            workCenterRoutingItem.CostElementDescription = dtExcel.Rows[i].ItemArray[52].ToString(); //  col AH (33) (Cost Element Description)
+                            workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[53].ToString(); //  col AI (34) (Costing Formular)
                             WorkCenterRoutingItemList.Add(workCenterRoutingItem);
 
                             log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRouting(" + i + ") : Success =========");
@@ -1207,17 +1216,17 @@ namespace TMMAConversions.BLL.Utilities
                         {
                             if (WorkCenterRoutingList.Count > 0)
                             {
-                                workCenterRoutingItem.ItemFlag = dtExcel.Rows[i].ItemArray[36].ToString(); //  col X (24) (Item Flag)
-                                workCenterRoutingItem.ActivityNo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[37].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[37].ToString()); //  col Y (25) (Activity No)
-                                workCenterRoutingItem.ActivityDescription = dtExcel.Rows[i].ItemArray[38].ToString(); //  col Z (26) (Activity Description)
-                                workCenterRoutingItem.ActivityUnit = dtExcel.Rows[i].ItemArray[39].ToString(); //  col AA (27) (Unit)
-                                workCenterRoutingItem.CostDiverUnit = dtExcel.Rows[i].ItemArray[40].ToString(); //  col AB (28) (Cost Driver Unit)
-                                workCenterRoutingItem.Remark = dtExcel.Rows[i].ItemArray[41].ToString(); //  col AC (29) (Remark)
-                                workCenterRoutingItem.ActivityType = dtExcel.Rows[i].ItemArray[42].ToString(); //  col AD (30) (Activity Type)
+                                workCenterRoutingItem.ItemFlag = dtExcel.Rows[i].ItemArray[43].ToString(); //  col X (24) (Item Flag)
+                                workCenterRoutingItem.ActivityNo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[44].ToString() == "" ? "0" : dtExcel.Rows[i].ItemArray[44].ToString()); //  col Y (25) (Activity No)
+                                workCenterRoutingItem.ActivityDescription = dtExcel.Rows[i].ItemArray[45].ToString(); //  col Z (26) (Activity Description)
+                                workCenterRoutingItem.ActivityUnit = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AA (27) (Unit)
+                                workCenterRoutingItem.CostDiverUnit = dtExcel.Rows[i].ItemArray[47].ToString(); //  col AB (28) (Cost Driver Unit)
+                                workCenterRoutingItem.Remark = dtExcel.Rows[i].ItemArray[48].ToString(); //  col AC (29) (Remark)
+                                workCenterRoutingItem.ActivityType = dtExcel.Rows[i].ItemArray[49].ToString(); //  col AD (30) (Activity Type)
                                                                                                                // Ativity Description col 31
-                                workCenterRoutingItem.CostElement = dtExcel.Rows[i].ItemArray[44].ToString(); //  col AG (32) (Cost Element)
-                                workCenterRoutingItem.CostElementDescription = dtExcel.Rows[i].ItemArray[45].ToString(); //  col AH (33) (Cost Element Description)
-                                workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[46].ToString(); //  col AI (34) (Costing Formular)
+                                workCenterRoutingItem.CostElement = dtExcel.Rows[i].ItemArray[51].ToString(); //  col AG (32) (Cost Element)
+                                workCenterRoutingItem.CostElementDescription = dtExcel.Rows[i].ItemArray[52].ToString(); //  col AH (33) (Cost Element Description)
+                                workCenterRoutingItem.CostingFormular = dtExcel.Rows[i].ItemArray[53].ToString(); //  col AI (34) (Costing Formular)
                                 WorkCenterRoutingItemList.Add(workCenterRoutingItem);
 
                                 log.Info("========== ConvertWorkCenterRoutingExcelToWorkCenterRoutingModel workCenterRoutingItem(" +  i + ") : Success =========");

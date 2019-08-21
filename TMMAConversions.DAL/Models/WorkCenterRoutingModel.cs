@@ -69,6 +69,7 @@ namespace TMMAConversions.DAL.Models
         public string StandardValue6 { get; set; }
         public string StandardValue6OUM { get; set; }
         public string Scarp { get; set; }
+        public string CCSScarp { get; set; }
 
         // optional field
         public string Indicator { get; set; }
