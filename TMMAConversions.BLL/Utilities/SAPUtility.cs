@@ -2387,7 +2387,37 @@ namespace TMMAConversions.BLL.Utilities
                                         fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", p.BaseUnit);
                                         fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", p.ConversionOfOUMN);
                                         fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", p.ConversionOfOUMD);
+                                        //for StandardValue 1-6 
+                                        if (!string.IsNullOrEmpty(p.StandardValue1))
+                                        {
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-VGW01                                                                                                                     \t{0}", p.StandardValue1); // Standard Value 1
+                                        }
+                                        if (!string.IsNullOrEmpty(p.StandardValue2))
+                                        {
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-VGW02                                                                                                                     \t{0}", p.StandardValue2); // Standard Value 2
+                                        }
+                                        if (!string.IsNullOrEmpty(p.StandardValue3))
+                                        {
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-VGW03                                                                                                                     \t{0}", p.StandardValue3); // Standard Value 3
+                                        }
+                                        if (!string.IsNullOrEmpty(p.StandardValue4))
+                                        {
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-VGW04                                                                                                                     \t{0}", p.StandardValue4); // Standard Value 4
+                                        }
+                                        if (!string.IsNullOrEmpty(p.StandardValue5))
+                                        {
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-VGW05                                                                                                                     \t{0}", p.StandardValue5); // Standard Value 5
+                                        }
+                                        if (!string.IsNullOrEmpty(p.StandardValue6))
+                                        {
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-VGW06                                                                                                                     \t{0}", p.StandardValue6); // Standard Value 6
+                                        }
                                         fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", p.Scarp);
+                                        //and CCS Scrap
+                                        if (!string.IsNullOrEmpty(p.CCSScarp))
+                                        {
+                                            fs.WriteLine("                                        \t0000\t \tPLPOD-SLWID                                                                                                                     \t{0}", p.CCSScarp); // CCS Scarp Quantity confirmation
+                                        }
                                         fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
                                         fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BU");
                                         fs.WriteLine("                                        \t0000\t \tRC27X-ENTRY_ACT                                                                                                                     \t{0}", 3); // Fix
@@ -2415,7 +2445,37 @@ namespace TMMAConversions.BLL.Utilities
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", p.BaseUnit);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", p.ConversionOfOUMN);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", p.ConversionOfOUMD);
+                                            //for StandardValue 1-6 
+                                            if (!string.IsNullOrEmpty(p.StandardValue1))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW01                                                                                                                     \t{0}", p.StandardValue1); // Standard Value 1
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue2))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW02                                                                                                                     \t{0}", p.StandardValue2); // Standard Value 2
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue3))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW03                                                                                                                     \t{0}", p.StandardValue3); // Standard Value 3
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue4))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW04                                                                                                                     \t{0}", p.StandardValue4); // Standard Value 4
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue5))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW05                                                                                                                     \t{0}", p.StandardValue5); // Standard Value 5
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue6))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW06                                                                                                                     \t{0}", p.StandardValue6); // Standard Value 6
+                                            }
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", p.Scarp);
+                                            //and CCS Scrap
+                                            if (!string.IsNullOrEmpty(p.CCSScarp))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-SLWID                                                                                                                     \t{0}", p.CCSScarp); // CCS Scarp Quantity confirmation
+                                            }
                                         }
                                         // Next Item
                                         else
@@ -2447,7 +2507,37 @@ namespace TMMAConversions.BLL.Utilities
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-MEINH                                                                                                                         \t{0}", p.BaseUnit);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-UMREZ                                                                                                                         \t{0}", p.ConversionOfOUMN);
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-UMREN                                                                                                                         \t{0}", p.ConversionOfOUMD);
+                                            //for StandardValue 1-6 
+                                            if (!string.IsNullOrEmpty(p.StandardValue1))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW01                                                                                                                     \t{0}", p.StandardValue1); // Standard Value 1
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue2))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW02                                                                                                                     \t{0}", p.StandardValue2); // Standard Value 2
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue3))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW03                                                                                                                     \t{0}", p.StandardValue3); // Standard Value 3
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue4))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW04                                                                                                                     \t{0}", p.StandardValue4); // Standard Value 4
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue5))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW05                                                                                                                     \t{0}", p.StandardValue5); // Standard Value 5
+                                            }
+                                            if (!string.IsNullOrEmpty(p.StandardValue6))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-VGW06                                                                                                                     \t{0}", p.StandardValue6); // Standard Value 6
+                                            }
                                             fs.WriteLine("                                        \t0000\t \tPLPOD-AUFAK                                                                                                                         \t{0}", p.Scarp);
+                                            //and CCS Scrap
+                                            if (!string.IsNullOrEmpty(p.CCSScarp))
+                                            {
+                                                fs.WriteLine("                                        \t0000\t \tPLPOD-SLWID                                                                                                                     \t{0}", p.CCSScarp); // CCS Scarp Quantity confirmation
+                                            }
                                             fs.WriteLine("SAPLCPDI                                \t1400\tX\t                                                                                                                                    \t");
                                             fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=MALO");
                                             fs.WriteLine("                                        \t0000\t \tRC27X-ENTRY_ACT                                                                                                                     \t{0}", countAct); // Fix
