@@ -81,7 +81,7 @@
                 formData.append("RecObjectName", $scope.RecObjectName);
                 formData.append("ValidDate", $scope.ValidDate);
             }
-
+            $('.loading-screen').show(); // show loading
             $http({
                 method: "post",
                 url: "/Monomer/UploadInspectionPlanFile",

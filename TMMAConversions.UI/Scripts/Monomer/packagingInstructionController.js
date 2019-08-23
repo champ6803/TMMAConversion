@@ -60,7 +60,7 @@
     };
 
     $scope.OnUploadPackagingInstructionFile = function () {
-        if ($scope.User && $scope.RecObjectName && $scope.ValidDate) {
+        if ($scope.User && $scope.RecObjectName) {
             var formData = new FormData();
             var totalFiles = document.getElementById("input_upload_file").files.length;
 
@@ -124,7 +124,7 @@
 
     $scope.SetPackagingInstructionFileID = function (packagingInstructionFileID) {
         $scope.PackagingInstructionFileID = packagingInstructionFileID;
-    }
+    };
 
     $scope.OnUploadValidatePackagingInstructionFile = function (files) {
         if (files && $scope.BOMFileID) {
@@ -193,7 +193,75 @@
             type: 'info',
             title: 'Coming soon'
         });
-    }
+    };
+    
+    $scope.OnGenerateCreateTextFile = function (packagingInstructionFileID, fileName, userSAP, pageNo) {
+        if (packagingInstructionFileID, fileName, userSAP, pageNo) {
+            $(".loading-screen").show(); // call loading
+            var source = {
+                'packagingInstructionFileID': packagingInstructionFileID,
+                'fileName': fileName,
+                'userSAP': userSAP,
+                'pageNo': pageNo
+            }
+
+            $http({
+                method: "post",
+                url: "/Monomer/GenerateCreatePackagingInstructionTextFile",
+                headers: { 'Content-Type': 'application/json' },
+                data: JSON.stringify(source)
+            }).then(function Success(response) {
+                if (response.data.Status) {
+                    $scope.BOMFileViewModel = response.data;
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Generated',
+                        allowOutsideClick: false
+                    }).then((result) => {
+                        if (result.value) {
+                            $('.loading-screen').hide();
+                        }
+                    });
+                    // call dowload url
+                    window.location.href = "/Monomer/DownloadCreatePackagingInstructionTextFile?fileName=" + fileName;
+                } else {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: response.data.Message,
+                        allowOutsideClick: false
+                    }).then((result) => {
+                        if (result.value) {
+                            $('.loading-screen').hide();
+                        }
+                    });
+                }
+            }, function Error(response) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error',
+                    text: 'Something went wrong!',
+                    allowOutsideClick: false
+                }).then((result) => {
+                    if (result.value) {
+                        $('.loading-screen').hide();
+                    }
+                });
+            });
+        }
+        else {
+            Swal.fire({
+                type: 'error',
+                title: 'Error',
+                text: "Can not Generate Text File",
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.value) {
+                    $('.loading-screen').hide();
+                }
+            });
+        }
+    };
 });
 
 $(function () {

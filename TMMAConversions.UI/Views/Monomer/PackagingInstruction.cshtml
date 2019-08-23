@@ -121,7 +121,9 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li class="text-center"><a href="~/Monomer/GenerateCreatePackagingInstructionTextFile?packagingInstructionFileID={{ o.PackagingInstructionFileID }}&fileName={{ o.RecObjectName }}&userSAP={{ o.UserSAP }}"><i class="fa fa-file"></i>&nbsp;Text BDC Create</a></li>
+                                        <li class="text-center">
+                                            <a ng-click="OnGenerateCreateTextFile(o.PackagingInstructionFileID, o.RecObjectName, o.UserSAP, PackagingInstructionFileViewModel.Filter.Pagination.Page)" href="javascript:void(0)"><i class="fa fa-file"></i>&nbsp;Text BDC Create</a>                                            
+                                        </li>
                                     </ul>
                                     <label class="btn btn-warning" ng-click="SetPackagingInstructionFileID(o.PackagingInstructionFileID)">
                                         <i class="fa fa-file-upload"></i>&nbsp;Validate @*<input onchange="angular.element(this).scope().OnUploadValidatePackagingInstructionFile(this.files)" style="display:none !important;" type="file">*@
