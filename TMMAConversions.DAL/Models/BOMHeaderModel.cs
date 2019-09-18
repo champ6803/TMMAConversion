@@ -27,7 +27,9 @@ namespace TMMAConversions.DAL.Models
         public string StandardTextKey { get; set; }
         public string LotSizeFrom { get; set; }
         public string LotSizeTo { get; set; }
+        public string IssueStorageLocation { get; set; }
         public string StorageLocation { get; set; }
         public string ProductNo { get; set; }
+        public string AuthorizationGroup { get; set; }
     }
 }

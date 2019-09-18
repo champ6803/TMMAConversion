@@ -316,7 +316,7 @@ namespace TMMAConversions.BLL.Utilities
             string TaskListType = "N";
             string ValidDateTo = "31.12.9999";
             //string IssueStorageLocation = "P001";
-            string ReceivingStorageLocation = "";
+            //string ReceivingStorageLocation = "";
 
             try
             {
@@ -334,6 +334,7 @@ namespace TMMAConversions.BLL.Utilities
 
                         // 1    
                         // generate create bom header
+                        #region generate create bom header / change
                         if (options.Contains("BOM Create Header"))
                         {
                             foreach (var o in bomHeaderList)
@@ -356,6 +357,7 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("SAPLCSDI                                \t0140\tX\t                                                                                                                                    \t");
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=FCBU");
                             }
+                            
                             // 1.1
                             // generate bom change header
                             foreach (var o in bomHeaderList)
@@ -374,13 +376,18 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("                                        \t0000\t \tRC29K-ZTEXT                                                                                                                         \t{0}", o.BOMHeaderText); // BOM Text
                                 fs.WriteLine("                                        \t0000\t \tRC29K-BMENG                                                                                                                         \t{0}", o.BaseQuantity); // Base Quantity
                                 fs.WriteLine("                                        \t0000\t \tRC29K-STLST                                                                                                                         \t{0}", BOMStatus); // BOM Status
+                                if(!string.IsNullOrEmpty(o.AuthorizationGroup))
+                                { 
+                                fs.WriteLine("                                        \t0000\t \tRC29K-STLBE                                                                                                                         \t{0}", o.AuthorizationGroup); // AuthorizationGroup
+                                }
                             }
-
+                            
                             log.Info("========== BOM Create Header Success =========");
                         }
-
+                        #endregion
                         // 2
                         // generate delete bom item
+                        #region generate delete bom item
                         if (options.Contains("BOM Delete Component (All)"))
                         {
                             foreach (var o in bomHeaderList)
@@ -429,9 +436,10 @@ namespace TMMAConversions.BLL.Utilities
 
                             log.Info("========== BOM Delete Component (All) Success =========");
                         }
-
+                        #endregion
                         // 3
                         // generate bom add new line item 
+                        #region generate bom add new line item 
                         if (options.Contains("BOM Add Line Item"))
                         {
                             foreach (var o in bomHeaderList)
@@ -520,9 +528,10 @@ namespace TMMAConversions.BLL.Utilities
 
                             log.Info("========== BOM Add Line Item Success =========");
                         }
-
+                        #endregion
                         // 3.1
                         // generate routing change header
+                        #region generate routing change header
                         if (options.Contains("Change Routing Header"))
                         {
                             foreach (var o in routingHeaderList)
@@ -546,11 +555,12 @@ namespace TMMAConversions.BLL.Utilities
 
                             log.Info("========== Change Routing Header Success =========");
                         }
-
+                        #endregion
 
                         var routingGroupList = routingHeaderList.GroupBy(u => u.RoutingGroup).Select(grp => grp.ToList()).ToList();
                         // 4
                         // generate assign material to routing
+                        #region generate assign material to routing
                         if (options.Contains("Assign material to Routing"))
                         {
                             foreach (var k in routingGroupList)
@@ -607,7 +617,9 @@ namespace TMMAConversions.BLL.Utilities
 
                             log.Info("========== Assign material to Routing Success =========");
                         }
+                        #endregion
 
+                        #region Change Detail Op Routing
                         if (options.Contains("Change Detail Op Routing"))
                         {
                             // check routing null
@@ -711,7 +723,7 @@ namespace TMMAConversions.BLL.Utilities
 
                             log.Info("========== Change Detail Op Routing Success =========");
                         }
-
+                        #endregion
                         // 6
                         // generate delete production version
                         //var bomRoutingList = bomHeaderList.Join
@@ -719,6 +731,7 @@ namespace TMMAConversions.BLL.Utilities
                         //    bom => bom.RoutingGroup,
                         //    routing => routing.RoutingGroup,
                         //    (bom, routing) => routing).ToList();
+                        #region Delete Production version
                         if (options.Contains("Delete Production version"))
                         {
                             foreach (var o in routingHeaderList)
@@ -744,9 +757,10 @@ namespace TMMAConversions.BLL.Utilities
 
                             log.Info("========== Delete Production version Success =========");
                         }
-
+                        #endregion
                         // 7
                         // generate production version
+                        #region  generate production version
                         if (options.Contains("Create Production Version"))
                         {
                             foreach (var o in routingHeaderList)
@@ -778,8 +792,11 @@ namespace TMMAConversions.BLL.Utilities
                                 fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-STLAL                                                                                                                   \t{0}", o.BOMAlt); // BOM Alternative
                                 fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-STLAN                                                                                                                   \t{0}", o.BOMUsage); // BOM Usage
                                 fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-MDV01                                                                                                                   \t{0}", o.ProductionLine); // Production Line
-                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ELPRO                                                                                                                   \t{0}", o.StorageLocation); // Issue Storage Location
-                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ALORT                                                                                                                   \t{0}", ReceivingStorageLocation); // Receiving Storage Location
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ELPRO                                                                                                                   \t{0}", o.IssueStorageLocation); // Issue Storage Location
+                                if(!string.IsNullOrEmpty(o.StorageLocation))
+                                { 
+                                fs.WriteLine("                                        \t0000\t \tMKAL_EXPAND-ALORT                                                                                                                   \t{0}", o.StorageLocation); // Receiving Storage Location
+                                }
                                 fs.WriteLine("SAPMSSY0                                \t0120\tX\t                                                                                                                                    \t");
                                 fs.WriteLine("                                        \t0000\t \tBDC_OKCODE                                                                                                                          \t=BACK");
                                 fs.WriteLine("SAPLCMFV                                \t2000\tX\t                                                                                                                                    \t");
@@ -790,8 +807,9 @@ namespace TMMAConversions.BLL.Utilities
 
                             log.Info("========== Create Production Version Success =========");
                         }
-
+                        #endregion
                         // Uniq Generate
+                        #region Uniq Generate
                         if (options.Contains("BOM Delete Header"))
                         {
                             // generate delete header
@@ -811,7 +829,7 @@ namespace TMMAConversions.BLL.Utilities
 
                             log.Info("========== Create Production Version Success =========");
                         }
-
+                        #endregion
                     } // StreamWriter
 
                     log.Info("========== Convert Success =========");
@@ -2891,6 +2909,10 @@ namespace TMMAConversions.BLL.Utilities
                             fs.WriteLine("                                        	0000	 	RC29K-ZTEXT                                                                                                                         	{0}", o.BOMHeaderText); // BOM Usage
                             fs.WriteLine("                                        	0000	 	RC29K-BMENG                                                                                                                         	{0}", o.BaseQuantity); // Base Quantity
                             fs.WriteLine("                                        	0000	 	RC29K-STLST                                                                                                                         	{0}", BOMStatus); // BOM Status
+                            if(!string.IsNullOrEmpty(o.AuthorizationGroup))
+                            { 
+                            fs.WriteLine("                                        	0000	 	RC29K-STLBE                                                                                                                         	{0}", o.AuthorizationGroup); //AuthorizationGroup
+                            }
                             fs.WriteLine("SAPLCSDI                                	0111	X	                                                                                                                                    	");
                             fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	/00");
                             fs.WriteLine("SAPLCSDI                                	0140	X	                                                                                                                                    	");

@@ -109,3 +109,4 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.Applicatio
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csprojResolveAssemblyReference.cache

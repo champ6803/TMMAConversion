@@ -34,5 +34,6 @@ namespace TMMAConversions.DAL.Models
         public string StandardValueKeyOUM { get; set; }
         public string ConversionOfUOMNumerator { get; set; }
         public string ConversionOfUOMDenominator { get; set; }
+        
     }
 }

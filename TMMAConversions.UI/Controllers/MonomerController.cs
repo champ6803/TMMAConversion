@@ -1557,72 +1557,72 @@ namespace TMMAConversions.UI.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult GenerateBOMTextFile(int bomFileID, string fileName, string userSAP, string validDateText, int pageNo)
-        {
-            try
-            {
-                DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
-                var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/BOM"), "MMABOM.xlsx"); // Get BOM File
-                string extension = ".xlsx";
+        //[HttpPost]
+        //public ActionResult GenerateBOMTextFile(int bomFileID, string fileName, string userSAP, string validDateText, int pageNo)
+        //{
+        //    try
+        //    {
+        //        DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
+        //        var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/BOM"), "MMABOM.xlsx"); // Get BOM File
+        //        string extension = ".xlsx";
 
-                // Grade Level
-                DataTable dtGradeLevel = ExcelUtility.ReadMMBOMGradeLevelExcel(path, extension);
+        //        // Grade Level
+        //        DataTable dtGradeLevel = ExcelUtility.ReadMMBOMGradeLevelExcel(path, extension);
 
-                List<BOMHeaderModel> bomGradeLevelHeaderList = null;
-                List<BOMItemModel> bomGradeLevelItemList = null;
-                ExcelUtility.ConvertMMBOMGradeExcelToMMBOMGradeModel(dtGradeLevel, ref bomGradeLevelHeaderList, ref bomGradeLevelItemList);
+        //        List<BOMHeaderModel> bomGradeLevelHeaderList = null;
+        //        List<BOMItemModel> bomGradeLevelItemList = null;
+        //        ExcelUtility.ConvertMMBOMGradeExcelToMMBOMGradeModel(dtGradeLevel, ref bomGradeLevelHeaderList, ref bomGradeLevelItemList);
 
-                string textBOMGradeLevelName = fileName + "_BOMGradeLevel";
-                string textBOMGradeLevelExtension = ".txt";
-                string textBOMGradeLevelPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textBOMGradeLevelName);
+        //        string textBOMGradeLevelName = fileName + "_BOMGradeLevel";
+        //        string textBOMGradeLevelExtension = ".txt";
+        //        string textBOMGradeLevelPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textBOMGradeLevelName);
 
-                List<BOMHeaderModel> newBomGradeLevelHeaderList = BOMUtility.CheckBOMAlt(bomGradeLevelHeaderList);
+        //        List<BOMHeaderModel> newBomGradeLevelHeaderList = BOMUtility.CheckBOMAlt(bomGradeLevelHeaderList);
 
-                SAPUtility.ConvertToMMBOMTextFile(newBomGradeLevelHeaderList, bomGradeLevelItemList, textBOMGradeLevelPath, textBOMGradeLevelExtension, userSAP, validDate);
+        //        SAPUtility.ConvertToMMBOMTextFile(newBomGradeLevelHeaderList, bomGradeLevelItemList, textBOMGradeLevelPath, textBOMGradeLevelExtension, userSAP, validDate);
 
-                // Pkg Level
-                DataTable dtPkgLevel = ExcelUtility.ReadMMBOMPkgLevelExcel(path, extension);
+        //        // Pkg Level
+        //        DataTable dtPkgLevel = ExcelUtility.ReadMMBOMPkgLevelExcel(path, extension);
 
-                List<BOMHeaderModel> bomPkgLevelHeaderList = null;
-                List<BOMItemModel> bomPkgLevelItemList = null;
-                ExcelUtility.ConvertMMBOMPkgExcelToMMBOMPkgModel(dtGradeLevel, ref bomPkgLevelHeaderList, ref bomPkgLevelItemList);
+        //        List<BOMHeaderModel> bomPkgLevelHeaderList = null;
+        //        List<BOMItemModel> bomPkgLevelItemList = null;
+        //        ExcelUtility.ConvertMMBOMPkgExcelToMMBOMPkgModel(dtGradeLevel, ref bomPkgLevelHeaderList, ref bomPkgLevelItemList);
 
-                string textBOMPkgLevelName = fileName + "_BOMPkgLevel";
-                string textBOMPkgLevelExtension = ".txt";
-                string textBOMPkgLevelPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textBOMPkgLevelName);
+        //        string textBOMPkgLevelName = fileName + "_BOMPkgLevel";
+        //        string textBOMPkgLevelExtension = ".txt";
+        //        string textBOMPkgLevelPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textBOMPkgLevelName);
 
-                List<BOMHeaderModel> newBomPkgLevelHeaderList = BOMUtility.CheckBOMAlt(bomPkgLevelHeaderList);
+        //        List<BOMHeaderModel> newBomPkgLevelHeaderList = BOMUtility.CheckBOMAlt(bomPkgLevelHeaderList);
 
-                SAPUtility.ConvertToMMBOMTextFile(bomPkgLevelHeaderList, bomPkgLevelItemList, textBOMPkgLevelPath, textBOMPkgLevelExtension, userSAP, validDate);
+        //        SAPUtility.ConvertToMMBOMTextFile(bomPkgLevelHeaderList, bomPkgLevelItemList, textBOMPkgLevelPath, textBOMPkgLevelExtension, userSAP, validDate);
 
-                int BOMFileStatus = 3; // Create
+        //        int BOMFileStatus = 3; // Create
 
-                ResponseModel res = core.UpdateStatusBOMFile(bomFileID, BOMFileStatus);
+        //        ResponseModel res = core.UpdateStatusBOMFile(bomFileID, BOMFileStatus);
 
-                if (res.Status) // update status success
-                {
-                    BOMFileFilterModel filter = new BOMFileFilterModel();
-                    filter.ProductsTypeID = 1; // Monomer
-                    filter.Pagination.Page = pageNo;
-                    BOMFileViewModel model = core.GetBOMFileView(filter);
+        //        if (res.Status) // update status success
+        //        {
+        //            BOMFileFilterModel filter = new BOMFileFilterModel();
+        //            filter.ProductsTypeID = 1; // Monomer
+        //            filter.Pagination.Page = pageNo;
+        //            BOMFileViewModel model = core.GetBOMFileView(filter);
 
-                    return Json(model, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(res, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Status = false,
-                    Message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //            return Json(model, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(res, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Status = false,
+        //            Message = ex.Message
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
         [HttpGet]
         public void DownloadBOMTextFile(string fileName)
@@ -1799,70 +1799,70 @@ namespace TMMAConversions.UI.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult GenerateDeleteBOMTextFile(int bomFileID, string fileName, string userSAP, int pageNo)
-        {
-            try
-            {
-                var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/BOM"), "BOM.xlsx");
-                string extension = Path.GetExtension("BOM.xlsx").ToLower();
+        //[HttpPost]
+        //public ActionResult GenerateDeleteBOMTextFile(int bomFileID, string fileName, string userSAP, int pageNo)
+        //{
+        //    try
+        //    {
+        //        var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/BOM"), "BOM.xlsx");
+        //        string extension = Path.GetExtension("BOM.xlsx").ToLower();
 
-                DataTable dtGradeLevel = ExcelUtility.ReadMMBOMGradeLevelExcel(path, extension);
+        //        DataTable dtGradeLevel = ExcelUtility.ReadMMBOMGradeLevelExcel(path, extension);
 
-                List<BOMHeaderModel> bomGradeLevelHeaderList = null;
-                List<BOMItemModel> bomGradeLevelItemList = null;
-                ExcelUtility.ConvertMMBOMGradeExcelToMMBOMGradeModel(dtGradeLevel, ref bomGradeLevelHeaderList, ref bomGradeLevelItemList);
+        //        List<BOMHeaderModel> bomGradeLevelHeaderList = null;
+        //        List<BOMItemModel> bomGradeLevelItemList = null;
+        //        ExcelUtility.ConvertMMBOMGradeExcelToMMBOMGradeModel(dtGradeLevel, ref bomGradeLevelHeaderList, ref bomGradeLevelItemList);
 
-                string textName = fileName + "_BOM_GRADE_DELETE";
-                string textExtension = ".txt";
-                string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
-                string User = userSAP;
+        //        string textName = fileName + "_BOM_GRADE_DELETE";
+        //        string textExtension = ".txt";
+        //        string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textName);
+        //        string User = userSAP;
 
-                List<BOMHeaderModel> gradeList = BOMUtility.CheckBOMAlt(bomGradeLevelHeaderList);
+        //        List<BOMHeaderModel> gradeList = BOMUtility.CheckBOMAlt(bomGradeLevelHeaderList);
 
-                SAPUtility.ConvertMMBOMToDeleteTextFile(gradeList, bomGradeLevelItemList, textPath, textExtension, User);
+        //        SAPUtility.ConvertMMBOMToDeleteTextFile(gradeList, bomGradeLevelItemList, textPath, textExtension, User);
 
-                DataTable dtPkgLevel = ExcelUtility.ReadMMBOMPkgLevelExcel(path, extension);
+        //        DataTable dtPkgLevel = ExcelUtility.ReadMMBOMPkgLevelExcel(path, extension);
 
-                List<BOMHeaderModel> bomPkgLevelHeaderList = null;
-                List<BOMItemModel> bomPkgLevelItemList = null;
-                ExcelUtility.ConvertMMBOMPkgExcelToMMBOMPkgModel(dtPkgLevel, ref bomPkgLevelHeaderList, ref bomPkgLevelItemList);
+        //        List<BOMHeaderModel> bomPkgLevelHeaderList = null;
+        //        List<BOMItemModel> bomPkgLevelItemList = null;
+        //        ExcelUtility.ConvertMMBOMPkgExcelToMMBOMPkgModel(dtPkgLevel, ref bomPkgLevelHeaderList, ref bomPkgLevelItemList);
 
-                string textPkgName = fileName + "_BOM_PKG_DELETE";
-                string textPkgExtension = ".txt";
-                string textPkgPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textPkgName);
-                string UserPkg = userSAP;
+        //        string textPkgName = fileName + "_BOM_PKG_DELETE";
+        //        string textPkgExtension = ".txt";
+        //        string textPkgPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), textPkgName);
+        //        string UserPkg = userSAP;
 
-                List<BOMHeaderModel> pkgList = BOMUtility.CheckBOMAlt(bomPkgLevelHeaderList);
+        //        List<BOMHeaderModel> pkgList = BOMUtility.CheckBOMAlt(bomPkgLevelHeaderList);
 
-                SAPUtility.ConvertMMBOMToDeleteTextFile(pkgList, bomPkgLevelItemList, textPkgPath, textPkgExtension, UserPkg);
+        //        SAPUtility.ConvertMMBOMToDeleteTextFile(pkgList, bomPkgLevelItemList, textPkgPath, textPkgExtension, UserPkg);
 
-                // 4 = status delete
-                int BOMFileStatus = 4; // Delete
-                ResponseModel res = core.UpdateStatusBOMFile(bomFileID, BOMFileStatus);
+        //        // 4 = status delete
+        //        int BOMFileStatus = 4; // Delete
+        //        ResponseModel res = core.UpdateStatusBOMFile(bomFileID, BOMFileStatus);
 
-                if (res.Status)
-                {
-                    BOMFileFilterModel filter = new BOMFileFilterModel();
-                    filter.Pagination.Page = pageNo;
-                    filter.ProductsTypeID = 1; // Monomer
-                    BOMFileViewModel model = core.GetBOMFileView(filter);
-                    return Json(model, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(res, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Status = false,
-                    Message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //        if (res.Status)
+        //        {
+        //            BOMFileFilterModel filter = new BOMFileFilterModel();
+        //            filter.Pagination.Page = pageNo;
+        //            filter.ProductsTypeID = 1; // Monomer
+        //            BOMFileViewModel model = core.GetBOMFileView(filter);
+        //            return Json(model, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(res, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Status = false,
+        //            Message = ex.Message
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
         [HttpGet]
         public void DownloadDeleteBOMTextFile(string fileName)
