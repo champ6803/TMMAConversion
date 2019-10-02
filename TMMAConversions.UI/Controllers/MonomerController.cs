@@ -1864,76 +1864,76 @@ namespace TMMAConversions.UI.Controllers
         //    }
         //}
 
-        [HttpGet]
-        public void DownloadDeleteBOMTextFile(string fileName)
-        {
-            using (ZipFile zip = new ZipFile())
-            {
-                zip.AlternateEncodingUsage = ZipOption.AsNecessary;
-                zip.AddDirectoryByName("BOM_DELETE");
+        //[HttpGet]
+        //public void DownloadDeleteBOMTextFile(string fileName)
+        //{
+        //    using (ZipFile zip = new ZipFile())
+        //    {
+        //        zip.AlternateEncodingUsage = ZipOption.AsNecessary;
+        //        zip.AddDirectoryByName("BOM_DELETE");
 
-                var pathGrade = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), fileName + "_BOM_GRADE_DELETE" + ".txt");
-                var pathPkg = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), fileName + "_BOM_PKG_DELETE" + ".txt");
+        //        var pathGrade = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), fileName + "_BOM_GRADE_DELETE" + ".txt");
+        //        var pathPkg = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/BOM"), fileName + "_BOM_PKG_DELETE" + ".txt");
 
-                zip.AddFile(pathGrade, "BOM_DELETE");
-                zip.AddFile(pathPkg, "BOM_DELETE");
+        //        zip.AddFile(pathGrade, "BOM_DELETE");
+        //        zip.AddFile(pathPkg, "BOM_DELETE");
 
-                Response.Clear();
-                Response.BufferOutput = false;
-                string zipName = String.Format("BOMDeleteFiles_{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"));
-                Response.ContentType = "application/zip";
-                Response.AddHeader("content-disposition", "attachment; filename=" + zipName);
-                zip.Save(Response.OutputStream);
-                Response.End();
-            }
-        }
+        //        Response.Clear();
+        //        Response.BufferOutput = false;
+        //        string zipName = String.Format("BOMDeleteFiles_{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"));
+        //        Response.ContentType = "application/zip";
+        //        Response.AddHeader("content-disposition", "attachment; filename=" + zipName);
+        //        zip.Save(Response.OutputStream);
+        //        Response.End();
+        //    }
+        //}
 
-        [HttpPost]
-        public ActionResult GenerateCreateWorkCenterTextFile(int workCenterFileID, string fileName, string userSAP, int pageNo)
-        {
-            try
-            {
-                var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/WorkCenter"), "WorkCenter.xlsx"); // Get WorkCenter File
-                string extension = Path.GetExtension("WorkCenter.xlsx").ToLower();
+        //[HttpPost]
+        //public ActionResult GenerateCreateWorkCenterTextFile(int workCenterFileID, string fileName, string userSAP, int pageNo)
+        //{
+        //    try
+        //    {
+        //        var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/WorkCenter"), "WorkCenter.xlsx"); // Get WorkCenter File
+        //        string extension = Path.GetExtension("WorkCenter.xlsx").ToLower();
 
-                DataTable dt = ExcelUtility.ReadMMWorkCenterExcel(path, extension);
-                List<WorkCenterModel> workCenterList = null;
-                ExcelUtility.ConvertMMWorkCenterExcelToMMWorkCenterModel(dt, ref workCenterList);
+        //        DataTable dt = ExcelUtility.ReadMMWorkCenterExcel(path, extension);
+        //        List<WorkCenterModel> workCenterList = null;
+        //        ExcelUtility.ConvertMMWorkCenterExcelToMMWorkCenterModel(dt, ref workCenterList);
 
-                int WorkCenterFileStatus = 3; // Create
+        //        int WorkCenterFileStatus = 3; // Create
 
-                ResponseModel res = core.UpdateStatusWorkCenterFile(workCenterFileID, WorkCenterFileStatus);
+        //        ResponseModel res = core.UpdateStatusWorkCenterFile(workCenterFileID, WorkCenterFileStatus);
 
-                if (res.Status)
-                {
-                    WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
-                    filter.ProductsTypeID = 1; // monomer 
-                    filter.Pagination.Page = pageNo;
-                    var model = core.GetWorkCenterFileView(filter);
-                    return Json(model, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(res, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Status = false,
-                    Message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //        if (res.Status)
+        //        {
+        //            WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
+        //            filter.ProductsTypeID = 1; // monomer 
+        //            filter.Pagination.Page = pageNo;
+        //            var model = core.GetWorkCenterFileView(filter);
+        //            return Json(model, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(res, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Status = false,
+        //            Message = ex.Message
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
-        [HttpGet]
-        public ActionResult DownloadCreateWorkCenterTextFile(string fileName)
-        {
-            // download
-            var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenter"), fileName + "_WorkCenter.txt");
-            return File(downloadPath, "text/plain", fileName + "_WorkCenter.txt");
-        }
+        //[HttpGet]
+        //public ActionResult DownloadCreateWorkCenterTextFile(string fileName)
+        //{
+        //    // download
+        //    var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenter"), fileName + "_WorkCenter.txt");
+        //    return File(downloadPath, "text/plain", fileName + "_WorkCenter.txt");
+        //}
 
         [HttpPost]
         public ActionResult GenerateWorkCenterRoutingTextFile(int workCenterRoutingFileID, string fileName, string userSAP, string validDateText, string pathText, int pageNo, List<string> options, List<string> sheets)
@@ -2076,285 +2076,285 @@ namespace TMMAConversions.UI.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult GenerateDeleteWorkCenterTextFile(int workCenterFileID, string fileName, string userSAP, int pageNo)
-        {
-            try
-            {
-                var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/WorkCenter"), "WorkCenter.xlsx"); // Get BOM File
-                string extension = Path.GetExtension("WorkCenter.xlsx").ToLower();
+        //[HttpPost]
+        //public ActionResult GenerateDeleteWorkCenterTextFile(int workCenterFileID, string fileName, string userSAP, int pageNo)
+        //{
+        //    try
+        //    {
+        //        var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/WorkCenter"), "WorkCenter.xlsx"); // Get BOM File
+        //        string extension = Path.GetExtension("WorkCenter.xlsx").ToLower();
 
-                DataTable dt = ExcelUtility.ReadMMWorkCenterExcel(path, extension);
+        //        DataTable dt = ExcelUtility.ReadMMWorkCenterExcel(path, extension);
 
-                List<WorkCenterModel> workCenterList = null;
+        //        List<WorkCenterModel> workCenterList = null;
 
-                ExcelUtility.ConvertMMWorkCenterExcelToMMWorkCenterModel(dt, ref workCenterList);
+        //        ExcelUtility.ConvertMMWorkCenterExcelToMMWorkCenterModel(dt, ref workCenterList);
 
-                string textName = fileName + "_DeleteWorkCenter";
-                string textExtension = ".txt";
-                string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenter"), textName);
+        //        string textName = fileName + "_DeleteWorkCenter";
+        //        string textExtension = ".txt";
+        //        string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenter"), textName);
 
-                SAPUtility.ConvertMMWorkCenterToDeleteTextFile(workCenterList, textPath, textExtension, userSAP);
+        //        SAPUtility.ConvertMMWorkCenterToDeleteTextFile(workCenterList, textPath, textExtension, userSAP);
 
-                int WorkCenterFileStatus = 4; // Delete
+        //        int WorkCenterFileStatus = 4; // Delete
 
-                ResponseModel res = core.UpdateStatusWorkCenterFile(workCenterFileID, WorkCenterFileStatus);
+        //        ResponseModel res = core.UpdateStatusWorkCenterFile(workCenterFileID, WorkCenterFileStatus);
 
-                if (res.Status)
-                {
-                    WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
-                    filter.ProductsTypeID = 1; // monomer
-                    filter.Pagination.Page = pageNo;
-                    var model = core.GetWorkCenterFileView(filter);
-                    return Json(model, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(res, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Status = false,
-                    Message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
+        //        if (res.Status)
+        //        {
+        //            WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
+        //            filter.ProductsTypeID = 1; // monomer
+        //            filter.Pagination.Page = pageNo;
+        //            var model = core.GetWorkCenterFileView(filter);
+        //            return Json(model, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(res, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Status = false,
+        //            Message = ex.Message
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
 
-        }
+        //}
 
-        [HttpGet]
-        public ActionResult DownloadDeleteWorkCenterTextFile(string fileName)
-        {
-            // Download
-            var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenter"), fileName + "_DeleteWorkCenter.txt");
-            return File(downloadPath, "text/plain", fileName + "_DeleteWorkCenter.txt");
-        }
+        //[HttpGet]
+        //public ActionResult DownloadDeleteWorkCenterTextFile(string fileName)
+        //{
+        //    // Download
+        //    var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/WorkCenter"), fileName + "_DeleteWorkCenter.txt");
+        //    return File(downloadPath, "text/plain", fileName + "_DeleteWorkCenter.txt");
+        //}
 
-        [HttpPost]
-        public ActionResult GenerateCreateProductionVersionTextFile(int productionVersionFileID, string fileName, string userSAP, string validDateText, int pageNo)
-        {
-            try
-            {
-                DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
-                var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/ProductionVersion"), "ProductionVersion.xlsx"); // Get ProductionVersion File
-                string extension = Path.GetExtension("ProductionVersion.xlsx").ToLower();
+        //[HttpPost]
+        //public ActionResult GenerateCreateProductionVersionTextFile(int productionVersionFileID, string fileName, string userSAP, string validDateText, int pageNo)
+        //{
+        //    try
+        //    {
+        //        DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
+        //        var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/ProductionVersion"), "ProductionVersion.xlsx"); // Get ProductionVersion File
+        //        string extension = Path.GetExtension("ProductionVersion.xlsx").ToLower();
 
-                DataTable dt = ExcelUtility.ReadMMProductionVersionExcel(path, extension);
+        //        DataTable dt = ExcelUtility.ReadMMProductionVersionExcel(path, extension);
 
-                List<ProductionVersionModel> productionVersionList = null;
-                ExcelUtility.ConvertMMProductionVersionExcelToMMProductionVersionModel(dt, ref productionVersionList);
+        //        List<ProductionVersionModel> productionVersionList = null;
+        //        ExcelUtility.ConvertMMProductionVersionExcelToMMProductionVersionModel(dt, ref productionVersionList);
 
-                string textName = fileName + "_ProductionVersion";
-                string textExtension = ".txt";
-                string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), textName);
+        //        string textName = fileName + "_ProductionVersion";
+        //        string textExtension = ".txt";
+        //        string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), textName);
 
-                SAPUtility.ConvertMMProductionVersionToTextFile(productionVersionList, textPath, textExtension, userSAP, validDate);
+        //        SAPUtility.ConvertMMProductionVersionToTextFile(productionVersionList, textPath, textExtension, userSAP, validDate);
 
-                int ProductionVersionFileStatus = 3; // Text
+        //        int ProductionVersionFileStatus = 3; // Text
 
-                ResponseModel res = core.UpdateStatusProductionVersionFile(productionVersionFileID, ProductionVersionFileStatus);
+        //        ResponseModel res = core.UpdateStatusProductionVersionFile(productionVersionFileID, ProductionVersionFileStatus);
 
-                if (res.Status)
-                {
-                    ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
-                    filter.ProductsTypeID = 1; // monomer
-                    filter.Pagination.Page = pageNo;
-                    var model = core.GetProductionVersionFileView(filter);
-                    return Json(model, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(res, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Status = false,
-                    Message = ex.Message
-                });
-            }
-        }
+        //        if (res.Status)
+        //        {
+        //            ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
+        //            filter.ProductsTypeID = 1; // monomer
+        //            filter.Pagination.Page = pageNo;
+        //            var model = core.GetProductionVersionFileView(filter);
+        //            return Json(model, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(res, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Status = false,
+        //            Message = ex.Message
+        //        });
+        //    }
+        //}
 
-        [HttpGet]
-        public ActionResult DownloadCreateProductionVersionTextFile(string fileName)
-        {
-            // Download
-            var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), fileName + "_ProductionVersion.txt");
-            return File(downloadPath, "text/plain", fileName + "_ProductionVersion.txt");
-        }
+        //[HttpGet]
+        //public ActionResult DownloadCreateProductionVersionTextFile(string fileName)
+        //{
+        //    // Download
+        //    var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), fileName + "_ProductionVersion.txt");
+        //    return File(downloadPath, "text/plain", fileName + "_ProductionVersion.txt");
+        //}
 
-        [HttpPost]
-        public ActionResult GenerateChangeProductionVersionTextFile(int productionVersionFileID, string fileName, string userSAP, string validDateText, int pageNo)
-        {
-            try
-            {
-                DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
-                var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/ProductionVersion"), "ProductionVersion.xlsx"); // Get ProductionVersion File
-                string extension = Path.GetExtension("ProductionVersion.xlsx").ToLower();
+        //[HttpPost]
+        //public ActionResult GenerateChangeProductionVersionTextFile(int productionVersionFileID, string fileName, string userSAP, string validDateText, int pageNo)
+        //{
+        //    try
+        //    {
+        //        DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
+        //        var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/ProductionVersion"), "ProductionVersion.xlsx"); // Get ProductionVersion File
+        //        string extension = Path.GetExtension("ProductionVersion.xlsx").ToLower();
 
-                DataTable dt = ExcelUtility.ReadMMProductionVersionExcel(path, extension);
+        //        DataTable dt = ExcelUtility.ReadMMProductionVersionExcel(path, extension);
 
-                List<ProductionVersionModel> productionVersionList = null;
-                ExcelUtility.ConvertMMProductionVersionExcelToMMProductionVersionModel(dt, ref productionVersionList);
+        //        List<ProductionVersionModel> productionVersionList = null;
+        //        ExcelUtility.ConvertMMProductionVersionExcelToMMProductionVersionModel(dt, ref productionVersionList);
 
-                string textName = fileName + "_ChangeProductionVersion";
-                string textExtension = ".txt";
-                string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), textName);
+        //        string textName = fileName + "_ChangeProductionVersion";
+        //        string textExtension = ".txt";
+        //        string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), textName);
 
-                SAPUtility.ConvertMMProductionVersionToChangeTextFile(productionVersionList, textPath, textExtension, userSAP, validDate);
+        //        SAPUtility.ConvertMMProductionVersionToChangeTextFile(productionVersionList, textPath, textExtension, userSAP, validDate);
 
-                int ProductionVersionFileStatus = 5; // Change
+        //        int ProductionVersionFileStatus = 5; // Change
 
-                ResponseModel res = core.UpdateStatusProductionVersionFile(productionVersionFileID, ProductionVersionFileStatus);
+        //        ResponseModel res = core.UpdateStatusProductionVersionFile(productionVersionFileID, ProductionVersionFileStatus);
 
-                if (res.Status)
-                {
-                    ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
-                    filter.ProductsTypeID = 1;
-                    filter.Pagination.Page = pageNo;
-                    var model = core.GetProductionVersionFileView(filter);
-                    return Json(model, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(res, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Status = false,
-                    Message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //        if (res.Status)
+        //        {
+        //            ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
+        //            filter.ProductsTypeID = 1;
+        //            filter.Pagination.Page = pageNo;
+        //            var model = core.GetProductionVersionFileView(filter);
+        //            return Json(model, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(res, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Status = false,
+        //            Message = ex.Message
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
-        [HttpGet]
-        public ActionResult DownloadChangeProductionVersionTextFile(string fileName)
-        {
-            // Download
-            var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), fileName + "_ProductionVersion.txt");
-            return File(downloadPath, "text/plain", fileName + "_ProductionVersion.txt");
-        }
+        //[HttpGet]
+        //public ActionResult DownloadChangeProductionVersionTextFile(string fileName)
+        //{
+        //    // Download
+        //    var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), fileName + "_ProductionVersion.txt");
+        //    return File(downloadPath, "text/plain", fileName + "_ProductionVersion.txt");
+        //}
 
-        [HttpPost]
-        public ActionResult GenerateDeleteProductionVersionTextFile(int productionVersionFileID, string fileName, string userSAP, string validDateText, int pageNo)
-        {
-            try
-            {
-                DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
-                var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/ProductionVersion"), "ProductionVersion.xlsx"); // Get ProductionVersion File
-                string extension = Path.GetExtension("ProductionVersion.xlsx").ToLower();
+        //[HttpPost]
+        //public ActionResult GenerateDeleteProductionVersionTextFile(int productionVersionFileID, string fileName, string userSAP, string validDateText, int pageNo)
+        //{
+        //    try
+        //    {
+        //        DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
+        //        var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/ProductionVersion"), "ProductionVersion.xlsx"); // Get ProductionVersion File
+        //        string extension = Path.GetExtension("ProductionVersion.xlsx").ToLower();
 
-                DataTable dt = ExcelUtility.ReadMMProductionVersionExcel(path, extension);
+        //        DataTable dt = ExcelUtility.ReadMMProductionVersionExcel(path, extension);
 
-                List<ProductionVersionModel> productionVersionList = null;
-                ExcelUtility.ConvertMMProductionVersionExcelToMMProductionVersionModel(dt, ref productionVersionList);
+        //        List<ProductionVersionModel> productionVersionList = null;
+        //        ExcelUtility.ConvertMMProductionVersionExcelToMMProductionVersionModel(dt, ref productionVersionList);
 
-                string textName = fileName + "_DeleteProductionVersion";
-                string textExtension = ".txt";
-                string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), textName);
+        //        string textName = fileName + "_DeleteProductionVersion";
+        //        string textExtension = ".txt";
+        //        string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), textName);
 
-                SAPUtility.ConvertMMProductionVersionToDeleteTextFile(productionVersionList, textPath, textExtension, userSAP, validDate);
+        //        SAPUtility.ConvertMMProductionVersionToDeleteTextFile(productionVersionList, textPath, textExtension, userSAP, validDate);
 
-                int ProductionVersionFileStatus = 4; // Delete
+        //        int ProductionVersionFileStatus = 4; // Delete
 
-                ResponseModel res = core.UpdateStatusProductionVersionFile(productionVersionFileID, ProductionVersionFileStatus);
+        //        ResponseModel res = core.UpdateStatusProductionVersionFile(productionVersionFileID, ProductionVersionFileStatus);
 
-                if (res.Status)
-                {
-                    ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
-                    filter.ProductsTypeID = 1; //  monomer
-                    filter.Pagination.Page = pageNo;
-                    var model = core.GetProductionVersionFileView(filter);
+        //        if (res.Status)
+        //        {
+        //            ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
+        //            filter.ProductsTypeID = 1; //  monomer
+        //            filter.Pagination.Page = pageNo;
+        //            var model = core.GetProductionVersionFileView(filter);
 
-                    return Json(model, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(res, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Status = false,
-                    Message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //            return Json(model, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(res, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Status = false,
+        //            Message = ex.Message
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
-        [HttpGet]
-        public ActionResult DownloadDeleteProductionVersionTextFile(string fileName)
-        {
-            // Download
-            var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), fileName + "_DeleteProductionVersion.txt");
-            return File(downloadPath, "text/plain", fileName + "_DeleteProductionVersion.txt");
-        }
+        //[HttpGet]
+        //public ActionResult DownloadDeleteProductionVersionTextFile(string fileName)
+        //{
+        //    // Download
+        //    var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/ProductionVersion"), fileName + "_DeleteProductionVersion.txt");
+        //    return File(downloadPath, "text/plain", fileName + "_DeleteProductionVersion.txt");
+        //}
 
-        [HttpPost]
-        public ActionResult GenerateCreateRoutingTextFile(int routingFileID, string fileName, string userSAP, string validDateText, int pageNo)
-        {
-            try
-            {
-                DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
-                var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/Routing"), "Routing.xlsx"); // Get Routing File
-                string extension = Path.GetExtension("Routing.xlsx").ToLower();
+        //[HttpPost]
+        //public ActionResult GenerateCreateRoutingTextFile(int routingFileID, string fileName, string userSAP, string validDateText, int pageNo)
+        //{
+        //    try
+        //    {
+        //        DateTime validDate = DateTime.ParseExact(validDateText, "dd/MM/yyyy", usCulture);
+        //        var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/Routing"), "Routing.xlsx"); // Get Routing File
+        //        string extension = Path.GetExtension("Routing.xlsx").ToLower();
 
-                // Routing Excel
-                DataTable dt = ExcelUtility.ReadMMRoutingExcel(path, extension);
+        //        // Routing Excel
+        //        DataTable dt = ExcelUtility.ReadMMRoutingExcel(path, extension);
 
-                List<RoutingHeaderModel> routingHeaderList = null;
-                List<RoutingItemModel> routingItemList = null;
-                ExcelUtility.ConvertMMRoutingExcelToMMRoutingModel(dt, ref routingHeaderList, ref routingItemList);
+        //        List<RoutingHeaderModel> routingHeaderList = null;
+        //        List<RoutingItemModel> routingItemList = null;
+        //        ExcelUtility.ConvertMMRoutingExcelToMMRoutingModel(dt, ref routingHeaderList, ref routingItemList);
 
-                string textName = fileName + "_Routing";
-                string textExtension = ".txt";
-                string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/Routing"), textName);
+        //        string textName = fileName + "_Routing";
+        //        string textExtension = ".txt";
+        //        string textPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/Routing"), textName);
 
-                SAPUtility.ConvertMMRoutingToTextFile(routingHeaderList, routingItemList, textPath, textExtension, userSAP, validDate);
+        //        SAPUtility.ConvertMMRoutingToTextFile(routingHeaderList, routingItemList, textPath, textExtension, userSAP, validDate);
 
-                int RoutingFileStatus = 3; // Create
+        //        int RoutingFileStatus = 3; // Create
 
-                ResponseModel res = core.UpdateStatusRoutingFile(routingFileID, RoutingFileStatus);
+        //        ResponseModel res = core.UpdateStatusRoutingFile(routingFileID, RoutingFileStatus);
 
-                if (res.Status)
-                {
-                    RoutingFileFilterModel filter = new RoutingFileFilterModel();
-                    filter.Pagination.Page = pageNo;
-                    filter.ProductsTypeID = 1; // monomer
-                    var model = core.GetRoutingFileView(filter);
+        //        if (res.Status)
+        //        {
+        //            RoutingFileFilterModel filter = new RoutingFileFilterModel();
+        //            filter.Pagination.Page = pageNo;
+        //            filter.ProductsTypeID = 1; // monomer
+        //            var model = core.GetRoutingFileView(filter);
 
-                    return Json(model, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(res, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Status = false,
-                    Message = ex.Message
-                });
-            }
-        }
+        //            return Json(model, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(res, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Status = false,
+        //            Message = ex.Message
+        //        });
+        //    }
+        //}
 
-        [HttpGet]
-        public ActionResult DownloadCreateRoutingTextFile(string fileName)
-        {
-            // Download
-            var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/Routing"), fileName + "_Routing.txt");
-            return File(downloadPath, "text/plain", fileName + "_Routing.txt");
-        }
+        //[HttpGet]
+        //public ActionResult DownloadCreateRoutingTextFile(string fileName)
+        //{
+        //    // Download
+        //    var downloadPath = Path.Combine(Server.MapPath("~/Files/Monomer/SAP/Routing"), fileName + "_Routing.txt");
+        //    return File(downloadPath, "text/plain", fileName + "_Routing.txt");
+        //}
 
         [HttpPost]
         public ActionResult GenerateCreatePackagingInstructionTextFile(int packagingInstructionFileID, string fileName, string userSAP, int pageNo)
@@ -2481,11 +2481,11 @@ namespace TMMAConversions.UI.Controllers
             return File(downloadPath, "text/plain", fileName + "InspectionPlan.txt");
         }
 
-        [HttpGet]
-        public ActionResult DownloadRoutingTextFile(int version)
-        {
-            var path = Path.Combine(Server.MapPath("~/Files/Monomer/SAP"), "TMMA_ROUTING_TEXT_SAP_PP" + version + ".txt");
-            return File(path, "text/plain", "TMMA_ROUTING_TEXT_SAP_PP" + version + ".txt");
-        }
+        //[HttpGet]
+        //public ActionResult DownloadRoutingTextFile(int version)
+        //{
+        //    var path = Path.Combine(Server.MapPath("~/Files/Monomer/SAP"), "TMMA_ROUTING_TEXT_SAP_PP" + version + ".txt");
+        //    return File(path, "text/plain", "TMMA_ROUTING_TEXT_SAP_PP" + version + ".txt");
+        //}
     }
 }

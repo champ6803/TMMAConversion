@@ -959,84 +959,84 @@ namespace TMMAConversions.BLL.Utilities
             }
         }
 
-        public static void ConvertMMRoutingExcelToMMRoutingModel(DataTable dtExcel, ref List<RoutingHeaderModel> routingHeaderList, ref List<RoutingItemModel> routingItemList)
-        {
-            try
-            {
-                if (dtExcel != null)
-                {
-                    int rowCount = dtExcel.Rows.Count;
-                    int colCount = dtExcel.Columns.Count;
+        //public static void ConvertMMRoutingExcelToMMRoutingModel(DataTable dtExcel, ref List<RoutingHeaderModel> routingHeaderList, ref List<RoutingItemModel> routingItemList)
+        //{
+        //    try
+        //    {
+        //        if (dtExcel != null)
+        //        {
+        //            int rowCount = dtExcel.Rows.Count;
+        //            int colCount = dtExcel.Columns.Count;
 
-                    routingHeaderList = new List<RoutingHeaderModel>();
-                    routingItemList = new List<RoutingItemModel>();
+        //            routingHeaderList = new List<RoutingHeaderModel>();
+        //            routingItemList = new List<RoutingItemModel>();
 
-                    for (int i = 1; i < rowCount; i++)
-                    {
-                        // Create Routing Header
-                        // Column A - K
-                        if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[0].ToString()) && !string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[0].ToString())) // Material Code not null
-                        {
-                            RoutingHeaderModel routingHeader = new RoutingHeaderModel();
-                            routingHeader.MaterialCode = dtExcel.Rows[i].ItemArray[0].ToString(); // col A (1) (Material Code)
-                            routingHeader.MaterialDescription = dtExcel.Rows[i].ItemArray[1].ToString(); // col B (2) (Material Description)
-                            routingHeader.Plant = dtExcel.Rows[i].ItemArray[2].ToString(); // col C (3) (Plant)
-                            routingHeader.RoutingGroup = dtExcel.Rows[i].ItemArray[3].ToString(); // col D (4) (Routing Group)
-                            routingHeader.GroupCounter = dtExcel.Rows[i].ItemArray[4].ToString(); // col F (5) (Group Counter)
-                            routingHeader.RoutingDescription = dtExcel.Rows[i].ItemArray[5].ToString(); // col G (6) (Routing Description)
-                            routingHeader.Usage = dtExcel.Rows[i].ItemArray[6].ToString(); // col H (7) (Usage)
-                            routingHeader.OverAllStatus = dtExcel.Rows[i].ItemArray[7].ToString(); // col I (8) (Overal all status)
-                            routingHeader.LotSizeFrom = Convert.ToInt32(dtExcel.Rows[i].ItemArray[8].ToString()); // col J (9) (Lot size from)
-                            routingHeader.LotSizeTo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[9].ToString()); // col K (10) (Lot size to)
-                            routingHeader.BaseUnit = dtExcel.Rows[i].ItemArray[10].ToString(); // col L (11) (Base Unit)
-                            routingHeaderList.Add(routingHeader);
-                        }
+        //            for (int i = 1; i < rowCount; i++)
+        //            {
+        //                // Create Routing Header
+        //                // Column A - K
+        //                if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[0].ToString()) && !string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[0].ToString())) // Material Code not null
+        //                {
+        //                    RoutingHeaderModel routingHeader = new RoutingHeaderModel();
+        //                    routingHeader.MaterialCode = dtExcel.Rows[i].ItemArray[0].ToString(); // col A (1) (Material Code)
+        //                    routingHeader.MaterialDescription = dtExcel.Rows[i].ItemArray[1].ToString(); // col B (2) (Material Description)
+        //                    routingHeader.Plant = dtExcel.Rows[i].ItemArray[2].ToString(); // col C (3) (Plant)
+        //                    routingHeader.RoutingGroup = dtExcel.Rows[i].ItemArray[3].ToString(); // col D (4) (Routing Group)
+        //                    routingHeader.GroupCounter = dtExcel.Rows[i].ItemArray[4].ToString(); // col F (5) (Group Counter)
+        //                    routingHeader.RoutingDescription = dtExcel.Rows[i].ItemArray[5].ToString(); // col G (6) (Routing Description)
+        //                    routingHeader.Usage = dtExcel.Rows[i].ItemArray[6].ToString(); // col H (7) (Usage)
+        //                    routingHeader.OverAllStatus = dtExcel.Rows[i].ItemArray[7].ToString(); // col I (8) (Overal all status)
+        //                    routingHeader.LotSizeFrom = Convert.ToInt32(dtExcel.Rows[i].ItemArray[8].ToString()); // col J (9) (Lot size from)
+        //                    routingHeader.LotSizeTo = Convert.ToInt32(dtExcel.Rows[i].ItemArray[9].ToString()); // col K (10) (Lot size to)
+        //                    routingHeader.BaseUnit = dtExcel.Rows[i].ItemArray[10].ToString(); // col L (11) (Base Unit)
+        //                    routingHeaderList.Add(routingHeader);
+        //                }
 
-                        // Create Routing Item
-                        // Column M - AK (11 - 35)
-                        if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[11].ToString()) && !string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[35].ToString())) // Work Center not null
-                        {
-                            RoutingHeaderModel lastHeader = routingHeaderList.Last(); // alway get last header
-                            RoutingItemModel routingItem = new RoutingItemModel();
-                            routingItem.MaterialCode = lastHeader.MaterialCode;
-                            routingItem.Plant = lastHeader.Plant;
+        //                // Create Routing Item
+        //                // Column M - AK (11 - 35)
+        //                if (!string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[11].ToString()) && !string.IsNullOrEmpty(dtExcel.Rows[i].ItemArray[35].ToString())) // Work Center not null
+        //                {
+        //                    RoutingHeaderModel lastHeader = routingHeaderList.Last(); // alway get last header
+        //                    RoutingItemModel routingItem = new RoutingItemModel();
+        //                    routingItem.MaterialCode = lastHeader.MaterialCode;
+        //                    routingItem.Plant = lastHeader.Plant;
 
-                            routingItem.WorkCenter = dtExcel.Rows[i].ItemArray[11].ToString(); // col M (12) (Work Center)
-                            routingItem.StandardTextKey = dtExcel.Rows[i].ItemArray[12].ToString(); // col N (13) (Standard Text Key)
-                            routingItem.OperationDecription = dtExcel.Rows[i].ItemArray[13].ToString(); // col O (14) (Operation Decription)
-                            routingItem.OperationBaseQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[14].ToString()); // col P (15) (Operation Base Quantity)
-                            routingItem.OperationOUM = dtExcel.Rows[i].ItemArray[15].ToString(); // col Q (16) (Operation OUM)
-                            routingItem.ConversionOfOUMN = dtExcel.Rows[i].ItemArray[16].ToString(); // col R (17) (Routing Description)
-                            routingItem.ConversionOfOUMD = dtExcel.Rows[i].ItemArray[17].ToString(); // col S (18) (Numerator for Converting Routing and Operation UoM)
-                            routingItem.ActivityType1 = dtExcel.Rows[i].ItemArray[18].ToString(); // col T (19) (Activity 1)
-                            routingItem.StandardValue1 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[19].ToString()); // col U (20) (Activity Value 1)
-                            routingItem.StandardValue1OUM = dtExcel.Rows[i].ItemArray[20].ToString(); // col V (21) (Activity Unit 1)
-                            routingItem.ActivityType2 = dtExcel.Rows[i].ItemArray[21].ToString(); // col W (22) (Activity 2)
-                            routingItem.StandardValue2 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[22].ToString()); // col X (23) (Ativity Value 2)
-                            routingItem.StandardValue2OUM = dtExcel.Rows[i].ItemArray[23].ToString(); // col Y (24) (Activity Unit 2)
-                            routingItem.ActivityType3 = dtExcel.Rows[i].ItemArray[24].ToString(); // col Z (25) (Activity 3)
-                            routingItem.StandardValue3 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[25].ToString()); // col AA (26) (Activity Value 3)
-                            routingItem.StandardValue3OUM = dtExcel.Rows[i].ItemArray[26].ToString(); // col AB (27) (Activity Unit 3)
-                            routingItem.ActivityType4 = dtExcel.Rows[i].ItemArray[27].ToString(); // col AC (28) (Activity 4)
-                            routingItem.StandardValue4 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[28].ToString()); // col AD (29) (Activity Value 4)
-                            routingItem.StandardValue4OUM = dtExcel.Rows[i].ItemArray[29].ToString(); // col AE (30) (Activity Unit 4)
-                            routingItem.ActivityType5 = dtExcel.Rows[i].ItemArray[30].ToString(); // col AF (31) (Activity 5)
-                            routingItem.StandardValue5 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[31].ToString()); // col AG (32) (Activity Value 5)
-                            routingItem.StandardValue5OUM = dtExcel.Rows[i].ItemArray[32].ToString(); // col AH (33) (Activity Unit 5)
-                            routingItem.ActivityType6 = dtExcel.Rows[i].ItemArray[33].ToString(); // col AI (34) (Activity 6)
-                            routingItem.StandardValue6 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[34].ToString()); // col AJ (35) (Activity Value 6)
-                            routingItem.StandardValue6OUM = dtExcel.Rows[i].ItemArray[35].ToString(); // col AK (36) (Activity Unit 6)
-                            routingItemList.Add(routingItem);
-                        }
+        //                    routingItem.WorkCenter = dtExcel.Rows[i].ItemArray[11].ToString(); // col M (12) (Work Center)
+        //                    routingItem.StandardTextKey = dtExcel.Rows[i].ItemArray[12].ToString(); // col N (13) (Standard Text Key)
+        //                    routingItem.OperationDecription = dtExcel.Rows[i].ItemArray[13].ToString(); // col O (14) (Operation Decription)
+        //                    routingItem.OperationBaseQuantity = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[14].ToString()); // col P (15) (Operation Base Quantity)
+        //                    routingItem.OperationOUM = dtExcel.Rows[i].ItemArray[15].ToString(); // col Q (16) (Operation OUM)
+        //                    routingItem.ConversionOfOUMN = dtExcel.Rows[i].ItemArray[16].ToString(); // col R (17) (Routing Description)
+        //                    routingItem.ConversionOfOUMD = dtExcel.Rows[i].ItemArray[17].ToString(); // col S (18) (Numerator for Converting Routing and Operation UoM)
+        //                    routingItem.ActivityType1 = dtExcel.Rows[i].ItemArray[18].ToString(); // col T (19) (Activity 1)
+        //                    routingItem.StandardValue1 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[19].ToString()); // col U (20) (Activity Value 1)
+        //                    routingItem.StandardValue1OUM = dtExcel.Rows[i].ItemArray[20].ToString(); // col V (21) (Activity Unit 1)
+        //                    routingItem.ActivityType2 = dtExcel.Rows[i].ItemArray[21].ToString(); // col W (22) (Activity 2)
+        //                    routingItem.StandardValue2 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[22].ToString()); // col X (23) (Ativity Value 2)
+        //                    routingItem.StandardValue2OUM = dtExcel.Rows[i].ItemArray[23].ToString(); // col Y (24) (Activity Unit 2)
+        //                    routingItem.ActivityType3 = dtExcel.Rows[i].ItemArray[24].ToString(); // col Z (25) (Activity 3)
+        //                    routingItem.StandardValue3 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[25].ToString()); // col AA (26) (Activity Value 3)
+        //                    routingItem.StandardValue3OUM = dtExcel.Rows[i].ItemArray[26].ToString(); // col AB (27) (Activity Unit 3)
+        //                    routingItem.ActivityType4 = dtExcel.Rows[i].ItemArray[27].ToString(); // col AC (28) (Activity 4)
+        //                    routingItem.StandardValue4 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[28].ToString()); // col AD (29) (Activity Value 4)
+        //                    routingItem.StandardValue4OUM = dtExcel.Rows[i].ItemArray[29].ToString(); // col AE (30) (Activity Unit 4)
+        //                    routingItem.ActivityType5 = dtExcel.Rows[i].ItemArray[30].ToString(); // col AF (31) (Activity 5)
+        //                    routingItem.StandardValue5 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[31].ToString()); // col AG (32) (Activity Value 5)
+        //                    routingItem.StandardValue5OUM = dtExcel.Rows[i].ItemArray[32].ToString(); // col AH (33) (Activity Unit 5)
+        //                    routingItem.ActivityType6 = dtExcel.Rows[i].ItemArray[33].ToString(); // col AI (34) (Activity 6)
+        //                    routingItem.StandardValue6 = Convert.ToDecimal(dtExcel.Rows[i].ItemArray[34].ToString()); // col AJ (35) (Activity Value 6)
+        //                    routingItem.StandardValue6OUM = dtExcel.Rows[i].ItemArray[35].ToString(); // col AK (36) (Activity Unit 6)
+        //                    routingItemList.Add(routingItem);
+        //                }
 
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public static void ConvertMMInspectionPlanExcelToMMInspectionPlanModel(DataTable dtExcel, ref List<InspectionPlanHeaderModel> inspectionPlanHeaderList, ref List<InspectionPlanItemModel> inspectionPlanItemList)
         {
