@@ -35,7 +35,7 @@ namespace TMMAConversions.UI.Controllers
             BOMFileFilterModel filter = new BOMFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
             filter.Order = "CreatedDate";
-            filter.Sort = "asc";
+            filter.Sort = "desc";
             BOMFileViewModel model = core.GetBOMFileView(filter);
 
             ViewData["BOMFileViewModel"] = model;
@@ -50,7 +50,7 @@ namespace TMMAConversions.UI.Controllers
             WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
             filter.Order = "CreatedDate";
-            filter.Sort = "asc";
+            filter.Sort = "desc";
             WorkCenterFileViewModel model = core.GetWorkCenterFileView(filter);
 
             ViewData["WorkCenterFileViewModel"] = model;
@@ -65,7 +65,7 @@ namespace TMMAConversions.UI.Controllers
             WorkCenterRoutingFileFilterModel filter = new WorkCenterRoutingFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
             filter.Order = "CreatedDate";
-            filter.Sort = "asc";
+            filter.Sort = "desc";
             WorkCenterRoutingFileViewModel model = core.GetWorkCenterRoutingFileView(filter);
 
             string[] sheets =
@@ -176,6 +176,8 @@ namespace TMMAConversions.UI.Controllers
         {
             InspectionPlanFileFilterModel filter = new InspectionPlanFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
+            filter.Order = "CreatedDate";
+            filter.Sort = "desc";
 
             InspectionPlanFileViewModel model = core.GetInspectionPlanFileView(filter);
 
@@ -190,6 +192,8 @@ namespace TMMAConversions.UI.Controllers
         {
             PackagingInstructionFileFilterModel filter = new PackagingInstructionFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
+            filter.Order = "CreatedDate";
+            filter.Sort = "desc";
 
             PackagingInstructionFileViewModel model = core.GetPackagingInstructionFileView(filter);
 

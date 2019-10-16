@@ -33,7 +33,7 @@ namespace TMMAConversions.UI.Controllers
             BOMFileFilterModel filter = new BOMFileFilterModel();
             filter.ProductsTypeID = 2; // ccs products
             filter.Order = "CreatedDate";
-            filter.Sort = "asc";
+            filter.Sort = "desc";
 
             BOMFileViewModel model = core.GetBOMFileView(filter);
 

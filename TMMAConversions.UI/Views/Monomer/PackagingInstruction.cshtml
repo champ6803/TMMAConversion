@@ -115,7 +115,7 @@
                                 {{o.CreatedDate.slice(6, -2) | date: 'dd-MM-yyyy'}}
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                                <div ng-if="$last && (PackagingInstructionFileViewModel.Filter.Pagination.Page == PackagingInstructionFileViewModel.Filter.Pagination.EndPage)" class="dropdown">
+                                <div ng-if="(o.PackagingInstructionFileVersion == PackagingInstructionFileViewModel.Filter.LastPackagingInstructionFileVersion)" class="dropdown">
                                     <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <i class="fa fa-file-download"></i>&nbsp;Generate
                                         <span class="caret"></span>
@@ -129,11 +129,11 @@
                                         <i class="fa fa-file-upload"></i>&nbsp;Validate @*<input onchange="angular.element(this).scope().OnUploadValidatePackagingInstructionFile(this.files)" style="display:none !important;" type="file">*@
                                     </label>
                                 </div>
-                                <button ng-if="!($last && (PackagingInstructionFileViewModel.Filter.Pagination.Page == PackagingInstructionFileViewModel.Filter.Pagination.EndPage))" class="btn btn-success disabled" type="button">
+                                <button ng-if="!(o.PackagingInstructionFileVersion == PackagingInstructionFileViewModel.Filter.LastPackagingInstructionFileVersion)" class="btn btn-success disabled" type="button">
                                     <i class="fa fa-file-download"></i>&nbsp;Generate
                                     <span class="caret"></span>
                                 </button>
-                                <label ng-if="!($last && (PackagingInstructionFileViewModel.Filter.Pagination.Page == PackagingInstructionFileViewModel.Filter.Pagination.EndPage))" class="btn btn-warning disabled">
+                                <label ng-if="!(o.PackagingInstructionFileVersion == PackagingInstructionFileViewModel.Filter.LastPackagingInstructionFileVersion)" class="btn btn-warning disabled">
                                     <i class="fa fa-file-upload"></i>&nbsp;Validate
                                 </label>
                             </div>
