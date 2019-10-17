@@ -350,6 +350,7 @@ namespace TMMAConversions.UI.Controllers
 
                                     BOMFileFilterModel filter = new BOMFileFilterModel();
                                     filter.ProductsTypeID = 1; // Monomer
+                                    filter.Sort = "desc";
                                     BOMFileViewModel model = core.GetBOMFileView(filter);
 
                                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -517,6 +518,7 @@ namespace TMMAConversions.UI.Controllers
 
                                     WorkCenterRoutingFileFilterModel filter = new WorkCenterRoutingFileFilterModel();
                                     filter.ProductsTypeID = 1; // Monomer
+                                    filter.Sort = "desc";
                                     WorkCenterRoutingFileViewModel model = core.GetWorkCenterRoutingFileView(filter);
 
                                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -890,6 +892,7 @@ namespace TMMAConversions.UI.Controllers
 
                                     InspectionPlanFileFilterModel filter = new InspectionPlanFileFilterModel();
                                     filter.ProductsTypeID = 1; // Monomer
+                                    filter.Sort = "desc";
                                     InspectionPlanFileViewModel model = core.GetInspectionPlanFileView(filter);
 
                                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -979,6 +982,7 @@ namespace TMMAConversions.UI.Controllers
 
                                     PackagingInstructionFileFilterModel filter = new PackagingInstructionFileFilterModel();
                                     filter.ProductsTypeID = 1; // Monomer
+                                    filter.Sort = "desc";
                                     PackagingInstructionFileViewModel model = core.GetPackagingInstructionFileView(filter);
 
                                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -1741,6 +1745,7 @@ namespace TMMAConversions.UI.Controllers
 
                     BOMFileFilterModel filter = new BOMFileFilterModel();
                     filter.ProductsTypeID = 1; // Monomer
+                    filter.Sort = "desc";
                     filter.Pagination.Page = pageNo;
                     BOMFileViewModel model = core.GetBOMFileView(filter);
 
@@ -2024,6 +2029,7 @@ namespace TMMAConversions.UI.Controllers
 
                     WorkCenterRoutingFileFilterModel filter = new WorkCenterRoutingFileFilterModel();
                     filter.ProductsTypeID = 1; // monomer 
+                    filter.Sort = "desc";
                     filter.Pagination.Page = pageNo;
                     var model = core.GetWorkCenterRoutingFileView(filter);
                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -2393,6 +2399,7 @@ namespace TMMAConversions.UI.Controllers
                 {
                     PackagingInstructionFileFilterModel filter = new PackagingInstructionFileFilterModel();
                     filter.ProductsTypeID = 1; //monomer
+                    filter.Sort = "desc";
                     filter.Pagination.Page = pageNo;
                     var model = core.GetPackagingInstructionFileView(filter);
 
@@ -2457,6 +2464,7 @@ namespace TMMAConversions.UI.Controllers
                 {
                     InspectionPlanFileFilterModel filter = new InspectionPlanFileFilterModel();
                     filter.ProductsTypeID = 1; // monomer
+                    filter.Sort = "desc";
                     filter.Pagination.Page = pageNo;
                     var model = core.GetInspectionPlanFileView(filter);
 
