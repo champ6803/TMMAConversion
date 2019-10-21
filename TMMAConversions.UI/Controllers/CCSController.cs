@@ -33,7 +33,7 @@ namespace TMMAConversions.UI.Controllers
             BOMFileFilterModel filter = new BOMFileFilterModel();
             filter.ProductsTypeID = 2; // ccs products
             filter.Order = "CreatedDate";
-            filter.Sort = "asc";
+            filter.Sort = "desc";
 
             BOMFileViewModel model = core.GetBOMFileView(filter);
 
@@ -101,6 +101,7 @@ namespace TMMAConversions.UI.Controllers
 
                                     BOMFileFilterModel filter = new BOMFileFilterModel();
                                     filter.ProductsTypeID = 2; // CCS
+                                    filter.Sort = "desc";
                                     BOMFileViewModel model = core.GetBOMFileView(filter);
 
                                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -453,6 +454,7 @@ namespace TMMAConversions.UI.Controllers
 
                     BOMFileFilterModel filter = new BOMFileFilterModel();
                     filter.ProductsTypeID = 2; // CCS
+                    filter.Sort = "desc";
                     filter.Pagination.Page = pageNo;
                     BOMFileViewModel model = core.GetBOMFileView(filter);
 

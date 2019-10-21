@@ -35,7 +35,7 @@ namespace TMMAConversions.UI.Controllers
             BOMFileFilterModel filter = new BOMFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
             filter.Order = "CreatedDate";
-            filter.Sort = "asc";
+            filter.Sort = "desc";
             BOMFileViewModel model = core.GetBOMFileView(filter);
 
             ViewData["BOMFileViewModel"] = model;
@@ -50,7 +50,7 @@ namespace TMMAConversions.UI.Controllers
             WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
             filter.Order = "CreatedDate";
-            filter.Sort = "asc";
+            filter.Sort = "desc";
             WorkCenterFileViewModel model = core.GetWorkCenterFileView(filter);
 
             ViewData["WorkCenterFileViewModel"] = model;
@@ -65,7 +65,7 @@ namespace TMMAConversions.UI.Controllers
             WorkCenterRoutingFileFilterModel filter = new WorkCenterRoutingFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
             filter.Order = "CreatedDate";
-            filter.Sort = "asc";
+            filter.Sort = "desc";
             WorkCenterRoutingFileViewModel model = core.GetWorkCenterRoutingFileView(filter);
 
             string[] sheets =
@@ -176,6 +176,8 @@ namespace TMMAConversions.UI.Controllers
         {
             InspectionPlanFileFilterModel filter = new InspectionPlanFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
+            filter.Order = "CreatedDate";
+            filter.Sort = "desc";
 
             InspectionPlanFileViewModel model = core.GetInspectionPlanFileView(filter);
 
@@ -190,6 +192,8 @@ namespace TMMAConversions.UI.Controllers
         {
             PackagingInstructionFileFilterModel filter = new PackagingInstructionFileFilterModel();
             filter.ProductsTypeID = 1; // monomer products
+            filter.Order = "CreatedDate";
+            filter.Sort = "desc";
 
             PackagingInstructionFileViewModel model = core.GetPackagingInstructionFileView(filter);
 
@@ -214,18 +218,18 @@ namespace TMMAConversions.UI.Controllers
         }
 
         // Ajax call WorkCenter
-        [HttpPost]
-        public ActionResult GetWorkCenterFileView(int pageNo, string order, string sort)
-        {
-            WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
-            filter.ProductsTypeID = 1; // monomer products
-            filter.Pagination.Page = pageNo;
-            filter.Order = order;
-            filter.Sort = sort;
-            WorkCenterFileViewModel model = core.GetWorkCenterFileView(filter);
+        //[HttpPost]
+        //public ActionResult GetWorkCenterFileView(int pageNo, string order, string sort)
+        //{
+        //    WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
+        //    filter.ProductsTypeID = 1; // monomer products
+        //    filter.Pagination.Page = pageNo;
+        //    filter.Order = order;
+        //    filter.Sort = sort;
+        //    WorkCenterFileViewModel model = core.GetWorkCenterFileView(filter);
 
-            return Json(model, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(model, JsonRequestBehavior.AllowGet);
+        //}
 
         // Ajax call WorkCenter Routing
         [HttpPost]
@@ -242,33 +246,33 @@ namespace TMMAConversions.UI.Controllers
         }
 
         // Ajax call Production Version
-        [HttpPost]
-        public ActionResult GetProductionVersionFileView(int pageNo, string order, string sort)
-        {
-            ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
-            filter.ProductsTypeID = 1; // monomer products
-            filter.Pagination.Page = pageNo;
-            filter.Order = order;
-            filter.Sort = sort;
-            ProductionVersionFileViewModel model = core.GetProductionVersionFileView(filter);
+        //[HttpPost]
+        //public ActionResult GetProductionVersionFileView(int pageNo, string order, string sort)
+        //{
+        //    ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
+        //    filter.ProductsTypeID = 1; // monomer products
+        //    filter.Pagination.Page = pageNo;
+        //    filter.Order = order;
+        //    filter.Sort = sort;
+        //    ProductionVersionFileViewModel model = core.GetProductionVersionFileView(filter);
 
-            return Json(model, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(model, JsonRequestBehavior.AllowGet);
+        //}
 
         // Ajax call Routing
-        [HttpPost]
-        public ActionResult GetRoutingFileView(int pageNo, string order, string sort)
-        {
-            RoutingFileFilterModel filter = new RoutingFileFilterModel();
-            filter.ProductsTypeID = 1; // monomer products
-            filter.Pagination.Page = pageNo;
-            filter.Order = order;
-            filter.Sort = sort;
+        //[HttpPost]
+        //public ActionResult GetRoutingFileView(int pageNo, string order, string sort)
+        //{
+        //    RoutingFileFilterModel filter = new RoutingFileFilterModel();
+        //    filter.ProductsTypeID = 1; // monomer products
+        //    filter.Pagination.Page = pageNo;
+        //    filter.Order = order;
+        //    filter.Sort = sort;
 
-            RoutingFileViewModel model = core.GetRoutingFileView(filter);
+        //    RoutingFileViewModel model = core.GetRoutingFileView(filter);
 
-            return Json(model, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(model, JsonRequestBehavior.AllowGet);
+        //}
 
         // Ajax call Inpection Plan
         [HttpPost]
@@ -346,6 +350,7 @@ namespace TMMAConversions.UI.Controllers
 
                                     BOMFileFilterModel filter = new BOMFileFilterModel();
                                     filter.ProductsTypeID = 1; // Monomer
+                                    filter.Sort = "desc";
                                     BOMFileViewModel model = core.GetBOMFileView(filter);
 
                                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -396,76 +401,76 @@ namespace TMMAConversions.UI.Controllers
         }
 
         // WorkCenter File
-        [HttpPost]
-        public ActionResult UploadWorkCenterFile()
-        {
-            try
-            {
-                if (Request.Files.Count > 0 && Request.Form.Count > 0)
-                {
-                    foreach (string file in Request.Files)
-                    {
-                        var fileContent = Request.Files[file];
-                        var user = Request.Form["User"];
-                        var recObjectName = Request.Form["RecObjectName"];
+        //[HttpPost]
+        //public ActionResult UploadWorkCenterFile()
+        //{
+        //    try
+        //    {
+        //        if (Request.Files.Count > 0 && Request.Form.Count > 0)
+        //        {
+        //            foreach (string file in Request.Files)
+        //            {
+        //                var fileContent = Request.Files[file];
+        //                var user = Request.Form["User"];
+        //                var recObjectName = Request.Form["RecObjectName"];
 
-                        if (fileContent != null && fileContent.ContentLength > 0)
-                        {
-                            string extension = Path.GetExtension(fileContent.FileName).ToLower();
+        //                if (fileContent != null && fileContent.ContentLength > 0)
+        //                {
+        //                    string extension = Path.GetExtension(fileContent.FileName).ToLower();
 
-                            string[] validFileTypes = { ".xls", ".xlsx", ".xlsm" }; //init file type
+        //                    string[] validFileTypes = { ".xls", ".xlsx", ".xlsm" }; //init file type
 
-                            var fileName = Path.GetFileName(fileContent.FileName);
+        //                    var fileName = Path.GetFileName(fileContent.FileName);
 
-                            var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/WorkCenter"), fileContent.FileName);
+        //                    var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/WorkCenter"), fileContent.FileName);
 
-                            if (validFileTypes.Contains(extension))
-                            {
-                                if (System.IO.File.Exists(path))
-                                {
-                                    //System.IO.File.Delete(path);
-                                    string[] filePaths = Directory.GetFiles(Server.MapPath("~/Files/Monomer/Excels/WorkCenter"));
-                                    foreach (string filePath in filePaths)
-                                        System.IO.File.Delete(filePath);
-                                }
+        //                    if (validFileTypes.Contains(extension))
+        //                    {
+        //                        if (System.IO.File.Exists(path))
+        //                        {
+        //                            //System.IO.File.Delete(path);
+        //                            string[] filePaths = Directory.GetFiles(Server.MapPath("~/Files/Monomer/Excels/WorkCenter"));
+        //                            foreach (string filePath in filePaths)
+        //                                System.IO.File.Delete(filePath);
+        //                        }
 
-                                fileContent.SaveAs(path);
+        //                        fileContent.SaveAs(path);
 
-                                int version = 0;
-                                SaveWorkCenterFileVersion(recObjectName, ref version, user);
+        //                        int version = 0;
+        //                        SaveWorkCenterFileVersion(recObjectName, ref version, user);
 
-                                WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
-                                filter.ProductsTypeID = 1; // Monomer
-                                WorkCenterFileViewModel model = core.GetWorkCenterFileView(filter);
+        //                        WorkCenterFileFilterModel filter = new WorkCenterFileFilterModel();
+        //                        filter.ProductsTypeID = 1; // Monomer
+        //                        WorkCenterFileViewModel model = core.GetWorkCenterFileView(filter);
 
-                                return Json(model, JsonRequestBehavior.AllowGet);
-                            }
-                            else
-                            {
-                                return Json(new ResponseModel()
-                                {
-                                    Message = "Please Upload Files in .xls or .xlsx or .xlsm format.",
-                                    Status = false
-                                }, JsonRequestBehavior.AllowGet);
-                            }
-                        }
-                    }
-                }
-                return Json(new ResponseModel()
-                {
-                    Message = "Please Insert File.",
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Message = ex.Message,
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //                        return Json(model, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                    else
+        //                    {
+        //                        return Json(new ResponseModel()
+        //                        {
+        //                            Message = "Please Upload Files in .xls or .xlsx or .xlsm format.",
+        //                            Status = false
+        //                        }, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = "Please Insert File.",
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = ex.Message,
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
         // WorkCenter Routing File
         [HttpPost]
@@ -513,6 +518,7 @@ namespace TMMAConversions.UI.Controllers
 
                                     WorkCenterRoutingFileFilterModel filter = new WorkCenterRoutingFileFilterModel();
                                     filter.ProductsTypeID = 1; // Monomer
+                                    filter.Sort = "desc";
                                     WorkCenterRoutingFileViewModel model = core.GetWorkCenterRoutingFileView(filter);
 
                                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -563,282 +569,282 @@ namespace TMMAConversions.UI.Controllers
         }
 
         // Production Version File
-        [HttpPost]
-        public ActionResult UploadProductionVersionFile()
-        {
-            try
-            {
-                if (Request.Files.Count > 0 && Request.Form.Count > 0)
-                {
-                    foreach (string file in Request.Files)
-                    {
-                        var fileContent = Request.Files[file];
-                        var user = Request.Form["User"];
-                        var recObjectName = Request.Form["RecObjectName"];
-                        DateTime validDate = DateTime.ParseExact(Request.Form["ValidDate"], "dd/MM/yyyy", usCulture);
+        //[HttpPost]
+        //public ActionResult UploadProductionVersionFile()
+        //{
+        //    try
+        //    {
+        //        if (Request.Files.Count > 0 && Request.Form.Count > 0)
+        //        {
+        //            foreach (string file in Request.Files)
+        //            {
+        //                var fileContent = Request.Files[file];
+        //                var user = Request.Form["User"];
+        //                var recObjectName = Request.Form["RecObjectName"];
+        //                DateTime validDate = DateTime.ParseExact(Request.Form["ValidDate"], "dd/MM/yyyy", usCulture);
 
-                        if (fileContent != null && fileContent.ContentLength > 0)
-                        {
-                            string extension = Path.GetExtension(fileContent.FileName).ToLower();
+        //                if (fileContent != null && fileContent.ContentLength > 0)
+        //                {
+        //                    string extension = Path.GetExtension(fileContent.FileName).ToLower();
 
-                            string[] validFileTypes = { ".xls", ".xlsx" }; //init file type
+        //                    string[] validFileTypes = { ".xls", ".xlsx" }; //init file type
 
-                            var fileName = Path.GetFileName(fileContent.FileName);
+        //                    var fileName = Path.GetFileName(fileContent.FileName);
 
-                            var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/ProductionVersion"), "ProductionVersion.xlsx");
+        //                    var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/ProductionVersion"), "ProductionVersion.xlsx");
 
-                            if (validFileTypes.Contains(extension))
-                            {
-                                if (System.IO.File.Exists(path))
-                                {
-                                    System.IO.File.Delete(path);
-                                }
+        //                    if (validFileTypes.Contains(extension))
+        //                    {
+        //                        if (System.IO.File.Exists(path))
+        //                        {
+        //                            System.IO.File.Delete(path);
+        //                        }
 
-                                fileContent.SaveAs(path);
+        //                        fileContent.SaveAs(path);
 
-                                int version = 0;
-                                SaveProductionVersionFileVersion(recObjectName, ref version, user, validDate);
+        //                        int version = 0;
+        //                        SaveProductionVersionFileVersion(recObjectName, ref version, user, validDate);
 
-                                ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
-                                filter.ProductsTypeID = 1; // Monomer
-                                ProductionVersionFileViewModel model = core.GetProductionVersionFileView(filter);
+        //                        ProductionVersionFileFilterModel filter = new ProductionVersionFileFilterModel();
+        //                        filter.ProductsTypeID = 1; // Monomer
+        //                        ProductionVersionFileViewModel model = core.GetProductionVersionFileView(filter);
 
-                                return Json(model, JsonRequestBehavior.AllowGet);
-                            }
-                            else
-                            {
-                                return Json(new ResponseModel()
-                                {
-                                    Message = "Please Upload Files in .xls or .xlsx format.",
-                                    Status = false
-                                }, JsonRequestBehavior.AllowGet);
-                            }
-                        }
-                    }
-                }
-                return Json(new ResponseModel()
-                {
-                    Message = "Please Insert File.",
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Message = ex.Message,
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //                        return Json(model, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                    else
+        //                    {
+        //                        return Json(new ResponseModel()
+        //                        {
+        //                            Message = "Please Upload Files in .xls or .xlsx format.",
+        //                            Status = false
+        //                        }, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = "Please Insert File.",
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = ex.Message,
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
         // Routing Without Material File
-        [HttpPost]
-        public ActionResult UploadRoutingWithoutMaterialFile()
-        {
-            try
-            {
-                if (Request.Files.Count > 0 && Request.Form.Count > 0)
-                {
-                    foreach (string file in Request.Files)
-                    {
-                        var fileContent = Request.Files[file];
-                        var user = Request.Form["User"];
-                        var recObjectName = Request.Form["RecObjectName"];
+        //[HttpPost]
+        //public ActionResult UploadRoutingWithoutMaterialFile()
+        //{
+        //    try
+        //    {
+        //        if (Request.Files.Count > 0 && Request.Form.Count > 0)
+        //        {
+        //            foreach (string file in Request.Files)
+        //            {
+        //                var fileContent = Request.Files[file];
+        //                var user = Request.Form["User"];
+        //                var recObjectName = Request.Form["RecObjectName"];
 
-                        if (fileContent != null && fileContent.ContentLength > 0)
-                        {
-                            string extension = Path.GetExtension(fileContent.FileName).ToLower();
+        //                if (fileContent != null && fileContent.ContentLength > 0)
+        //                {
+        //                    string extension = Path.GetExtension(fileContent.FileName).ToLower();
 
-                            string[] validFileTypes = { ".xls", ".xlsx" }; //init file type
+        //                    string[] validFileTypes = { ".xls", ".xlsx" }; //init file type
 
-                            var fileName = Path.GetFileName(fileContent.FileName);
+        //                    var fileName = Path.GetFileName(fileContent.FileName);
 
-                            var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/RoutingWithoutMaterial"), "RoutingWithoutMaterial.xlsx");
+        //                    var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/RoutingWithoutMaterial"), "RoutingWithoutMaterial.xlsx");
 
-                            if (validFileTypes.Contains(extension))
-                            {
-                                if (System.IO.File.Exists(path))
-                                {
-                                    System.IO.File.Delete(path);
-                                }
+        //                    if (validFileTypes.Contains(extension))
+        //                    {
+        //                        if (System.IO.File.Exists(path))
+        //                        {
+        //                            System.IO.File.Delete(path);
+        //                        }
 
-                                fileContent.SaveAs(path);
+        //                        fileContent.SaveAs(path);
 
-                                int version = 0;
-                                SaveRoutingWithoutMaterialFileVersion(recObjectName, ref version, user);
+        //                        int version = 0;
+        //                        SaveRoutingWithoutMaterialFileVersion(recObjectName, ref version, user);
 
-                                RoutingWithoutMaterialFileFilterModel filter = new RoutingWithoutMaterialFileFilterModel();
-                                filter.ProductsTypeID = 1; // Monomer
-                                RoutingWithoutMaterialFileViewModel model = core.GetRoutingWithoutMaterialFileView(filter);
+        //                        RoutingWithoutMaterialFileFilterModel filter = new RoutingWithoutMaterialFileFilterModel();
+        //                        filter.ProductsTypeID = 1; // Monomer
+        //                        RoutingWithoutMaterialFileViewModel model = core.GetRoutingWithoutMaterialFileView(filter);
 
-                                return Json(model, JsonRequestBehavior.AllowGet);
-                            }
-                            else
-                            {
-                                return Json(new ResponseModel()
-                                {
-                                    Message = "Please Upload Files in .xls or .xlsx format.",
-                                    Status = false
-                                }, JsonRequestBehavior.AllowGet);
-                            }
-                        }
-                    }
-                }
-                return Json(new ResponseModel()
-                {
-                    Message = "Please Insert File.",
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Message = ex.Message,
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //                        return Json(model, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                    else
+        //                    {
+        //                        return Json(new ResponseModel()
+        //                        {
+        //                            Message = "Please Upload Files in .xls or .xlsx format.",
+        //                            Status = false
+        //                        }, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = "Please Insert File.",
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = ex.Message,
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
         // Routing With Material File
-        [HttpPost]
-        public ActionResult UploadRoutingWithMaterialFile()
-        {
-            try
-            {
-                if (Request.Files.Count > 0 && Request.Form.Count > 0)
-                {
-                    foreach (string file in Request.Files)
-                    {
-                        var fileContent = Request.Files[file];
-                        var user = Request.Form["User"];
-                        var recObjectName = Request.Form["RecObjectName"];
+        //[HttpPost]
+        //public ActionResult UploadRoutingWithMaterialFile()
+        //{
+        //    try
+        //    {
+        //        if (Request.Files.Count > 0 && Request.Form.Count > 0)
+        //        {
+        //            foreach (string file in Request.Files)
+        //            {
+        //                var fileContent = Request.Files[file];
+        //                var user = Request.Form["User"];
+        //                var recObjectName = Request.Form["RecObjectName"];
 
-                        if (fileContent != null && fileContent.ContentLength > 0)
-                        {
-                            string extension = Path.GetExtension(fileContent.FileName).ToLower();
+        //                if (fileContent != null && fileContent.ContentLength > 0)
+        //                {
+        //                    string extension = Path.GetExtension(fileContent.FileName).ToLower();
 
-                            string[] validFileTypes = { ".xls", ".xlsx" }; //init file type
+        //                    string[] validFileTypes = { ".xls", ".xlsx" }; //init file type
 
-                            var fileName = Path.GetFileName(fileContent.FileName);
+        //                    var fileName = Path.GetFileName(fileContent.FileName);
 
-                            var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/RoutingWithMaterial"), "RoutingWithMaterial.xlsx");
+        //                    var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/RoutingWithMaterial"), "RoutingWithMaterial.xlsx");
 
-                            if (validFileTypes.Contains(extension))
-                            {
-                                if (System.IO.File.Exists(path))
-                                {
-                                    System.IO.File.Delete(path);
-                                }
+        //                    if (validFileTypes.Contains(extension))
+        //                    {
+        //                        if (System.IO.File.Exists(path))
+        //                        {
+        //                            System.IO.File.Delete(path);
+        //                        }
 
-                                fileContent.SaveAs(path);
+        //                        fileContent.SaveAs(path);
 
-                                int version = 0;
-                                SaveRoutingWithMaterialFileVersion(recObjectName, ref version, user);
+        //                        int version = 0;
+        //                        SaveRoutingWithMaterialFileVersion(recObjectName, ref version, user);
 
-                                RoutingWithoutMaterialFileFilterModel filter = new RoutingWithoutMaterialFileFilterModel();
-                                filter.ProductsTypeID = 1; // Monomer
-                                RoutingWithoutMaterialFileViewModel model = core.GetRoutingWithoutMaterialFileView(filter);
+        //                        RoutingWithoutMaterialFileFilterModel filter = new RoutingWithoutMaterialFileFilterModel();
+        //                        filter.ProductsTypeID = 1; // Monomer
+        //                        RoutingWithoutMaterialFileViewModel model = core.GetRoutingWithoutMaterialFileView(filter);
 
-                                return Json(model, JsonRequestBehavior.AllowGet);
-                            }
-                            else
-                            {
-                                return Json(new ResponseModel()
-                                {
-                                    Message = "Please Upload Files in .xls or .xlsx format.",
-                                    Status = false
-                                }, JsonRequestBehavior.AllowGet);
-                            }
-                        }
-                    }
-                }
-                return Json(new ResponseModel()
-                {
-                    Message = "Please Insert File.",
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Message = ex.Message,
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //                        return Json(model, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                    else
+        //                    {
+        //                        return Json(new ResponseModel()
+        //                        {
+        //                            Message = "Please Upload Files in .xls or .xlsx format.",
+        //                            Status = false
+        //                        }, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = "Please Insert File.",
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = ex.Message,
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
         // Routing
-        [HttpPost]
-        public ActionResult UploadRoutingFile()
-        {
-            try
-            {
-                if (Request.Files.Count > 0 && Request.Form.Count > 0)
-                {
-                    foreach (string file in Request.Files)
-                    {
-                        var fileContent = Request.Files[file];
-                        var user = Request.Form["User"];
-                        var recObjectName = Request.Form["RecObjectName"];
-                        DateTime validDate = DateTime.ParseExact(Request.Form["ValidDate"], "dd/MM/yyyy", usCulture);
+        //[HttpPost]
+        //public ActionResult UploadRoutingFile()
+        //{
+        //    try
+        //    {
+        //        if (Request.Files.Count > 0 && Request.Form.Count > 0)
+        //        {
+        //            foreach (string file in Request.Files)
+        //            {
+        //                var fileContent = Request.Files[file];
+        //                var user = Request.Form["User"];
+        //                var recObjectName = Request.Form["RecObjectName"];
+        //                DateTime validDate = DateTime.ParseExact(Request.Form["ValidDate"], "dd/MM/yyyy", usCulture);
 
-                        if (fileContent != null && fileContent.ContentLength > 0)
-                        {
-                            string extension = Path.GetExtension(fileContent.FileName).ToLower();
+        //                if (fileContent != null && fileContent.ContentLength > 0)
+        //                {
+        //                    string extension = Path.GetExtension(fileContent.FileName).ToLower();
 
-                            string[] validFileTypes = { ".xls", ".xlsx" }; //init file type
+        //                    string[] validFileTypes = { ".xls", ".xlsx" }; //init file type
 
-                            var fileName = Path.GetFileName(fileContent.FileName);
+        //                    var fileName = Path.GetFileName(fileContent.FileName);
 
-                            var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/Routing"), recObjectName + "_Routing.xlsx");
+        //                    var path = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/Routing"), recObjectName + "_Routing.xlsx");
 
-                            if (validFileTypes.Contains(extension))
-                            {
-                                if (System.IO.File.Exists(path))
-                                {
-                                    System.IO.File.Delete(path);
-                                }
+        //                    if (validFileTypes.Contains(extension))
+        //                    {
+        //                        if (System.IO.File.Exists(path))
+        //                        {
+        //                            System.IO.File.Delete(path);
+        //                        }
 
-                                fileContent.SaveAs(path);
+        //                        fileContent.SaveAs(path);
 
-                                int version = 0;
-                                SaveRoutingFileVersion(recObjectName, ref version, user, validDate);
+        //                        int version = 0;
+        //                        SaveRoutingFileVersion(recObjectName, ref version, user, validDate);
 
-                                RoutingFileFilterModel filter = new RoutingFileFilterModel();
-                                filter.ProductsTypeID = 1; // Monomer
-                                RoutingFileViewModel model = core.GetRoutingFileView(filter);
+        //                        RoutingFileFilterModel filter = new RoutingFileFilterModel();
+        //                        filter.ProductsTypeID = 1; // Monomer
+        //                        RoutingFileViewModel model = core.GetRoutingFileView(filter);
 
-                                return Json(model, JsonRequestBehavior.AllowGet);
-                            }
-                            else
-                            {
-                                return Json(new ResponseModel()
-                                {
-                                    Message = "Please Upload Files in .xls or .xlsx format.",
-                                    Status = false
-                                }, JsonRequestBehavior.AllowGet);
-                            }
-                        }
-                    }
-                }
-                return Json(new ResponseModel()
-                {
-                    Message = "Please Insert File.",
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResponseModel()
-                {
-                    Message = ex.Message,
-                    Status = false
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //                        return Json(model, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                    else
+        //                    {
+        //                        return Json(new ResponseModel()
+        //                        {
+        //                            Message = "Please Upload Files in .xls or .xlsx format.",
+        //                            Status = false
+        //                        }, JsonRequestBehavior.AllowGet);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = "Please Insert File.",
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResponseModel()
+        //        {
+        //            Message = ex.Message,
+        //            Status = false
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
         // Inspection Plan File
         [HttpPost]
@@ -886,6 +892,7 @@ namespace TMMAConversions.UI.Controllers
 
                                     InspectionPlanFileFilterModel filter = new InspectionPlanFileFilterModel();
                                     filter.ProductsTypeID = 1; // Monomer
+                                    filter.Sort = "desc";
                                     InspectionPlanFileViewModel model = core.GetInspectionPlanFileView(filter);
 
                                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -975,6 +982,7 @@ namespace TMMAConversions.UI.Controllers
 
                                     PackagingInstructionFileFilterModel filter = new PackagingInstructionFileFilterModel();
                                     filter.ProductsTypeID = 1; // Monomer
+                                    filter.Sort = "desc";
                                     PackagingInstructionFileViewModel model = core.GetPackagingInstructionFileView(filter);
 
                                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -1311,38 +1319,38 @@ namespace TMMAConversions.UI.Controllers
             }
         }
 
-        public void SaveWorkCenterFileVersion(string recObjectName, ref int version, string user)
-        {
-            try
-            {
-                var last = core.GetWorkCenterFileLastVersion();
-                version = (int)last.WorkCenterFileVersion + 1;
+        //public void SaveWorkCenterFileVersion(string recObjectName, ref int version, string user)
+        //{
+        //    try
+        //    {
+        //        var last = core.GetWorkCenterFileLastVersion();
+        //        version = (int)last.WorkCenterFileVersion + 1;
 
-                // Add WorkCenter File to Database
-                WorkCenterFileModel workCenterFile = new WorkCenterFileModel();
-                workCenterFile.ProductsTypeID = 1;
-                workCenterFile.RecObjectName = recObjectName;
-                workCenterFile.UserSAP = user;
-                workCenterFile.WorkCenterFileStatus = 1; // create new
-                workCenterFile.WorkCenterFileVersion = (decimal)(version);
-                workCenterFile.WorkCenterFilePath = Server.MapPath("~/Files/Monomer/Excels/WorkCenter");
-                workCenterFile.IsActive = true;
-                workCenterFile.CreatedBy = "conversions";
-                workCenterFile.CreatedDate = DateTime.Now;
+        //        // Add WorkCenter File to Database
+        //        WorkCenterFileModel workCenterFile = new WorkCenterFileModel();
+        //        workCenterFile.ProductsTypeID = 1;
+        //        workCenterFile.RecObjectName = recObjectName;
+        //        workCenterFile.UserSAP = user;
+        //        workCenterFile.WorkCenterFileStatus = 1; // create new
+        //        workCenterFile.WorkCenterFileVersion = (decimal)(version);
+        //        workCenterFile.WorkCenterFilePath = Server.MapPath("~/Files/Monomer/Excels/WorkCenter");
+        //        workCenterFile.IsActive = true;
+        //        workCenterFile.CreatedBy = "conversions";
+        //        workCenterFile.CreatedDate = DateTime.Now;
 
-                int _newID = 0;
-                ResponseModel res = core.AddWorkCenterFile(workCenterFile, ref _newID);
+        //        int _newID = 0;
+        //        ResponseModel res = core.AddWorkCenterFile(workCenterFile, ref _newID);
 
-                if (!res.Status)
-                {
-                    throw new Exception(res.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        if (!res.Status)
+        //        {
+        //            throw new Exception(res.Message);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public void SaveWorkCenterRoutingFileVersion(string recObjectName, string user, DateTime validDate, string path, ref int version)
         {
@@ -1383,145 +1391,145 @@ namespace TMMAConversions.UI.Controllers
             }
         }
 
-        public void SaveProductionVersionFileVersion(string recObjectName, ref int version, string user, DateTime validDate)
-        {
-            try
-            {
-                var last = core.GetProductionVersionFileLastVersion();
-                version = (int)last.ProductionVersionFileVersion + 1;
+        //public void SaveProductionVersionFileVersion(string recObjectName, ref int version, string user, DateTime validDate)
+        //{
+        //    try
+        //    {
+        //        var last = core.GetProductionVersionFileLastVersion();
+        //        version = (int)last.ProductionVersionFileVersion + 1;
 
-                // Add WorkCenter File to Database
+        //        // Add WorkCenter File to Database
 
-                ProductionVersionFileModel productionVersionFile = new ProductionVersionFileModel();
-                productionVersionFile.ProductsTypeID = 1;
-                productionVersionFile.RecObjectName = recObjectName;
-                productionVersionFile.UserSAP = user;
-                productionVersionFile.ProductionVersionFileStatus = 1; // create new
-                productionVersionFile.ProductionVersionFileVersion = (decimal)(version);
-                productionVersionFile.ProductionVersionFilePath = Server.MapPath("~/Files/Monomer/Excels/ProductionVersion");
-                productionVersionFile.ValidDate = validDate;
-                productionVersionFile.IsActive = true;
-                productionVersionFile.CreatedBy = "conversions";
-                productionVersionFile.CreatedDate = DateTime.Now;
+        //        ProductionVersionFileModel productionVersionFile = new ProductionVersionFileModel();
+        //        productionVersionFile.ProductsTypeID = 1;
+        //        productionVersionFile.RecObjectName = recObjectName;
+        //        productionVersionFile.UserSAP = user;
+        //        productionVersionFile.ProductionVersionFileStatus = 1; // create new
+        //        productionVersionFile.ProductionVersionFileVersion = (decimal)(version);
+        //        productionVersionFile.ProductionVersionFilePath = Server.MapPath("~/Files/Monomer/Excels/ProductionVersion");
+        //        productionVersionFile.ValidDate = validDate;
+        //        productionVersionFile.IsActive = true;
+        //        productionVersionFile.CreatedBy = "conversions";
+        //        productionVersionFile.CreatedDate = DateTime.Now;
 
-                int _newID = 0;
-                ResponseModel res = core.AddProductionVersionFile(productionVersionFile, ref _newID);
+        //        int _newID = 0;
+        //        ResponseModel res = core.AddProductionVersionFile(productionVersionFile, ref _newID);
 
-                if (!res.Status)
-                {
-                    throw new Exception(res.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        if (!res.Status)
+        //        {
+        //            throw new Exception(res.Message);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public void SaveRoutingWithoutMaterialFileVersion(string recObjectName, ref int version, string user)
-        {
-            try
-            {
-                int productionsTypeID = 1;
-                var last = core.GetRoutingWithoutMaterialFileLastVersion(productionsTypeID);
-                version = (int)last.RoutingWithoutMaterialFileVersion + 1;
+        //public void SaveRoutingWithoutMaterialFileVersion(string recObjectName, ref int version, string user)
+        //{
+        //    try
+        //    {
+        //        int productionsTypeID = 1;
+        //        var last = core.GetRoutingWithoutMaterialFileLastVersion(productionsTypeID);
+        //        version = (int)last.RoutingWithoutMaterialFileVersion + 1;
 
-                // Save Routing Without Material File to Database
+        //        // Save Routing Without Material File to Database
 
-                RoutingWithoutMaterialFileModel routingWithoutMaterialFile = new RoutingWithoutMaterialFileModel();
-                routingWithoutMaterialFile.ProductsTypeID = 1;
-                routingWithoutMaterialFile.RecObjectName = recObjectName;
-                routingWithoutMaterialFile.UserSAP = user;
-                routingWithoutMaterialFile.RoutingWithoutMaterialFileStatus = 1; // create new
-                routingWithoutMaterialFile.RoutingWithoutMaterialFileVersion = (decimal)(version);
-                routingWithoutMaterialFile.RoutingWithoutMaterialFilePath = Path.Combine(Server.MapPath("~/Files/Monomer/Excels"), string.Format("{0}.xlsx", recObjectName));
-                routingWithoutMaterialFile.IsActive = true;
-                routingWithoutMaterialFile.CreatedBy = "conversions";
-                routingWithoutMaterialFile.CreatedDate = DateTime.Now;
+        //        RoutingWithoutMaterialFileModel routingWithoutMaterialFile = new RoutingWithoutMaterialFileModel();
+        //        routingWithoutMaterialFile.ProductsTypeID = 1;
+        //        routingWithoutMaterialFile.RecObjectName = recObjectName;
+        //        routingWithoutMaterialFile.UserSAP = user;
+        //        routingWithoutMaterialFile.RoutingWithoutMaterialFileStatus = 1; // create new
+        //        routingWithoutMaterialFile.RoutingWithoutMaterialFileVersion = (decimal)(version);
+        //        routingWithoutMaterialFile.RoutingWithoutMaterialFilePath = Path.Combine(Server.MapPath("~/Files/Monomer/Excels"), string.Format("{0}.xlsx", recObjectName));
+        //        routingWithoutMaterialFile.IsActive = true;
+        //        routingWithoutMaterialFile.CreatedBy = "conversions";
+        //        routingWithoutMaterialFile.CreatedDate = DateTime.Now;
 
-                int _newID = 0;
-                ResponseModel res = core.AddRoutingWithoutMaterialFile(routingWithoutMaterialFile, ref _newID);
+        //        int _newID = 0;
+        //        ResponseModel res = core.AddRoutingWithoutMaterialFile(routingWithoutMaterialFile, ref _newID);
 
-                if (!res.Status)
-                {
-                    throw new Exception(res.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        if (!res.Status)
+        //        {
+        //            throw new Exception(res.Message);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public void SaveRoutingWithMaterialFileVersion(string recObjectName, ref int version, string user)
-        {
-            try
-            {
-                int productionsTypeID = 1;
-                var last = core.GetRoutingWithMaterialFileLastVersion(productionsTypeID);
-                version = (int)last.RoutingWithMaterialFileVersion + 1;
+        //public void SaveRoutingWithMaterialFileVersion(string recObjectName, ref int version, string user)
+        //{
+        //    try
+        //    {
+        //        int productionsTypeID = 1;
+        //        var last = core.GetRoutingWithMaterialFileLastVersion(productionsTypeID);
+        //        version = (int)last.RoutingWithMaterialFileVersion + 1;
 
-                // Save Routing Without Material File to Database
+        //        // Save Routing Without Material File to Database
 
-                RoutingWithMaterialFileModel routingWithMaterialFile = new RoutingWithMaterialFileModel();
-                routingWithMaterialFile.ProductsTypeID = 1;
-                routingWithMaterialFile.RecObjectName = recObjectName;
-                routingWithMaterialFile.UserSAP = user;
-                routingWithMaterialFile.RoutingWithMaterialFileStatus = 1; // create new
-                routingWithMaterialFile.RoutingWithMaterialFileVersion = (decimal)(version);
-                routingWithMaterialFile.RoutingWithMaterialFilePath = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/RoutingWithMaterial"), string.Format("{0}.xlsx", recObjectName));
-                routingWithMaterialFile.IsActive = true;
-                routingWithMaterialFile.CreatedBy = "conversions";
-                routingWithMaterialFile.CreatedDate = DateTime.Now;
+        //        RoutingWithMaterialFileModel routingWithMaterialFile = new RoutingWithMaterialFileModel();
+        //        routingWithMaterialFile.ProductsTypeID = 1;
+        //        routingWithMaterialFile.RecObjectName = recObjectName;
+        //        routingWithMaterialFile.UserSAP = user;
+        //        routingWithMaterialFile.RoutingWithMaterialFileStatus = 1; // create new
+        //        routingWithMaterialFile.RoutingWithMaterialFileVersion = (decimal)(version);
+        //        routingWithMaterialFile.RoutingWithMaterialFilePath = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/RoutingWithMaterial"), string.Format("{0}.xlsx", recObjectName));
+        //        routingWithMaterialFile.IsActive = true;
+        //        routingWithMaterialFile.CreatedBy = "conversions";
+        //        routingWithMaterialFile.CreatedDate = DateTime.Now;
 
-                int _newID = 0;
-                ResponseModel res = core.AddRoutingWithMaterialFile(routingWithMaterialFile, ref _newID);
+        //        int _newID = 0;
+        //        ResponseModel res = core.AddRoutingWithMaterialFile(routingWithMaterialFile, ref _newID);
 
-                if (!res.Status)
-                {
-                    throw new Exception(res.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        if (!res.Status)
+        //        {
+        //            throw new Exception(res.Message);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public void SaveRoutingFileVersion(string recObjectName, ref int version, string user, DateTime validDate)
-        {
-            try
-            {
-                int productionsTypeID = 1;
-                var last = core.GetRoutingFileLastVersion(productionsTypeID);
-                version = (int)last.RoutingFileVersion + 1;
+        //public void SaveRoutingFileVersion(string recObjectName, ref int version, string user, DateTime validDate)
+        //{
+        //    try
+        //    {
+        //        int productionsTypeID = 1;
+        //        var last = core.GetRoutingFileLastVersion(productionsTypeID);
+        //        version = (int)last.RoutingFileVersion + 1;
 
-                // Save Routing File to Database
-                RoutingFileModel routingFile = new RoutingFileModel();
-                routingFile.ProductsTypeID = 1;
-                routingFile.RecObjectName = recObjectName;
-                routingFile.UserSAP = user;
-                routingFile.RoutingFileStatus = 1; // create new
-                routingFile.RoutingFileVersion = (decimal)(version);
-                routingFile.RoutingFilePath = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/Routing"), string.Format("{0}.xlsx", recObjectName));
-                routingFile.ValidDate = validDate;
-                routingFile.IsActive = true;
-                routingFile.CreatedBy = "conversions";
-                routingFile.CreatedDate = DateTime.Now;
+        //        // Save Routing File to Database
+        //        RoutingFileModel routingFile = new RoutingFileModel();
+        //        routingFile.ProductsTypeID = 1;
+        //        routingFile.RecObjectName = recObjectName;
+        //        routingFile.UserSAP = user;
+        //        routingFile.RoutingFileStatus = 1; // create new
+        //        routingFile.RoutingFileVersion = (decimal)(version);
+        //        routingFile.RoutingFilePath = Path.Combine(Server.MapPath("~/Files/Monomer/Excels/Routing"), string.Format("{0}.xlsx", recObjectName));
+        //        routingFile.ValidDate = validDate;
+        //        routingFile.IsActive = true;
+        //        routingFile.CreatedBy = "conversions";
+        //        routingFile.CreatedDate = DateTime.Now;
 
-                int _newID = 0;
-                ResponseModel res = core.AddRoutingFile(routingFile, ref _newID);
+        //        int _newID = 0;
+        //        ResponseModel res = core.AddRoutingFile(routingFile, ref _newID);
 
-                if (!res.Status)
-                {
-                    throw new Exception(res.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        if (!res.Status)
+        //        {
+        //            throw new Exception(res.Message);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public void SavePackagingInstructionFileVersion(string recObjectName, ref int version, string user)
         {
@@ -1737,6 +1745,7 @@ namespace TMMAConversions.UI.Controllers
 
                     BOMFileFilterModel filter = new BOMFileFilterModel();
                     filter.ProductsTypeID = 1; // Monomer
+                    filter.Sort = "desc";
                     filter.Pagination.Page = pageNo;
                     BOMFileViewModel model = core.GetBOMFileView(filter);
 
@@ -2020,6 +2029,7 @@ namespace TMMAConversions.UI.Controllers
 
                     WorkCenterRoutingFileFilterModel filter = new WorkCenterRoutingFileFilterModel();
                     filter.ProductsTypeID = 1; // monomer 
+                    filter.Sort = "desc";
                     filter.Pagination.Page = pageNo;
                     var model = core.GetWorkCenterRoutingFileView(filter);
                     return Json(model, JsonRequestBehavior.AllowGet);
@@ -2389,6 +2399,7 @@ namespace TMMAConversions.UI.Controllers
                 {
                     PackagingInstructionFileFilterModel filter = new PackagingInstructionFileFilterModel();
                     filter.ProductsTypeID = 1; //monomer
+                    filter.Sort = "desc";
                     filter.Pagination.Page = pageNo;
                     var model = core.GetPackagingInstructionFileView(filter);
 
@@ -2453,6 +2464,7 @@ namespace TMMAConversions.UI.Controllers
                 {
                     InspectionPlanFileFilterModel filter = new InspectionPlanFileFilterModel();
                     filter.ProductsTypeID = 1; // monomer
+                    filter.Sort = "desc";
                     filter.Pagination.Page = pageNo;
                     var model = core.GetInspectionPlanFileView(filter);
 

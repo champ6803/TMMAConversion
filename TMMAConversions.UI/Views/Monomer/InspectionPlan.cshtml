@@ -138,7 +138,7 @@
                                 {{o.CreatedDate.slice(6, -2) | date: 'dd-MM-yyyy'}}
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                                <div ng-if="$last && (InspectionPlanFileViewModel.Filter.Pagination.Page == InspectionPlanFileViewModel.Filter.Pagination.EndPage)" class="dropdown">
+                                <div ng-if="(o.InspectionPlanFileVersion == InspectionPlanFileViewModel.Filter.LastInspectionPlanFileVersion)" class="dropdown">
                                     <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <i class="fa fa-file-download"></i>&nbsp;Generate
                                         <span class="caret"></span>
@@ -149,17 +149,17 @@
                                         </li>
                                     </ul>
                                     <label class="btn btn-warning" ng-click="SetInspectionPlanFileID(o.InspectionPlanFileID)">
-                                        <i class="fa fa-file-upload"></i>&nbsp;Validate @*<input onchange="angular.element(this).scope().OnUploadValidateInspectionPlanFile(this.files)" style="display:none !important;" type="file">*@
+                                        <i class="fa fa-file-upload"></i>&nbsp;<span class="hidden-xs">Validate</span> @*<input onchange="angular.element(this).scope().OnUploadValidateInspectionPlanFile(this.files)" style="display:none !important;" type="file">*@
                                     </label>
                                 </div>
-                                <button ng-if="!($last && (InspectionPlanFileViewModel.Filter.Pagination.Page == InspectionPlanFileViewModel.Filter.Pagination.EndPage))" class="btn btn-success disabled" type="button">
-                                    <i class="fa fa-file-download"></i>&nbsp;Generate
+                                <button ng-if="!(o.InspectionPlanFileVersion == InspectionPlanFileViewModel.Filter.LastInspectionPlanFileVersion)" class="btn btn-success disabled" type="button">
+                                    <i class="fa fa-file-download"></i>&nbsp;<span class="hidden-xs">Generate</span>
                                     <span class="caret"></span>
                                 </button>
-                                <label ng-if="!($last && (InspectionPlanFileViewModel.Filter.Pagination.Page == InspectionPlanFileViewModel.Filter.Pagination.EndPage))" class="btn btn-warning disabled">
-                                    <i class="fa fa-file-upload"></i>&nbsp;Validate
+                                <label ng-if="!(o.InspectionPlanFileVersion == InspectionPlanFileViewModel.Filter.LastInspectionPlanFileVersion)" class="btn btn-warning disabled">
+                                    <i class="fa fa-file-upload"></i>&nbsp;<span class="hidden-xs">Validate</span>
                                 </label>
-                            </div>
+                            </div>                            
                         </li>
                         <li ng-if="InspectionPlanFileViewModel.List == null" class="list-group-item row p-10">
                             <div class="col-md-12 text-center">
