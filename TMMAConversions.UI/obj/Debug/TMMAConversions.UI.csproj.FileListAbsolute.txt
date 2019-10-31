@@ -199,6 +199,10 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.WebPages.D
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.WebPages.Razor.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Antlr3.Runtime.pdb
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Newtonsoft.Json.xml
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojResolveAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.pdb
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.BLL.dll.config
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\TMMAConversions.DAL.dll.config
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojAssemblyReference.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csproj.CoreCompileInputs.cache
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csproj.CopyComplete
