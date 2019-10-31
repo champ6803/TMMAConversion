@@ -1026,214 +1026,214 @@ namespace TMMAConversions.BLL.Utilities
         //    }
         //}
 
-        public static void ConvertMMRoutingWithoutMaterialToTextFile(List<RoutingWithoutMaterialHeaderModel> routingWithoutMaterialHeaderList, List<RoutingWithoutMaterialItemModel> routingWithoutMaterialItemList, string fileName, string extension, string user)
-        {
-            string ValidDateFrom = DateTime.Now.ToString("dd.MM.yyyy", usCulture);
-            string HeaderDate = DateTime.Now.ToString("ddMMyyyy", usCulture);
-            string HeaderTime = DateTime.Now.ToString("HHmmss", usCulture);
+        //public static void ConvertMMRoutingWithoutMaterialToTextFile(List<RoutingWithoutMaterialHeaderModel> routingWithoutMaterialHeaderList, List<RoutingWithoutMaterialItemModel> routingWithoutMaterialItemList, string fileName, string extension, string user)
+        //{
+        //    string ValidDateFrom = DateTime.Now.ToString("dd.MM.yyyy", usCulture);
+        //    string HeaderDate = DateTime.Now.ToString("ddMMyyyy", usCulture);
+        //    string HeaderTime = DateTime.Now.ToString("HHmmss", usCulture);
 
-            try
-            {
-                if (routingWithoutMaterialHeaderList != null && routingWithoutMaterialItemList != null)
-                {
-                    if (File.Exists(fileName))
-                    {
-                        File.Delete(fileName);
-                    }
+        //    try
+        //    {
+        //        if (routingWithoutMaterialHeaderList != null && routingWithoutMaterialItemList != null)
+        //        {
+        //            if (File.Exists(fileName))
+        //            {
+        //                File.Delete(fileName);
+        //            }
 
-                    // Create a new file
-                    using (StreamWriter fs = File.CreateText(fileName + extension))
-                    {
-                        foreach (var o in routingWithoutMaterialHeaderList)
-                        {
-                            int count = 1;
-                            int routingItem = 10;
-                            int act = 0;
+        //            // Create a new file
+        //            using (StreamWriter fs = File.CreateText(fileName + extension))
+        //            {
+        //                foreach (var o in routingWithoutMaterialHeaderList)
+        //                {
+        //                    int count = 1;
+        //                    int routingItem = 10;
+        //                    int act = 0;
 
-                            fs.WriteLine("	0000	M	ZCONV_CA01	{0}          {1}  {2}", user, HeaderDate, HeaderTime); // Header BOM {0} User {1} Date {2} Time
-                            fs.WriteLine("                                        	0000	T	CA01                                                                                                                                	");
-                            fs.WriteLine("SAPLCPDI                                	1010	X	                                                                                                                                    	");
-                            fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=XALU");
-                            fs.WriteLine("                                        	0000	 	RC27M-MATNR                                                                                                                         	{0}", o.MaterialCode); // Header Material
-                            fs.WriteLine("                                        	0000	 	RC27M-WERKS                                                                                                                         	{0}", o.Plant); // Plant
-                            fs.WriteLine("                                        	0000	 	RC271-PLNNR                                                                                                                         	{0}", o.RoutingGroup); // Routing Group
-                            fs.WriteLine("                                        	0000	 	RC271-STTAG                                                                                                                         	{0}", ValidDateFrom); // Valid Date From
-                            fs.WriteLine("                                        	0000	 	PLKOD-PLNAL                                                                                                                         	{0}", o.GroupCounter); // Group Counter
-                            fs.WriteLine("SAPLCPDA                                	1200	X	                                                                                                                                    	");
-                            fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=VOUE");
-                            fs.WriteLine("                                        	0000	 	PLKOD-PLNAL                                                                                                                         	{0}", o.GroupCounter); // Group Counter
-                            fs.WriteLine("                                        	0000	 	PLKOD-WERKS                                                                                                                         	{0}", o.Plant); // Plant 
-                            fs.WriteLine("                                        	0000	 	PLKOD-VERWE                                                                                                                         	{0}", o.Usage); // BOM Usage
-                            fs.WriteLine("                                        	0000	 	PLKOD-STATU                                                                                                                         	{0}", o.OverAllStatus); // Over all status
-                            fs.WriteLine("                                        	0000	 	PLKOD-LOSBS                                                                                                                         	{0}", o.LotSizeTo); // Lot size to
-                            fs.WriteLine("                                        	0000	 	PLKOD-PLNME                                                                                                                         	{0}", o.BaseUnit); // Base unit
-                            foreach (var a in routingWithoutMaterialItemList)
-                            {
-                                if (o.MaterialCode == a.MaterialCode)
-                                {
-                                    List<RoutingWithoutMaterialItemModel> resultList = routingWithoutMaterialItemList.Where(t => t.MaterialCode == o.MaterialCode).ToList();
-                                    RoutingWithoutMaterialItemModel last = resultList.Last();
+        //                    fs.WriteLine("	0000	M	ZCONV_CA01	{0}          {1}  {2}", user, HeaderDate, HeaderTime); // Header BOM {0} User {1} Date {2} Time
+        //                    fs.WriteLine("                                        	0000	T	CA01                                                                                                                                	");
+        //                    fs.WriteLine("SAPLCPDI                                	1010	X	                                                                                                                                    	");
+        //                    fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=XALU");
+        //                    fs.WriteLine("                                        	0000	 	RC27M-MATNR                                                                                                                         	{0}", o.MaterialCode); // Header Material
+        //                    fs.WriteLine("                                        	0000	 	RC27M-WERKS                                                                                                                         	{0}", o.Plant); // Plant
+        //                    fs.WriteLine("                                        	0000	 	RC271-PLNNR                                                                                                                         	{0}", o.RoutingGroup); // Routing Group
+        //                    fs.WriteLine("                                        	0000	 	RC271-STTAG                                                                                                                         	{0}", ValidDateFrom); // Valid Date From
+        //                    fs.WriteLine("                                        	0000	 	PLKOD-PLNAL                                                                                                                         	{0}", o.GroupCounter); // Group Counter
+        //                    fs.WriteLine("SAPLCPDA                                	1200	X	                                                                                                                                    	");
+        //                    fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=VOUE");
+        //                    fs.WriteLine("                                        	0000	 	PLKOD-PLNAL                                                                                                                         	{0}", o.GroupCounter); // Group Counter
+        //                    fs.WriteLine("                                        	0000	 	PLKOD-WERKS                                                                                                                         	{0}", o.Plant); // Plant 
+        //                    fs.WriteLine("                                        	0000	 	PLKOD-VERWE                                                                                                                         	{0}", o.Usage); // BOM Usage
+        //                    fs.WriteLine("                                        	0000	 	PLKOD-STATU                                                                                                                         	{0}", o.OverAllStatus); // Over all status
+        //                    fs.WriteLine("                                        	0000	 	PLKOD-LOSBS                                                                                                                         	{0}", o.LotSizeTo); // Lot size to
+        //                    fs.WriteLine("                                        	0000	 	PLKOD-PLNME                                                                                                                         	{0}", o.BaseUnit); // Base unit
+        //                    foreach (var a in routingWithoutMaterialItemList)
+        //                    {
+        //                        if (o.MaterialCode == a.MaterialCode)
+        //                        {
+        //                            List<RoutingWithoutMaterialItemModel> resultList = routingWithoutMaterialItemList.Where(t => t.MaterialCode == o.MaterialCode).ToList();
+        //                            RoutingWithoutMaterialItemModel last = resultList.Last();
 
-                                    // Last Item
-                                    if (a.Equals(last))
-                                    {
-                                        // Init srceen for component
-                                        fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
-                                        fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	/00");
-                                        fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	1"); // Fix
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VORNR(0{0})                                                                                                                     	{1}", count, string.Format("00{0}", routingItem)); // Operation no.
-                                        fs.WriteLine("                                        	0000	 	PLPOD-ARBPL(0{0})                                                                                                                     	{1}", count, a.WorkCenter); // WorkCenter
-                                        fs.WriteLine("                                        	0000	 	PLPOD-LTXA1(0{0})                                                                                                                       {1}", count, a.OperationDecription); // Operation Decription
-                                        // Operation command
-                                        fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
-                                        fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=P+");
-                                        fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	{0}", act); // Fix
-                                        // Operation detail
-                                        fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
-                                        fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK");
-                                        fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	{0}", act + 1); // Fix
-                                        fs.WriteLine("SAPLCPDO                                	1200	X	                                                                                                                                    	");
-                                        fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=BACK");
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VORNR                                                                                                                         	{0}", string.Format("00{0}", routingItem));
-                                        fs.WriteLine("                                        	0000	 	PLPOD-ARBPL                                                                                                                          	{0}", a.WorkCenter);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-WERKS                                                                                                                         	{0}", a.Plant);
-                                        fs.WriteLine("                                       	0000	 	PLPOD-KTSCH                                                                                                                         	{0}", a.StandardTextKey); // optional
-                                        fs.WriteLine("                                        	0000	 	PLPOD-LTXA1                                                                                                                         	{0}", a.OperationDecription);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-BMSCH                                                                                                                         	{0}", a.OperationBaseQuantity);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-MEINH                                                                                                                          	{0}", a.OperationOUM);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-UMREZ                                                                                                                         	{0}", a.ConversionOfOUMN);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-UMREN                                                                                                                         	{0}", a.ConversionOfOUMD);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-LAR01                                                                                                                         	{0}", a.ActivityType1);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGW01                                                                                                                         	{0}", a.StandardValue1);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGE01                                                                                                                         	{0}", a.StandardValue1OUM);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-LAR02                                                                                                                          	{0}", a.ActivityType2);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGW02                                                                                                                         	{0}", a.StandardValue2);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGE02                                                                                                                         	{0}", a.StandardValue2OUM);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-LAR03                                                                                                                          	{0}", a.ActivityType3);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGW03                                                                                                                         	{0}", a.StandardValue3);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGE03                                                                                                                         	{0}", a.StandardValue3OUM);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-LAR04                                                                                                                          	{0}", a.ActivityType4);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGW04                                                                                                                         	{0}", a.StandardValue4);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGE04                                                                                                                         	{0}", a.StandardValue4OUM);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-LAR05                                                                                                                          	{0}", a.ActivityType5);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGW05                                                                                                                         	{0}", a.StandardValue5);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGE05                                                                                                                         	{0}", a.StandardValue5OUM);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-LAR06                                                                                                                          	{0}", a.ActivityType6);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGW06                                                                                                                         	{0}", a.StandardValue6);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-VGE06                                                                                                                         	{0}", a.StandardValue6OUM);
-                                        fs.WriteLine("                                        	0000	 	PLPOD-AUFAK                                                                                                                         	{0}", a.Scarp);
-                                        fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
-                                        fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=BU");
-                                        fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                         3");
+        //                            // Last Item
+        //                            if (a.Equals(last))
+        //                            {
+        //                                // Init srceen for component
+        //                                fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
+        //                                fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	/00");
+        //                                fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	1"); // Fix
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VORNR(0{0})                                                                                                                     	{1}", count, string.Format("00{0}", routingItem)); // Operation no.
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-ARBPL(0{0})                                                                                                                     	{1}", count, a.WorkCenter); // WorkCenter
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-LTXA1(0{0})                                                                                                                       {1}", count, a.OperationDecription); // Operation Decription
+        //                                // Operation command
+        //                                fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
+        //                                fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=P+");
+        //                                fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	{0}", act); // Fix
+        //                                // Operation detail
+        //                                fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
+        //                                fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK");
+        //                                fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	{0}", act + 1); // Fix
+        //                                fs.WriteLine("SAPLCPDO                                	1200	X	                                                                                                                                    	");
+        //                                fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=BACK");
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VORNR                                                                                                                         	{0}", string.Format("00{0}", routingItem));
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-ARBPL                                                                                                                          	{0}", a.WorkCenter);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-WERKS                                                                                                                         	{0}", a.Plant);
+        //                                fs.WriteLine("                                       	0000	 	PLPOD-KTSCH                                                                                                                         	{0}", a.StandardTextKey); // optional
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-LTXA1                                                                                                                         	{0}", a.OperationDecription);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-BMSCH                                                                                                                         	{0}", a.OperationBaseQuantity);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-MEINH                                                                                                                          	{0}", a.OperationOUM);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-UMREZ                                                                                                                         	{0}", a.ConversionOfOUMN);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-UMREN                                                                                                                         	{0}", a.ConversionOfOUMD);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-LAR01                                                                                                                         	{0}", a.ActivityType1);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGW01                                                                                                                         	{0}", a.StandardValue1);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGE01                                                                                                                         	{0}", a.StandardValue1OUM);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-LAR02                                                                                                                          	{0}", a.ActivityType2);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGW02                                                                                                                         	{0}", a.StandardValue2);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGE02                                                                                                                         	{0}", a.StandardValue2OUM);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-LAR03                                                                                                                          	{0}", a.ActivityType3);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGW03                                                                                                                         	{0}", a.StandardValue3);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGE03                                                                                                                         	{0}", a.StandardValue3OUM);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-LAR04                                                                                                                          	{0}", a.ActivityType4);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGW04                                                                                                                         	{0}", a.StandardValue4);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGE04                                                                                                                         	{0}", a.StandardValue4OUM);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-LAR05                                                                                                                          	{0}", a.ActivityType5);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGW05                                                                                                                         	{0}", a.StandardValue5);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGE05                                                                                                                         	{0}", a.StandardValue5OUM);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-LAR06                                                                                                                          	{0}", a.ActivityType6);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGW06                                                                                                                         	{0}", a.StandardValue6);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-VGE06                                                                                                                         	{0}", a.StandardValue6OUM);
+        //                                fs.WriteLine("                                        	0000	 	PLPOD-AUFAK                                                                                                                         	{0}", a.Scarp);
+        //                                fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
+        //                                fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=BU");
+        //                                fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                         3");
 
-                                    }
-                                    else
-                                    {
-                                        // First Item
-                                        if (count == 1)
-                                        {
-                                            // Init srceen for component
-                                            fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
-                                            fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK");
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VORNR(0{0})                                                                                                                     	{1}", count, string.Format("00{0}", routingItem)); // Operation no.
-                                            fs.WriteLine("                                        	0000	 	PLPOD-ARBPL(0{0})                                                                                                                     	{1}", count, a.WorkCenter); // WorkCenter
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LTXA1(0{0})                                                                                                                       {1}", count, a.OperationDecription); // Operation Decription
-                                            // Operation detail
-                                            fs.WriteLine("SAPLCPDI                                	1200	X	                                                                                                                                    	");
-                                            fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=BACK");
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VORNR                                                                                                                         	{0}", string.Format("00{0}", routingItem));
-                                            fs.WriteLine("                                        	0000	 	PLPOD-ARBPL                                                                                                                          	{0}", a.WorkCenter);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-WERKS                                                                                                                         	{0}", a.Plant);
-                                            fs.WriteLine("                                       	0000	 	PLPOD-KTSCH                                                                                                                         	{0}", a.StandardTextKey); // optional
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LTXA1                                                                                                                         	{0}", a.OperationDecription);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-BMSCH                                                                                                                         	{0}", a.OperationBaseQuantity);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-MEINH                                                                                                                          	{0}", a.OperationOUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-UMREZ                                                                                                                         	{0}", a.ConversionOfOUMN);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-UMREN                                                                                                                         	{0}", a.ConversionOfOUMD);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR01                                                                                                                         	{0}", a.ActivityType1);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW01                                                                                                                         	{0}", a.StandardValue1);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE01                                                                                                                         	{0}", a.StandardValue1OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR02                                                                                                                          	{0}", a.ActivityType2);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW02                                                                                                                         	{0}", a.StandardValue2);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE02                                                                                                                         	{0}", a.StandardValue2OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR03                                                                                                                          	{0}", a.ActivityType3);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW03                                                                                                                         	{0}", a.StandardValue3);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE03                                                                                                                         	{0}", a.StandardValue3OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR04                                                                                                                          	{0}", a.ActivityType4);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW04                                                                                                                         	{0}", a.StandardValue4);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE04                                                                                                                         	{0}", a.StandardValue4OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR05                                                                                                                          	{0}", a.ActivityType5);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW05                                                                                                                         	{0}", a.StandardValue5);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE05                                                                                                                         	{0}", a.StandardValue5OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR06                                                                                                                          	{0}", a.ActivityType6);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW06                                                                                                                         	{0}", a.StandardValue6);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE06                                                                                                                         	{0}", a.StandardValue6OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-AUFAK                                                                                                                         	{0}", a.Scarp);
-                                        }
-                                        // Next Item
-                                        else
-                                        {
-                                            // Init srceen for component
-                                            fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
-                                            fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	/00");
-                                            fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	1"); // Fix
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VORNR(0{0})                                                                                                                     	{1}", count, string.Format("00{0}", routingItem)); // Operation no.
-                                            fs.WriteLine("                                        	0000	 	PLPOD-ARBPL(0{0})                                                                                                                     	{1}", count, a.WorkCenter); // WorkCenter
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LTXA1(0{0})                                                                                                                       {1}", count, a.OperationDecription); // Operation Decription
-                                            // Operation command
-                                            fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
-                                            fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=P+");
-                                            fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	{0}", act); // Fix
-                                            // Operation detail
-                                            fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
-                                            fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK");
-                                            fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	{0}", act + 1); // Fix
-                                            fs.WriteLine("SAPLCPDO                                	1200	X	                                                                                                                                    	");
-                                            fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=BACK");
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VORNR                                                                                                                         	{0}", string.Format("00{0}", routingItem));
-                                            fs.WriteLine("                                        	0000	 	PLPOD-ARBPL                                                                                                                          	{0}", a.WorkCenter);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-WERKS                                                                                                                         	{0}", a.Plant);
-                                            fs.WriteLine("                                       	0000	 	PLPOD-KTSCH                                                                                                                         	{0}", a.StandardTextKey); // optional
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LTXA1                                                                                                                         	{0}", a.OperationDecription);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-BMSCH                                                                                                                         	{0}", a.OperationBaseQuantity);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-MEINH                                                                                                                          	{0}", a.OperationOUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-UMREZ                                                                                                                         	{0}", a.ConversionOfOUMN);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-UMREN                                                                                                                         	{0}", a.ConversionOfOUMD);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR01                                                                                                                         	{0}", a.ActivityType1);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW01                                                                                                                         	{0}", a.StandardValue1);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE01                                                                                                                         	{0}", a.StandardValue1OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR02                                                                                                                          	{0}", a.ActivityType2);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW02                                                                                                                         	{0}", a.StandardValue2);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE02                                                                                                                         	{0}", a.StandardValue2OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR03                                                                                                                          	{0}", a.ActivityType3);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW03                                                                                                                         	{0}", a.StandardValue3);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE03                                                                                                                         	{0}", a.StandardValue3OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR04                                                                                                                          	{0}", a.ActivityType4);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW04                                                                                                                         	{0}", a.StandardValue4);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE04                                                                                                                         	{0}", a.StandardValue4OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR05                                                                                                                          	{0}", a.ActivityType5);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW05                                                                                                                         	{0}", a.StandardValue5);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE05                                                                                                                         	{0}", a.StandardValue5OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-LAR06                                                                                                                          	{0}", a.ActivityType6);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGW06                                                                                                                         	{0}", a.StandardValue6);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-VGE06                                                                                                                         	{0}", a.StandardValue6OUM);
-                                            fs.WriteLine("                                        	0000	 	PLPOD-AUFAK                                                                                                                         	{0}", a.Scarp);
-                                        }
-                                    }
-                                    count++;
-                                    routingItem += 10;
-                                    act++;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //                            }
+        //                            else
+        //                            {
+        //                                // First Item
+        //                                if (count == 1)
+        //                                {
+        //                                    // Init srceen for component
+        //                                    fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
+        //                                    fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK");
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VORNR(0{0})                                                                                                                     	{1}", count, string.Format("00{0}", routingItem)); // Operation no.
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-ARBPL(0{0})                                                                                                                     	{1}", count, a.WorkCenter); // WorkCenter
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LTXA1(0{0})                                                                                                                       {1}", count, a.OperationDecription); // Operation Decription
+        //                                    // Operation detail
+        //                                    fs.WriteLine("SAPLCPDI                                	1200	X	                                                                                                                                    	");
+        //                                    fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=BACK");
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VORNR                                                                                                                         	{0}", string.Format("00{0}", routingItem));
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-ARBPL                                                                                                                          	{0}", a.WorkCenter);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-WERKS                                                                                                                         	{0}", a.Plant);
+        //                                    fs.WriteLine("                                       	0000	 	PLPOD-KTSCH                                                                                                                         	{0}", a.StandardTextKey); // optional
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LTXA1                                                                                                                         	{0}", a.OperationDecription);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-BMSCH                                                                                                                         	{0}", a.OperationBaseQuantity);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-MEINH                                                                                                                          	{0}", a.OperationOUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-UMREZ                                                                                                                         	{0}", a.ConversionOfOUMN);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-UMREN                                                                                                                         	{0}", a.ConversionOfOUMD);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR01                                                                                                                         	{0}", a.ActivityType1);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW01                                                                                                                         	{0}", a.StandardValue1);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE01                                                                                                                         	{0}", a.StandardValue1OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR02                                                                                                                          	{0}", a.ActivityType2);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW02                                                                                                                         	{0}", a.StandardValue2);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE02                                                                                                                         	{0}", a.StandardValue2OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR03                                                                                                                          	{0}", a.ActivityType3);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW03                                                                                                                         	{0}", a.StandardValue3);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE03                                                                                                                         	{0}", a.StandardValue3OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR04                                                                                                                          	{0}", a.ActivityType4);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW04                                                                                                                         	{0}", a.StandardValue4);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE04                                                                                                                         	{0}", a.StandardValue4OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR05                                                                                                                          	{0}", a.ActivityType5);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW05                                                                                                                         	{0}", a.StandardValue5);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE05                                                                                                                         	{0}", a.StandardValue5OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR06                                                                                                                          	{0}", a.ActivityType6);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW06                                                                                                                         	{0}", a.StandardValue6);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE06                                                                                                                         	{0}", a.StandardValue6OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-AUFAK                                                                                                                         	{0}", a.Scarp);
+        //                                }
+        //                                // Next Item
+        //                                else
+        //                                {
+        //                                    // Init srceen for component
+        //                                    fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
+        //                                    fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	/00");
+        //                                    fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	1"); // Fix
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VORNR(0{0})                                                                                                                     	{1}", count, string.Format("00{0}", routingItem)); // Operation no.
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-ARBPL(0{0})                                                                                                                     	{1}", count, a.WorkCenter); // WorkCenter
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LTXA1(0{0})                                                                                                                       {1}", count, a.OperationDecription); // Operation Decription
+        //                                    // Operation command
+        //                                    fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
+        //                                    fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=P+");
+        //                                    fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	{0}", act); // Fix
+        //                                    // Operation detail
+        //                                    fs.WriteLine("SAPLCPDI                                	1400	X	                                                                                                                                    	");
+        //                                    fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=PICK");
+        //                                    fs.WriteLine("                                        	0000	 	RC27X-ENTRY_ACT                                                                                                                       	{0}", act + 1); // Fix
+        //                                    fs.WriteLine("SAPLCPDO                                	1200	X	                                                                                                                                    	");
+        //                                    fs.WriteLine("                                        	0000	 	BDC_OKCODE                                                                                                                          	=BACK");
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VORNR                                                                                                                         	{0}", string.Format("00{0}", routingItem));
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-ARBPL                                                                                                                          	{0}", a.WorkCenter);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-WERKS                                                                                                                         	{0}", a.Plant);
+        //                                    fs.WriteLine("                                       	0000	 	PLPOD-KTSCH                                                                                                                         	{0}", a.StandardTextKey); // optional
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LTXA1                                                                                                                         	{0}", a.OperationDecription);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-BMSCH                                                                                                                         	{0}", a.OperationBaseQuantity);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-MEINH                                                                                                                          	{0}", a.OperationOUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-UMREZ                                                                                                                         	{0}", a.ConversionOfOUMN);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-UMREN                                                                                                                         	{0}", a.ConversionOfOUMD);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR01                                                                                                                         	{0}", a.ActivityType1);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW01                                                                                                                         	{0}", a.StandardValue1);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE01                                                                                                                         	{0}", a.StandardValue1OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR02                                                                                                                          	{0}", a.ActivityType2);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW02                                                                                                                         	{0}", a.StandardValue2);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE02                                                                                                                         	{0}", a.StandardValue2OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR03                                                                                                                          	{0}", a.ActivityType3);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW03                                                                                                                         	{0}", a.StandardValue3);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE03                                                                                                                         	{0}", a.StandardValue3OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR04                                                                                                                          	{0}", a.ActivityType4);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW04                                                                                                                         	{0}", a.StandardValue4);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE04                                                                                                                         	{0}", a.StandardValue4OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR05                                                                                                                          	{0}", a.ActivityType5);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW05                                                                                                                         	{0}", a.StandardValue5);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE05                                                                                                                         	{0}", a.StandardValue5OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-LAR06                                                                                                                          	{0}", a.ActivityType6);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGW06                                                                                                                         	{0}", a.StandardValue6);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-VGE06                                                                                                                         	{0}", a.StandardValue6OUM);
+        //                                    fs.WriteLine("                                        	0000	 	PLPOD-AUFAK                                                                                                                         	{0}", a.Scarp);
+        //                                }
+        //                            }
+        //                            count++;
+        //                            routingItem += 10;
+        //                            act++;
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         //public static void ConvertMMRoutingToTextFile(List<RoutingHeaderModel> routingHeaderList, List<RoutingItemModel> routingItemList, string fileName, string extension, string user, DateTime validDate)
         //{

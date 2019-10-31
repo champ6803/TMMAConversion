@@ -380,6 +380,12 @@ namespace TMMAConversions.UI.Controllers
                     objSheetsActivityList.Add(new SheetsModel() { Name = "Gasket Activity", Count = 1 });
                 }
 
+                if (sheets.Contains("Value Cullet"))
+                {
+                    objSheetsList.Add(new SheetsModel() { Name = "Value Cullet", Count = 1 });
+                    objSheetsActivityList.Add(new SheetsModel() { Name = "Value Cullet Activity", Count = 1 });
+                }
+
                 List<List<DataTable>> dtList = ExcelUtility.ReadCCSBOMExcel(path, extension, objSheetsList);
                 List<List<DataTable>> dtActivityList = ExcelUtility.ReadCCSBOMActivityExcel(path, extension, objSheetsActivityList);
 

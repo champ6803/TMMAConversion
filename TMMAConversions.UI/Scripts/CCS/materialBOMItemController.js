@@ -17,7 +17,8 @@
     { id: 5, name: "CCS Syrup" },
     { id: 6, name: "CCS Initiator" },
     { id: 7, name: "Packing Pattern" },
-    { id: 8, name: "Gasket" }];
+    { id: 8, name: "Gasket" },
+    { id: 9, name: "Value Cullet" }];
 
     $scope.OptionsList = [{ id: 1, name: "BOM Create Header" },
     { id: 2, name: "BOM Delete Component (All)" },
