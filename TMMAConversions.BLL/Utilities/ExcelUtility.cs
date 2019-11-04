@@ -689,7 +689,7 @@ namespace TMMAConversions.BLL.Utilities
                     BOMHeaderList = new List<BOMHeaderModel>();
                     BOMItemList = new List<BOMItemModel>();
 
-                    for (int i = 15; i < rowCount; i++) // first row
+                    for (int i = 16; i < rowCount; i++) // first row
                     {
                         for (int j = 10; j < colCount; j++) // first col
                         {
@@ -1496,9 +1496,9 @@ namespace TMMAConversions.BLL.Utilities
                         int rowCount = dtExcel.Rows.Count;
                         int colCount = dtExcel.Columns.Count;
 
-                        for (int i = 16; i < rowCount; i++)
+                        for (int i = 17; i < rowCount; i++)
                         {
-                            for (int j = 10; j < colCount; j++)
+                            for (int j = 9; j < colCount; j++)
                             {
                                 if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000")) // check material
                                 {
@@ -1531,7 +1531,7 @@ namespace TMMAConversions.BLL.Utilities
 
                         log.Info("========== ConvertCCSBOMActivityExcelToCCSBOMActivityModel BOMItem : Success =========");
 
-                        for (int j = 10; j < colCount; j++)
+                        for (int j = 9; j < colCount; j++)
                         {
                             if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
                             {
