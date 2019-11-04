@@ -565,7 +565,6 @@ namespace TMMAConversions.BLL.Utilities
                         {
                             foreach (var k in routingGroupList)
                             {
-                                //var c = 1;
                                 foreach (var o in k)
                                 {
                                     //if (c == 1)
