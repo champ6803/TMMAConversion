@@ -1533,7 +1533,7 @@ namespace TMMAConversions.BLL.Utilities
 
                         for (int j = 9; j < colCount; j++)
                         {
-                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
+                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString()) && dtExcel.Rows[1].ItemArray[j].ToString()  != "MaterialCode") // check material
                             {
                                 // Create BOM Header
                                 BOMHeaderModel BOMHeader = new BOMHeaderModel();
