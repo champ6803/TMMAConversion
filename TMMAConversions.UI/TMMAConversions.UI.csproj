@@ -4868,7 +4868,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Files\CCS\SAP\" />
+    <Folder Include="Files\CCS\SAP\BOM\" />
     <Folder Include="Files\CCS\Template\" />
     <Folder Include="Files\Monomer\Excels\RoutingWithMaterial\" />
     <Folder Include="Files\Monomer\Excels\RoutingWithoutMaterial\" />
