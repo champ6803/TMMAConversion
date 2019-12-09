@@ -98,6 +98,10 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.Web.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.WindowsServer.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.ApplicationInsights.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Newtonsoft.Json.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\System.Net.Http.Formatting.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\System.Web.Http.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\System.Web.Http.WebHost.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\EntityFramework.SqlServer.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\log4net.xml
@@ -107,6 +111,10 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.Web.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.AI.WindowsServer.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.ApplicationInsights.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\Newtonsoft.Json.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\System.Net.Http.Formatting.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\System.Web.Http.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\bin\System.Web.Http.WebHost.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csprojResolveAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.pdb
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.DAL\obj\Debug\TMMAConversions.DAL.csprojResolveAssemblyReference.cache

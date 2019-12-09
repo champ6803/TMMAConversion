@@ -12,7 +12,8 @@
     { id: 9, name: "CCS Gasket" },
     { id: 10, name: "CCS Roof" },
     { id: 11, name: "CCS Heat Sealing" },
-    { id: 12, name: "CCS Reprocess" }];
+    { id: 12, name: "CCS Reprocess" },
+    { id: 13, name: "CCS Value Cullet" }];
 
     $scope.OptionsList = [{ id: 1, name: "Delete Operation Routing" },
     { id: 2, name: "Delete Work Center" },

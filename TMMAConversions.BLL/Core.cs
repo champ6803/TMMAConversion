@@ -296,6 +296,11 @@ namespace TMMAConversions.BLL
         {
             return UserBLL.GetUserByUsername(username);
         }
+        
+        public ResponseModel AddUser(UserModel user)
+        {
+            return UserBLL.AddUser(user);
+        }
 
         /// <summary>
         ///  Monomer WorkCenter Routing

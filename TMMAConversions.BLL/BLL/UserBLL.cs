@@ -91,6 +91,32 @@ namespace TMMAConversions.BLL.BLL
             }
         }
 
+        public static ResponseModel AddUser(UserModel user)
+        {
+            ACTION = "AddUser(UserModel)";
+            try
+            {
+                ResponseModel res = UserDAL.AddUser(user);
+                return new ResponseModel()
+                {
+                    Action = ACTION,
+                    Source = SOURCE,
+                    Message = res.Message,
+                    Status = res.Status
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel()
+                {
+                    Action = ACTION,
+                    Source = SOURCE,
+                    Message = ex.Message,
+                    Status = false
+                };
+            }
+        }
+
         public static ResponseModel AddBOMFile(BOMFileModel m, ref int _newID)
         {
             ACTION = "AddBOMFile(BOMFileModel)";

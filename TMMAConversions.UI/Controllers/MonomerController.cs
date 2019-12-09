@@ -81,7 +81,8 @@ namespace TMMAConversions.UI.Controllers
                 "CCS Gasket",
                 "CCS Roof",
                 "CCS Heat Sealing",
-                "CCS Reprocess"
+                "CCS Reprocess",
+                "CCS Value Cullet"
             };
 
             string[] options =
@@ -399,7 +400,7 @@ namespace TMMAConversions.UI.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
-
+        #region old Work center file
         // WorkCenter File
         //[HttpPost]
         //public ActionResult UploadWorkCenterFile()
@@ -471,7 +472,7 @@ namespace TMMAConversions.UI.Controllers
         //        }, JsonRequestBehavior.AllowGet);
         //    }
         //}
-
+        #endregion
         // WorkCenter Routing File
         [HttpPost]
         public ActionResult UploadWorkCenterRoutingFile()
@@ -568,6 +569,7 @@ namespace TMMAConversions.UI.Controllers
             }
         }
 
+        #region old Production version file/routing without mat./routing with mat./routing
         // Production Version File
         //[HttpPost]
         //public ActionResult UploadProductionVersionFile()
@@ -845,7 +847,7 @@ namespace TMMAConversions.UI.Controllers
         //        }, JsonRequestBehavior.AllowGet);
         //    }
         //}
-
+        #endregion
         // Inspection Plan File
         [HttpPost]
         public ActionResult UploadInspectionPlanFile()

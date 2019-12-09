@@ -165,7 +165,10 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Microsoft.Application
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Microsoft.Web.Infrastructure.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Newtonsoft.Json.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Net.Http.Formatting.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Helpers.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Http.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Http.WebHost.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Mvc.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Optimization.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Razor.dll
@@ -190,6 +193,9 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Microsoft.AI.Web.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Microsoft.AI.WindowsServer.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Microsoft.ApplicationInsights.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Net.Http.Formatting.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Http.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Http.WebHost.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Helpers.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Mvc.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.Optimization.xml
@@ -199,6 +205,6 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.WebPages.D
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\System.Web.WebPages.Razor.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Antlr3.Runtime.pdb
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\bin\Newtonsoft.Json.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojResolveAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.pdb
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.UI\obj\Debug\TMMAConversions.UI.csprojResolveAssemblyReference.cache

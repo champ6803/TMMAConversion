@@ -105,6 +105,10 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.AI.Web.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.AI.WindowsServer.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.ApplicationInsights.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Newtonsoft.Json.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\System.Net.Http.Formatting.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\System.Web.Http.dll
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\System.Web.Http.WebHost.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\TMMAConversions.DAL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\TMMAConversions.Utilities.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\EntityFramework.dll
@@ -117,7 +121,11 @@ D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.AI.Web.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.AI.WindowsServer.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.ApplicationInsights.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\Newtonsoft.Json.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\System.Net.Http.Formatting.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\System.Web.Http.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\System.Web.Http.WebHost.xml
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\bin\EntityFramework.xml
+D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.csprojResolveAssemblyReference.cache
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.dll
 D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.pdb
-D:\Champ\ProjectWeb\TMMAConversions\TMMAConversions.BLL\obj\Debug\TMMAConversions.BLL.csprojResolveAssemblyReference.cache

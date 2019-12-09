@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMMAConversions.DAL.Models;
 using TMMAConversions.DAL.Entities;
+using System.Data.Entity.Validation;
 
 namespace TMMAConversions.DAL.DAL
 {
@@ -81,6 +82,35 @@ namespace TMMAConversions.DAL.DAL
             }
         }
 
+        internal static USR_TMMA_USER Mapping(UserModel o)
+        {
+            try
+            {
+                if (o != null)
+                {
+                    return new USR_TMMA_USER()
+                    {
+                        UserID = o.UserID,
+                        RoleID = o.RoleID,
+                        Username = o.Username,
+                        PasswordHash = o.PasswordHash,
+                        Salt = o.Salt,
+                        IsActive = o.IsActive ? 1 : 0,
+                        CreatedBy = o.CreatedBy,
+                        CreatedDate = o.CreatedDate,
+                        UpdatedBy = o.UpdatedBy,
+                        UpdatedDate = o.UpdatedDate
+                    };
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static UserModel GetUser(int userID)
         {
             ACTION = "GetUser(userID)";
@@ -137,5 +167,72 @@ namespace TMMAConversions.DAL.DAL
                 throw ex;
             }
         }
+
+        public static ResponseModel AddUser(UserModel user)
+        {
+            string action = "AddUser(UserModel)";
+            try
+            {
+                if (user != null)
+                {
+                    using (UTMMABCDBEntities context = new UTMMABCDBEntities())
+                    {
+                        USR_TMMA_USER _obj = Mapping(user);
+
+                        context.USR_TMMA_USER.Add(_obj);
+
+                        if (context.SaveChanges() > 0)
+                        {
+                            return new ResponseModel()
+                            {
+                                Source = SOURCE,
+                                Action = action,
+                                Status = true,
+                                Message = "Success"
+                            };
+                        }
+
+                        return new ResponseModel()
+                        {
+                            Source = SOURCE,
+                            Action = action,
+                            Status = false,
+                            Message = "Fail"
+                        };
+                    }
+                }
+
+                return new ResponseModel()
+                {
+                    Source = SOURCE,
+                    Action = action,
+                    Status = false,
+                    Message = "Null"
+                };
+            }
+            catch (DbEntityValidationException ex)
+            {
+                return new ResponseModel()
+                {
+                    Source = SOURCE,
+                    Action = action,
+                    Status = false,
+                    Message = ex.Message,
+                    StackTrace = ex.StackTrace
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel()
+                {
+                    Source = SOURCE,
+                    Action = action,
+                    Status = false,
+                    Message = ex.Message,
+                    StackTrace = ex.StackTrace
+                };
+            }
+        }
+        
     }
 }
