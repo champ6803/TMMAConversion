@@ -1418,7 +1418,7 @@ namespace TMMAConversions.BLL.Utilities
 
                         for (int i = 10; i < rowCount; i++)
                         {
-                            for (int j = 10; j < colCount; j++)
+                            for (int j = 9; j < colCount; j++)
                             {
                                 if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString()) && !String.Equals("-", dtExcel.Rows[i].ItemArray[j].ToString().Trim()) && (dtExcel.Rows[i].ItemArray[j].ToString() != "0" && dtExcel.Rows[i].ItemArray[j].ToString() != "0.000")) // check material
                                 {
@@ -1450,9 +1450,9 @@ namespace TMMAConversions.BLL.Utilities
 
                         log.Info("========== ConvertCCSBOMExcelToCCSBOMModel BOMItem : Success =========");
 
-                        for (int j = 10; j < colCount; j++)
+                        for (int j = 9; j < colCount; j++)
                         {
-                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString())) // check material
+                            if (!string.IsNullOrEmpty(dtExcel.Rows[1].ItemArray[j].ToString()) && dtExcel.Rows[1].ItemArray[j].ToString() != "MaterialCode") // check material
                             {
                                 // Create BOM Header
                                 BOMHeaderModel BOMHeader = new BOMHeaderModel();
