@@ -19,4 +19,15 @@
     {
 
     }
+
+    public class SSOVerifyReQuest
+    {
+        public string ssoAccount { get; set; }
+        public string ssoPassword { get; set; }
+        public string loginIpAddress { get; set; }
+        public string loginDevice { get; set; }
+        public string loginLocation { get; set; }
+        public int ssoAccountType { get; set; }
+        public string referenceToken { get; set; }
+    }
 }
