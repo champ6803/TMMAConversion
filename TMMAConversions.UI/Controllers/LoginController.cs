@@ -31,23 +31,23 @@ namespace TMMAConversions.UI.Controllers
         {
             try
             {
-                _RequestPath = "/v1.1/Api/SSO/SSOVerify";
-                var req = new SSOVerifyReQuest
-                {
-                    ssoAccount = username,
-                    ssoPassword = password,
-                    referenceToken = _Token
-                };
-                var res = HttpPost<SSOVerifyReQuest, Response<object>>(_RequestPath, req);
-                _Token = res.ResponseBase.ReferenceToken;
-                var result = res.ResponseBase.MessageType;
-                if (result != 0)
-                {
-                    throw new ApplicationException("invalid username and password (" + res.ResponseBase.MessageTypeName + ")");
-                    log.Info("========== response : " + res.ResponseBase.MessageTypeName + "=========");
-                }
-                else
-                {
+                //_RequestPath = "/v1.1/Api/Network/ChemVerifyADAccount";
+                //var req = new ChemVerifyADAccount
+                //{
+                //    adAccount = username,
+                //    password = password,
+                //    ReferenceToken = _Token
+                //};
+                //var res = HttpPost<ChemVerifyADAccount, Response<string>>(_RequestPath, req);
+                //_Token = res.ResponseBase.ReferenceToken;
+                //var result = res.ResponseBase.MessageType;
+                //if (result != 0)
+                //{
+                //    throw new ApplicationException("invalid username and password (" + res.ResponseBase.MessageTypeName + ")");
+                //    log.Info("========== response : " + res.ResponseBase.MessageTypeName + "=========");
+                //}
+                //else
+                //{
                     log.Info("========== user : " + username + "=========");
                     UserModel record = core.GetUserByUsername(username);
 
@@ -71,12 +71,12 @@ namespace TMMAConversions.UI.Controllers
                             Message = "Success"
                         }, JsonRequestBehavior.AllowGet);
                     }
-                else
-                {
-                    throw new ApplicationException("invalid username and password");
-                }
+                    else
+                    {
+                        throw new ApplicationException("invalid username and password");
+                    }
 
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -89,7 +89,6 @@ namespace TMMAConversions.UI.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
 
-            #region old login
             //try
             //{
             //    UserModel record = core.GetUserByUsername(username);
@@ -129,7 +128,6 @@ namespace TMMAConversions.UI.Controllers
             //        Message = ex.Message
             //    }, JsonRequestBehavior.AllowGet);
             //}
-            #endregion
         }
 
         [HttpGet]
