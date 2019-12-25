@@ -64,8 +64,8 @@ namespace TMMAConversions.UI.Controllers
         {
             this._ApiMDMUri = "https://scgchem-mdmdev.scg.com";
             this._ApiAuthenUri = "https://scgchem-mdmdev.scg.com/oauth/api/token";
-            this._ApplicationId = "AD05C246-B8AB-43D1-B235-1EF4B4C6CB0B";
-            this._SecretKey = "0D76A68D-8CBF-40EC-8584-71B8A6CDD815";
+            this._ApplicationId = "4bb6de44-49ec-49b9-bd43-850f3b22c1db";
+            this._SecretKey = "45ed6d49-d56e-4560-a065-00d2da81ca6f";
             
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings

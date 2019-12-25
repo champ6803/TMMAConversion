@@ -31,7 +31,7 @@ namespace TMMAConversions.UI.Controllers
         {
             try
             {
-                _RequestPath = "/v1.1/Api/Network/ChemVerifyADAccount";
+                _RequestPath = "/v1.1/Api/SSO/SSOVerify";
                 var req = new SSOVerifyReQuest
                 {
                     ssoAccount = username,
