@@ -55,7 +55,7 @@ namespace TMMAConversions.UI.Controllers
                     {
                         string newSalt = getSalt();
                         string _hashString = getHashString(password, newSalt);
-                        SaveUser(username, _hashString, newSalt, "MDM");
+                        SaveUser(username, _hashString, newSalt, "AD");
                         record = core.GetUserByUsername(username);
                     }
 
