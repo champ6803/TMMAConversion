@@ -55,4 +55,12 @@ namespace TMMAConversions.DAL.Models
         public string Metadata { get; set; }
         public T Value { get; set; }
     }
+
+    public class SSOVerifyRes
+    {
+        public int ssoAccountType { get; set; }
+        public string ssoAccountToken { get; set; }
+        public int minuteExpired { get; set; }
+
+    }
 }

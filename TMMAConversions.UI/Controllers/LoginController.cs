@@ -7,6 +7,7 @@ using TMMAConversions.DAL.Models;
 using TMMAConversions.BLL;
 using TMMAConversions.BLL.Utilities;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
 
 namespace TMMAConversions.UI.Controllers
 {
@@ -38,32 +39,38 @@ namespace TMMAConversions.UI.Controllers
                     ssoPassword = password,
                     referenceToken = _Token
                 };
-                var res = HttpPost<SSOVerifyReQuest, Response<object>>(_RequestPath, req);
-                _Token = res.ResponseBase.ReferenceToken;
+                var res = HttpPost<SSOVerifyReQuest, Response<object>>(_RequestPath, req);                
                 var result = res.ResponseBase.MessageType;
                 if (result != 0)
                 {
-                    throw new ApplicationException("invalid username and password (" + res.ResponseBase.MessageTypeName + ")");
+                    throw new ApplicationException("Can't connecnt (" + res.ResponseBase.MessageTypeName + ")");
                     log.Info("========== response : " + res.ResponseBase.MessageTypeName + "=========");
                 }
                 else
                 {
-                    log.Info("========== user : " + username + "=========");
-                    UserModel record = core.GetUserByUsername(username);
-
-                    if (record == default(UserModel))
+                    SSOVerifyRes ssores = JsonConvert.DeserializeObject<SSOVerifyRes>(res.ResponseData.ToString());
+                    _Token = ssores.ssoAccountToken;
+                    if (ssores.ssoAccountType == 0)
                     {
-                        string newSalt = getSalt();
-                        string _hashString = getHashString(password, newSalt);
-                        SaveUser(username, _hashString, newSalt, "AD");
-                        record = core.GetUserByUsername(username);
-                    }
+                        log.Info("========== user : " + username + "=========");
+                        UserModel record = core.GetUserByUsername(username);
 
-                    string salt = record.Salt;
-                    string hashString = getHashString(password, salt);
+                        if (record == default(UserModel))
+                        {
+                            
+                            SaveUser(username, password, "AD");
+                            record = core.GetUserByUsername(username);
+                        }
 
-                    if (hashString == record.PasswordHash)
-                    {
+                        string salt = record.Salt;
+                        string hashString = getHashString(password, salt);
+
+                        if (hashString != record.PasswordHash)
+                        {
+                            SaveUser(username, password, "AD");
+                            record = core.GetUserByUsername(username);                            
+                        }
+
                         Session["Username"] = record.Username;
                         return Json(new ResponseModel()
                         {
@@ -75,7 +82,8 @@ namespace TMMAConversions.UI.Controllers
                     {
                         throw new ApplicationException("invalid username and password");
                     }
-            }
+
+                }
             }
             catch (Exception ex)
             {
@@ -158,16 +166,18 @@ namespace TMMAConversions.UI.Controllers
             return hashString;
         }
 
-        public void SaveUser(string username, string passwordhash, string salt, string createby)
+        public void SaveUser(string username, string password, string createby)
         {
             try
             {
+                string newSalt = getSalt();
+                string _hashString = getHashString(password, newSalt);
                 //Add User to DB
                 UserModel user = new UserModel();
                 user.RoleID = 1;
                 user.Username = username;
-                user.PasswordHash = passwordhash;
-                user.Salt = salt;
+                user.PasswordHash = _hashString;
+                user.Salt = newSalt;
                 user.IsActive = true;
                 user.CreatedBy = createby;
                 user.CreatedDate = DateTime.Now;
@@ -188,5 +198,6 @@ namespace TMMAConversions.UI.Controllers
                 throw ex;
             }
         }
+        
     }
 }
