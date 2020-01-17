@@ -174,7 +174,7 @@ namespace TMMAConversions.UI.Controllers
                 string _hashString = getHashString(password, newSalt);
                 //Add User to DB
                 UserModel user = new UserModel();
-                user.RoleID = 1;
+                user.RoleID = 2;
                 user.Username = username;
                 user.PasswordHash = _hashString;
                 user.Salt = newSalt;
